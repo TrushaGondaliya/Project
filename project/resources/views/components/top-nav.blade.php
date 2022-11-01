@@ -52,7 +52,9 @@
                 </div>
                 <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" style="font-size: 15px;" href="#"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Evan Donohue
+                    <!-- Evan Donohue -->
+                    {{Session::get('name')}}
+                    
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Dashboard</a></li>
@@ -99,16 +101,13 @@
 
         <input type="text" class="popup-input" placeholder="Enter Mission Title"><br><br>
         <span class="popup-input-text">Mission Description</span>
-        <div class="popup-dis">
-            <span class="story-input-div-text">Enter your message...</span>
-        </div>
+        <textarea type="text" class="popup-dis" placeholder="Enter your message..."></textarea><br><br>
+       
         <span class="popup-input-text">Mission Organization Name</span>
         <input type="text" class="popup-input" placeholder="Enter Mission organizarion name"><br><br>
 
         <span class="popup-input-text">Mission Organization Detail</span>
-        <div class="popup-dis">
-            <span class="story-input-div-text">Enter your message...</span>
-        </div>
+        <textarea type="text" class="popup-dis" placeholder="Enter your message..."></textarea><br><br>
         <span class="popup-input-text">Start Date</span>
         <input type="date" class="popup-input" placeholder="Enter start Date"><br><br>
         <span class="popup-input-text">End Date</span>

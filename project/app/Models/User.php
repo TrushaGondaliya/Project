@@ -16,6 +16,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     
 
-
+    protected $primaryKey = 'user_id';
     public $timestamps=false;
 }

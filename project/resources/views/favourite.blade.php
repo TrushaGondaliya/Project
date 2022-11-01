@@ -30,7 +30,7 @@
       <a href="#" class="navbar-brand">
         <img src="images/bell.png" alt="">
       </a>
-      
+
 
       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">User</a>
       <ul class="dropdown-menu">
@@ -46,10 +46,10 @@
   <div class="topnav nav-tabs">
     <a href="#" class="navbar-brand ">
       <form action="{{url('home/{search}')}}" method="get">
-    
+
         <img src="{{url('images/search.png')}}">
         <input type="search" name="search" class="search" style="border: none;" placeholder="Search mission" value="" id="">
-        
+
       </form>
     </a>
     <div class="topnav-right">
@@ -109,95 +109,95 @@
   <section>
     <div class="container-fluid">
       <div class="row" style="margin-left:200px; margin-right:200px;">
-       
-      @foreach($missions as $mission)
-          <div class="col-lg-4 col-md-6 col-sm-12" style="margin-top:20px ;">
-            <div class="card" style="width: 100%;height:100%;">
-              <div>
-                <img src="images/Animal-welfare-&-save-birds-campaign.png" class="card-img-top" alt="...">
-                <div class="bottom" style="position: absolute;bottom: 8px;left:290px; top: 120px;">
+
+        @foreach($missions as $mission)
+        <div class="col-lg-4 col-md-6 col-sm-12" style="margin-top:20px ;">
+          <div class="card" style="width: 100%;height:100%;">
+            <div>
+              <img src="images/Animal-welfare-&-save-birds-campaign.png" class="card-img-top" alt="...">
+              <div class="bottom" style="position: absolute;bottom: 8px;left:290px; top: 120px;">
                 <a href="">
                   <img src="images/add1.png" style="background-color:black; opacity: 0.9; padding: 3px; border-radius:50%" alt="">
-                  </a>
-                </div>
-                <div class="bottom" style="position: absolute;bottom: 8px;left:290px; top: 90px;">
+                </a>
+              </div>
+              <div class="bottom" style="position: absolute;bottom: 8px;left:290px; top: 90px;">
                 <a href="">
                   <img src="images/heart1.png" style="background-color:black; opacity: 0.9; padding: 3px; border-radius:50%" alt="">
                 </a>
-                </div>
-                <a href="">
+              </div>
+              <a href="">
                 <div class="bottom" style="position: absolute;left:290px; top: 10px;">
                   <img src="images/pin1.png" style="background-color:black; opacity: 0.9; padding: 3px; border-radius:50%">
-                  </a>
-                </div>
-              </div>
-              <div class="card-body" style="padding-left:10px ; padding-top:30px;">
-              
-                <h5>{{$mission->title}}</h5>
+              </a>
+            </div>
+          </div>
+          <div class="card-body" style="padding-left:10px ; padding-top:30px;">
 
-                <p class="card-text" style="color:black;">{{$mission->discription}}</p>
-                <h6 class="card-text" style="color:black;">{{$mission->organization}}</h6>
-                <ul class="list-unstyled d-flex justify-content-center mb-0">
-                  <li>
-                    <img src="images/star-empty.png" alt="">
-                  </li>
-                  <li>
-                    <img src="images/star-empty.png" alt="">
-                  </li>
-                  <li>
-                    <img src="images/star-empty.png" alt="">
+            <h5>{{$mission->title}}</h5>
 
-                  </li>
-                  <li>
-                    <img src="images/star-empty.png" alt="">
-                  </li>
-                  <li>
-                    <img src="images/star-empty.png" alt="">
+            <p class="card-text" style="color:black;">{{$mission->discription}}</p>
+            <h6 class="card-text" style="color:black;">{{$mission->organization}}</h6>
+            <ul class="list-unstyled d-flex justify-content-center mb-0">
+              <li>
+                <img src="images/star-empty.png" alt="">
+              </li>
+              <li>
+                <img src="images/star-empty.png" alt="">
+              </li>
+              <li>
+                <img src="images/star-empty.png" alt="">
 
-                  </li>
-                </ul>
-                <div>
-                  <ul class="list-unstyled d-flex justify-content mb-0">
-                    <li>
+              </li>
+              <li>
+                <img src="images/star-empty.png" alt="">
+              </li>
+              <li>
+                <img src="images/star-empty.png" alt="">
 
-                      <img src="images/Seats-left.png" alt="">
-                    </li>
-                    <li>
-                      <ul>
-                        286
-                      </ul>
-                      <ul>
-                        seat left
-                      </ul>
-                    </li>
-                    <li>
-                      <img src="images/mission.png" alt="">
-                    </li>
-                    <li>
-                      <ul>
-                        <div id="result"></div>
-                      </ul>
-                      <ul>
-                        <div id="text"></div>
-                      </ul>
-                    </li>
-                    <div>
+              </li>
+            </ul>
+            <div>
+              <ul class="list-unstyled d-flex justify-content mb-0">
+                <li>
 
-                    </div>
+                  <img src="images/Seats-left.png" alt="">
+                </li>
+                <li>
+                  <ul>
+                    286
                   </ul>
-                  <hr style="width: 100%;">
-                  <div class="text-center">
-                    <input type="submit" value="View Details->" style="width: 150px;" name="login" class="btn btn-primary">
-                  </div>
+                  <ul>
+                    seat left
+                  </ul>
+                </li>
+                <li>
+                  <img src="images/mission.png" alt="">
+                </li>
+                <li>
+                  <ul>
+                    <div id="result"></div>
+                  </ul>
+                  <ul>
+                    <div id="text"></div>
+                  </ul>
+                </li>
+                <div>
+
                 </div>
+              </ul>
+              <hr style="width: 100%;">
+              <div class="text-center">
+                <input type="submit" value="View Details->" style="width: 150px;" name="login" class="btn btn-primary">
               </div>
             </div>
           </div>
-        
-          @endforeach
-  
+        </div>
       </div>
-  
+
+      @endforeach
+
+    </div>
+
     </div>
 
 

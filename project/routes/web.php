@@ -1,37 +1,40 @@
 <?php
 
-use App\Http\Controllers\deviceController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\MissionController;
-use App\Http\Controllers\ResetController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\LostController;
-use App\Http\Controllers\searchController;
-use App\Http\Controllers\VolunteeringController;
-use App\Http\Controllers\FavouriteController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\StorieslistingController;
-use App\Http\Controllers\ShareController;
-use App\Http\Controllers\StoriesdetailsController;
-use App\Http\Controllers\UsereditController;
+use App\Http\Controllers\AddskillController;
+use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\ChangepassController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\AddskillController;
+use App\Http\Controllers\deviceController;
+use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\LostController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MissionController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RatingController;
-use Illuminate\Routing\RouteRegistrar;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResetController;
+use App\Http\Controllers\searchController;
+use App\Http\Controllers\ShareController;
+use App\Http\Controllers\StoriesdetailsController;
+use App\Http\Controllers\StorieslistingController;
+use App\Http\Controllers\UsereditController;
+use App\Http\Controllers\VolunteeringController;
+use App\Http\Middleware\Authenticate;
+use App\Mail\ContactEmail;
 use App\Mail\TestEmail;
+use App\Models\Mission;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Access\Gate;
+use Illuminate\Http\Request;
+use Illuminate\Routing\RouteRegistrar;
+use Illuminate\Support\Facades\Auth;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Contracts\Auth\Access\Gate;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\Loader\Configurator\Traits\RouteTrait;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,24 +50,27 @@ use Illuminate\Http\Request;
 
 Route::get('list',[HomeController::class,'list']);
 Route::get('home',[HomeController::class,'grid']);
-Route::post('login',[LoginController::class,'login']);
-Route::view('login','login');
-Route::get('lost',[LostController::class,'lost']);
+Route::post('lost',[LostController::class,'lost']);
 
 Route::get('home',[MissionController::class,'home']);
+
+
 Route::post('search',[searchController::class,'view']);
 Route::view('search','search');
-Route::get('reset',[ResetController::class,'reset']);
+Route::get('reset/{token}',[ResetController::class,'reset']);
+
 Route::view('lost','lost');
 Route::get('logout',[LogoutController::class,'destroy'])->name('logout');
 
 Route::get('send-email',function(Request $request){
     try{
-    $mailData=["name"=>"Test"];
+  
 
     $email_input=User::where('email',$request->input('email'))->first();
-    Mail::to($email_input->email)->send(new TestEmail($mailData));
-    dd('done');}catch(Throwable $e){
+    Mail::to($email_input->email)->send(new TestEmail());
+    dd('password reset link sent successfully!');
+}
+    catch(Throwable $e){
         report($e);
         dd('Email not found in database');
     }
@@ -81,3 +87,24 @@ Route::get('change_pass',[ChangepassController::class,'change_pass']);
 Route::get('contact',[ContactController::class,'contact']);
 Route::get('add_skill',[AddskillController::class,'add_skill']);
 Route::get('policy_page',[PolicyController::class,'policy_page']);
+
+Route::post('add',[RegisterController::class,'add']);
+Route::post('update',[ResetController::class,'update']);
+Auth::routes();
+Route::get('contactUs',function(Request $request){
+    try{
+        $data=[
+            'subject'=>$request->subject,
+            'message'=>$request->message
+        ];
+        $email=$request->input('email');
+        Mail::to($email)->send(new ContactEmail($data));
+        dd('mail sent successfully');
+    }
+    catch(Throwable $e){
+        report($e);
+        dd('error');
+    }
+});
+
+

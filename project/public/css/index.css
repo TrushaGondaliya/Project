@@ -40,13 +40,17 @@
   background: transparent;
   color: red;
   cursor: pointer;
-  border: 1px solid orange;
+  border: 2px solid #f88634;
 border-radius: 30px;
+color:  #f88634;
+    font-size: 17px;
+    font-weight: normal;
 }
 
 @media (max-width:1920px) {
   .btn{
     height: 50px;
+    
   }
 }
 
@@ -68,7 +72,7 @@ font-size: 20px;
 }
 
 .my-auto{
-  margin-left: 35px;
+  margin-left: 65px;
   margin-bottom: 0!important;
 }
 
@@ -1546,6 +1550,13 @@ nav.navbar.navbar-expand-lg{
   color: #414141;
   border-bottom: 2px solid rgba(128, 128, 128, 0.265);
   padding-left: 0px;
+  padding-right: 0px;
+}
+
+@media (max-width:425px) {
+  .nav-tabs-2 .nav-item .nav-link.nav-detail{
+    font-size: 18px;
+  }
 }
 
   .nav-tabs{
@@ -1578,7 +1589,6 @@ nav.navbar.navbar-expand-lg{
 
   .nav-tabs-1{
     width: 775px;
- 
     font-family: sans-serif;
     font-size: 22px;
     font-weight: normal;
@@ -1592,7 +1602,6 @@ nav.navbar.navbar-expand-lg{
 
   .nav-tabs-2{
     width: 775px;
- 
     font-family: sans-serif;
     font-size: 22px;
     font-weight: normal;
@@ -1602,6 +1611,12 @@ nav.navbar.navbar-expand-lg{
     letter-spacing: normal;
     text-align: left;
     color: #414141;
+  }
+
+  @media (max-width:425px) {
+    .nav-tabs-2{
+      font-size: 15px;
+    }
   }
 
   .nav-tabs-edit{
@@ -1621,6 +1636,9 @@ nav.navbar.navbar-expand-lg{
   @media (max-width:768px) {
     .nav-tabs{
       width: 700px;
+    }
+    .nav-tabs-2{
+      width: 420px;
     }
     
   }
@@ -1836,6 +1854,10 @@ nav.navbar.navbar-expand-lg{
   padding: 0 8px;
   position: relative;
   text-transform: uppercase;
+}
+
+.tox{
+  height: 300px;
 }
 
 
@@ -2279,17 +2301,24 @@ strong {
   box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
   border: solid 1px #d9d9d9;
   padding-left: 10px;
+  color: #757575;
 }
 
 .story-input-div{
   width: 100%;
   height: 120px;
   margin: 10px 0px 20px 0px;
-  padding: 10px 0px 0px 10px;
+  padding: 10px 0px 77px 15px;
   border-radius: 3px;
   box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
   border: solid 1px #d9d9d9;
 
+}
+
+
+
+textarea{
+  resize: unset;
 }
 
 .story-input-div-1{
@@ -2300,7 +2329,7 @@ strong {
   border-radius: 3px;
   box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
   border: solid 1px #d9d9d9;
-
+  color: #757575
 }
 
 .story-input-div-text{
@@ -2320,7 +2349,7 @@ strong {
 .edit-profile-button-save{
   width: 109px;
   height: 48px;
-  margin-left: 703px;
+  margin-left: 896px;
   margin-top: 30px;
   border-radius: 24px;
   border: solid 2px #f88634;
@@ -2332,7 +2361,7 @@ strong {
 
 @media (max-width:768px) {
   .edit-profile-button-save{
-    margin-left: 0;
+    margin-left: 350px;
   }
   .body-3{
     padding: 0;
@@ -2341,7 +2370,7 @@ strong {
 
 @media (max-width:425px) {
   .edit-profile-button-save{
-    margin-left: 0;
+    margin-left: 270px;
   }
   .body-3{
     padding: 0;
@@ -2477,8 +2506,8 @@ strong {
 }
 
 .edit-profile-button-1{
-  width: 150px;
-  height: 40px;
+  width: 189px;
+  height: 48px;
   border-radius: 24px;
   border: solid 2px #f88634;
   text-align: center;
@@ -2498,12 +2527,13 @@ strong {
 }
 
 .popup-btn{
-  margin-left:288px ;
+  margin-left:250px ;
+  font-size: 17px;
 }
 
 @media (max-width:425px) {
   .popup-btn{
-    margin-left: 100px;
+    margin-left: 60px;
   }
 }
 
@@ -2748,14 +2778,24 @@ strong {
 
 .popup-btn-add{
   margin-top: 10px;
-
+  margin-left: 20px;
 }
+
+@media (max-width:768px) {
+  .popup-btn-add{
+    margin-left: 5px;
+  }
+}
+
+.list-group-item.active {
+  z-index: 2;
+  font-weight: 700;}
 
 .popup-dis{
   width: 100%;
   height: 120px;
   margin: 6px 2px 29px 1px;
-  padding: 13px 180px 67px 16px;
+  padding: 10px 0px 0px 16px;
   border-radius: 3px;
   box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
   border: solid 1px #d9d9d9;
@@ -2768,7 +2808,7 @@ strong {
 .policy-heading{
   width: 490px;
   height: 40px;
-  /* margin-left: 75px; */
+  margin-left: 150px;
   font-family: sans-serif;
   font-size: 40px;
   font-weight: normal;
@@ -2782,10 +2822,31 @@ strong {
 
 .left{
   width: 250px;
+  margin-left: 150px;
 }
 
 .right{
-width: 1000px;
+width: 800px;
+}
+
+@media (max-width:768px) {
+  .policy-heading{
+    margin-left: 0px;
+  }
+  .left{
+    margin-left: 0px;
+  }
+  
+}
+
+@media (max-width:425px) {
+  .policy-heading{
+    margin-left: 0px;
+  }
+  .left{
+    margin-left: 0px;
+  }
+  
 }
 
 .list-group-item{
@@ -2877,7 +2938,7 @@ width: 1000px;
 
 /* share story cross above image */
 
-.btn-close{
+.remove-img .btn-close{
  
   left: 107px;
   top: 10px;

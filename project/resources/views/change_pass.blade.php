@@ -6,15 +6,15 @@
 </head>
 
 
-    <div class="body-3">
+<div class="body-3">
 
-         <!-- top navbar -->
+    <!-- top navbar -->
 
-         <x-top-nav></x-top-nav>
-         <br>
-         
-        <section>
-            <div>
+    <x-top-nav></x-top-nav>
+    <br>
+
+    <section>
+        <div>
             <div class="container">
                 <div class="row col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-3 col-md-3 col-sm-3">
@@ -26,7 +26,7 @@
 
                     <div class="col-lg-9 col-md-9 col-sm-9">
                         <div class="edit-profile-1">
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Basic Information</a> </li>
                             </ul>
                             <br>
@@ -87,7 +87,7 @@
                             </div>
 
 
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Address Information</a> </li>
                             </ul><br>
                             <div class="row">
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
 
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Personal Information</a> </li>
                             </ul><br>
                             <div class="row">
@@ -128,12 +128,12 @@
                                 </div>
                             </div>
 
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">My Skills</a> </li>
                             </ul><br>
 
                             <div>
-                               
+
                                 <div class="story-input-div-1">
                                     <span class="story-input-div-text">Anthropology</span><br>
                                     <span class="story-input-div-text">Archeology</span><br>
@@ -152,7 +152,7 @@
                                 <button class="edit-profile-button-save">Save</button>
                             </div>
 
-                
+
 
 
 
@@ -162,10 +162,10 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
-            <!-- popup box for change Password -->
-            <div class="popup">
+        <!-- popup box for change Password -->
+        <div class="popup">
             <div class="popup-close-btn"></div>
             <div class="popup-content"></div>
         </div>
@@ -176,72 +176,68 @@
                 <input type="text" class="edit-input" placeholder="Enter new Password" name="" id="">
                 <input type="text" class="edit-input" placeholder="Enter Confirm Password" name="" id="">
                 <div class="popup-btn">
-                <input type="submit" class="popup-button" name="" value="cancel" id="">
-                <input type="submit" class="edit-profile-button-1" value="Change Password"  name="" id="">
+                    <input type="submit" class="popup-button" name="" value="cancel" id="">
+                    <input type="submit" class="edit-profile-button-1" value="Change Password" name="" id="">
                 </div>
             </form>
         </div>
         <div class="overlay"></div>
         <!--end popup box for change Password -->
-        </section>
-        
+    </section>
+
     <script>
-                    
+        $(function() {
+            var p = new Popup({
+                popup: '.popup',
+                content: '.popup-content',
+                overlay: '.overlay',
+            });
 
+            setTimeout(function() {
+                var form = $('.for-call-popup');
+                p.open(form.html());
+            }, 1000);
 
-                    $(function() {
-    var p = new Popup({
-        popup: '.popup',
-        content: '.popup-content',
-        overlay: '.overlay',
-    });
+            // $('.edit-profile-button-save').click(function() {
+            //     var form = $('.for-call-popup');
+            //     p.open(form.html());
+            // });
 
-       setTimeout(function() {
-        var form = $('.for-call-popup');
-        p.open(form.html());
-    }, 1000);
+            // $('.write').click(function() {
+            //     p.open('Write me a message: shark@sharkcoder.com');
+            // });
 
-    // $('.edit-profile-button-save').click(function() {
-    //     var form = $('.for-call-popup');
-    //     p.open(form.html());
-    // });
+            $('.popup-close-btn').click(function() {
+                p.close();
+            });
+        });
 
-    // $('.write').click(function() {
-    //     p.open('Write me a message: shark@sharkcoder.com');
-    // });
+        function Popup(Obj) {
+            this.popup = $(Obj.popup);
+            this.content = $(Obj.content);
+            this.overlay = $(Obj.overlay);
 
-    $('.popup-close-btn').click(function() {
-        p.close();
-    });
-});
+            var pop = this;
 
-function Popup(Obj) {
-    this.popup = $(Obj.popup);
-    this.content = $(Obj.content);
-    this.overlay = $(Obj.overlay);
+            this.open = (function(content) {
+                pop.content.html(content);
+                pop.popup.addClass('open').fadeIn(1000);
+                pop.overlay.addClass('open');
+            });
 
-    var pop = this;
+            this.close = (function() {
+                pop.popup.removeClass('open');
+                pop.overlay.removeClass('open');
+            });
 
-    this.open = (function(content) {
-        pop.content.html(content);
-        pop.popup.addClass('open').fadeIn(1000);
-        pop.overlay.addClass('open');
-    });
-
-    this.close = (function() {
-        pop.popup.removeClass('open');
-        pop.overlay.removeClass('open');
-    });
-
-    this.overlay.click(function(e) {
-        if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
-            pop.close();
+            this.overlay.click(function(e) {
+                if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
+                    pop.close();
+                }
+            });
         }
-    });
-}
-
     </script>
-        <hr>
-        <x-footer></x-footer>
-        <br>
-    </div>
+    <hr>
+    <x-footer></x-footer>
+    <br>
+</div>

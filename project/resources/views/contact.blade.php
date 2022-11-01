@@ -6,14 +6,14 @@
 </head>
 
 
-    <div class="body-3">
+<div class="body-3">
 
-        <!-- top navbar -->
+    <!-- top navbar -->
 
-        <x-top-nav></x-top-nav>
-      
-        <section>
-            <div>
+    <x-top-nav></x-top-nav>
+
+    <section>
+        <div>
             <div class="container">
                 <div class="row col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-3 col-md-3 col-sm-3">
@@ -25,7 +25,7 @@
 
                     <div class="col-lg-9 col-md-9 col-sm-9">
                         <div class="edit-profile-1">
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Basic Information</a> </li>
                             </ul>
                             <br>
@@ -86,7 +86,7 @@
                             </div>
 
 
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Address Information</a> </li>
                             </ul><br>
                             <div class="row">
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
 
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Personal Information</a> </li>
                             </ul><br>
                             <div class="row">
@@ -127,12 +127,12 @@
                                 </div>
                             </div>
 
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">My Skills</a> </li>
                             </ul><br>
 
                             <div>
-                                
+
                                 <div class="story-input-div-1">
                                     <span class="story-input-div-text">Anthropology</span><br>
                                     <span class="story-input-div-text">Archeology</span><br>
@@ -151,7 +151,7 @@
                                 <button class="edit-profile-button-save">Save</button>
                             </div>
 
-                
+
 
 
 
@@ -161,95 +161,89 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
-            <!-- popup box for change Password -->
-            <div class="popup">
+        <!-- popup box for change Password -->
+        <div class="popup">
             <div class="popup-close-btn"></div>
             <div class="popup-content"></div>
         </div>
         <div class="for-call-popup">
-            <form action="" class="call-popup">
+            <form action="{{url('contactUs')}}" class="call-popup">
                 <h3>Contact Us</h3>
                 <br>
                 <span class="popup-input-text">Name*</span>
-                <input type="text" class="popup-input" value="Smith Doh" style="background-color: #ebe7e7;" name="" id=""><br><br>
+                <input type="text" class="popup-input" value="Smith Doh" style="background-color: #ebe7e7;" name="name" id=""><br><br>
                 <span class="popup-input-text">Email Address*</span>
-                <input type="email" class="popup-input" value="Smith doh1234@gmail.com" style="background-color: #ebe7e7;"  name="" id=""><br><br>
+                <input type="email" class="popup-input" value="trushagondaliya30@gmail.com" style="background-color: #ebe7e7;" name="email" id=""><br><br>
                 <span class="popup-input-text">Subject*</span>
-                <input type="text" class="popup-input" placeholder="Enter Your Subject" name="" id=""><br><br>
+                <input type="text" class="popup-input" placeholder="Enter Your Subject" name="subject" id=""><br><br>
                 <span class="popup-input-text">Message*</span>
-                <div class="story-input-div">
-                                    <span class="story-input-div-text">Enter Your Message</span>
-                                </div>
+                <textarea type="text" class="popup-dis" placeholder="Enter Your Message" name="message" id=""></textarea><br><br>
 
                 <div class="popup-btn-contact">
-                <input type="submit" class="popup-button" name="" value="cancel" id="">
-                <input type="submit" class="contact-button-1" value="Save"  name="" id="">
+                    <input type="submit" class="popup-button" name="" value="cancel" id="">
+                    <input type="submit" class="contact-button-1" value="Save" name="" id="">
                 </div>
             </form>
         </div>
         <div class="overlay"></div>
         <!--end popup box for change Password -->
-        </section>
-        
+    </section>
+
     <script>
-                    
+        $(function() {
+            var p = new Popup({
+                popup: '.popup',
+                content: '.popup-content',
+                overlay: '.overlay',
+            });
 
+            setTimeout(function() {
+                var form = $('.for-call-popup');
+                p.open(form.html());
+            }, 1000);
 
-                    $(function() {
-    var p = new Popup({
-        popup: '.popup',
-        content: '.popup-content',
-        overlay: '.overlay',
-    });
+            // $('.edit-profile-button-save').click(function() {
+            //     var form = $('.for-call-popup');
+            //     p.open(form.html());
+            // });
 
-       setTimeout(function() {
-        var form = $('.for-call-popup');
-        p.open(form.html());
-    }, 1000);
+            // $('.write').click(function() {
+            //     p.open('Write me a message: shark@sharkcoder.com');
+            // });
 
-    // $('.edit-profile-button-save').click(function() {
-    //     var form = $('.for-call-popup');
-    //     p.open(form.html());
-    // });
+            $('.popup-close-btn').click(function() {
+                p.close();
+            });
+        });
 
-    // $('.write').click(function() {
-    //     p.open('Write me a message: shark@sharkcoder.com');
-    // });
+        function Popup(Obj) {
+            this.popup = $(Obj.popup);
+            this.content = $(Obj.content);
+            this.overlay = $(Obj.overlay);
 
-    $('.popup-close-btn').click(function() {
-        p.close();
-    });
-});
+            var pop = this;
 
-function Popup(Obj) {
-    this.popup = $(Obj.popup);
-    this.content = $(Obj.content);
-    this.overlay = $(Obj.overlay);
+            this.open = (function(content) {
+                pop.content.html(content);
+                pop.popup.addClass('open').fadeIn(1000);
+                pop.overlay.addClass('open');
+            });
 
-    var pop = this;
+            this.close = (function() {
+                pop.popup.removeClass('open');
+                pop.overlay.removeClass('open');
+            });
 
-    this.open = (function(content) {
-        pop.content.html(content);
-        pop.popup.addClass('open').fadeIn(1000);
-        pop.overlay.addClass('open');
-    });
-
-    this.close = (function() {
-        pop.popup.removeClass('open');
-        pop.overlay.removeClass('open');
-    });
-
-    this.overlay.click(function(e) {
-        if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
-            pop.close();
+            this.overlay.click(function(e) {
+                if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
+                    pop.close();
+                }
+            });
         }
-    });
-}
-
     </script>
-        <hr>
-        <x-footer></x-footer>
-        <br>
-    </div>
+    <hr>
+    <x-footer></x-footer>
+    <br>
+</div>

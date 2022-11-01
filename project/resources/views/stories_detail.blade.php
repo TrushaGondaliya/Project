@@ -8,15 +8,15 @@
 <body>
     <div class="body-1">
 
-            <!-- top navbar -->
+        <!-- top navbar -->
 
-            <x-top-nav></x-top-nav>
+        <x-top-nav></x-top-nav>
 
-<!-- second navbar -->
+        <!-- second navbar -->
 
 
-<x-top-nav-2></x-top-nav-2>
-<hr style="height:2px;border-width:0;background-color:grey;margin:0">
+        <x-top-nav-2></x-top-nav-2>
+        <hr style="height:2px;border-width:0;background-color:grey;margin:0">
 
 
 
@@ -28,38 +28,38 @@
                     <div class="column col-md-6 story-detail-img">
                         <img src="images/image2.png" class="story-main-img" alt="">
                         <div class="row ">
-                <div class="column col-md-3 col-3 stories">
-                    <div class="parent">
-                        <div id="opacity_div">
-                        <img src="images/Grow-Trees-On-the-path-to-environment-sustainability-1.png" class="story-img" alt="">
+                            <div class="column col-md-3 col-3 stories">
+                                <div class="parent">
+                                    <div id="opacity_div">
+                                        <img src="images/Grow-Trees-On-the-path-to-environment-sustainability-1.png" class="story-img" alt="">
+                                    </div>
+                                    <div class="half-fade-1">
+                                        <img src="images/left1.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;">
+                                <img src="images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png" class="story-img" alt="">
+                            </div>
+                            <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;">
+                                <img src="images/img1.png" class="story-img " style="padding-left: 0;" alt="">
+                            </div>
+
+                            <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;padding-right:5px;">
+                                <div class="parent">
+                                    <div id="opacity_div">
+                                        <img src="images/img11.png" class="story-img " alt="">
+                                    </div>
+                                    <div class="half-fade">
+                                        <img src="images/right-arrow2.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="half-fade-1">
-                        <img src="images/left1.png"  alt="">
-                        </div>
-                    </div>
-                    </div>
-                    <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;"  >
-                        <img src="images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png" class="story-img" alt="">
-                    </div>
-                    <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;">
-                        <img src="images/img1.png" class="story-img " style="padding-left: 0;" alt="">
-                    </div>
-                    
-                    <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;padding-right:5px;">
-                    <div class="parent">
-                        <div id="opacity_div">
-                        <img src="images/img11.png" class="story-img " alt="">
-                        </div>
-                        <div class="half-fade">
-                        <img src="images/right-arrow2.png"  alt="">
-                        </div>
-                    </div>
-                    </div>
-                </div>
                     </div>
 
                     <div class="column col-md-6">
-                        <div class="story" >
+                        <div class="story">
                             <div class="row col-md-12">
                                 <div class="column col-md-8 col-8">
                                     <img class="story-vol-img" src="images/volunteer2.png" alt="">
@@ -115,7 +115,7 @@
                 </div>
 
                 <!-- small images -->
-               
+
             </div>
             <br><br>
             <div class="vol">

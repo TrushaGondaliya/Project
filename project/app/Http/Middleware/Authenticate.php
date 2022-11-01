@@ -2,7 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\App;
+
+
 
 class Authenticate extends Middleware
 {
@@ -17,5 +21,14 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+     
     }
+
+    // public function handle($request, Closure $next)
+    // {
+    //     if($request->input('email') && $request->input('password')){
+    //         return $next($request);
+    //     }
+    //     return response()->json('error');
+    // }
 }

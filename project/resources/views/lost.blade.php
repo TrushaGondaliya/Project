@@ -24,31 +24,31 @@
             </div>
 
             <div class="col-lg-3 form-group my-auto">
-               <div class="container py-5"> 
-                
-                <p class="reset">Forgot Password</p>
-                <p>Enter your email Address you've using for your account below and we will send you a passowrd reset link</p>
-                <form action="{{url('send-email')}}" method="get">
-                  
-                    <label for="email">Email Address</label><br>
-                    <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>
-                    
-                    <input type="submit" value="Reset my Password" name="reset" class="btn btn-primary"><br><br>
-                </form>
-                <div class="text-center">
-                    <a class="pwd" href="{{url('login')}}">Login</a><br>
-  
+                <div class="container py-5">
+
+                    <p class="reset">Forgot Password</p>
+                    <p>Enter your email Address you've using for your account below and we will send you a passowrd reset link</p>
+                    <form action="{{url('send-email')}}" method="get">
+@csrf
+                        <label for="email">Email Address</label><br>
+                        <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>
+
+                        <input type="submit" value="Reset my Password" name="reset" class="btn btn-primary"><br><br>
+                    </form>
+                    <div class="text-center">
+                        <a class="pwd" href="{{url('login')}}">Login</a><br>
+
+                    </div>
                 </div>
+                <footer>
+                    <div class="footer-login">
+
+                        <a href="">Privacy</a>
+                        <a href="">Policy</a>
+
+                    </div>
+                </footer>
             </div>
-            <footer>
-<div class="footer-login">
-
-  <a href="">Privacy</a>
-    <a href="">Policy</a>
-
-</div>
-</footer>
-        </div>
         </div>
     </div>
 
