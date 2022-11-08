@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 <x-header></x-header>
 
 <?php session_start() ?>
@@ -80,7 +82,7 @@
                                 <a href="">
                                     <div class="d-flex align-items-center first-txt">
                                         <img src="images/pin.png" class='img-fluid pr-2 ' style='height:22px;margin:5px'>
-                                        <span>{{$mission->city}}</span>
+                                        <span>{{$mission->city->name}}</span>
                                 </a>
 
                             </div>
@@ -95,7 +97,7 @@
 
                                 <div class="row">
                                     <div class="col-md-7 col-lg-7 col-7">
-                                        <h6 class="card-text" style="color:black;font-size:16px">{{$mission->organization}}</h6>
+                                        <h6 class="card-text" style="color:black;font-size:16px">{{$mission->organization_name}}</h6>
                                     </div>
                                     <div class="col-md-5 col-lg-5 col-5">
                                         <div class="rating-css">
@@ -200,7 +202,7 @@
     <div class="container mt-3">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="prevoius">
+                <a class="page-link" href="{{url('mission_listing?page=1')}}" aria-label="prevoius">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -209,23 +211,24 @@
                     <span aria-hidden="true">&lsaquo;</span>
                 </a>
             </li>
-            <li class="page-item"><a class="page-link active" href="#">1</a> </li>
-            <li class="page-item"><a class="page-link" href="#">2</a> </li>
-            <li class="page-item"><a class="page-link" href="#">3</a> </li>
-            <li class="page-item"><a class="page-link" href="#">4</a> </li>
-            <li class="page-item"><a class="page-link" href="#">5</a> </li>
+            @for($i=1;$i<=$max_count;$i++)
+            <li class="page-item"><a class="page-link" href="{{url('mission_listing?page='.$i)}}">{{$i}}</a> </li>
+            @endfor
+          
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&rsaquo;</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
+                <a class="page-link" href="{{url('mission_listing?page='.$max_count)}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
         </ul>
     </div>
+  
+    
     <br>
 
     <footer>
@@ -253,3 +256,5 @@
             $(this).parent().parent().remove();
         })
     </script>
+
+    @endsection

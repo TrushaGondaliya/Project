@@ -12,9 +12,9 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container nav-style" >
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navigation-2" aria-controls="navigation-2"
-                        aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto;">
-                        <span><img src="/images/filter.png" alt=""></span>
+                        data-bs-target="#navigation-2" aria-controls="navigation-1" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span><img src="images/filter.png"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navigation-2">
                        <div class="right-nav-2">

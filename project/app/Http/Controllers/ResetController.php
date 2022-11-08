@@ -13,22 +13,22 @@ use Illuminate\Support\Facades\Validator;
 
 class ResetController extends Controller
 {
-    function reset(Request $request,$token=null){
-       return view('reset')->with(['token'=>$token,'email'=>$request->email]);
+    // function reset(Request $request,$token=null){
+    //    return view('reset')->with(['token'=>$token,'email'=>$request->email]);
         
-    }
+    // }
 
 
-    function update(Request $request){
-        $users=User::find($request->email);
-       dd($users);
-       $users->password=$request->new_password;
-       $users->confirm_password=$request->confirm_password;
-       $users->save();
-       return redirect()->back();  
+    // function update(Request $request){
+    //     $users=User::find($request->email);
+    //    dd($users);
+    //    $users->password=$request->new_password;
+    //    $users->confirm_password=$request->confirm_password;
+    //    $users->save();
+    //    return redirect()->back();  
 
     
-    }
+    // }
 
 
 

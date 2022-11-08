@@ -21,6 +21,8 @@ use App\Http\Controllers\StoriesdetailsController;
 use App\Http\Controllers\StorieslistingController;
 use App\Http\Controllers\UsereditController;
 use App\Http\Controllers\VolunteeringController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\Authenticate;
 use App\Mail\ContactEmail;
 use App\Mail\TestEmail;
@@ -55,26 +57,20 @@ Route::post('lost',[LostController::class,'lost']);
 Route::get('home',[MissionController::class,'home']);
 
 
+
+
+Route::get('lost',[LostController::class,'lost']);
+Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-email');
+Route::get('home',[MissionController::class,'home']);
 Route::post('search',[searchController::class,'view']);
 Route::view('search','search');
-Route::get('reset/{token}',[ResetController::class,'reset']);
-
+Route::get('reset/{token}',[LostController::class,'reset'])->name('reset');
+Route::post('reset-password',[LostController::class,'resetPassword']);
 Route::view('lost','lost');
+
 Route::get('logout',[LogoutController::class,'destroy'])->name('logout');
 
-Route::get('send-email',function(Request $request){
-    try{
-  
 
-    $email_input=User::where('email',$request->input('email'))->first();
-    Mail::to($email_input->email)->send(new TestEmail());
-    dd('password reset link sent successfully!');
-}
-    catch(Throwable $e){
-        report($e);
-        dd('Email not found in database');
-    }
-});
 
 Route::get('mission_listing',[HomeController::class,'mission_listing']);
 Route::get('volunteering',[VolunteeringController::class,'volunteering']);
@@ -107,4 +103,13 @@ Route::get('contactUs',function(Request $request){
     }
 });
 
+
+//admin panel
+
+Route::prefix('admin')->group(function(){
+    Route::get('dashboard',[DashboardController::class,'index']);
+
+    Route::get('user',[UserController::class,'user']);
+   
+});
 

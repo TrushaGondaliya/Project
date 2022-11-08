@@ -1,0 +1,112 @@
+.bg-green{
+    background-color: #04aa6d !important;
+}
+
+.navbar{
+    padding: 0px 0px !important;
+}
+
+.navbar-nav .nav-link{
+    color: #fff !important;
+    font-weight: 600;
+    border-right: 1px solid;
+    padding: 8px 18px !important;
+}
+
+.card-shadow{
+    box-shadow: 0 2px 8px 0 rgb(0 0 0/10%);
+    border-radius: 5px;
+}
+
+.category-heading{
+    padding: 10px 12px;
+    border-left: 6px solid #000;
+    background-color: #ddd;
+}
+
+.post-heading{
+    font-size: 26px;
+    color: #000;
+}
+
+.owl-nav button.owl-next,
+.owl-nav button.owl-prev{
+    color: #fff !important;
+    margin-left: 10px;
+    background-color: orange !important;
+    border: none !important;
+    outline: none;
+    font-size: 20px !important;
+    height: 28px;
+    width: 38px !important;
+}
+
+.underline{
+    height: 3px;
+    width: 60px;
+    background-color: #e71212 !important;
+    margin-bottom: 10px;
+}
+
+.bg-gray{
+    background-color: #ddd;
+}
+#layoutSidenav{
+    height: 100% !important;
+}
+
+.sb-sidenav .sb-sidenav-menu {
+    flex-grow: 1;
+    background-color: #f88634;
+}
+
+.sb-sidenav .sb-sidenav-menu .nav .nav-link{
+    color: white;
+}
+.sb-sidenav svg:not(:host).svg-inline--fa, svg:not(:root).svg-inline--fa{
+    color: white;
+}
+
+.sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading{
+    color: white;
+}
+
+.sb-topnav svg:not(:host).svg-inline--fa, svg:not(:root).svg-inline--fa{
+    color: black;
+}
+
+
+
+.nav-link.dropdown-toggle{
+    color: black;
+}
+
+.navbar-nav .nav-link {
+    color: black !important;
+    font-weight: normal !important;
+    border: none;
+}
+
+.bg-light{
+    box-shadow: 1px 1px 10px #ccc;
+    background-color: white !important;
+}
+
+.nav-tabs .nav-item .nav-link.nav {
+    font-weight: 500;
+    border-bottom: 2px solid black;
+    color: #414141;
+    font-size: 25px;
+}
+
+.owl-nav button.owl-next,
+.owl-nav button.owl-prev{
+    color: #fff !important;
+    margin-left: 10px;
+    background-color: orange !important;
+    border: none !important;
+    outline: none;
+    font-size: 20px !important;
+    height: 28px;
+    width: 38px !important;
+}

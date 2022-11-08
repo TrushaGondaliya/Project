@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,9 @@ class HomeController extends Controller
        }
 
        function mission_listing(){
-        $missions=DB::select('select * from missions');
-        return view('mission_listing',['missions'=>$missions]);
+              $missions=Mission::paginate(6);
+              $count=count(Mission::all());
+              $max_count=ceil($count/6);
+        return view('mission_listing',compact('missions','max_count'));
        }
 }

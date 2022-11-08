@@ -28,7 +28,7 @@
 
                     <p class="reset">Forgot Password</p>
                     <p>Enter your email Address you've using for your account below and we will send you a passowrd reset link</p>
-                    <form action="{{url('send-email')}}" method="get">
+                    <form action="{{url('send-email')}}" method="post">
 @csrf
                         <label for="email">Email Address</label><br>
                         <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>

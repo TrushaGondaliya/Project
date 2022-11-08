@@ -52,8 +52,8 @@
                 </div>
                 <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" style="font-size: 15px;" href="#"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <!-- Evan Donohue -->
-                    {{Session::get('name')}}
+                    Evan Donohue
+                    <!-- {{Session::get('name')}} -->
                     
                 </a>
                 <ul class="dropdown-menu">
