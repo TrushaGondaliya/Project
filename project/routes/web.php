@@ -23,6 +23,7 @@ use App\Http\Controllers\UsereditController;
 use App\Http\Controllers\VolunteeringController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TimesheetController;
 use App\Http\Middleware\Authenticate;
 use App\Mail\ContactEmail;
 use App\Mail\TestEmail;
@@ -47,21 +48,26 @@ use Symfony\Component\Routing\Loader\Configurator\Traits\RouteTrait;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+// */
 
 
 Route::get('list',[HomeController::class,'list']);
-Route::get('home',[HomeController::class,'grid']);
+Route::get('grid',[HomeController::class,'grid']);
 Route::post('lost',[LostController::class,'lost']);
 
-Route::get('home',[MissionController::class,'home']);
 
 
 
-
+Route::get('favourite',[FavouriteController::class,'favourite']);
 Route::get('lost',[LostController::class,'lost']);
 Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-email');
-Route::get('home',[MissionController::class,'home']);
+// Route::get('home',[MissionController::class,'home']);
+Route::group(['middleware'=>'auth'],function(){
+   Route::auth();
+   Route::get('home',[MissionController::class,'home']);
+
+});
+
 Route::post('search',[searchController::class,'view']);
 Route::view('search','search');
 Route::get('reset/{token}',[LostController::class,'reset'])->name('reset');
@@ -84,7 +90,7 @@ Route::get('contact',[ContactController::class,'contact']);
 Route::get('add_skill',[AddskillController::class,'add_skill']);
 Route::get('policy_page',[PolicyController::class,'policy_page']);
 
-Route::post('add-user',[RegisterController::class,'add']);
+Route::post('add-user',[RegisterController::class,'create']);
 Route::post('update',[ResetController::class,'update']);
 Auth::routes();
 Route::get('contactUs',function(Request $request){
@@ -110,8 +116,10 @@ Route::prefix('admin')->group(function(){
     Route::get('dashboard',[DashboardController::class,'index']);
 
     Route::get('user',[UserController::class,'user']);
+    Route::get('timesheet',[TimesheetController::class,'timesheet']);
+    Route::get('edit-time',[TimesheetController::class,'edit']);
    
 });
 
-Auth::routes();
+
 

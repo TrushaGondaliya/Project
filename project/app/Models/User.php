@@ -15,8 +15,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory;
     
-    protected $table='user';
+    protected $table='users';
 
    
-    // public $timestamps=false;
+    public $timestamps=true;
 }

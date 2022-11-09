@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class LostController extends Controller
@@ -64,9 +65,11 @@ class LostController extends Controller
         }else{
 
             User::where('email','=',$request->email)->update([
-                    'password'=>$request->password,
-                    'confirm_password'=>$request->password_confirmation
-            ])->first();
+                    'password'=>Hash::make($request->password),
+          
+
+                    
+            ]);
 
             DB::table('password_resets')->where([
                 'email'=>$request->email

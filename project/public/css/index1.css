@@ -1,0 +1,140 @@
+.Timesheet-heading {
+    width: 433px;
+    height: 41px;
+  
+    font-family: sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #414141;
+  }
+.div-vol{
+    width: 705px;
+    height: 455px;
+    margin: 26px 30px 25px 20px;
+    /* padding: 24px 29px 292px 25px; */
+    box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.06);
+    border: solid 1px #e8e8e8;
+    background-color: #fff
+}
+
+.time-text{
+    width: 142px;
+  height: 17px;
+  margin: 40px 67px 45px 10px;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #414141;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border: none !important;
+}
+
+th{
+  font-weight: normal;
+  font-size: 16px;
+}
+
+td{
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.overlay{
+  display: none;
+  opacity: 0;
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.popup{
+  display: none;
+  opacity: 0;
+  width: 586px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  left: 450px;
+  z-index: 101;
+  transition: opacity .3s;
+  background-color: white;
+  padding: 15px 20px 20px;
+}
+
+.open{
+  display: block;
+  opacity: 1;
+}
+
+.for-call-popup{
+  display: none;
+}
+
+.popup-close-btn{
+  position: absolute;
+  right: 20px;
+  /* top: 20px; */
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  cursor: pointer;
+  z-index: 102;
+}
+
+.popup-close-btn:hover{
+  opacity: 1;
+}
+
+.popup-close-btn:before, .popup-close-btn:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 22px;
+  width: 2px;
+  background-color: #333;
+}
+
+.popup-close-btn:before {
+  transform: rotate(45deg);
+}
+
+.popup-close-btn:after {
+  transform: rotate(-45deg);
+}
+
+.popup-button{
+  width: 100px;
+  height: 48px;
+  border-radius: 24px;
+  border: solid 2px #757575;
+  text-align: center;
+  background-color: white;
+  font-size: 17px;
+  /* padding: 10px 20px 10px 20px; */
+}
+
+.popup-btn{
+  margin-left:250px ;
+  font-size: 17px;
+}

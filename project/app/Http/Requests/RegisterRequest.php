@@ -32,7 +32,8 @@ class RegisterRequest extends FormRequest
         ],
         'email'=>[
             'required',
-            'email'
+            'email',
+            'unique:users'
         ],
         'phone_number'=>[
             'required',

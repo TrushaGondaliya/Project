@@ -398,10 +398,7 @@ a{
   }
 }
 
-.abc{
-  margin-left:200px;
-  margin-right:200px;
-}
+
 
 @media (max-width:992px) {
   .abc{
@@ -3119,6 +3116,10 @@ width: 800px;
   }
 }
 
+.abc{
+  margin-left:200px;
+  margin-right:200px;
+}
 
 
 

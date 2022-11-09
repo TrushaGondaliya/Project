@@ -1,3 +1,6 @@
+
+
+
 <div class="nav-container">
           
             <nav class="navbar navbar-expand-lg">
@@ -10,17 +13,7 @@
 
                     <div class="collapse navbar-collapse" id="navigation-1">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Explore
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Top Theme</a></li>
-                                    <li><a class="dropdown-item" href="#">Most Ranked</a></li>
-                                    <li><a class="dropdown-item" href="#">Top Favourite</a></li>
-                                    <li><a class="dropdown-item" href="#">Random</a></li>
-                                </ul>
-                            </li>
+                         
                             <li class="nav-item">
                                 <a class="nav-link Explore-Stories-Policy common-font" href="#">Stories</a>
                             </li>
@@ -57,8 +50,8 @@
                     
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                    <li><a class="dropdown-item" href="#">My Account</a></li>
+                    <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item" href="{{url('admin/timesheet')}}">Volunteering Timesheet</a></li>
                     <li><a class="dropdown-item" href="{{url('logout')}}">Logout</a></li>
 
                     

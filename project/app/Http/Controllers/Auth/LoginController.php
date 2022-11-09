@@ -43,28 +43,16 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    function login(Request $req){
+    function login(Request $request){
        
           
-    $email=$req->input('email');
-    $password=$req->input('password');
-    $checklogin=DB::table('user')->where(['email'=>$email,'password'=>$password])->first();
-       if($checklogin){
+    
+    if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password'    ]])){
         
-        return redirect('home')->with(['name'=>$checklogin->first_name]);
+        return redirect('home');
 
        }else{
         return ['you have entered wrong credentials'];
        }
-        }
-
-        public function authenticated(){
-            if(Auth::user()){
-                return redirect('home');
-            }
-           
-            else{
-                return redirect('login');
-            }
         }
 }

@@ -1,4 +1,4 @@
-<?php session_start() ?>
+
 <x-header></x-header>
 
 
@@ -26,9 +26,9 @@
             </div>
 
             <div class="col-lg-3  form-group my-auto">
-
+                
                 <div class="container">
-                    <form action="{{route('login')}}" method="post">
+                    <form action="" method="post">
                         @csrf
                         <label for="email">Email Address</label><br>
                         <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>

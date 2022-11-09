@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
+
 class HomeController extends Controller
 {
+       
   
        function list(){
         $missions=DB::select('select * from missions');
