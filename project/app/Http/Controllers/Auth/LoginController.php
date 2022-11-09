@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
 use Throwable;
@@ -47,7 +48,7 @@ class LoginController extends Controller
           
     $email=$req->input('email');
     $password=$req->input('password');
-    $checklogin=DB::table('users')->where(['email'=>$email,'password'=>$password])->first();
+    $checklogin=DB::table('user')->where(['email'=>$email,'password'=>$password])->first();
        if($checklogin){
         
         return redirect('home')->with(['name'=>$checklogin->first_name]);
@@ -55,5 +56,15 @@ class LoginController extends Controller
        }else{
         return ['you have entered wrong credentials'];
        }
+        }
+
+        public function authenticated(){
+            if(Auth::user()){
+                return redirect('home');
+            }
+           
+            else{
+                return redirect('login');
+            }
         }
 }

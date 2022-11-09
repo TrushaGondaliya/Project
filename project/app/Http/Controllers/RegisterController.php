@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -12,20 +14,16 @@ class RegisterController extends Controller
         return view('register');
     }
 
-    function add(Request $request)
+    function add(RegisterRequest $request)
     {
+        $data=$request->validated();
         $user = new User;
-        $user->first_name = $request->fname;
-        $user->last_name = $request->lname;
-        $user->phone_num = $request->num;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->confirm_password = $request->confirm_password;
-        $result = $user->save();
-        if ($result) {
-            return redirect('register');
-        } else {
-            return ["error"];
-        }
+        $user->first_name = $data['first_name'];
+        $user->last_name = $data['last_name'];
+        $user->phone_number = $data['phone_number'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->save();
+      return redirect('register')->with('message','user added succssfully');
     }
 }

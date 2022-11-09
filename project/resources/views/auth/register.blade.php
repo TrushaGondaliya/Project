@@ -27,17 +27,25 @@
                 </div>
 
                 <div class="col-lg-3 form-group my-auto">
+                @if($errors->any())
+                            <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                            <div>{{$error}}</div>
+                            @endforeach
+                            </div>
+                           
+                            @endif
                     <div class="container">
-                        <form action="{{url('add')}}" method="post">
+                        <form action="{{url('add-user')}}" method="post">
                             @csrf
                             <label for="fname">First Name</label><br>
-                            <input type="text" name="fname" placeholder="Enter your First Name" class="form-control"><br>
+                            <input type="text" name="first_name" placeholder="Enter your First Name" class="form-control"><br>
                             <label for="lname">Last Name</label><br>
-                            <input type="text" name="lname" placeholder="Enter your Last Name" class="form-control"><br>
+                            <input type="text" name="last_name" placeholder="Enter your Last Name" class="form-control"><br>
                             <label for="email">Email Address</label><br>
                             <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>
                             <label for="num">Phone Number</label><br>
-                            <input type="text" name="num" placeholder="Enter your Phone Number" class="form-control"><br>
+                            <input type="text" name="phone_number" placeholder="Enter your Phone Number" class="form-control"><br>
                             <label for="password">Password</label><br>
                             <input type="password" name="password" placeholder="Enter your password" class="form-control"><br>
                             <label for="password">Confirm Password</label><br>

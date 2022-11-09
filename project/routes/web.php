@@ -84,7 +84,7 @@ Route::get('contact',[ContactController::class,'contact']);
 Route::get('add_skill',[AddskillController::class,'add_skill']);
 Route::get('policy_page',[PolicyController::class,'policy_page']);
 
-Route::post('add',[RegisterController::class,'add']);
+Route::post('add-user',[RegisterController::class,'add']);
 Route::post('update',[ResetController::class,'update']);
 Auth::routes();
 Route::get('contactUs',function(Request $request){
@@ -112,4 +112,6 @@ Route::prefix('admin')->group(function(){
     Route::get('user',[UserController::class,'user']);
    
 });
+
+Auth::routes();
 
