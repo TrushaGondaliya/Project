@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Contracts\Session\Session;
 
 class RegisterController extends Controller
 {
@@ -26,6 +27,8 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         
         $user->save();
-      return redirect('register')->with('message','user added successfully');
+      if(Auth::attempt($request->only('email','password'))){
+        return redirect('home');
+      }
     }
 }

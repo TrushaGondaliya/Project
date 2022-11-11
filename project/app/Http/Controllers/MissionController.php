@@ -12,18 +12,19 @@ use App\Http\Middleware\AuthUser;
 
 class MissionController extends Controller
 {
- 
 
-
-    public function home(Request $request){
-    
-        
-        $missions=Mission::paginate(6);
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function home(Request $request){  
+      
+            $missions=Mission::paginate(6);
         $count=count(Mission::all());
         $max_count=ceil($count/6);
         return view('home',compact('missions','max_count'));
+        }
+     
 
-}
- 
       
 }

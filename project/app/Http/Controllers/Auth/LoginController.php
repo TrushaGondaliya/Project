@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Request;
-use Throwable;
 
 class LoginController extends Controller
 {
@@ -31,7 +29,23 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function login(Request $request)
+    {
+        if(Auth::user()->status=='0'){
+            return redirect('admin/user')->with('status','welcome to admin ');
+        }
+        else if(Auth::user()->status=='1'){
+            return redirect('/home')->with('status','logged in successful');
+
+        }
+        else{
+            return redirect('/');
+        }
+    }
+       
+    
 
     /**
      * Create a new controller instance.
@@ -42,17 +56,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    function login(Request $request){
-       
-          
-    
-    if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password'    ]])){
-        
-        return redirect('home');
-
-       }else{
-        return ['you have entered wrong credentials'];
-       }
-        }
 }

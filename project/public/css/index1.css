@@ -68,10 +68,10 @@ td{
   transition: opacity .3s;
 }
 
-.popup{
+.timesheet_popup{
   display: none;
   opacity: 0;
-  width: 586px;
+  width: 1100px;
   height: auto;
   position: absolute;
   top: 100px;
@@ -82,12 +82,36 @@ td{
   padding: 15px 20px 20px;
 }
 
+@media (max-width:992px) {
+  .timesheet_popup{
+    width: 700px;
+    left: 150px;
+  }
+}
+@media (max-width:768px) {
+  .timesheet_popup{
+    width: 600px;
+    left: 100px;
+  }
+}
+
+@media (max-width:425px) {
+  .timesheet_popup{
+    width: 400px;
+    left: 20px;
+  }
+}
+
 .open{
   display: block;
   opacity: 1;
 }
 
 .for-call-popup{
+  display: none;
+}
+
+.for-time-popup{
   display: none;
 }
 
@@ -123,7 +147,7 @@ td{
   transform: rotate(-45deg);
 }
 
-.popup-button{
+.timesheet_btn1{
   width: 100px;
   height: 48px;
   border-radius: 24px;
@@ -131,10 +155,190 @@ td{
   text-align: center;
   background-color: white;
   font-size: 17px;
-  /* padding: 10px 20px 10px 20px; */
+ 
 }
 
-.popup-btn{
-  margin-left:250px ;
+.timesheet_btn2{
+  margin-top:20px ;
   font-size: 17px;
+  width: 100px;
+  height: 48px;
+  border-radius: 24px;
+  border: solid 2px #f88634;
+  text-align: center;
+  background-color: white;
+  font-size: 17px;
+  color: #f88634;
 }
+
+.timesheet_btn{
+  /* margin-left: 340px; */
+  float: right;
+}
+
+
+
+.overlay_goal{
+  display: none;
+  opacity: 0;
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+.goal_popup{
+  display: none;
+  opacity: 0;
+  width: 1100px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  left: 450px;
+  z-index: 101;
+  transition: opacity .3s;
+  background-color: white;
+  padding: 15px 20px 20px;
+}
+
+@media (max-width:992px) {
+  .goal_popup{
+    width: 700px;
+    left: 150px;
+  }
+}
+@media (max-width:768px) {
+  .goal_popup{
+    width: 600px;
+    left: 100px;
+  }
+}
+
+@media (max-width:425px) {
+  .goal_popup{
+    width: 400px;
+    left: 20px;
+  }
+}
+
+.timesheet_add{
+  color: #f88634;
+  background-color:white;
+  border: none;
+  padding-top: 8px;
+  font-weight: bold;
+}
+.goal_add_popup{
+  display: none;
+  opacity: 0;
+  width: 1100px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  left: 450px;
+  z-index: 101;
+  transition: opacity .3s;
+  background-color: white;
+  padding: 15px 20px 20px;
+}
+
+.for-add-goal-popup{
+  display: none;
+}
+
+.overlay_goal-add{
+  display: none;
+  opacity: 0;
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+@media (max-width:992px) {
+  .goal_add_popup{
+    width: 700px;
+    left: 150px;
+  }
+}
+@media (max-width:768px) {
+  .goal_add_popup{
+    width: 600px;
+    left: 100px;
+  }
+}
+
+@media (max-width:425px) {
+  .goal_add_popup{
+    width: 400px;
+    left: 20px;
+  }
+}
+
+
+.time_add_popup{
+  display: none;
+  opacity: 0;
+  width: 1100px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  left: 450px;
+  z-index: 101;
+  transition: opacity .3s;
+  background-color: white;
+  padding: 15px 20px 20px;
+}
+
+.for-add-time-popup{
+  display: none;
+}
+
+.add-overlay{
+  display: none;
+  opacity: 0;
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
+@media (max-width:992px) {
+  .time_add_popup{
+    width: 700px;
+    left: 150px;
+  }
+}
+@media (max-width:768px) {
+  .time_add_popup{
+    width: 600px;
+    left: 100px;
+  }
+}
+
+@media (max-width:425px) {
+  .time_add_popup{
+    width: 400px;
+    left: 20px;
+  }
+}
+
+
+
+
+

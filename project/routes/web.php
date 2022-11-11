@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\AddskillController;
+use App\Http\Controllers\Admin\CmsController;
+
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TimesheetController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\ChangepassController;
 use App\Http\Controllers\ContactController;
@@ -21,9 +26,6 @@ use App\Http\Controllers\StoriesdetailsController;
 use App\Http\Controllers\StorieslistingController;
 use App\Http\Controllers\UsereditController;
 use App\Http\Controllers\VolunteeringController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\TimesheetController;
 use App\Http\Middleware\Authenticate;
 use App\Mail\ContactEmail;
 use App\Mail\TestEmail;
@@ -62,11 +64,11 @@ Route::get('favourite',[FavouriteController::class,'favourite']);
 Route::get('lost',[LostController::class,'lost']);
 Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-email');
 // Route::get('home',[MissionController::class,'home']);
-Route::group(['middleware'=>'auth'],function(){
-   Route::auth();
+
+
    Route::get('home',[MissionController::class,'home']);
 
-});
+
 
 Route::post('search',[searchController::class,'view']);
 Route::view('search','search');
@@ -75,6 +77,7 @@ Route::post('reset-password',[LostController::class,'resetPassword']);
 Route::view('lost','lost');
 
 Route::get('logout',[LogoutController::class,'destroy'])->name('logout');
+
 
 
 
@@ -112,14 +115,25 @@ Route::get('contactUs',function(Request $request){
 
 //admin panel
 
+// Route::prefix('admin')->middleware('auth','user')->group(function(){
+//     Route::get('dashboard',[DashboardController::class,'index']);
+
+//     Route::get('user',[UserController::class,'user']);
+//     Route::get('timesheet',[TimesheetController::class,'timesheet']);
+//     Route::get('edit-time',[TimesheetController::class,'edit']);
+   
+// });
+
 Route::prefix('admin')->group(function(){
     Route::get('dashboard',[DashboardController::class,'index']);
 
     Route::get('user',[UserController::class,'user']);
     Route::get('timesheet',[TimesheetController::class,'timesheet']);
     Route::get('edit-time',[TimesheetController::class,'edit']);
+
+    Route::get('cms-add',[CmsController::class,'add']);
+    Route::get('cms',[CmsController::class,'index']);
    
 });
-
 
 

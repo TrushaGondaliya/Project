@@ -9,20 +9,21 @@
                                 Dashboard
                             </a> -->
                             <!-- <div class="sb-sidenav-menu-heading">Interface</div> -->
-                            <a class="nav-link {{Request::is('admin/users') ? 'active' : ''}}" href="{{url('admin/user')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            <a class="nav-link {{Request::is('admin/user') ? 'active' : ''}}" href="{{url('admin/user')}}" >
+                                <div class="sb-nav-link-icon {{Request::is('admin/user') ? 'active' : ''}}"><i class="fas fa-user"></i></div>
                                 User    
                             </a>
                          
-                            <a class="nav-link {{Request::is('admin/post') || Request::is('admin/add-post') || Request::is('admin/edit-post/*') ? 'collapsed active' : 'collapsed'}}" href="{{url('admin/user')}}" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link {{Request::is('admin/cms') || Request::is('admin/cms-add') || Request::is('admin/edit-cms/*') ? 'collapsed active' : 'collapsed'}}" href="{{url('admin/cms')}}" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                                 CMS Page
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse {{Request::is('admin/post') || Request::is('admin/add-post') ||Request::is('admin/edit-post/*') ? 'show ' : ''}}" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link {{Request::is('admin/add-post') ? 'active' : ''}}" href="{{url('admin/add-post')}}">Add post</a>
-                                    <a class="nav-link {{Request::is('admin/post') || Request::is('admin/edit-post/*') ? 'active' : ''}}" href="{{url('admin/post')}}">View post</a>
+                                    <a class="nav-link {{Request::is('admin/cms-add') ? 'active' : ''}}" href="{{url('admin/cms-edit')}}">Add cms</a>
+                                   
+                                    <a class="nav-link {{Request::is('admin/cms') || Request::is('admin/edit-post/*') ? 'active' : ''}}" href="{{url('admin/cms')}}">View post</a>
                                 </nav>
                             </div>
 

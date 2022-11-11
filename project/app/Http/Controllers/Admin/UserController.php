@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     function user(){
-        $users=User::all();
-        return view('admin.users.view',compact('users'));
+        $users=User::paginate(6);
+        $count=count(User::all());
+        $max_count=ceil($count/6);
+        return view('admin.users.view',compact('users','max_count'));
     }
 }

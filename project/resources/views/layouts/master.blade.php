@@ -13,6 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="{{asset('assets/css/styles.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/admin.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
     <!-- <link href="{{asset('assets/css/index.css')}}" rel="stylesheet"> -->
     <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">

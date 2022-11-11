@@ -26,9 +26,16 @@
             </div>
 
             <div class="col-lg-3  form-group my-auto">
-                
+            @if($errors->any())
+                            <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                            <div>{{$error}}</div>
+                            @endforeach
+                            </div>
+                           
+                            @endif
                 <div class="container">
-                    <form action="" method="post">
+                    <form action="{{route('login')}}" method="post">
                         @csrf
                         <label for="email">Email Address</label><br>
                         <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>

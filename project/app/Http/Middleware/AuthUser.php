@@ -17,14 +17,18 @@ class AuthUser
      */
     public function handle(Request $request, Closure $next)
     {
-        
         if(Auth::check()){
-           return redirect('home');
+            if(Auth::user()->status=='1') //1 for admin and 0 for common user
+            {
+                return $next($request);
+                
+            }
+            else{
+                return redirect('home');
+            }
         }
         else{
             return redirect('login')->with('please login first');
         }
     }
-    
-    }
-
+}
