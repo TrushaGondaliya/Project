@@ -5553,6 +5553,9 @@ textarea.form-control-lg {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   outline: 0;
+  top: 150px;
+  width: 634px;
+  height: 248px;
 }
 
 .modal-backdrop {
@@ -5577,24 +5580,23 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
+  margin-top: 20px;
 }
 .modal-header .btn-close {
   padding: 0.5rem 0.5rem;
   margin: -0.5rem -0.5rem -0.5rem auto;
 }
 
-.modal-title {
-  margin-bottom: 0;
-  line-height: 1.5;
-}
+
 
 .modal-body {
   position: relative;
   flex: 1 1 auto;
   padding: 1rem;
+  margin-bottom: 25px;
+  margin-top: 10px;
 }
 
 .modal-footer {
@@ -5604,7 +5606,6 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid #dee2e6;
   border-bottom-right-radius: calc(0.3rem - 1px);
   border-bottom-left-radius: calc(0.3rem - 1px);
 }
@@ -11450,7 +11451,7 @@ body {
 .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading {
   padding: 1.75rem 1rem 0.75rem;
   font-size: 0.75rem;
-  font-weight: bold;
+  font-size: 16px;
   text-transform: uppercase;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link {
@@ -11459,9 +11460,11 @@ body {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   position: relative;
+  font-size: 18px;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
-  font-size: 0.9rem;
+  width: 20px;
+  height: 22px;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow {
   display: inline-block;

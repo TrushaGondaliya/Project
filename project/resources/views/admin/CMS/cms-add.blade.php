@@ -14,7 +14,18 @@
     });
   </script>
 <div class="container-fluid">
+@if($errors->any())
+                            <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                            <div>{{$error}}</div>
+                            @endforeach
+                            </div>
+                           
+                            @endif
     <div>
+        <form action="{{url('admin/add-cms')}}" method="POST">
+            @csrf
+        
         <table class="cms-table">
             <thead>
                 <tr>
@@ -24,15 +35,15 @@
             <tbody>
                 <td>
                     <label class="cms-label">Title</label>
-                    <input class="cms-input">
+                    <input class="cms-input" type="text" name="title">
                     <label class="cms-label">Description</label>
                     <div class="cms-textarea">
-                <textarea name="" class="text-area" id="editor" cols="" rows=""></textarea>
+                <textarea name="description" class="text-area" id="editor" cols="" rows=""></textarea>
             </div>
             <label class="cms-label">Slug</label>
-            <input class="cms-input">
+            <input type="text" name="slug" class="cms-input">
             <label class="cms-label">Status</label>
-            <select class="cms-input">
+            <select class="cms-input" name="status">
             <option value=""></option>
                 <option value="1">1</option>
                 <option value="0">0</option>
@@ -42,9 +53,10 @@
             </tbody>
         </table>
         <div class="cms_btn">
-                <input type="submit" class="cms_btn1" value="Cancel" name="" id="">
+                <input type="button" class="cms_btn1" value="Cancel" name="" id="">
                 <input type="submit" class="cms_btn2" name="" value="Save" id="">
                 </div>
+                </form>
         
 
     </div>

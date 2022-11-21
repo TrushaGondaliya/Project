@@ -12,12 +12,9 @@
 
         <x-top-nav></x-top-nav>
 
-        <!-- second navbar -->
-
-
-        <x-top-nav-2></x-top-nav-2>
-        <hr style="height:2px;border-width:0;background-color:grey;margin:0">
-
+        
+        <br>
+<br>
 
 
         <!-- Volunteering mission listing -->

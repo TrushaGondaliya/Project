@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AddskillController;
+use App\Http\Controllers\Admin\AdminmissionController;
 use App\Http\Controllers\Admin\CmsController;
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MissionthemeController;
+use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\TimesheetController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\auth\LoginController;
@@ -63,7 +66,6 @@ Route::post('lost',[LostController::class,'lost']);
 Route::get('favourite',[FavouriteController::class,'favourite']);
 Route::get('lost',[LostController::class,'lost']);
 Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-email');
-// Route::get('home',[MissionController::class,'home']);
 
 
    Route::get('home',[MissionController::class,'home']);
@@ -115,25 +117,39 @@ Route::get('contactUs',function(Request $request){
 
 //admin panel
 
-// Route::prefix('admin')->middleware('auth','user')->group(function(){
-//     Route::get('dashboard',[DashboardController::class,'index']);
-
-//     Route::get('user',[UserController::class,'user']);
-//     Route::get('timesheet',[TimesheetController::class,'timesheet']);
-//     Route::get('edit-time',[TimesheetController::class,'edit']);
-   
-// });
-
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('dashboard',[DashboardController::class,'index']);
 
     Route::get('user',[UserController::class,'user']);
-    Route::get('timesheet',[TimesheetController::class,'timesheet']);
-    Route::get('edit-time',[TimesheetController::class,'edit']);
+    Route::get('add-user',[UserController::class,'create']);
+    Route::post('add-user',[UserController::class,'add_user']);
+    Route::put('update-user/{user_id}',[UserController::class,'update']);
+    Route::post('delete-user',[UserController::class,'delete']);
 
-    Route::get('cms-add',[CmsController::class,'add']);
+    Route::get('timesheet',[TimesheetController::class,'timesheet']);
+    Route::get('add-time',[TimesheetController::class,'add']);
+
+    Route::get('add-cms',[CmsController::class,'add']);
+    Route::get('cms-edit/{id}',[CmsController::class,'edit']);
+   Route::put('update-cms/{id}',[CmsController::class,'update']);
+   Route::post('delete-cms',[CmsController::class,'delete']);
+
     Route::get('cms',[CmsController::class,'index']);
-   
+   Route::get('mission',[AdminmissionController::class,'index']);
+   Route::get('mission-add',[AdminmissionController::class,'create']);
+   Route::get('application',[AdminmissionController::class,'application']);
+
+   Route::get('story',[StoryController::class,'story']);
+   Route::post('add-cms',[CmsController::class,'cms_add']);
+   Route::get('edit-user/{user_id}',[UserController::class,'edit']);
+
+   Route::get('add-theme',[MissionthemeController::class,'create']);
+   Route::post('add-theme',[MissionthemeController::class,'add_theme']);
+   Route::get('theme',[MissionthemeController::class,'index']);
+   Route::get('edit-theme/{id}',[MissionthemeController::class,'edit']);
+   Route::put('update-theme/{id}',[MissionthemeController::class,'update']);
 });
+
+
 
 

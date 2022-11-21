@@ -1,8 +1,8 @@
 <x-header></x-header>
 
-<?php session_start() ?>
 
-<link rel="stylesheet" href="{{url('css/index.css')}}">
+
+<link rel="stylesheet" href="{{url('/css/index.css')}}">
 </head>
 
 <body>

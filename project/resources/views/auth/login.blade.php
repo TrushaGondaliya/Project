@@ -34,6 +34,9 @@
                             </div>
                            
                             @endif
+                            @if(session('message'))
+                    <div class="alert alert-danger">{{session('message')}}</div>
+                    @endif
                 <div class="container">
                     <form action="{{route('login')}}" method="post">
                         @csrf

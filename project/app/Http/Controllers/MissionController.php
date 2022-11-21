@@ -14,17 +14,19 @@ class MissionController extends Controller
 {
 
     public function __construct()
-    {
+    {   
         $this->middleware('auth');
     }
     public function home(Request $request){  
-      
-            $missions=Mission::paginate(6);
+        if(Auth::user()->status=='0'){
+        $missions=Mission::paginate(6);
         $count=count(Mission::all());
         $max_count=ceil($count/6);
         return view('home',compact('missions','max_count'));
         }
-     
-
-      
+    
+    else {
+        return redirect('admin/user')->with('message','you are logged in as admin user');
+    }
+}
 }

@@ -17,7 +17,7 @@
             <div class="col-lg-8" style="float: right; text-align:right">
             <div style="float:right" class="add-admin add-goal">
       <span class="fa fa-plus" style="color: #f88634!important;"></span>
-                    <input type="submit" class="admin_add" value="Add">
+                    <a href="{{url('admin/add-cms')}}"><button class="admin_add">Add</button></a>
                 </div>
            
             </div>
@@ -32,40 +32,30 @@
                         <table class="table user-table">
                             <thead>
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Employee Id</th>
-                                <th>Department</th>
+                                <th>Title</th>
                                 <th>Status</th>
                                 <th>Action</th>
+                               
                                 
                             </tr>
                             </thead>
                             <tbody>
-                       @foreach($users as $item)
-                            <tr>
-                               
-                                <td>{{$item->first_name}}</td>
-                                <td>{{$item->last_name}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->employee_id}}</td>
-                                <td>{{$item->department}}</td>
+                       @foreach($cms as $item)
+                            <tr> 
+                                <td>{{$item->title}}</td>
                                 <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'Anactive'}}</td>
-                             
-                                <td><a href=""><img style="width: 16px; height:20px;margin-right:10px" src="\images\bin.png"></a>   <span class="time"><img  style="width: 20px; height:20px;cursor:pointer" src="\images\edit.jpg"></span></td>
-                                
+                                <td><button value="{{$item->cms_page_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
+                                  <a href="{{url('admin/cms-edit/'.$item->cms_page_id)}}"><i class="fas fa-edit" style="height: 20px;width:20px; color: #f88634!important;"></i></a></td>    
                             </tr>
                             @endforeach
-                           </tbody>
-                           
+                           </tbody> 
                         </table>
                         </div>
                        </div>
                        <div class="container mt-3">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="{{url('admin/user?page=1')}}" aria-label="prevoius">
+                <a class="page-link" href="{{url('admin/cms?page=1')}}" aria-label="prevoius">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -75,7 +65,7 @@
                 </a>
             </li>
             @for($i=1;$i<=$max_count;$i++)
-            <li class="page-item"><a class="page-link" href="{{url('admin/user?page='.$i)}}">{{$i}}</a> </li>
+            <li class="page-item"><a class="page-link" href="{{url('admin/cms?page='.$i)}}">{{$i}}</a> </li>
             @endfor
           
             <li class="page-item">
@@ -96,4 +86,46 @@
 </div>
         </div>
 </main>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <form action="{{url('admin/delete-cms')}}" method="POST">
+            @csrf
+      <div class="modal-header">
+        <h5 class="popup-title" id="exampleModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="cms_page_id" id="cms_page_id">
+    <span class="cms-pupop-text">Are you sure you want to delete this item?</span>
+      </div>
+      <div class="popup-btn">
+        <button type="button" class="popup-btn1" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="popup-btn2">Delete</button>
+      </div>
+</form>
+    </div>
+  </div>
+</div>
 @endsection
+
+
+        <!--end popup box for change Password -->
+
+        @section('scripts')
+        <script>
+    
+    $(document).ready(function(){
+        $('.deleteCategorybtn').click(function(e){
+            // $(document).on('click','',function(e){
+
+            // e.preventDefault();
+
+            var cms_page_id=$(this).val();
+            $('#cms_page_id').val(cms_page_id);
+            $('#deleteModal').modal('show');
+        });
+    });
+</script>
+    @endsection

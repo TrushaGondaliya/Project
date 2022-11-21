@@ -74,7 +74,7 @@
                                     </a>
                                 </div>
                                 <div class="d-flex align-items-center second-txt p-2">
-                                    <a href="">
+                                    <a href="{{url('favourite')}}"> 
                                         <img src="images/heart.png" alt='' class='img-fluid img-card-h'>
                                     </a>
                                 </div>
@@ -83,7 +83,6 @@
                                         <img src="images/pin.png" class='img-fluid pr-2 ' style='height:22px;margin:5px'>
                                         <span>{{$mission->city->name}}</span>
                                 </a>
-
                             </div>
                             <div class="d-flex four-txt justify-content-center">
                                 <div class="theme">{{$mission->theme}}</div>

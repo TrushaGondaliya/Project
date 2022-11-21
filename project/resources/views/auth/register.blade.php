@@ -1,8 +1,4 @@
-<?php session_start() ?>
 <x-header></x-header>
-
-
-<!-- Registration page -->
 <html>
 
 <head>
@@ -53,6 +49,10 @@
                             <input type="submit" value="Register" name="Register" class="btn btn-primary"><br><br>
 
                         </form>
+                        <div class="text-center">
+                        <a class="pwd" href="{{URL('lost')}}">Lost your password?</a><br><br>
+                    <span>Already Registered? </span><a class="reg" href="{{URL('login')}}">Login Here</a><br><br>
+                        </div>
                         <footer>
                             <div class="footer-reg">
 

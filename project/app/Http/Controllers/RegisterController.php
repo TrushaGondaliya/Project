@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Crypt;
 
 class RegisterController extends Controller
 {
@@ -27,8 +28,14 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         
         $user->save();
-      if(Auth::attempt($request->only('email','password'))){
-        return redirect('home');
-      }
+      
+
+        return redirect('register')->with('message','Register successfully!');
+
+        // if(Auth::attempt($request->only('email','password')))
+        // {
+        //     return redirect('home');
+        // }
+        
     }
 }

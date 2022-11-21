@@ -16,7 +16,11 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     
     protected $table='users';
-
-   
+    protected $primaryKey = 'user_id';
     public $timestamps=true;
+
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
 }

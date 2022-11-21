@@ -3,7 +3,8 @@
        
                 <div class="navbar-nav mb-lg-0" style="display: contents;"><img src="images/search.png" alt="Avatar" style="object-fit:cover ;">
                 </div>
-                <form class="d-flex" role="search">
+                <form class="d-flex" action="{{url('search')}}" method="post" role="search">
+                    @csrf
                     <input class="form-control me-2 Search-mission common-font" type="search"
                         placeholder="Search mission..." aria-label="Search">
                 </form>

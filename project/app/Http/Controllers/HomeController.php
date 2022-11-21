@@ -11,22 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-       
-  
-       function list(){
-        $missions=DB::select('select * from missions');
-     return view('list',['missions'=>$missions]);
-       
+
+
+       function list()
+       {
+              $missions = Mission::all();
+              return view('list', ['missions' => $missions]);
        }
 
-       function grid(){
-        return view('home');
+       function grid()
+       {
+              return view('home');
        }
 
-       function mission_listing(){
-              $missions=Mission::paginate(6);
-              $count=count(Mission::all());
-              $max_count=ceil($count/6);
-        return view('mission_listing',compact('missions','max_count'));
+       function mission_listing()
+       {
+              $missions = Mission::paginate(6);
+              $count = count(Mission::all());
+              $max_count = ceil($count / 6);
+              return view('mission_listing', compact('missions', 'max_count'));
        }
 }

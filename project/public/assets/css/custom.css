@@ -61,6 +61,8 @@
     height: 100%;
 }
 
+
+
 .sb-sidenav .sb-sidenav-menu .nav .nav-link{
     color: white;
 }
@@ -117,7 +119,7 @@
 }
 
 .user-table th{
-    width: 1512px;
+    /* width: 1512px; */
     height: 70px;
     margin: 30px 42px 500px 29px;
     padding: 30px 25px 22px 30px;
@@ -130,7 +132,7 @@
 .user-table td{
     height: 65px;
     margin: 30px 42px 500px 29px;
-    padding: 20px 25px 10px 30px;
+    padding: 25px 25px 20px 30px;
     font-size: 16px;
     font-family: sans-serif;
 }
@@ -172,7 +174,6 @@
   }
 
   .cms-label {
-    width: 29px;
     height: 13px;
     margin-top: 20px;
     font-family: sans-serif;
@@ -210,6 +211,10 @@
     font-size: 17px;
    
   }
+
+ svg:not(:root).svg-inline--fa.active {
+    color: #f88634 !important;
+}
   
   .cms_btn2{
     margin-top:10px ;

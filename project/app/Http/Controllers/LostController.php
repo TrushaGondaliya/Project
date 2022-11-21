@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -65,7 +66,7 @@ class LostController extends Controller
         }else{
 
             User::where('email','=',$request->email)->update([
-                    'password'=>Hash::make($request->password),
+                    'password'=>Crypt::encryptString($request->password),
           
 
                     

@@ -33,16 +33,26 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        if(Auth::user()->status=='0'){
-            return redirect('admin/user')->with('status','welcome to admin ');
-        }
-        else if(Auth::user()->status=='1'){
-            return redirect('/home')->with('status','logged in successful');
+        
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
 
+            if(Auth::user()->status=='1'){
+                return redirect('admin/user')->with('status','welcome to admin ');
+            }
+            else if(Auth::user()->status=='0'){
+                return redirect('home')->with('status','logged in successful');
+
+            }
+            else{
+                return view('login');
+            }
         }
-        else{
-            return redirect('/');
+        else {
+            return redirect('login')->with('message','user not found in record');
         }
+       
+      
     }
        
     
