@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -22,5 +22,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function favourites()
     {
         return $this->hasMany(Favourite::class);
+    }
+
+    protected function fullName():Attribute
+    {
+        return Attribute::make(
+            get:fn($value)=>"{$this->first_name} {$this->last_name}"
+        );
     }
 }

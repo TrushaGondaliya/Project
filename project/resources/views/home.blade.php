@@ -1,7 +1,7 @@
 
 <x-header></x-header>
 
-<?php session_start() ?>
+<!-- <?php session_start() ?> -->
 
 <link rel="stylesheet" href="{{url('css/index.css')}}">
 </head>
@@ -38,6 +38,7 @@
             <div class="left-explore common-font">
                 <span class="explore-light">Explore </span>72 missions
             </div>
+            
             <div class="right-explore">
                 <select name="sorting" class="Rounded-Rectangle-8">
                     <option value="">Sort by</option>
@@ -61,7 +62,16 @@
 
         <!-- card -->
         <section>
+        
             <div class="container-fluid">
+            @if($errors->any())
+                            <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                            <div>{{$error}}</div>
+                            @endforeach
+                            </div>
+                           
+                            @endif
                 <div class="row abc">
                     @foreach($missions as $mission)
                     <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
@@ -74,8 +84,10 @@
                                     </a>
                                 </div>
                                 <div class="d-flex align-items-center second-txt p-2">
-                                    <a href="{{url('favourite')}}"> 
-                                        <img src="images/heart.png" alt='' class='img-fluid img-card-h'>
+                                    <a href="{{url('favourite/'.$mission->mission_id)}}"> 
+                                        <img src="images/heart.png" alt=''  class='img-fluid img-card-h'>
+                                      
+                                        
                                     </a>
                                 </div>
                                 <a href="">
@@ -199,17 +211,17 @@
     <div class="container mt-3">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="{{url('mission_listing?page=1')}}" aria-label="prevoius">
+                <a class="page-link" href="{{url('home?page=1')}}" aria-label="prevoius">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="prevoius">
+                <a class="page-link" href="{url()->previous()}}" aria-label="prevoius">
                     <span aria-hidden="true">&lsaquo;</span>
                 </a>
             </li>
             @for($i=1;$i<=$max_count;$i++)
-            <li class="page-item"><a class="page-link" href="{{url('mission_listing?page='.$i)}}">{{$i}}</a> </li>
+            <li class="page-item"><a class="page-link" href="{{url('home?page='.$i)}}">{{$i}}</a> </li>
             @endfor
           
             <li class="page-item">
@@ -218,7 +230,7 @@
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="{{url('mission_listing?page='.$max_count)}}" aria-label="Next">
+                <a class="page-link" href="{{url('home?page='.$max_count)}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

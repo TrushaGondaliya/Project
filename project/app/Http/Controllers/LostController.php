@@ -36,13 +36,13 @@ class LostController extends Controller
             'created_at'=>Carbon::now(),
         ]);
         $action_link=route('reset',['token'=>$token,'email'=>$request->email]);
-        $body="we are send mail to ".$request->email." . you can reset your password";
+        $body="we are send mail to ".$request->email." .here you can reset your password";
         Mail::send('email-forgot',['action_link'=>$action_link,'body'=>$body],function($message) use ($request){
-            $message->from('trushagondaliya30@gmail.com','abc');
-            $message->to($request->email,'name')->subject('reset');
+            $message->from('trushagondaliya30@gmail.com','password reset');
+            $message->to($request->email,'Trusha')->subject('Password Reset');
         });
 
-        return ['success'];
+        return redirect('lost')->with('message','password reset link sent successfully!');
 
     }
 
@@ -66,7 +66,7 @@ class LostController extends Controller
         }else{
 
             User::where('email','=',$request->email)->update([
-                    'password'=>Crypt::encryptString($request->password),
+                    'password'=>Hash::make($request->password),
           
 
                     
@@ -76,7 +76,7 @@ class LostController extends Controller
                 'email'=>$request->email
             ])->delete();
 
-            return ['success'];
+            return redirect('login')->with('message','password reset successfully!');
         }
 
     }

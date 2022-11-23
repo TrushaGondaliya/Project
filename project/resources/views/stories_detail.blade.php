@@ -88,17 +88,18 @@
                                         <div class="row">
                                             <div class=" col-sm-1 col-1 col-lg-1"></div>
                                             <div class="col-md-1 col-sm-1 col-1 col-lg-1">
-                                                <img src="images/add1.png" style="height: 18px;" alt="">
+                                                <img src="images/add1.png" style="height: 22px;width:22px" alt="">
                                             </div>
                                             <div class="col-md-10 col-sm-9 col-9 col-lg-9">
-                                                <span>Recommend to a co-worker</span>
+                                                <span class="story-detail-button-text">Recommend to a co-worker</span>
                                             </div>
                                         </div>
                                     </button>
                                 </div>
                                 <div class="column col-md-12 col-lg-5 col-sm-12">
-                                    <div class='story-detail-button1'>Open Mission
-                                        <img src='images/right-arrow.png' alt='' class='pl-3'>
+                                    <div class='story-detail-button1'>
+                                        <span class="story-detail-button-text" > Open Mission</span>
+                                        <img src='images/right-arrow.png' alt='' class='pt-9'>
                                     </div>
                                 </div>
 

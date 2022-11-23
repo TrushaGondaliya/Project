@@ -79,7 +79,7 @@
                 <div id="preview"></div><br>
 
                 <div class="row">
-                    <div class="col-lg-1 col-md-3 col-4 " id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4 " id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -100,7 +100,7 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -142,7 +142,7 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -153,7 +153,7 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -163,7 +163,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -173,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -183,7 +183,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -193,7 +193,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -203,7 +203,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-3 col-4" id="wrapper">
+                    <div class="col-xl-1 col-lg-2 col-md-3 col-4" id="wrapper">
                         <div style="position: relative;">
                             <div class="remove-img">
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
 
-                <input type="submit" value="cancel" name="cancel" class="cancel">
+                <input type="submit" value="cancel" name="cancel" class="share-button">
 
                 <input type="submit" value="save" name="save" class="button-1">
                 <input type="submit" value="submit" name="submit" class="button-1">

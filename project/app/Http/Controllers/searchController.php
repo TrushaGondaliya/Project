@@ -14,13 +14,13 @@ class searchController extends Controller
     
 
     public function view(Request $request){
-        $search=$request['search']??"";
+        $search=$request['search'];
         if($search!=" "){
             $missions=Mission::where('title','LIKE','%' .$search. '%')->orwhere('discription','LIKE','%' .$search. '%')->get();
-        }else{
-            return ['error'];
-        }
         return view('search',['missions'=>$missions]);
+        }
+      
+
 
     }
 }

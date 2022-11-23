@@ -13,8 +13,8 @@
         <div class="container-fluid">
           <img src="../images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="img">
           <div class="bottom">
-            <p class="text">Sed ut perspiciatis unde omnis iste natus voluptatem</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ipsa iure possimus dolor. Dignissimos vero laboriosam fugit beatae dicta placeat obcaecati, iste nobis reprehenderit incidunt et ratione quia amet quisquam?</p>
+          <p class="text">Sed ut perspiciatis unde omnis iste natus voluptatem</p>
+                        <p class="para-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
         </div>
       </div>
@@ -27,9 +27,9 @@
         @csrf
         <input type="hidden" name="token" value="{{$token}}">
         <input type="hidden" name="email" value="{{$email ?? old('email')}}">
-            <label for="password">New Password</label><br>
+            <label for="password" class="common-text">New Password</label><br>
             <input type="password" name="password" placeholder="Enter your new password" class="form-control"><br>
-            <label for="password">Confirm New Password</label><br>
+            <label for="password" class="common-text">Confirm New Password</label><br>
             <input type="password" name="password_confirmation" placeholder="Enter your confirm new password" class="form-control"><br>
             <input type="submit" value="Change Password" name="change" class="btn btn-primary"><br><br>
           </form>

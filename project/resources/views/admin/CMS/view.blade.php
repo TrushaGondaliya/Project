@@ -11,9 +11,12 @@
         <div class="container-fluid px-4">
             <div class="row pt-4">
             <div class="col-lg-3 form-outline mb-4 admin-search-div">
-                <label class="fa fa-search"></label>
-                <input type="search" placeholder="Search" class="admin-search" >
-            </div>
+                <form action="{{url('admin/cms')}}" method="POST">
+                            @csrf
+                    <label class="fa fa-search"></label>
+                    <input type="search" placeholder="Search" name="search" class="admin-search">
+                    </form>
+                </div>
             <div class="col-lg-8" style="float: right; text-align:right">
             <div style="float:right" class="add-admin add-goal">
       <span class="fa fa-plus" style="color: #f88634!important;"></span>
@@ -43,7 +46,7 @@
                        @foreach($cms as $item)
                             <tr> 
                                 <td>{{$item->title}}</td>
-                                <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'Anactive'}}</td>
+                                <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'inactive'}}</td>
                                 <td><button value="{{$item->cms_page_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
                                   <a href="{{url('admin/cms-edit/'.$item->cms_page_id)}}"><i class="fas fa-edit" style="height: 20px;width:20px; color: #f88634!important;"></i></a></td>    
                             </tr>

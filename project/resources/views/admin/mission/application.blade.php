@@ -17,7 +17,8 @@
             <div class="col-lg-8" style="float: right; text-align:right">
             <div style="float:right" class="add-admin add-goal">
       <span class="fa fa-plus" style="color: #f88634!important;"></span>
-                    <input type="submit" class="admin_add" value="Add">
+      <a href="{{url('admin/add-application')}}">
+                    <input type="submit" class="admin_add" value="Add"></a>
                 </div>
            
             </div>
@@ -49,19 +50,22 @@
                                 <td>{{$item->mission->title}}</td>
                                 <td>{{$item->mission_id}}</td>
                                 <td>{{$item->user_id}}</td>
-                                <td>{{$item->user->first_name}} {{$item->user->last_name}}</td>
+                                <td>{{$item->user->full_name}} </td>
                                 <td>{{$item->applied_at}}</td>
                               
                              
-                                <td><span class=" deleteCategorybtn"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#14c506" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                <td>
+                                    <a href="{{url('admin/approve/'.$item->mission_application)}}" ><span class=""><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#14c506" class="bi bi-check-circle" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-</svg></span>   
-<span class="time">
+</svg></span></a> 
+<a href="{{url('admin/decline/'.$item->mission_application)}}" >  
+<span class="decline">
 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#f88634" class="bi bi-x-circle" viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-</svg></span></td>
+</svg></span></a>
+</td>
                                 
                             </tr>
                             @endforeach
@@ -92,7 +96,7 @@
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="{{url('admin/user?page='.$max_count)}}" aria-label="Next">
+                <a class="page-link" href="{{url('admin/application?page='.$max_count)}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

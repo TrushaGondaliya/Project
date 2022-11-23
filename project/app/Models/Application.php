@@ -10,6 +10,12 @@ class Application extends Model
     use HasFactory;
 
     protected $table='mission_application';
+    protected $primaryKey='mission_application';
+
+    protected $fillable=[
+        'approval_status'
+    ];
+
 
     public function mission(){
         return $this->belongsTo(Mission::class,'mission_id','mission_id');

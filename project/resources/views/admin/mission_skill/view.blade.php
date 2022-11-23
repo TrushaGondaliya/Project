@@ -10,15 +10,18 @@
         </ul>
         <div class="container-fluid px-4">
             <div class="row pt-4">
-                <div class="col-lg-3 form-outline mb-4 admin-search-div">
+            <div class="col-lg-3 form-outline mb-4 admin-search-div">
+                <form action="{{url('admin/skill')}}" method="POST">
+                            @csrf
                     <label class="fa fa-search"></label>
-                    <input type="search" placeholder="Search" class="admin-search">
+                    <input type="search" placeholder="Search" name="search" class="admin-search">
+                    </form>
                 </div>
                 <div class="col-lg-8" style="float: right; text-align:right">
                     <div style="float:right" class="add-admin add-goal">
                    
                         <span class="fa fa-plus" style="color: #f88634!important;"></span>
-                        <a href="{{url('admin/add-theme')}}">
+                        <a href="{{url('admin/add-skill')}}">
                         <input type="submit" class="admin_add" value="Add">
                     </a>
                     </div>
@@ -35,25 +38,25 @@
                     <table class="table user-table">
                         <thead>
                             <tr>
-                                <th>Theme Name</th>
+                                <th>Skill Name</th>
                                 <th>Status</th>
                                 <th>Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($theme as $item)
+                            @foreach($skill as $item)
                             <tr>
 
-                                <td>{{$item->title}}</td>
+                                <td>{{$item->skill_name}}</td>
                         
                              
                                 <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'inactive'}}</td>
 
                                 <td>
-                                    <a href="{{url('admin/edit-theme/'.$item->mission_theme_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>
+                                    <a href="{{url('admin/edit-skill/'.$item->skill_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>
 
-                                    <button value="{{$item->mission_theme_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
+                                    <button value="{{$item->skill_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -65,7 +68,7 @@
             <div class="container mt-3">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" href="{{url('admin/theme?page=1')}}" aria-label="prevoius">
+                        <a class="page-link" href="{{url('admin/skill?page=1')}}" aria-label="prevoius">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -83,7 +86,7 @@
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="{{url('admin/user?page='.$max_count)}}" aria-label="Next">
+                            <a class="page-link" href="{{url('admin/skill?page='.$max_count)}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -99,14 +102,14 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{url('admin/delete-user')}}" method="POST">
+            <form action="{{url('admin/delete-skill')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="popup-title" id="exampleModalLabel">Confirm Delete</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="user_id" id="user_id">
+                    <input type="hidden" name="skill_id" id="skill_id">
                     <span class="cms-pupop-text">Are you sure you want to delete this item?</span>
                 </div>
                 <div class="popup-btn">
@@ -128,8 +131,8 @@
 
             // e.preventDefault();
 
-            var user_id = $(this).val();
-            $('#user_id').val(user_id);
+            var skill_id = $(this).val();
+            $('#skill_id').val(skill_id);
             $('#deleteModal').modal('show');
         });
     });

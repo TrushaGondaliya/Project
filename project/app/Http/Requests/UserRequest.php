@@ -37,6 +37,7 @@ class UserRequest extends FormRequest
         'country_id'=>'nullable',
         'department'=>'nullable',
         'profile_text'=>'nullable',
+        'status'=>'nullable'
        ];
 
        return $rules;

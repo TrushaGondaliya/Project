@@ -1,5 +1,6 @@
 <x-header></x-header>
 
+
 <?php session_start() ?>
 
 <link rel="stylesheet" href="{{url('css/index.css')}}">
@@ -12,10 +13,6 @@
 
         <x-top-nav></x-top-nav>
 
-        <!-- second navbar -->
-
-
-        <x-top-nav-2></x-top-nav-2>
         <hr style="margin:0">
 
 
@@ -23,6 +20,7 @@
         <!-- Volunteering mission listing -->
 
         <section>
+
             <div class="vol">
                 <div class="row  col-sm-12  col-lg-12">
                     <div class="column  col-sm-6  col-lg-6" style="padding-left: 10px;">
@@ -135,7 +133,8 @@
 
                             <div class='d-flex align-items-center'>
                                 <hr class='flex-grow-1' />
-                                @for($i=0;$i<5;$i++) <img src="images/star-empty.png" class="vol-star-1" alt="">
+                                @for($i=0;$i<5;$i++) 
+                                <img src="images/star-empty.png" class="vol-star-1" alt="">
                                     @endfor
                                     <hr class='flex-grow-1' />
                             </div><br>
@@ -144,7 +143,7 @@
                             <br>
 
                             <div class="row col-md-12 col-12 col-sm-12 col-lg-12">
-                                <div class="column col-md-3  col-sm-3 col-3 col-lg-3">
+                                <div class="column col-md-6  col-sm-6 col-6 col-lg-6 col-xl-3">
                                     <div class="pin">
                                         <img src="images/pin1.png" style="padding-bottom: 10px;" alt=""><br><br>
                                         <span class="span-main"><span class="span-text"> city</span> london</span>
@@ -152,19 +151,19 @@
 
                                 </div>
 
-                                <div class="column col-md-3 col-3 col-sm-3 col-lg-3">
+                                <div class="column col-md-6 col-6 col-sm-6 col-lg-6 col-xl-3">
                                     <div class="pin"><img src="images/web.png" style="padding-bottom: 10px;" alt=""><br><br>
                                         <span class="span-main"><span class="span-text"> Theme</span> Environment</span>
                                     </div>
 
                                 </div>
-                                <div class="column col-md-3 col-3">
+                                <div class="column col-md-6 col-6 col-lg-6 col-xl-3">
                                     <div class="pin"><img src="images/calender.png" style="padding-bottom: 10px;" alt=""><br>
                                         <span class="span-main"><span class="span-text"> Date</span> Ongoing Oppertunity</span>
                                     </div>
 
                                 </div>
-                                <div class="column col-md-3 col-3">
+                                <div class="column col-md-6 col-6 col-lg-6 col-xl-3">
                                     <div class="pin"><img src="images/organization.png" style="padding-bottom: 10px;" alt=""><br>
                                         <span class="span-main"><span class="span-text"> Organization</span> CSC Network</span>
                                     </div>
@@ -187,18 +186,30 @@
                             <div class="column col-lg-7">
                                 <div class=" vol-mission">
 
-                                    <ul class="nav nav-tabs">
-                                        <li class="nav-item"> <a class="nav-link nav" href="#">Mission</a> </li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Organization</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Sponsored</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Comments</a></li>
-                                    </ul>
+                                   
+
+                                    <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#mission">mission</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#organization">organization </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#sponsored">Sponsored </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#comments">comments </a>
+    </li>
+  </ul>
+
+
 
 
                                 </div>
-                                <br>
-                                <div id="mission">
-                                    <span class="vol-intro">Intoduction</span><br><br>
+                                <div class="tab-content">
+    <div id="mission" class="container tab-pane active"><br>
+    <span class="vol-intro">Intoduction</span><br><br>
                                     <span class="Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                         <br><br>
@@ -221,7 +232,7 @@
                                     <span class="vol-intro">Documents</span><br><br>
 
                                     <div class="row col-lg-12 ">
-                                        <div class="column col-lg-4 col-md-4">
+                                        <div class="column col-lg-6 col-xl-4 col-md-4">
                                             <button class="btn1">
                                                 <div class="row">
                                                     <div class="col-lg-1 col-1"></div>
@@ -235,7 +246,7 @@
                                             </button>
                                         </div>
 
-                                        <div class="column col-lg-4 col-md-4">
+                                        <div class="column col-lg-6 col-xl-4 col-md-4">
                                             <button class="btn1">
                                                 <div class="row">
                                                     <div class="col-lg-2 col-md-2 col-3"></div>
@@ -249,7 +260,7 @@
                                             </button>
                                         </div>
 
-                                        <div class="column col-lg-4 col-md-4">
+                                        <div class="column col-lg-6 col-xl-4 col-md-4">
                                             <button class="btn1">
                                                 <div class="row">
                                                     <div class="col-lg-1 col-md-1 col-3"></div>
@@ -264,8 +275,22 @@
                                         </div>
 
                                     </div>
-                                </div>
-
+    </div>
+    <div id="organization" class="container tab-pane fade"><br>
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div id="sponsored" class="container tab-pane fade"><br>
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+    <div id="comments" class="container tab-pane fade"><br>
+    <h3>Menu 3</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+                                <br>
+                        
 
 
                             </div>

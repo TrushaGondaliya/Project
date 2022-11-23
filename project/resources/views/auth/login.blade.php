@@ -20,7 +20,7 @@
                     <img src="images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="img">
                     <div class="bottom">
                         <p class="text">Sed ut perspiciatis unde omnis iste natus voluptatem</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ipsa iure possimus dolor. Dignissimos vero laboriosam fugit beatae dicta placeat obcaecati, iste nobis reprehenderit incidunt et ratione quia amet quisquam?</p>
+                        <p class="para-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
             </div>
@@ -34,22 +34,25 @@
                             </div>
                            
                             @endif
+                            @if(session('error'))
+                    <div class="alert alert-danger">{{session('error')}}</div>
+                    @endif
                             @if(session('message'))
-                    <div class="alert alert-danger">{{session('message')}}</div>
+                    <div class="alert alert-success">{{session('message')}}</div>
                     @endif
                 <div class="container">
                     <form action="{{route('login')}}" method="post">
                         @csrf
-                        <label for="email">Email Address</label><br>
+                        <label for="email" class="common-text">Email Address</label><br>
                         <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>
-                        <label for="password">Password</label><br>
+                        <label for="password" class="common-text">Password</label><br>
                         <input type="password" name="password" placeholder="Enter your password" class="form-control"><br>
                         <input type="submit" value="login" name="login" class="btn btn-primary"><br><br>
                         <div class="text-center">
 
                     </form>
                     <a class="pwd" href="{{URL('lost')}}">Lost your password</a><br><br>
-                    <span>Don't have any account? </span><a class="reg" href="{{URL('register')}}">Create an account</a><br><br>
+                    <span class="pwd">Don't have any account? </span><a class="reg" href="{{URL('register')}}">Create an account</a><br><br>
 
 
                 </div>

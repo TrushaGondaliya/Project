@@ -37,12 +37,23 @@ class CmsController extends Controller
         return redirect('admin/cms')->with('message', 'cms added successfully!');
     }
 
-    function index()
+    function index(Request $request)
     {
-        $cms = Cms::paginate(6);
-        $count = count(Cms::all());
-        $max_count = ceil($count / 6);
-        return view('admin.CMS.view', compact('cms', 'max_count'));
+        $cms=$request['search'];
+        if($cms!=" ")
+        {
+            $cms=Cms::where('title','LIKE','%' .$cms. '%')->paginate(6);
+            $count = count(Cms::all());
+            $max_count = ceil($count / 6);
+            return view('admin.CMS.view', compact('cms', 'max_count'));
+        }
+        // if($cms==" "){
+        //     $cms = Cms::paginate(6);
+        //     $count = count(Cms::all());
+        //     $max_count = ceil($count / 6);
+        //     return view('admin.CMS.view', compact('cms', 'max_count'));
+        // }
+        
     }
 
     function edit($id)

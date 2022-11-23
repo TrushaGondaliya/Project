@@ -10,8 +10,8 @@
                                 User    
                             </a>
                          
-                            <a class="nav-link {{Request::is('admin/cms') || Request::is('admin/cms-add') || Request::is('admin/cms-edit/*') ? 'collapsed active' : 'collapsed'}}" href="{{url('admin/cms')}}" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-file-alt {{Request::is('admin/cms') || Request::is('admin/cms-add') || Request::is('admin/cms-edit/*') ? ' active' : ''}}"></i></div>
+                            <a class="nav-link {{Request::is('admin/cms') || Request::is('admin/add-cms') || Request::is('admin/cms-edit/*') ? 'collapsed active' : 'collapsed'}}" href="{{url('admin/cms')}}" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file-alt {{Request::is('admin/cms') || Request::is('admin/add-cms') || Request::is('admin/cms-edit/*') ? ' active' : ''}}"></i></div>
                                 CMS Page
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
@@ -31,12 +31,12 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-application {{Request::is('admin/theme')||Request::is('admin/add-theme')||Request::is('admin/edit-theme/*') ? 'active' : ''}}" href="{{url('admin/theme')}}"></i></div>
                                 Mission Theme    
                             </a>
-                            <a class="nav-link {{Request::is('admin/users') ? 'active' : ''}}" href="{{url('admin/users')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/users') ? 'active' : ''}}"></i></div>
+                            <a class="nav-link {{Request::is('admin/skill')||Request::is('admin/add-skill')||Request::is('admin/edit-skill/*') ? 'active' : ''}}" href="{{url('admin/skill')}}" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/skill')||Request::is('admin/add-skill')||Request::is('admin/edit-skill/*') ? 'active' : ''}}"></i></div>
                                 Mission skill    
                             </a>
-                            <a class="nav-link {{Request::is('admin/application') ? 'active' : ''}}" href="{{url('admin/application')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/application') ? 'active' : ''}}"></i></div>
+                            <a class="nav-link {{Request::is('admin/application') || Request::is('admin/add-application') ? 'active' : ''}}" href="{{url('admin/application')}}" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/application')|| Request::is('admin/add-application') ? 'active' : ''}}"></i></div>
                                 Mission Application    
                             </a>
                             <a class="nav-link {{Request::is('admin/story') ? 'active' : ''}}" href="{{url('admin/story')}}" >

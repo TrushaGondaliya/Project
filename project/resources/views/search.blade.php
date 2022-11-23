@@ -1,111 +1,170 @@
+
 <x-header></x-header>
 
 
 
-<link rel="stylesheet" href="{{url('/css/index.css')}}">
+<link rel="stylesheet" href="{{url('css/index.css')}}">
 </head>
 
 <body>
-  <div class="body-1">
+    <div class="body-1">
 
-    <section>
-      <div class="container-fluid">
-        <div class="row" style="margin-left:200px; margin-right:200px;">
+        <!-- top navbar -->
 
-          @foreach($missions as $mission)
-          <div class="col-lg-4 col-mb-4" style="margin-top:20px ;">
-            <div class="card" style="width: 100%;height:100%;">
-              <div class="abc">
-                <img src="images/{{$mission->image}}" class="img-fluid" alt="...">
-                <div class='d-flex align-items-center third-txt p-2'>
-                  <a href="">
-                    <img src="images/user.png" class='img-fluid ' style='height:16px; color:white'>
-                  </a>
+        <x-top-nav></x-top-nav>
+
+        <!-- second navbar -->
+
+
+      
+       
+
+      
+
+        <!-- card -->
+        <section>
+            <div class="container-fluid">
+                <div class="row abc">
+                    @foreach($missions as $mission)
+                    <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
+                        <div class="card-box" style="width: 100%;height:100%;">
+                            <div class="card-image">
+                                <img src="images/{{$mission->image}}" class="img" style="height: auto;width:100%" alt="...">
+                                <div class='d-flex align-items-center third-txt p-2'>
+                                    <a href="">
+                                        <img src="images/user.png" class='img-fluid img-card'>
+                                    </a>
+                                </div>
+                                <div class="d-flex align-items-center second-txt p-2">
+                                    <a href="{{url('favourite')}}"> 
+                                        <img src="images/heart.png" alt='' class='img-fluid img-card-h'>
+                                    </a>
+                                </div>
+                                <a href="">
+                                    <div class="d-flex align-items-center first-txt">
+                                        <img src="images/pin.png" class='img-fluid pr-2 ' style='height:22px;margin:5px'>
+                                        <span>{{$mission->city->name}}</span>
+                                </a>
+                            </div>
+                            <div class="d-flex four-txt justify-content-center">
+                                <div class="theme">{{$mission->theme}}</div>
+                            </div>
+                        </div>
+                        <div class="card-body" style=" padding-top:30px;">
+                            <div class="container">
+                                <h5 style="font-size: 26px;">{{$mission->title}}</h5>
+                                <p class="card-text" style="color:black;">{{$mission->discription}}</p>
+
+                                <div class="row">
+                                    <div class="col-md-7 col-lg-7 col-7">
+                                        <h6 class="card-text" style="color:black;font-size:16px">{{$mission->organization_name}}</h6>
+                                    </div>
+                                    <div class="col-md-5 col-lg-5 col-5">
+                                        <div class="rating-css">
+                                            <form action="{{url('add-rating')}}" method="post" name="product_rating">
+                                                @csrf
+                                                <div class="star-icon">
+
+                                                    <label for="rating1" class="fa fa-star checked"></label>
+                                                    <label for="rating2" class="fa fa-star checked"></label>
+                                                    <label for="rating3" class="fa fa-star checked"></label>
+                                                    <label for="rating4" class="fa fa-star"></label>
+                                                    <label for="rating5" class="fa fa-star"></label>
+                                                </div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class='d-flex align-items-center'>
+                                <hr class='flex-grow-1' />
+                                <div class='goal'>objective of the goal mission</div>
+                                <hr class='flex-grow-1' />
+                            </div><br>
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12">
+                                        <div class="card-body">
+                                            <div class='row'>
+                                                <div class='col-md-6 col-6 col-sm-6 col-lg-6'>
+                                                    <div class='row'>
+                                                        <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
+                                                            <img src='images/Seats-left.png' alt='' class="c-img">
+                                                        </div>
+                                                        <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
+                                                            <div class="seat-left"> <span class="c-text-style">{{$mission->seat_left}} </span> Seats-left </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='col-md-6 col-sm-6 col-6 col-lg-6' style='color:black;'>
+                                                    <div class='row'>
+                                                        @if($mission->Deadline!=null)
+                                                        <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
+                                                            <img src='images/deadline.png' alt='' class="c-img">
+                                                        </div>
+                                                        <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
+
+                                                            <div class="c-text"> <span class="c-text-style">{{$mission->Deadline}} </span>Deadline </div>
+
+                                                        </div>
+                                                        @endif
+
+                                                        @if($mission->Deadline==null)
+                                                        <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
+                                                            <img src='images/achieved.png' alt='' class="c-img">
+                                                        </div>
+                                                        <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
+                                                            <div class="achieved-main-card">
+                                                                <div class="achieved-card"></div>
+                                                            </div>
+                                                            <span style='color:gray;font-size:14px; margin-left: 20px;'>8000 achieved</span>
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <hr style="width: 100%;margin-top:10px">
+                            <div class="d-flex align-items-center justify-content-center">
+                                @if($mission->Deadline==null)
+                                <div class='card-button'>View Detais
+                                    <img src='images/right-arrow.png' alt='' class='pl-3'>
+                                </div>
+                                @endif
+                                @if($mission->Deadline!=null)
+                                <div class='card-button'>Apply
+                                    <img src='images/right-arrow.png' alt='' class='pl-3'>
+                                </div>
+                                @endif
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex align-items-center second-txt p-2">
-                  <a href="">
-                    <img src="images/heart.png" alt='' class='img-fluid' style='height:16px'>
-                  </a>
-                </div>
-                <a href="">
-                  <div class="d-flex align-items-center first-txt">
-                    <img src="images/pin.png" class='img-fluid pr-2' style='height:16px'>
-                    <span>Location</span>
-                </a>
-              </div>
-              <div class="d-flex four-txt justify-content-center">
-                <div class="theme">{{$mission->theme}}</div>
-
-              </div>
+                @endforeach
             </div>
-            <div class="card-body" style="padding-left:10px ; padding-top:30px;">
+    </div>
+    </section>
+    <br><br>
 
-              <h5>{{$mission->title}}</h5>
-
-              <p class="card-text" style="color:black;">{{$mission->discription}}</p>
-              <h6 class="card-text" style="color:black;">{{$mission->organization}}</h6>
-              <ul class="list-unstyled d-flex justify-content-center mb-0">
-                <li>
-                  <img src="images/star-empty.png" alt="">
-                </li>
-                <li>
-                  <img src="images/star-empty.png" alt="">
-                </li>
-                <li>
-                  <img src="images/star-empty.png" alt="">
-
-                </li>
-                <li>
-                  <img src="images/star-empty.png" alt="">
-                </li>
-                <li>
-                  <img src="images/star-empty.png" alt="">
-
-                </li>
-              </ul>
-              <div>
-                <ul class="list-unstyled d-flex justify-content mb-0">
-                  <li>
-
-                    <img src="images/Seats-left.png" alt="">
-                  </li>
-                  <li>
-                    <ul>
-                      286
-                    </ul>
-                    <ul>
-                      seat left
-                    </ul>
-                  </li>
-                  <li>
-                    <img src="images/mission.png" alt="">
-                  </li>
-                  <li>
-                    <ul>
-                      <div id="result"></div>
-                    </ul>
-                    <ul>
-                      <div id="text"></div>
-                    </ul>
-                  </li>
-                  <div>
-
-                  </div>
-                </ul>
-                <hr style="width: 100%;">
-                <div class="text-center">
-                  <input type="submit" value="View Details->" style="width: 150px;" name="login" class="btn btn-primary">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        @endforeach
-
-      </div>
-
-  </div>
+ 
+    
+    <br>
 
 
-  </section>
+    <hr>
+    <x-footer></x-footer>
+    <br>
+  

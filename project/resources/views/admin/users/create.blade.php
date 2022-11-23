@@ -58,6 +58,12 @@
                     <div class="cms-textarea">
                 <textarea name="profile_text" class="text-area" id="editor" cols="" rows=""></textarea>
             </div>
+            <label class="cms-label">Status</label>
+            <select class="cms-input" name="status">
+            <option value=""></option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select>
                 </td>
             </tbody>
 

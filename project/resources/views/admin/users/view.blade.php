@@ -10,10 +10,16 @@
         </ul>
         <div class="container-fluid px-4">
             <div class="row pt-4">
+            
                 <div class="col-lg-3 form-outline mb-4 admin-search-div">
+                <form action="{{url('admin/user')}}" method="POST">
+                            @csrf
                     <label class="fa fa-search"></label>
-                    <input type="search" placeholder="Search" class="admin-search">
+                    <input type="search" placeholder="Search" name="search" class="admin-search">
+                    </form>
                 </div>
+
+              
                 <div class="col-lg-8" style="float: right; text-align:right">
                     <div style="float:right" class="add-admin add-goal">
                    
@@ -52,13 +58,10 @@
                                 <td>{{$item->first_name}}</td>
                                 <td>{{$item->last_name}}</td>
                                 <td>{{$item->email}}</td>
-                                <!-- <td>{{$item->employee_id}}</td> -->
-                                <td>
-                                <img src="{{asset('uploads/user/'.$item->avtar)}}" width="50px" height="50px">
-
-                                </td>
+                                <td>{{$item->employee_id}}</td>
+                             
                                 <td>{{$item->department}}</td>
-                                <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'Anactive'}}</td>
+                                <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'inactive'}}</td>
 
                                 <td>
                                     <a href="{{url('admin/edit-user/'.$item->user_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>

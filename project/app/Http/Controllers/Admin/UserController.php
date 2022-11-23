@@ -16,12 +16,25 @@ use Illuminate\Validation\Rules\Exists;
 
 class UserController extends Controller
 {
-    function user()
+
+  
+    function user(Request $request)
     {
-        $users = User::paginate(6);
-        $count = count(User::all());
-        $max_count = ceil($count / 6);
+        $users=$request['search']??" ";
+        if($users!=" ")
+        {
+            $users=User::where('first_name','LIKE','%' .$users. '%')->orwhere('last_name','LIKE','%' .$users. '%')->orwhere('email','LIKE','%' .$users. '%')->paginate(6);
+            $count = count(User::all());
+        $max_count = ceil($count / 6); 
         return view('admin.users.view', compact('users', 'max_count'));
+        }
+        if($users==" "){
+            $users=User::paginate(6);
+            $count = count(User::all());
+        $max_count = ceil($count / 6); 
+        return view('admin.users.view', compact('users', 'max_count'));
+        }
+        
     }
 
     function create()
@@ -55,12 +68,14 @@ class UserController extends Controller
         $user->city_id = $data['city_id'];
         $user->country_id = $data['country_id'];
         $user->profile_text = $data['profile_text'];
+        $user->status=$data['status'];
         $user->save();
         return redirect('admin/user')->with('message', 'user added succesfully');
     }
 
-    function edit($user_id)
+    function edit(Request $request,$user_id)
     {
+        
         $user = User::where('user_id', $user_id)->get();
         return view('admin.users.edit', compact('user'));
     }
@@ -87,6 +102,7 @@ class UserController extends Controller
         $user->city_id = $data['city_id'];
         $user->country_id = $data['country_id'];
         $user->profile_text = $data['profile_text'];
+        $user->status=$data['status'];
         $user->update();
         return redirect('admin/user')->with('message', 'user updated succesfully');
     }

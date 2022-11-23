@@ -16,8 +16,8 @@
                     <div class="container-fluid">
                         <img src="images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="img">
                         <div class="bottom">
-                            <p class="text">Sed ut perspiciatis unde omnis iste natus voluptatem</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae ipsa iure possimus dolor. Dignissimos vero laboriosam fugit beatae dicta placeat obcaecati, iste nobis reprehenderit incidunt et ratione quia amet quisquam?</p>
+                        <p class="text">Sed ut perspiciatis unde omnis iste natus voluptatem</p>
+                        <p class="para-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
                     </div>
                 </div>
@@ -34,24 +34,24 @@
                     <div class="container">
                         <form action="{{url('add-user')}}" method="post">
                             @csrf
-                            <label for="fname">First Name</label><br>
+                            <label for="fname" class="common-text">First Name</label><br>
                             <input type="text" name="first_name" placeholder="Enter your First Name" class="form-control"><br>
-                            <label for="lname">Last Name</label><br>
+                            <label for="lname" class="common-text">Last Name</label><br>
                             <input type="text" name="last_name" placeholder="Enter your Last Name" class="form-control"><br>
-                            <label for="email">Email Address</label><br>
+                            <label for="email" class="common-text">Email Address</label><br>
                             <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>
-                            <label for="num">Phone Number</label><br>
+                            <label for="num" class="common-text">Phone Number</label><br>
                             <input type="text" name="phone_number" placeholder="Enter your Phone Number" class="form-control"><br>
-                            <label for="password">Password</label><br>
+                            <label for="password" class="common-text">Password</label><br>
                             <input type="password" name="password" placeholder="Enter your password" class="form-control"><br>
-                            <label for="password">Confirm Password</label><br>
+                            <label for="password" class="common-text">Confirm Password</label><br>
                             <input type="password" name="confirm_password" placeholder="Re-write your Password" class="form-control"><br>
                             <input type="submit" value="Register" name="Register" class="btn btn-primary"><br><br>
 
                         </form>
                         <div class="text-center">
                         <a class="pwd" href="{{URL('lost')}}">Lost your password?</a><br><br>
-                    <span>Already Registered? </span><a class="reg" href="{{URL('login')}}">Login Here</a><br><br>
+                    <span class="pwd">Already Registered? </span><a class="reg" href="{{URL('login')}}">Login Here</a><br><br>
                         </div>
                         <footer>
                             <div class="footer-reg">

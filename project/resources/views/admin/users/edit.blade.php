@@ -60,6 +60,18 @@
                     <div class="cms-textarea">
                 <textarea name="profile_text" class="text-area" id="editor" cols="" rows=""></textarea>
             </div>
+            <label class="cms-label">Status</label>
+            <select class="cms-input" name="status">
+                <option value="{{$item->status}}">{{$item->status}}</option>
+                @if($item->status==0){
+                    <option value="1">1</option>
+                }
+                @elseif($item->status==1)
+                <option value="0">0</option>
+
+                @endif
+
+            </select>
                 </td>
             </tbody>
         </table>

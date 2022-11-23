@@ -58,13 +58,17 @@ color:  #f88634;
   text-decoration: none;
   color: black;
   margin-left: 0;
+  font-size: 14px;
+  font-family: sans-serif;
 }
 .reg{
   text-decoration: none;
   color: #2b64b1;
   margin-left: 0;
-  letter-spacing: normal;
+  /* letter-spacing: normal; */
   word-spacing: normal;
+  font-size: 14px;
+  font-family: sans-serif;
 }
 .reset{
 text-align: center;
@@ -204,7 +208,63 @@ font-size: 20px;
   justify-content: center;
 }
 .text{
-    font-size: 40px;
+  width: 615px;
+  height: 95px;
+  margin: 0 231px 29px 2px;
+  font-family: sans-serif;
+  font-size: 43px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+}
+
+.para-text{
+  width: 848px;
+  height: 101px;
+  margin: 29px 0 54px;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+}
+
+@media (max-width:992px) {
+  .text{
+    width: 500px;
+    height: 150px;
+  }
+  .para-text{
+    width:500px ;
+  }
+}
+@media (max-width:768px) {
+  .para-text{
+    width: 600px;
+  }
+}
+@media (max-width:425px) {
+  .para-text{
+    width: 300px;
+  }
+  .text{
+    width: 300px;
+    height: 232px;
+  }
+  .img{
+    height: 636px;
+  }
+  .bottom{
+    bottom: 215px;
+  }
 }
 /* for text on image in login,reset,lost */
 
@@ -983,6 +1043,12 @@ padding: 5px 150px 4px -10px;
    height: 625px;
 }
 
+@media (max-width:992px) {
+  .vol-main-img{
+    height: 400px;
+  }
+}
+
 @media (max-width:425px) {
   .vol-main-img{
     height: 300px;
@@ -1013,6 +1079,9 @@ padding: 5px 150px 4px -10px;
 @media (max-width:425px) {
   .story{
     margin-left: 0px;
+  }
+  .story-img{
+    height: 80px;
   }
 }
 @media (max-width:768px) {
@@ -1175,7 +1244,7 @@ height: 50px;
   height: 32px;
   margin: 40px 0 0;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -1186,7 +1255,7 @@ height: 50px;
 }
 
 .span-text {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 300;
   color: #757575;
 }
@@ -1214,12 +1283,8 @@ height: 50px;
   margin-top: 15px;
   margin-left: 290px;
   text-align: center;
-
-
   width: 220px;
-
   border-radius: 30px;
- 
 }
 
 @media (max-width:1920px) {
@@ -1228,14 +1293,25 @@ height: 50px;
   }
 }
 
+@media (max-width:992px) {
+  .vol-button{
+    margin-left: 115px;
+  }
+  .pin{
+    width: 150px;
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width:768px){
   .pin{
-    width: 80px;
+    width: 120px;
     height: 50px;
     padding: 1px 20px 96px 6px;
     border-radius: 3px;
     border: solid 1px #e8e8e8;
     background-color: #fff;
+    margin-bottom: 10px;
   }
 
   .vol-button{
@@ -1264,7 +1340,7 @@ height: 50px;
   }
 
   .pin{
-    width: 100px;
+    width: 120px;
     margin-bottom: 5px;
   }
   .vol-button{
@@ -1579,6 +1655,13 @@ padding: 0px;
   border-bottom: 2px solid black;
   color: #414141;
 }
+.nav-tabs .nav-item .nav-link.active{
+  border: none;
+
+  font-weight:500;
+  border-bottom: 2px solid black;
+  color: #414141;
+}
 
 .nav-tabs-edit .nav-item .nav-link.nav-1{
   font-weight:500;
@@ -1794,6 +1877,13 @@ nav.navbar.navbar-expand-lg{
   padding-right: 440px;
 }
 
+@media (max-width:992px) {
+  .above-image{
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
 .image-above-button{
   font-size: 20px;
   padding: 10px 20px 10px 20px;
@@ -1827,7 +1917,7 @@ nav.navbar.navbar-expand-lg{
 
 /* opacity for card image */
 .image-above-button1{
-  font-size: 20px;
+  font-size: 17px;
     padding: 10px 20px 10px 20px;
     border-radius: 30px;
     border: 2px solid white;
@@ -1836,11 +1926,21 @@ nav.navbar.navbar-expand-lg{
     width: 180px;
     margin-top: 85px;
     margin-left: 75px;
+    height: 48px;
+    width: 184px;
+
 }
 
 @media (max-width:1920px) {
   .image-above-button1{
     margin-left: 150px;
+  }
+}
+
+@media (max-width:992px) {
+  .image-above-button1{
+    margin-top: 75px;
+    margin-left: 70px;
   }
 }
 
@@ -1873,10 +1973,10 @@ nav.navbar.navbar-expand-lg{
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
+  top: 30%;
+  left: 40%;
+  transform: translate(-40%,-30%);
+  -ms-transform: translate(-40%,-30%);
   text-align: center;
 }
 
@@ -1911,7 +2011,12 @@ nav.navbar.navbar-expand-lg{
   margin-left: 200px;
   margin-right: 200px;
 }
-
+@media (max-width:992px) {
+  .share{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
 @media (max-width:768px) {
   .share{
     margin-left: 10px;
@@ -2044,10 +2149,28 @@ strong {
   height: 48px;
   font-size: 17px;
 }
+.share-button
+{
+  width: 119px;
+  border-radius: 15px;
+  background: transparent;
+  padding: 5px;
+  color: grey;
+  cursor: pointer;
+  border: 2px solid #757575;
+  border-radius: 30px;
+  margin-right: 1105px;
+  margin-top:10px;
+  height: 48px;
+  font-size: 17px;
+}
 
 @media (max-width:992px) {
   .cancel{
     margin-right: 200px;
+  }
+  .share-button{
+    margin-right: 600px;
   }
 }
 
@@ -2055,11 +2178,14 @@ strong {
   .cancel{
     margin-right: 385px;
   }
+  .share-button{
+    margin-right: 390px;
+  }
 }
 
 @media (max-width:425px) {
-  .cancel{
-    margin-right: 0px;
+  .share-button{
+    margin-right: 50px;
   }
 }
 
@@ -2138,7 +2264,7 @@ strong {
 
 .story-detail-button{
   width: 100%;
-  height: 50px;
+  height: 60px;
   background: transparent;
   padding: 0px;
   font-size: 20px;
@@ -2148,9 +2274,14 @@ strong {
   border-radius: 30px;
 }
 
+.story-detail-button-text{
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
 .story-detail-button1{
-  height: 50px;
-  padding-top: 5px;
+  height: 60px;
+  padding-top: 10px;
   width: 100%;
   border: 2px solid #f88634;
   color: #f88634;
@@ -2260,6 +2391,17 @@ strong {
   width: 25px;
   text-align: center;
   padding-top: 45px
+}
+
+@media (max-width:425px) {
+  .parent .half-fade-1{
+    height: 75px;
+    padding-top: 25px;
+  }
+  .parent .half-fade{
+    height: 75px;
+    padding-top: 25px;
+  }
 }
 
 .parent .half-fade-2{
@@ -3135,6 +3277,12 @@ width: 800px;
   .edit-profile{
     padding: 30px;
   }
+}
+
+.common-text{
+  font-size: 16px;
+  font-family: sans-serif;
+  color: #414141;
 }
 
 

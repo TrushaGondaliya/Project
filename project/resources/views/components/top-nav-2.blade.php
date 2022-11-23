@@ -6,7 +6,7 @@
                 <form class="d-flex" action="{{url('search')}}" method="post" role="search">
                     @csrf
                     <input class="form-control me-2 Search-mission common-font" type="search"
-                        placeholder="Search mission..." aria-label="Search">
+                        placeholder="Search mission..." aria-label="Search" name="search">
                 </form>
          
             

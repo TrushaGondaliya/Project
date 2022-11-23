@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminmissionController;
 use App\Http\Controllers\Admin\CmsController;
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MissionskillController;
 use App\Http\Controllers\Admin\MissionthemeController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\TimesheetController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LostController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MissionController;
+use App\Http\Controllers\navbarController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RegisterController;
@@ -63,7 +65,7 @@ Route::post('lost',[LostController::class,'lost']);
 
 
 
-Route::get('favourite',[FavouriteController::class,'favourite']);
+Route::get('favourite/{id}',[FavouriteController::class,'favourite']);
 Route::get('lost',[LostController::class,'lost']);
 Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-email');
 
@@ -121,6 +123,7 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('dashboard',[DashboardController::class,'index']);
 
     Route::get('user',[UserController::class,'user']);
+    Route::post('user',[UserController::class,'user']);
     Route::get('add-user',[UserController::class,'create']);
     Route::post('add-user',[UserController::class,'add_user']);
     Route::put('update-user/{user_id}',[UserController::class,'update']);
@@ -130,17 +133,25 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('add-time',[TimesheetController::class,'add']);
 
     Route::get('add-cms',[CmsController::class,'add']);
+   Route::post('add-cms',[CmsController::class,'cms_add']);
     Route::get('cms-edit/{id}',[CmsController::class,'edit']);
    Route::put('update-cms/{id}',[CmsController::class,'update']);
    Route::post('delete-cms',[CmsController::class,'delete']);
 
     Route::get('cms',[CmsController::class,'index']);
+    Route::post('cms',[CmsController::class,'index']);
    Route::get('mission',[AdminmissionController::class,'index']);
    Route::get('mission-add',[AdminmissionController::class,'create']);
    Route::get('application',[AdminmissionController::class,'application']);
+   Route::get('add-application',[AdminmissionController::class,'create_app']);
+   Route::post('add-app',[AdminmissionController::class,'add_app']);
 
    Route::get('story',[StoryController::class,'story']);
-   Route::post('add-cms',[CmsController::class,'cms_add']);
+   Route::get('published/{id}',[StoryController::class,'published']);
+   Route::get('add-story',[StoryController::class,'create_story']);
+   Route::post('add-story',[StoryController::class,'add_story']);
+
+   Route::get('decline-story/{id}',[StoryController::class,'decline']);
    Route::get('edit-user/{user_id}',[UserController::class,'edit']);
 
    Route::get('add-theme',[MissionthemeController::class,'create']);
@@ -148,7 +159,21 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
    Route::get('theme',[MissionthemeController::class,'index']);
    Route::get('edit-theme/{id}',[MissionthemeController::class,'edit']);
    Route::put('update-theme/{id}',[MissionthemeController::class,'update']);
+
+   Route::get('skill',[MissionskillController::class,'index']);
+   Route::post('skill',[MissionskillController::class,'index']);
+   Route::get('add-skill',[MissionskillController::class,'create']);
+   Route::post('add-skill',[MissionskillController::class,'add_skill']);
+   Route::get('edit-skill/{id}',[MissionskillController::class,'edit']);
+   Route::put('update-skill/{id}',[MissionskillController::class,'update']);
+   Route::post('delete-skill',[MissionskillController::class,'delete']);
+   Route::get('approve/{id}',[AdminmissionController::class,'approve']);
+   Route::get('decline/{id}',[AdminmissionController::class,'decline']);
+
+
 });
+
+// Route::get('top-nav',[navbarController::class,'view']);
 
 
 

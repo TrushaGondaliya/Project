@@ -38,10 +38,10 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
 
             if(Auth::user()->status=='1'){
-                return redirect('admin/user')->with('status','welcome to admin ');
+                return redirect('admin/user')->with('message','welcome to admin ');
             }
             else if(Auth::user()->status=='0'){
-                return redirect('home')->with('status','logged in successful');
+                return redirect('home')->with('message','logged in successful');
 
             }
             else{
@@ -49,7 +49,7 @@ class LoginController extends Controller
             }
         }
         else {
-            return redirect('login')->with('message','user not found in record');
+            return redirect('login')->with('error','user not found in record');
         }
        
       

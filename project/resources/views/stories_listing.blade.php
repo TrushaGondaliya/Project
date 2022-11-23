@@ -6,10 +6,6 @@
 
 <x-top-nav></x-top-nav>
 
-<!-- second navbar -->
-
-
-<x-top-nav-2></x-top-nav-2>
 
 <hr style="padding:0px; margin:0px;border-width:0;color:gray;background-color:gray">
 
@@ -24,7 +20,10 @@
             <div>
                 <div class="d-flex align-items-center justify-content-center">
                     <div class='image-above-button'>Share your story
-                        <img src='images/right-arrow.png' style="color: white;" alt=''>
+                        <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                        </svg>
                     </div>
 
                 </div>
@@ -53,7 +52,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +85,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +118,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +151,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +185,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +218,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +253,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +286,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -298,7 +321,10 @@
                             </div>
                             <div class="text-above-image">
                                 <div class='image-above-button1'>View Details
-                                    <img src='images/right-arrow.png' style="color: white;" alt=''>
+                                    <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>

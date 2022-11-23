@@ -13,24 +13,8 @@
 
         <x-top-nav></x-top-nav>
 
-        <!-- second navbar -->
-
-
-        <x-top-nav-2></x-top-nav-2>
-        <hr style="margin-top: 0;">
-        <div class="container">
-            <div class="show-mission ">
-                <div class="mission  mission-text"> <span style="padding-right: 5px;"> Tree Plantation</span> <img src="images/cancel.png"> </div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Canada</span> <img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Tronoto </span><img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Montreal</span><img src="images/cancel.png"></div>
-                <div class="mission mission-text"> <span style="padding-right: 5px;">Environment</span><img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Nutrition</span> <img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Anthropolgy</span><img src="images/cancel.png"> </div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Environmental Science</span><img src="images/cancel.png"></div>
-                <div class="mission-text">Clear all</div>
-            </div>
-        </div>
+        
+    
 
         <!-- Explore vala nav -->
 
