@@ -72,6 +72,7 @@
                             </div>
                            
                             @endif
+                        
                 <div class="row abc">
                     @foreach($missions as $mission)
                     <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
@@ -207,6 +208,7 @@
             </div>
     </div>
     </section>
+  
     <br><br>
     <div class="container mt-3">
         <ul class="pagination">
@@ -216,7 +218,7 @@
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="{url()->previous()}}" aria-label="prevoius">
+                <a class="page-link" href="{{url()->previous()}}" aria-label="prevoius">
                     <span aria-hidden="true">&lsaquo;</span>
                 </a>
             </li>
@@ -236,12 +238,24 @@
             </li>
         </ul>
     </div>
- 
-    
+
+    @if(Session('message'))
+                            <!-- <div class="alert alert-success">{{Session('message')}}</div> -->
+                            <script>
+                                var msg='{{Session::get("message")}}';
+                                var exist='{{Session::has("message")}}';
+                               if(exist){
+                                alert(msg);
+                               }
+                                </script>
+                            @endif
+
+</body>    
     <br>
 
-
+   
     <hr>
     <x-footer></x-footer>
     <br>
+   
   

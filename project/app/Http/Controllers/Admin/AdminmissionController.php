@@ -12,12 +12,18 @@ use Illuminate\Support\Facades\DB;
 
 class AdminmissionController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        $missions=Mission::paginate(6);
-        $count=count(Mission::all());
-        $max_count=ceil($count/6);
-        return view('admin.mission.index',compact('missions','max_count'));
+        $missions=$request['search'];
+        if($missions!=" ")
+        {
+            $missions=Mission::where('title','LIKE','%' .$missions. '%')->paginate(6);
+            $count=count(Mission::all());
+            $max_count=ceil($count/6);
+            return view('admin.mission.index',compact('missions','max_count'));
+        }
+    
+       
     }
 
     function create()
@@ -25,13 +31,16 @@ class AdminmissionController extends Controller
         return view('admin.mission.create');
     }
 
-    function application()
+    function application(Request $request)
     {
-        $application=Application::where('approval_status','=','PENDING ')->orwhere('approval_status','=','DECLINE ')->paginate(6);
-        
-        $count=count(Application::all());
-        $max_count=ceil($count/6);
+          
+            $application=Application::where('approval_status','=','PENDING ')->orwhere('approval_status','=','DECLINE ')->paginate(6);
+            $count = count(Application::all());
+        $max_count = ceil($count / 6); 
         return view('admin.mission.application',compact('application','max_count'));
+
+        
+       
     }
 
     function approve($id)

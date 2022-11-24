@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Theme extends Model
+class Traits extends Model
 {
     use HasFactory;
-
-    protected $table='mission_theme';
-
-    protected $primaryKey='mission_theme_id';
 }

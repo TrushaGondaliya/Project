@@ -19,7 +19,7 @@
                     
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{url('admin/')}}">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="{{url('admin/admin-profile')}}">My Profile</a></li>
                     <li><a class="dropdown-item" href="{{url('admin/timesheet')}}">Volunteering Timesheet</a></li>
                     <li><a class="dropdown-item" href="{{url('logout')}}">Logout</a></li>
 

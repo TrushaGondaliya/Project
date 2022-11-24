@@ -14,11 +14,16 @@ class MissionthemeController extends Controller
         return view('admin.mission_theme.create');
     }
 
-    function index(){
-        $theme=Theme::paginate(6);
-        $count=count(Theme::all());
-        $max_count=ceil($count/6);
+    function index(Request $request){
+        $theme=$request['search'];
+        if($theme!=" ")
+        {
+            $theme=Theme::where('title','LIKE','%' .$theme. '%')->paginate(6);
+            $count = count(Theme::all());
+        $max_count = ceil($count / 6); 
         return view('admin.mission_theme.view',compact('theme','max_count'));
+
+        }
     }
 
     function add_theme(Request $request)

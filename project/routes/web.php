@@ -91,7 +91,9 @@ Route::get('register',[RegisterController::class,'register']);
 Route::get('stories_listing',[StorieslistingController::class,'stories_listing']);
 Route::get('share',[ShareController::class,'share']);
 Route::get('stories_detail',[StoriesdetailsController::class,'stories_detail']);
-Route::get('edit_profile',[UsereditController::class,'edit_profile']);
+Route::get('edit_profile',[UsereditController::class,'view_profile']);
+Route::put('edit-profile',[UsereditController::class,'edit_profile']);
+
 Route::get('change_pass',[ChangepassController::class,'change_pass']);
 Route::get('contact',[ContactController::class,'contact']);
 Route::get('add_skill',[AddskillController::class,'add_skill']);
@@ -103,6 +105,7 @@ Auth::routes();
 Route::get('contactUs',function(Request $request){
     try{
         $data=[
+            'name'=>$request->name,
             'subject'=>$request->subject,
             'message'=>$request->message
         ];
@@ -124,6 +127,10 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
 
     Route::get('user',[UserController::class,'user']);
     Route::post('user',[UserController::class,'user']);
+    Route::get('admin-profile',[UserController::class,'edit_admin']);
+    Route::put('update-profile',[UserController::class,'update_admin']);
+
+    
     Route::get('add-user',[UserController::class,'create']);
     Route::post('add-user',[UserController::class,'add_user']);
     Route::put('update-user/{user_id}',[UserController::class,'update']);
@@ -141,8 +148,10 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('cms',[CmsController::class,'index']);
     Route::post('cms',[CmsController::class,'index']);
    Route::get('mission',[AdminmissionController::class,'index']);
+   Route::post('mission',[AdminmissionController::class,'index']);
    Route::get('mission-add',[AdminmissionController::class,'create']);
    Route::get('application',[AdminmissionController::class,'application']);
+   Route::post('application',[AdminmissionController::class,'application']);
    Route::get('add-application',[AdminmissionController::class,'create_app']);
    Route::post('add-app',[AdminmissionController::class,'add_app']);
 
@@ -157,6 +166,7 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
    Route::get('add-theme',[MissionthemeController::class,'create']);
    Route::post('add-theme',[MissionthemeController::class,'add_theme']);
    Route::get('theme',[MissionthemeController::class,'index']);
+   Route::post('theme',[MissionthemeController::class,'index']);
    Route::get('edit-theme/{id}',[MissionthemeController::class,'edit']);
    Route::put('update-theme/{id}',[MissionthemeController::class,'update']);
 

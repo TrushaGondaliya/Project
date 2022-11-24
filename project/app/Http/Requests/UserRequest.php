@@ -24,17 +24,17 @@ class UserRequest extends FormRequest
     public function rules()
     {
        $rules=[
-        'email'=>['required'],
-        'password'=>['nullable'],
-        'first_name'=>'nullable',
-        'last_name'=>'nullable',
+        'email'=>['required','unique:users'],
+        'password'=>['required'],
+        'first_name'=>'required',
+        'last_name'=>'required',
         'avtar'=>[
             'nullable',
           
         ],
         'employee_id'=>'nullable',
-        'city_id'=>'nullable',
-        'country_id'=>'nullable',
+        'city'=>'required',
+        'country'=>'required',
         'department'=>'nullable',
         'profile_text'=>'nullable',
         'status'=>'nullable'

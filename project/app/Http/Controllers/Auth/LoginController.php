@@ -41,7 +41,7 @@ class LoginController extends Controller
                 return redirect('admin/user')->with('message','welcome to admin ');
             }
             else if(Auth::user()->status=='0'){
-                return redirect('home')->with('message','logged in successful');
+                return redirect('home');
 
             }
             else{

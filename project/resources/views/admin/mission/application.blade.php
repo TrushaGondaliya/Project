@@ -11,8 +11,11 @@
         <div class="container-fluid px-4">
             <div class="row pt-4">
             <div class="col-lg-3 form-outline mb-4 admin-search-div">
-                <label class="fa fa-search"></label>
-                <input type="search" placeholder="Search" class="admin-search" >
+            <form action="{{url('admin/application')}}" method="POST">
+                            @csrf
+                    <label class="fa fa-search"></label>
+                    <input type="search" placeholder="Search" name="search" class="admin-search">
+                    </form>
             </div>
             <div class="col-lg-8" style="float: right; text-align:right">
             <div style="float:right" class="add-admin add-goal">

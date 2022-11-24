@@ -24,6 +24,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Favourite::class);
     }
 
+    public function city(){
+        return $this->belongsTo(City::class,'city_id','city_id');
+    }
+
     protected function fullName():Attribute
     {
         return Attribute::make(

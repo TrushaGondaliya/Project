@@ -66,7 +66,7 @@
                   
               </a>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">My Profile</a></li>
+                  <li><a class="dropdown-item" href="{{url('admin/admin-profile')}}">My Profile</a></li>
                   <li><a class="dropdown-item" href="{{url('admin/timesheet')}}">Volunteering Timesheet</a></li>
                   <li><a class="dropdown-item" href="{{url('logout')}}">Logout</a></li>
 
@@ -95,7 +95,7 @@
                     <th>Date</th>
                     <th>Hours</th>
                     <th>Minutes</th>
-                    <th>Action</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <td>Plantation and Afforestation Programme</td>
@@ -117,15 +117,13 @@
                 <thead>
                     <th>Mission</th>
                     <th>Date</th>
-                    <th>Hours</th>
-                    <th>Minutes</th>
                     <th>Action</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <td>Plantation and Afforestation Programme</td>
                     <td>12/3/2022</td>
                     <td>4</td>
-                    <td>49</td>
                     <td><a><img style="width: 14px; height:17px" src="\images\bin.png"></a>   <span class="timesheet_goal"><img style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg"></a></td>
                     
                 </tbody>

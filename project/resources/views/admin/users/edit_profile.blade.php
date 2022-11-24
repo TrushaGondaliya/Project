@@ -23,12 +23,14 @@
 
     @endif
     <div>
-        <form action="{{url('admin/add-user')}}" method="POST" enctype="multipart/form-data">
+
+        <form action="{{url('admin/update-profile/')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <table class="cms-table">
                 <thead>
                     <tr>
-                        <th>Add</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
 
@@ -36,26 +38,28 @@
                     <td>
 
                         <label class="cms-label">First Name</label>
-                        <input class="cms-input" type="text" name="first_name">
+                        <input class="cms-input" type="text" value="{{Auth::user()->first_name}}" name="first_name">
                         <label class="cms-label">Last Name</label>
-                        <input class="cms-input" type="text" name="last_name">
+                        <input class="cms-input" type="text" value="{{Auth::user()->last_name}}" name="last_name">
                         <label class="cms-label">Email</label>
-                        <input class="cms-input" type="text" name="email">
+                        <input class="cms-input" type="text" value="{{Auth::user()->email}}" name="email">
                         <label class="cms-label">Password</label>
-                        <input class="cms-input" type="text" name="password">
+                        <input class="cms-input" type="text" value="{{Auth::user()->password}}" disabled name="password">
                         <label class="cms-label">Avtar</label>
-                        <input class="cms-input" type="file" name="avtar">
+                        <input class="cms-input" type="file" name="avtar" value="{{Auth::user()->avtar}}">
                         <label class="cms-label">Employee Id</label>
-                        <input class="cms-input" type="text" name="employee_id">
+                        <input class="cms-input" type="text" value="{{Auth::user()->employee_id}}" name="employee_id">
                         <label class="cms-label">Department</label>
-                        <input class="cms-input" type="text" name="department">
-                        <label class="cms-label">City</label>
+                        <input class="cms-input" type="text" value="{{Auth::user()->department}}" name="department">
+                        <label class="cms-label">City_id</label>
                         @php
                         $city=App\Models\City::all();
                         @endphp
-                        <select name="city" class="edit-input" id="">
-                            @foreach($city as $item)
-                            <option value="{{$item->name}}"> {{$item->name}}</option>
+                        <select name="city" class="cms-input" id="">
+                            <option value="{{Auth::user()->city->name}}"> {{Auth::user()->city->name}}</option>
+
+                            @foreach($city as $item1)
+                            <option value="{{$item1->name}}"> {{$item1->name}}</option>
                             @endforeach
                         </select>
                         <label class="cms-label">Country</label>
@@ -63,31 +67,39 @@
                         $country=App\Models\Country::all();
                         @endphp
                         <select name="country" class="cms-input" id="">
-                            @foreach($country as $item)
-                            <option value="{{$item->name}}"> {{$item->name}}</option>
+                            @foreach($country as $item1)
+                            <option value="{{$item1->name}}"> {{$item1->name}}</option>
                             @endforeach
                         </select>
 
+
                         <label class="cms-label">Profile Text</label>
                         <div class="cms-textarea">
-                            <textarea name="profile_text" class="text-area" id="editor" cols="" rows=""></textarea>
+                            <textarea name="profile_text" class="text-area" id="editor" cols="" rows="">{{Auth::user()->profile_text}}</textarea>
                         </div>
                         <label class="cms-label">Status</label>
                         <select class="cms-input" name="status">
-                            <option value=""></option>
+                            <option value="{{Auth::user()->status}}">{{Auth::user()->status}}</option>
+                            @if(Auth::user()->status==0){
                             <option value="1">1</option>
+                            }
+                            @elseif(Auth::user()->status==1)
                             <option value="0">0</option>
+
+                            @endif
+
                         </select>
                     </td>
                 </tbody>
-
             </table>
             <div class="cms_btn">
                 <input type="button" class="cms_btn1" value="Cancel" name="" id="">
                 <input type="submit" class="cms_btn2" name="" value="Save" id="">
             </div>
-
         </form>
+
+
+
 
     </div>
 </div>

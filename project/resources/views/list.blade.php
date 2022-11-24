@@ -1,6 +1,5 @@
 <x-header></x-header>
 
-<?php session_start() ?>
 
 <link rel="stylesheet" href="{{url('css/index.css')}}">
 </head>
@@ -21,8 +20,9 @@
 
         <div class="explore">
             <div class="left-explore common-font">
-                Explore <span class="explore-dark">72 missions</span>
+                <span class="explore-light">Explore </span>72 missions
             </div>
+            
             <div class="right-explore">
                 <select name="sorting" class="Rounded-Rectangle-8">
                     <option value="">Sort by</option>
@@ -52,25 +52,26 @@
                     <div class="col-md-12" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="column1 col-md-3">
-                                <div class="card-image">
-
-                                    <img src="images/{{$mission->image}}" class="img" style="height: 200px;width:100%" alt="...">
-                                    <div class='d-flex align-items-center third-txt p-2'>
-                                        <a href="">
-                                            <img src="images/user.png" class='img-fluid ' style='height:16px'>
-                                        </a>
-                                    </div>
-                                    <div class="d-flex align-items-center second-txt p-2">
-                                        <a href="">
-                                            <img src="images/heart.png" alt='' class='img-fluid' style='height:16px'>
-                                        </a>
-                                    </div>
+                            <div class="card-image">
+                                <img src="images/{{$mission->image}}" class="img" style="height: auto;width:100%" alt="...">
+                                <div class='d-flex align-items-center third-txt p-2'>
                                     <a href="">
-                                        <div class="d-flex align-items-center first-txt">
-                                            <img src="images/pin.png" class='img-fluid pr-2' style='height:16px'>
-                                            <span>{{$mission->city->name}}</span>
+                                        <img src="images/user.png" class='img-fluid img-card'>
                                     </a>
                                 </div>
+                                <div class="d-flex align-items-center second-txt p-2">
+                                    <a href="{{url('favourite/'.$mission->mission_id)}}"> 
+                                        <img src="images/heart.png" alt=''  class='img-fluid img-card-h'>
+                                      
+                                        
+                                    </a>
+                                </div>
+                                <a href="">
+                                    <div class="d-flex align-items-center first-txt">
+                                        <img src="images/pin.png" class='img-fluid pr-2 ' style='height:22px;margin:5px'>
+                                        <span>{{$mission->city->name}}</span>
+                                </a>
+                            </div>
 
                                 <div class="d-flex four-txt justify-content-center">
                                     <div class="theme">{{$mission->theme}}</div>

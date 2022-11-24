@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Favourite;
 use App\Models\Mission;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,15 +16,19 @@ class FavouriteController extends Controller
     function favourite(Request $request,$id){
 
         if(Auth::check()){
-          $request->validate([
-            'id'=>'unique:favourite_mission'
-          ]);
+       if(Favourite::where('mission_id','=',$id)->get()->isEmpty()){
         $user_id=Auth::user()->user_id;
-        $mission_id= $request->id;
-        // dd($mission_id);
+        $mission_id= $id;
+        
         $data=array('user_id'=>$user_id,'mission_id'=>$mission_id);
-        DB::table('favourite_mission')->insert($data);
-        return redirect('home');
+        DB::table('favourite_mission')->Insert($data);
+        return redirect('home')->with('message','mission added in favourite!');
+       }
+       else{
+        return redirect('home')->with('message','mission already in favourite!');
+
+       }
+        
         }
         else{
             return redirect('login');

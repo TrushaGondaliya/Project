@@ -61,7 +61,7 @@
                     
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item" href="{{url('edit_profile')}}">My Profile</a></li>
                     <li><a class="dropdown-item" href="{{url('admin/timesheet')}}">Volunteering Timesheet</a></li>
                     <li><a class="dropdown-item" href="{{url('logout')}}">Logout</a></li>
 

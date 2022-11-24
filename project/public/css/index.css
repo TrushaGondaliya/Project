@@ -2491,7 +2491,7 @@ strong {
     }
 
  .profile-text{
-  width: 148px;
+
   height: 17px;
   font-family: sans-serif;
   font-size: 22px;
@@ -2502,7 +2502,7 @@ strong {
   letter-spacing: normal;
   text-align: center;
   color: #333;
-  margin: 10px 16px 0 17px;
+  margin-top: 10px;
  }
 
  @media (max-width:768px) {

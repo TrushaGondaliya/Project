@@ -10,6 +10,7 @@ class Favourite extends Model
     use HasFactory;
 
     protected $table='favourite_mission';
+    protected $primaryKey='favourite_mission_id';
 
     protected $fillable=[
         'user_id',
