@@ -4,22 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Traits\GetIdByNameTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 class City extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $table='city';
 
     protected $primaryKey='city_id';
+    protected $dates=['deleted_at'];
+
+    public $timestamps=true;
 
     public function country(){
         return $this->belongsTo(Country::class,'country_id','country_id');
-    }
-
-    public function getId($model,$table,$value)
-    {
-        return $model::where($table,$value)->first()->id();
     }
 }

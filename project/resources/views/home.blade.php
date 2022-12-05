@@ -1,7 +1,5 @@
-
 <x-header></x-header>
 
-<!-- <?php session_start() ?> -->
 
 <link rel="stylesheet" href="{{url('css/index.css')}}">
 </head>
@@ -20,14 +18,14 @@
         <hr style="margin-top: 0;">
         <div class="container">
             <div class="show-mission ">
-                <div class="mission  mission-text"> <span style="padding-right: 5px;"> Tree Plantation</span> <img src="images/cancel.png"> </div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Canada</span> <img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Tronoto </span><img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Montreal</span><img src="images/cancel.png"></div>
-                <div class="mission mission-text"> <span style="padding-right: 5px;">Environment</span><img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Nutrition</span> <img src="images/cancel.png"></div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Anthropolgy</span><img src="images/cancel.png"> </div>
-                <div class="mission mission-text"><span style="padding-right: 5px;">Environmental Science</span><img src="images/cancel.png"></div>
+                <div class="mission  mission-text"> <span style="padding-right: 5px;"> Tree Plantation</span> <img src="/images/cancel.png"> </div>
+                <div class="mission mission-text"><span style="padding-right: 5px;">Canada</span> <img src="/images/cancel.png"></div>
+                <div class="mission mission-text"><span style="padding-right: 5px;">Tronoto </span><img src="/images/cancel.png"></div>
+                <div class="mission mission-text"><span style="padding-right: 5px;">Montreal</span><img src="/images/cancel.png"></div>
+                <div class="mission mission-text"> <span style="padding-right: 5px;">Environment</span><img src="/images/cancel.png"></div>
+                <div class="mission mission-text"><span style="padding-right: 5px;">Nutrition</span> <img src="/images/cancel.png"></div>
+                <div class="mission mission-text"><span style="padding-right: 5px;">Anthropolgy</span><img src="/images/cancel.png"> </div>
+                <div class="mission mission-text"><span style="padding-right: 5px;">Environmental Science</span><img src="/images/cancel.png"></div>
                 <div class="mission-text">Clear all</div>
             </div>
         </div>
@@ -38,7 +36,7 @@
             <div class="left-explore common-font">
                 <span class="explore-light">Explore </span>72 missions
             </div>
-            
+
             <div class="right-explore">
                 <select name="sorting" class="Rounded-Rectangle-8">
                     <option value="">Sort by</option>
@@ -60,50 +58,83 @@
             </div>
         </div>
 
+
+
         <!-- card -->
         <section>
-        
+            <!-- @if(Session('message'))
+                            <div class="alert alert-success">{{Session('message')}}</div>
+                            
+                            @endif -->
+
             <div class="container-fluid">
-            @if($errors->any())
-                            <div class="alert alert-danger">
-                            @foreach($errors->all() as $error)
-                            <div>{{$error}}</div>
-                            @endforeach
-                            </div>
-                           
-                            @endif
-                        
+                @if($errors->any())
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                    <div>{{$error}}</div>
+                    @endforeach
+                </div>
+
+                @endif
+
                 <div class="row abc">
                     @foreach($missions as $mission)
+                    @php
+                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->first()->media_name;
+                    @endphp
+
                     <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="card-image">
-                                <img src="images/{{$mission->image}}" class="img" style="height: auto;width:100%" alt="...">
+                                <img src="/images/{{$media}}" class="img" style="height: 250px;width:100%" alt="...">
+
                                 <div class='d-flex align-items-center third-txt p-2'>
                                     <a href="">
-                                        <img src="images/user.png" class='img-fluid img-card'>
+                                        <img src="/images/user.png" class='img-fluid img-card'>
                                     </a>
                                 </div>
                                 <div class="d-flex align-items-center second-txt p-2">
-                                    <a href="{{url('favourite/'.$mission->mission_id)}}"> 
-                                        <img src="images/heart.png" alt=''  class='img-fluid img-card-h'>
-                                      
-                                        
+                                    <a href="{{url('favourite/'.$mission->mission_id)}}">
+                                        @php
+                                        $favourite=App\Models\Favourite::all()
+                                        @endphp
+
+
+                                        @foreach($favourite as $fav)
+                                        @if($fav->mission_id==$mission->mission_id)
+
+                                        @if($fav->mission_id==$mission->mission_id && $fav->user_id==Auth::user()->user_id)
+                                        <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
+                                        @break
+                                        @endif
+                                        @endif
+                                        @endforeach
+
+                                        @if($fav->mission_id!=$mission->mission_id || $fav->user_id!=Auth::user()->user_id)
+                                        <img src="/images/heart.png" alt='' class='img-fluid img-card-h'>
+                                        @endif
+
+
+
+
                                     </a>
                                 </div>
                                 <a href="">
                                     <div class="d-flex align-items-center first-txt">
                                         <img src="images/pin.png" class='img-fluid pr-2 ' style='height:22px;margin:5px'>
-                                        <span>{{$mission->city->name}}</span>
+                                        <span>{{($mission->city->name)}}</span>
                                 </a>
                             </div>
+
                             <div class="d-flex four-txt justify-content-center">
-                                <div class="theme">{{$mission->theme}}</div>
+                                <div class="theme">{{$mission->theme->title}}</div>
                             </div>
+
                         </div>
+
                         <div class="card-body" style=" padding-top:30px;">
-                            <div class="container">
-                                <h5 style="font-size: 26px;">{{$mission->title}}</h5>
+                            <div class="container card-div-1">
+                                <h5 style="font-size: 26px; height:60px">{{$mission->title}}</h5>
                                 <p class="card-text" style="color:black;">{{$mission->discription}}</p>
 
                                 <div class="row">
@@ -112,19 +143,26 @@
                                     </div>
                                     <div class="col-md-5 col-lg-5 col-5">
                                         <div class="rating-css">
-                                            <form action="{{url('add-rating')}}" method="post" name="product_rating">
-                                                @csrf
-                                                <div class="star-icon">
+                                            <div class="star-icon">
+                                                <form action="{{url('add-rating')}}" method="post" id="form">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
 
+                                                    <input value="1" id="rating1" type="radio" name="star" />
                                                     <label for="rating1" class="fa fa-star checked"></label>
+                                                    <input value="2" id="rating2" type="radio" name="star" />
                                                     <label for="rating2" class="fa fa-star checked"></label>
+                                                    <input value="3" id="rating3" type="radio" name="star" />
                                                     <label for="rating3" class="fa fa-star checked"></label>
+                                                    <input value="4" id="rating4" type="radio" name="star" />
                                                     <label for="rating4" class="fa fa-star"></label>
+                                                    <input value="5" id="rating5" type="radio" name="star" />
                                                     <label for="rating5" class="fa fa-star"></label>
-                                                </div>
 
 
-                                            </form>
+                                                </form>
+                                                <form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +175,7 @@
                                 <div class='goal'>objective of the goal mission</div>
                                 <hr class='flex-grow-1' />
                             </div><br>
-                            <div class="container">
+                            <div class="container card-div-2">
 
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-lg-12">
@@ -156,18 +194,18 @@
                                                 </div>
                                                 <div class='col-md-6 col-sm-6 col-6 col-lg-6' style='color:black;'>
                                                     <div class='row'>
-                                                        @if($mission->Deadline!=null)
+                                                        @if($mission->end_date!=0)
                                                         <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
                                                             <img src='images/deadline.png' alt='' class="c-img">
                                                         </div>
                                                         <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
 
-                                                            <div class="c-text"> <span class="c-text-style">{{$mission->Deadline}} </span>Deadline </div>
+                                                            <div class="c-text"> <span class="c-text-style">{{$mission->end_date}} </span>Deadline </div>
 
                                                         </div>
                                                         @endif
 
-                                                        @if($mission->Deadline==null)
+                                                        @if($mission->end_date==0)
                                                         <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
                                                             <img src='images/achieved.png' alt='' class="c-img">
                                                         </div>
@@ -187,18 +225,34 @@
 
                             </div>
 
+
                             <hr style="width: 100%;margin-top:10px">
+
+
+
                             <div class="d-flex align-items-center justify-content-center">
-                                @if($mission->Deadline==null)
-                                <div class='card-button'>View Detais
-                                    <img src='images/right-arrow.png' alt='' class='pl-3'>
-                                </div>
+                                @foreach($m_id as $app)
+                                @if($app->mission_id==$mission->mission_id)
+
+                                @if($app->mission_id==$mission->mission_id && $app->user_id==Auth::user()->user_id && $app->approval_status!="DECLINE")
+                                <a href="{{url('volunteering')}}">
+                                    <div class='card-button'>View Detais
+                                        <img src='images/right-arrow.png' alt='' class='pl-3'>
+                                    </div>
+                                </a>
+                                @break
                                 @endif
-                                @if($mission->Deadline!=null)
-                                <div class='card-button'>Apply
-                                    <img src='images/right-arrow.png' alt='' class='pl-3'>
-                                </div>
                                 @endif
+                                @endforeach
+                                @if($app->mission_id != $mission->mission_id || $app->user_id!=Auth::user()->user_id || $app->approval_status=="DECLINE")
+                                <a href="{{url('add-app/'.$mission->mission_id)}}">
+                                    <div class='card-button'> Apply
+                                        <img src='images/right-arrow.png' alt='' class='pl-3'>
+                                    </div>
+                                </a>
+                                @endif
+
+
                             </div>
 
                         </div>
@@ -208,7 +262,7 @@
             </div>
     </div>
     </section>
-  
+
     <br><br>
     <div class="container mt-3">
         <ul class="pagination">
@@ -222,40 +276,42 @@
                     <span aria-hidden="true">&lsaquo;</span>
                 </a>
             </li>
-            @for($i=1;$i<=$max_count;$i++)
-            <li class="page-item"><a class="page-link" href="{{url('home?page='.$i)}}">{{$i}}</a> </li>
-            @endfor
-          
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&rsaquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="{{url('home?page='.$max_count)}}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
+            @for($i=1;$i<=$max_count;$i++) <li class="page-item"><a class="page-link" href="{{url('home?page='.$i)}}">{{$i}}</a> </li>
+                @endfor
+
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{url('home?page='.$max_count)}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
         </ul>
     </div>
 
-    @if(Session('message'))
-                            <!-- <div class="alert alert-success">{{Session('message')}}</div> -->
-                            <script>
-                                var msg='{{Session::get("message")}}';
-                                var exist='{{Session::has("message")}}';
-                               if(exist){
-                                alert(msg);
-                               }
-                                </script>
-                            @endif
 
-</body>    
-    <br>
 
-   
-    <hr>
-    <x-footer></x-footer>
-    <br>
-   
-  
+</body>
+<br>
+
+
+<!-- <script>
+    $('#form').click('.fa', function(e) {
+    $(this).submit();
+    });
+</script> -->
+
+
+<hr>
+<script>
+    var msg = '{{Session::get("message")}}';
+    var exist = '{{Session::has("message")}}';
+    if (exist) {
+        alert(msg);
+    }
+</script>
+<x-footer></x-footer>
+<br>

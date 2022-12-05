@@ -54,8 +54,9 @@
                                 <td>{{$item->start_date}}</td>
                                 <td>{{$item->end_date}}</td>
                              
-                                <td>   <span class="time"><i class="fas fa-edit" style="height: 20px;width:20px; color: #f88634!important;"></i></span>
-                                <span class=" deleteCategorybtn"><img  style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></span>
+                                <td>   
+                                <a href="{{url('admin/edit-mission/'.$item->mission_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>    
+                                <button value="{{$item->mission_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
                             </td>
                                 
                             </tr>
@@ -103,14 +104,14 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-        <form action="{{url('admin/delete-category')}}" method="POST">
+        <form action="{{url('admin/delete-mission')}}" method="POST">
             @csrf
       <div class="modal-header">
         <h5 class="popup-title" id="exampleModalLabel">Confirm Delete</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="hidden" name="category_delete_id" id="category_id">
+        <input type="hidden" name="mission_id" id="mission_id">
     <span class="cms-pupop-text">Are you sure you want to delete this item?</span>
       </div>
       <div class="popup-btn">
@@ -133,8 +134,8 @@
 
             // e.preventDefault();
 
-            var category_id=$(this).val();
-            $('#category_id').val(category_id);
+            var mission_id=$(this).val();
+            $('#mission_id').val(mission_id);
             $('#deleteModal').modal('show');
         });
     });

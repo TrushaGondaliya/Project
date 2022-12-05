@@ -47,12 +47,7 @@ class CmsController extends Controller
             $max_count = ceil($count / 6);
             return view('admin.CMS.view', compact('cms', 'max_count'));
         }
-        // if($cms==" "){
-        //     $cms = Cms::paginate(6);
-        //     $count = count(Cms::all());
-        //     $max_count = ceil($count / 6);
-        //     return view('admin.CMS.view', compact('cms', 'max_count'));
-        // }
+      
         
     }
 
@@ -79,14 +74,13 @@ class CmsController extends Controller
         $status = $request->input('status');
         $data = array('title' => $title, 'description' => $description, 'slug' => $slug, 'status' => $status);
         DB::table('cms_page')->where('cms_page_id', $id)->update($data);
-
         return redirect('admin/cms')->with('message', 'cms updated successfully!');
     }
 
 
     function delete(Request $request)
     {
-        DB::table('cms_page')->where('cms_page_id', $request->cms_page_id)->delete();
+        Cms::where('cms_page_id', $request->cms_page_id)->delete();
 
 
         return redirect('admin/cms')->with('message', 'deleted successfully');

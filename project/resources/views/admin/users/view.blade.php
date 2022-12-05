@@ -2,7 +2,7 @@
 
 
 @section('content')
-<main>
+
 
     <div class="container-fluid">
         <ul class="nav nav-tabs">
@@ -15,7 +15,8 @@
                     <form action="{{url('admin/user')}}" method="POST">
                         @csrf
                         <label class="fa fa-search"></label>
-                        <input type="search" placeholder="Search" name="search" class="admin-search">
+                        <!-- <input type="search" placeholder="Search" name="search" class="admin-search"> -->
+                        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="myDataTable">
                     </form>
                 </div>
 
@@ -61,7 +62,7 @@
                                 <td>{{$item->employee_id}}</td>
 
                                 <td>{{$item->department}}</td>
-                                <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'inactive'}}</td>
+                                <td style="color:#14c506;">{{$item->status==0 ? 'Inactive' : 'Active'}}</td>
 
                                 <td>
                                     <a href="{{url('admin/edit-user/'.$item->user_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>
@@ -107,7 +108,7 @@
 
         </div>
     </div>
-</main>
+
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

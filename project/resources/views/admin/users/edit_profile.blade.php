@@ -51,6 +51,14 @@
                         <input class="cms-input" type="text" value="{{Auth::user()->employee_id}}" name="employee_id">
                         <label class="cms-label">Department</label>
                         <input class="cms-input" type="text" value="{{Auth::user()->department}}" name="department">
+                        <label class="cms-label">Phone Number</label>
+                        <input class="cms-input" type="text" value="{{Auth::user()->phone_number}}" name="phone_number">
+                        <label class="cms-label">Why I Volunteer</label>
+                        <input class="cms-input" type="text" value="{{Auth::user()->why_i_volunteer}}" name="why_i_volunteer">
+                        <label class="cms-label">Linked In Url</label>
+                        <input class="cms-input" type="text" value="{{Auth::user()->linked_in_url}}" name="linked_in_url">
+                        <label class="cms-label">Title</label>
+                        <input class="cms-input" type="text" value="{{Auth::user()->title}}" name="title">
                         <label class="cms-label">City_id</label>
                         @php
                         $city=App\Models\City::all();

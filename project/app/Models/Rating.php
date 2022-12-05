@@ -4,24 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rating extends Model
 {
     use HasFactory;
-    protected $table='ratings';
+    use SoftDeletes;
+
+    protected $table='mission_rating';
+
+    protected $primaryKey='mission_rating_id';
     protected $fillable=[
         'user_id',
         'mission_id',
-        'stars_rated'
+        'rating'
     ];
+    protected $dates=['deleted_at'];
+    
 
-   
-
-    public function user(){
+    public $timestamps=true;
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
     public function mission(){
-        return $this->belongsTo(Mission::class);
+        return $this->belongsToMany(Mission::class);
     }
+   
 }

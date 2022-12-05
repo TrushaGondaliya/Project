@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\Application;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Favourite;
 use App\Models\Mission;
+use App\Models\Story;
 use App\Models\User;
 // use Faker\Core\File;
 use Illuminate\Http\Request;
@@ -43,8 +46,9 @@ class UserController extends Controller
 
     function create()
     {
+        $data['countries'] = Country::get(["name","country_id"]);
 
-        return view('admin/users/create');
+        return view('admin/users/create',$data);
     }
 
     function add_user(UserRequest $request)
@@ -57,14 +61,21 @@ class UserController extends Controller
         $user->last_name = $data['last_name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
+
+        if ($request->hasfile('avtar')) {
         $file = $request->file('avtar');
         $filename = time() . '.' . $file->getClientOriginalExtension();
         $file->move('uploads/user/', $filename);
         $user->avtar = $filename;
+        }
         $user->employee_id = $data['employee_id'];
+        $user->phone_number = $data['phone_number'];
+        $user->why_i_volunteer = $data['why_i_volunteer'];
+        $user->linked_in_url = $data['linked_in_url'];
+        $user->title = $data['title'];
         $user->department = $data['department'];
-        $user->city_id=City::whereName($request->input('city'))->first()->city_id;
-       $user->country_id=Country::whereName($request->input('country'))->first()->country_id;
+        $user->city_id=$data['city'];
+       $user->country_id=$data['country'];
         $user->profile_text = $data['profile_text'];
         $user->status=$data['status'];
         $user->save();
@@ -86,6 +97,8 @@ class UserController extends Controller
         $user->first_name = $data['first_name'];
         $user->last_name = $data['last_name'];
         $user->email = $data['email'];
+
+        if ($request->hasfile('avtar')) {
         $destination = 'uploads/user/' . $user->avtar;
         if (File::exists($destination))
         {
@@ -95,9 +108,13 @@ class UserController extends Controller
         $filename = time() . '.' . $file->getClientOriginalExtension();
         $file->move('uploads/user/', $filename);
         $user->avtar = $filename;
+    }
         $user->employee_id = $data['employee_id'];
         $user->department = $data['department'];
-       
+        $user->phone_number = $data['phone_number'];
+        $user->why_i_volunteer = $data['why_i_volunteer'];
+        $user->linked_in_url = $data['linked_in_url'];
+        $user->title = $data['title'];
        $user->city_id=City::whereName($request->input('city'))->first()->city_id;
        $user->country_id=Country::whereName($request->input('country'))->first()->country_id;
 
@@ -109,10 +126,11 @@ class UserController extends Controller
 
     function delete(Request $request)
     {
-        DB::table('mission_application')->where('user_id', $request->user_id)->delete();
-        DB::table('story')->where('user_id', $request->user_id)->delete();
+        Application::where('user_id', $request->user_id)->delete();
+        Story::where('user_id', $request->user_id)->delete();
+        Favourite::where('user_id', $request->user_id)->delete();
 
-        DB::table('users')->where('user_id', $request->user_id)->delete();
+        User::where('user_id', $request->user_id)->delete();
         return redirect('admin/user')->with('message', 'deleted successfully');
     }
 
@@ -130,6 +148,8 @@ class UserController extends Controller
         $user->first_name = $data['first_name'];
         $user->last_name = $data['last_name'];
         $user->email = $data['email'];
+
+        if ($request->hasfile('avtar')) {
         $destination = 'uploads/user/' . $user->avtar;
         if (File::exists($destination))
         {
@@ -139,9 +159,13 @@ class UserController extends Controller
         $filename = time() . '.' . $file->getClientOriginalExtension();
         $file->move('uploads/user/', $filename);
         $user->avtar = $filename;
+    }
         $user->employee_id = $data['employee_id'];
         $user->department = $data['department'];
-       
+        $user->phone_number = $data['phone_number'];
+        $user->why_i_volunteer = $data['why_i_volunteer'];
+        $user->linked_in_url = $data['linked_in_url'];
+        $user->title = $data['title'];
        $user->city_id=City::whereName($request->input('city'))->first()->city_id;
        $user->country_id=Country::whereName($request->input('country'))->first()->country_id;
 

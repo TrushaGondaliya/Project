@@ -19,7 +19,7 @@ return new class extends Migration
             $table->tinyInteger('status');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 

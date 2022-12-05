@@ -102,14 +102,14 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{url('admin/delete-user')}}" method="POST">
+            <form action="{{url('admin/delete-theme')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="popup-title" id="exampleModalLabel">Confirm Delete</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="user_id" id="user_id">
+                    <input type="hidden" name="mission_theme_id" id="mission_theme_id">
                     <span class="cms-pupop-text">Are you sure you want to delete this item?</span>
                 </div>
                 <div class="popup-btn">
@@ -127,12 +127,8 @@
 <script>
     $(document).ready(function() {
         $('.deleteCategorybtn').click(function(e) {
-            // $(document).on('click','',function(e){
-
-            // e.preventDefault();
-
-            var user_id = $(this).val();
-            $('#user_id').val(user_id);
+            var mission_theme_id = $(this).val();
+            $('#mission_theme_id').val(mission_theme_id);
             $('#deleteModal').modal('show');
         });
     });

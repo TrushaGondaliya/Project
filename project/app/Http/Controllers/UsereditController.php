@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class UsereditController extends Controller
 {
@@ -20,6 +21,16 @@ class UsereditController extends Controller
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
         $user->employee_id = $request->input('employee_id');
+        
+        $destination = 'uploads/user/' . $user->avtar;
+        if (File::exists($destination))
+        {
+            File::delete($destination);
+        }
+        $file = $request->file('avtar');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move('uploads/user/', $filename);
+        $user->avtar = $filename;
         $user->department = $request->input('department');
         $user->title = $request->input('title');
 

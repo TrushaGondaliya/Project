@@ -20,6 +20,13 @@
     padding-top: 8px;
 }
 
+.only-select{
+  display: none;
+}
+.only-select:active{
+  display: block;
+}
+
 
 .admin-search-div{
     width: 400px;
@@ -29,6 +36,11 @@
     border: solid 1px #d9d9d9;
     background-color: #fff;
     /* padding-top: 10px; */
+}
+.form-control:focus{
+  box-shadow: 0 0 10px 0 rgba(43, 100, 177, 0.12);
+  border: solid 1px #2b64b1;
+ 
 }
 
 .admin-search{
@@ -88,7 +100,6 @@
 
 #layoutSidenav {
   display: flex;
-
 }
 #layoutSidenav #layoutSidenav_nav {
   flex-basis: 225px;
@@ -129,7 +140,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 350px;
   height: 100%;
   background: #000;
   z-index: 1037;
@@ -346,3 +357,7 @@
     border: none;
     background-color: white;
   }
+
+
+
+  

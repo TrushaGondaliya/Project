@@ -59,4 +59,12 @@ class MissionthemeController extends Controller
         DB::table('mission_theme')->where('mission_theme_id',$id)->update($data);
         return redirect('admin/theme')->with('message','Mission Theme updated Successfully!');
     }
+
+    function delete(Request $request)
+    {
+        $id=Theme::where('mission_theme_id',$request->mission_theme_id);
+
+        $id->delete();
+        return redirect('admin/theme')->with('message','delete successfully!');
+    }
 }

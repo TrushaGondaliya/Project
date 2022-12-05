@@ -94,6 +94,56 @@ font-size: 20px;
   }
 }
 
+.carousel-indicators{
+  list-style: revert;
+}
+
+.carousel-indicators [data-bs-target] {
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 8px;
+  height: 3px;
+  padding: 0;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  cursor: pointer;
+  /* background-color: #fff; */
+  background-clip: padding-box;
+  border: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: .5;
+  transition: opacity .6s ease;
+  color: white;
+  font-size: 20px;
+}
+
+
+.carousel-indicators [data-bs-target] {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 8px;
+    height: 3px;
+    padding: 0;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    margin-bottom: 40px;
+    background-clip: padding-box;
+    border: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s ease;
+    color: white;
+    font-size: 20px;
+    background-color: unset;
+}
+.carousel-indicators .active {
+    opacity: 1;
+}
 
 /*end css for login and reset page */
 
@@ -380,7 +430,7 @@ a{
 }
 
 .seat-left{
-  width: 70px;
+  width: 60px;
   height: 37px;
   margin-top: -10px;
   margin-left: 10px;
@@ -394,6 +444,30 @@ a{
   text-align: left;
   color: #757575;
   margin-bottom: 20px;
+}
+
+.card-div-1{
+  height: 100px;
+}
+
+@media (max-width:992px) {
+  .card-div-1{
+    height: 155px;
+  }
+}
+@media (max-width:768px) {
+  .card-div-1{
+    height: 215px;
+  }
+}
+@media (max-width:425px) {
+  .card-div-1{
+    height: 100px;
+  }
+}
+
+.card-body-2{
+  height: 50px;
 }
 
 .already-vol{
@@ -505,16 +579,15 @@ padding: 5px 150px 4px -10px;
 
 
 .City {
-  font-weight: 300;
-  text-align: right;
-  color: #414141;
-  padding-top: 30px;
-  border-left: 1px solid rgba(128, 128, 128, 0.652);
+  width: 171px;
   height: 78px;
-  padding-left: 10px;
-  width: 150px;
-  font-size: 16px;
-  letter-spacing: normal;
+  padding: 5px 14px 10px 13px;
+  border-radius: 3px;
+  box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
+  border: none;
+  border-left: solid 1px #d9d9d9;
+  background-color: #fff;
+  padding-top: 25px;
 }
 
 .city-1{
@@ -533,7 +606,7 @@ padding: 5px 150px 4px -10px;
 .nav-2-items {
   width: 170px;
   margin-top: 0px;
-  padding-right: 110px;
+  /* padding-right: 85px; */
 }
 .nav-2 {
   position: relative;
@@ -3285,7 +3358,21 @@ width: 800px;
   color: #414141;
 }
 
-
+.login-input{
+  width: 100%;
+  height: 56px;
+  margin: 12px 0 30px;
+  padding-left: 16px;
+  border-radius: 3px;
+  box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
+  border: solid 1px #d9d9d9;
+  background-color: #fff;
+}
+.form-control:focus{
+  box-shadow: 0 0 10px 0 rgba(43, 100, 177, 0.12);
+  border: solid 1px #2b64b1;
+ 
+}
 
 
 

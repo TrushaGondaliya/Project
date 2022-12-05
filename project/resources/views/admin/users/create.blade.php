@@ -49,24 +49,32 @@
                         <input class="cms-input" type="text" name="employee_id">
                         <label class="cms-label">Department</label>
                         <input class="cms-input" type="text" name="department">
-                        <label class="cms-label">City</label>
-                        @php
-                        $city=App\Models\City::all();
-                        @endphp
-                        <select name="city" class="edit-input" id="">
-                            @foreach($city as $item)
-                            <option value="{{$item->name}}"> {{$item->name}}</option>
+                        <label class="cms-label">Phone Number</label>
+                        <input class="cms-input" type="text" name="phone_number">
+                        <label class="cms-label">Why I Volunteer</label>
+                        <input class="cms-input" type="text" name="why_i_volunteer">
+                        <label class="cms-label">Linked In Url</label>
+                        <input class="cms-input" type="text" name="linked_in_url">
+                        <label class="cms-label">Title</label>
+                        <input class="cms-input" type="text" name="title">
+                       <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-6 col-6">
+                         <span class="cms-label">Country</span>
+                        <select name="country" id="country-dropdown" class="cms-input" id="">
+                        <option value="">Select Country</option>
+                            @foreach($countries as $item)
+                            <option value="{{$item->country_id}}"> {{$item->name}}</option>
                             @endforeach
                         </select>
-                        <label class="cms-label">Country</label>
-                        @php
-                        $country=App\Models\Country::all();
-                        @endphp
-                        <select name="country" class="cms-input" id="">
-                            @foreach($country as $item)
-                            <option value="{{$item->name}}"> {{$item->name}}</option>
-                            @endforeach
-                        </select>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-6">
+                        <span class="cms-label">City</span>
+                        <select name="city" class="cms-input" id="city-dropdown">
+                            <option>Select City</option>
+                        </select>   
+
+            </div>
+                       </div>
 
                         <label class="cms-label">Profile Text</label>
                         <div class="cms-textarea">
@@ -92,4 +100,35 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+    
+$(document).ready(function(){  
+$('#country-dropdown').on('change', function() {
+var country_id = this.value;
+$("select[name='city']").html('');
+$.ajax({
+url:"{{url('get-cities-by-country')}}",
+type: "POST",
+data: {
+country_id: country_id,
+_token: '{{csrf_token()}}' 
+},
+dataType : 'json',
+success: function(result){
+$("select[name='city']").html('<option name="city" value="">Select City</option>'); 
+$.each(result.cities,function(key,value){
+$("select[name='city']").append('<option value="'+value.city_id+'">'+value.name+'</option>');
+
+
+});
+}
+
+});
+
+});
+    })
+</script>
 @endsection

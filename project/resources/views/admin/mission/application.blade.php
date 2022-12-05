@@ -17,14 +17,7 @@
                     <input type="search" placeholder="Search" name="search" class="admin-search">
                     </form>
             </div>
-            <div class="col-lg-8" style="float: right; text-align:right">
-            <div style="float:right" class="add-admin add-goal">
-      <span class="fa fa-plus" style="color: #f88634!important;"></span>
-      <a href="{{url('admin/add-application')}}">
-                    <input type="submit" class="admin_add" value="Add"></a>
-                </div>
-           
-            </div>
+          
             </div>
                        <div class="mt-4" >
                       

@@ -49,7 +49,7 @@ class LoginController extends Controller
             }
         }
         else {
-            return redirect('login')->with('error','user not found in record');
+            return redirect('login')->with('error','username and password don`t match');
         }
        
       

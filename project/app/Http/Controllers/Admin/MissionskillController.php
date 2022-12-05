@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MissionskillController extends Controller
 {
@@ -65,7 +66,9 @@ class MissionskillController extends Controller
 
     function delete(Request $request)
     {
-        DB::table('skill')->where('skill_id',$request->skill_id)->delete();
+        $id=Skill::where('skill_id',$request->skill_id);
+        $id->delete();
+       
         return redirect('admin/skill')->with('message','deleted successfully!');
     }
 

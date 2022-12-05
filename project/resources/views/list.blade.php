@@ -74,7 +74,7 @@
                             </div>
 
                                 <div class="d-flex four-txt justify-content-center">
-                                    <div class="theme">{{$mission->theme}}</div>
+                                    <div class="theme">{{$mission->theme->title}}</div>
                                 </div>
                             </div>
 

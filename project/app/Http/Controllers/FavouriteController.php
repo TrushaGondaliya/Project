@@ -13,10 +13,10 @@ use Illuminate\Validation\Rules\Exists;
 
 class FavouriteController extends Controller
 {
-    function favourite(Request $request,$id){
+    function favourite($id){
 
         if(Auth::check()){
-       if(Favourite::where('mission_id','=',$id)->get()->isEmpty()){
+       if(Favourite::where('mission_id','=',$id)->where('user_id','=',Auth::user()->user_id)->get()->isEmpty()){
         $user_id=Auth::user()->user_id;
         $mission_id= $id;
         

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddskillController;
 use App\Http\Controllers\Admin\AdminmissionController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CmsController;
 
 use App\Http\Controllers\Admin\DashboardController;
@@ -71,11 +72,15 @@ Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-em
 
 
    Route::get('home',[MissionController::class,'home']);
+   Route::post('home',[MissionController::class,'home']);
 
 
 
-Route::post('search',[searchController::class,'view']);
-Route::view('search','search');
+Route::get('search/{id}',[searchController::class,'view']);
+Route::get('theme/{id}',[searchController::class,'theme']);
+
+
+// Route::get('search',[searchController::class,'search_drop'])->name('search');
 Route::get('reset/{token}',[LostController::class,'reset'])->name('reset');
 Route::post('reset-password',[LostController::class,'resetPassword']);
 Route::view('lost','lost');
@@ -118,8 +123,11 @@ Route::get('contactUs',function(Request $request){
         dd('error');
     }
 });
+Route::post('get-cities-by-country',[AdminmissionController::class,'getCity']);
 
+Route::get('add-app/{id}',[AdminmissionController::class,'add_app']);
 
+Route::post('add-rating',[RatingController::class,'rating']);
 //admin panel
 
 Route::prefix('admin')->middleware('auth','user')->group(function(){
@@ -149,11 +157,14 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::post('cms',[CmsController::class,'index']);
    Route::get('mission',[AdminmissionController::class,'index']);
    Route::post('mission',[AdminmissionController::class,'index']);
+   Route::get('edit-mission/{id}',[AdminmissionController::class,'edit']);
+   Route::put('update-mission/{id}',[AdminmissionController::class,'update']);
+   
    Route::get('mission-add',[AdminmissionController::class,'create']);
+   Route::post('add-mission',[AdminmissionController::class,'add_mission']);
    Route::get('application',[AdminmissionController::class,'application']);
    Route::post('application',[AdminmissionController::class,'application']);
    Route::get('add-application',[AdminmissionController::class,'create_app']);
-   Route::post('add-app',[AdminmissionController::class,'add_app']);
 
    Route::get('story',[StoryController::class,'story']);
    Route::get('published/{id}',[StoryController::class,'published']);
@@ -169,6 +180,10 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
    Route::post('theme',[MissionthemeController::class,'index']);
    Route::get('edit-theme/{id}',[MissionthemeController::class,'edit']);
    Route::put('update-theme/{id}',[MissionthemeController::class,'update']);
+   Route::post('delete-theme',[MissionthemeController::class,'delete']);
+   Route::post('delete-mission',[AdminmissionController::class,'delete']);
+
+
 
    Route::get('skill',[MissionskillController::class,'index']);
    Route::post('skill',[MissionskillController::class,'index']);
@@ -180,6 +195,13 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
    Route::get('approve/{id}',[AdminmissionController::class,'approve']);
    Route::get('decline/{id}',[AdminmissionController::class,'decline']);
 
+   Route::get('banner',[BannerController::class,'index']);
+   Route::post('banner',[BannerController::class,'index']);
+   Route::get('add-banner',[BannerController::class,'create']);
+   Route::post('add',[BannerController::class,'add_banner']);
+   Route::get('banner-edit/{id}',[BannerController::class,'edit']);
+   Route::put('update-banner/{id}',[BannerController::class,'update']);
+   Route::post('delete-banner',[BannerController::class,'delete']);
 
 });
 

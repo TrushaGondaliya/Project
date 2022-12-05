@@ -7,7 +7,10 @@
 
 <head>
 
+
     <link rel="stylesheet" href="{{url('/css/index.css')}}">
+ 
+  
 
 </head>
 
@@ -15,15 +18,34 @@
 <section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8">
-                <div class="container-fluid">
-                    <img src="images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="img">
-                    <div class="bottom">
-                        <p class="text">Sed ut perspiciatis unde omnis iste natus voluptatem</p>
-                        <p class="para-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+@php
+$banner=App\Models\Banner::all()
+@endphp
+            <div id="carouselExampleCaptions" class="carousel slide col-lg-8" data-bs-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></li>
+</ul>
+  <div class="carousel-inner containre-fluid ">
+    
+  @foreach($banner as $item)
+    <div class="carousel-item active">
+      <img src="{{asset('uploads/banner/'.$item->image)}}" class="img" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      <div class="bottom">
+        
+                        <p class="text">{{$item->title}}</p>
+                        <p class="para-text">{{$item->text}}</p>
                     </div>
-                </div>
-            </div>
+      </div>
+    
+    </div>
+    @endforeach
+ 
+  </div>
+ 
+</div>
 
             <div class="col-lg-3  form-group my-auto">
             @if($errors->any())
@@ -44,9 +66,9 @@
                     <form action="{{route('login')}}" method="post">
                         @csrf
                         <label for="email" class="common-text">Email Address</label><br>
-                        <input type="email" name="email" placeholder="Enter your email Address" class="form-control"><br>
+                        <input type="email" name="email" placeholder="Enter your email Address"  class="form-control"><br>
                         <label for="password" class="common-text">Password</label><br>
-                        <input type="password" name="password" placeholder="Enter your password" class="form-control"><br>
+                        <input type="password" name="password" placeholder="Enter your password"  class="form-control"><br>
                         <input type="submit" value="login" name="login" class="btn btn-primary"><br><br>
                         <div class="text-center">
 
@@ -72,3 +94,16 @@
     </div>
 
 </section>
+
+<script>
+    function myfun()
+    {
+        document.getElementById("abc").style.border="solid 1px #2b64b1";
+        document.getElementById("abc").style.boxShadow="0 0 10px 0 #2b64b1";
+    }
+    function myfun1()
+    {
+        document.getElementById("abc1").style.border="solid 1px #2b64b1";
+        document.getElementById("abc1").style.boxShadow="0 0 10px 0 #2b64b1";
+    }
+</script>

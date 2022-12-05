@@ -23,8 +23,8 @@
                                 </nav>
                             </div>
 
-                            <a class="nav-link {{Request::is('admin/mission') ? 'active' : ''}}" href="{{url('admin/mission')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-achieved {{Request::is('admin/mission') ? 'active' : ''}}"></i></div>
+                            <a class="nav-link {{Request::is('admin/mission') || Request::is('admin/mission-add') ||Request::is('admin/edit-mission/*') ? 'active' : ''}}" href="{{url('admin/mission')}}" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-achieved {{Request::is('admin/mission')|| Request::is('admin/mission-add') ||Request::is('admin/edit-mission/*') ? 'active' : ''}}"></i></div>
                                 Mission    
                             </a>
                             <a class="nav-link {{Request::is('admin/theme')||Request::is('admin/add-theme')||Request::is('admin/edit-theme/*') ? 'active' : ''}}" href="{{url('admin/theme')}}" >
@@ -43,8 +43,8 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/story') ? 'active' : ''}}"></i></div>
                                 Story    
                             </a>
-                            <a class="nav-link {{Request::is('admin/users') ? 'active' : ''}}" href="{{url('admin/users')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users {{Request::is('admin/users') ? 'active' : ''}}"></i></div>
+                            <a class="nav-link {{Request::is('admin/banner')|| Request::is('admin/add-banner')|| Request::is('admin/banner-edit/*') ? 'active' : ''}}" href="{{url('admin/banner')}}" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-users {{Request::is('admin/banner')|| Request::is('admin/banner-edit/*')|| Request::is('admin/edit-banner') ? 'active' : ''}}"></i></div>
                                 Banner Management    
                             </a>
                         </div>

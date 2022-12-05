@@ -2329,7 +2329,11 @@ strong {
        margin-left: 70px;
      }
     }
-
+    .form-control:focus{
+      box-shadow: 0 0 10px 0 rgba(43, 100, 177, 0.12);
+      border: solid 1px #2b64b1;
+     
+    }
  .profile-text{
 
   height: 17px;

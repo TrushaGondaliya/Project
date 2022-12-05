@@ -46,7 +46,7 @@
                        @foreach($cms as $item)
                             <tr> 
                                 <td>{{$item->title}}</td>
-                                <td style="color:#14c506;">{{$item->status==0 ? 'Active' : 'inactive'}}</td>
+                                <td style="color:#14c506;">{{$item->status==1 ? 'Active' : 'inactive'}}</td>
                                 <td><button value="{{$item->cms_page_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
                                   <a href="{{url('admin/cms-edit/'.$item->cms_page_id)}}"><i class="fas fa-edit" style="height: 20px;width:20px; color: #f88634!important;"></i></a></td>    
                             </tr>

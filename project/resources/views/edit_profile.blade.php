@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col-lg-9 col-md-9 col-sm-9">
-                        <form action="{{url('edit-profile')}}" method="POST">
+                        <form action="{{url('edit-profile')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                         <div class="edit-profile-1">
@@ -58,13 +58,9 @@
                                         <input type="text" name="employee_id" value="{{Auth::user()->employee_id}}" placeholder="Enter your Employee ID" class="edit-input" id="">
                                     </div>
                                 </div>
-                                <!-- <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <span class="story-input-text">Manager*</span>
-                                    <div>
-                                        <input type="text" name="manager" value="{{Auth::user()->manager}}" placeholder="Enter your Manager details" class="edit-input" id="">
-                                    </div>
-                                </div> -->
                             </div>
+                            <label class="story-input-text">Avtar</label>
+                        <input class="edit-input" type="file" name="avtar" value="{{Auth::user()->avtar}}">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Title*</span>
@@ -98,7 +94,7 @@
                                         @php
                                         $city=App\Models\City::all();
                                         @endphp
-                                        <select name="city" class="cms-input" id="">
+                                        <select name="city" class="edit-input" id="">
                                         @foreach($city as $item)
                                             <option value="{{$item->name}}"> {{$item->name}}</option>
                                             @endforeach

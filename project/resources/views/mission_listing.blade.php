@@ -51,7 +51,9 @@
                     <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="card-image">
-                                <img src="images/{{$mission->image}}" class="img" style="height: auto;width:100%" alt="...">
+                            @foreach($mission->media as $item)
+                                <img src="images/{{$item->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
+                                @endforeach
                                 <div class='d-flex align-items-center third-txt p-2'>
                                     <a href="">
                                         <img src="images/user.png" class='img-fluid img-card'>
@@ -70,11 +72,11 @@
 
                             </div>
                             <div class="d-flex four-txt justify-content-center">
-                                <div class="theme">{{$mission->theme}}</div>
+                                <div class="theme">{{$mission->theme->title}}</div>
                             </div>
                         </div>
                         <div class="card-body" style=" padding-top:30px;">
-                            <div class="container">
+                            <div class="container card-div-1">
                                 <h5 style="font-size: 26px;">{{$mission->title}}</h5>
                                 <p class="card-text" style="color:black;">{{$mission->discription}}</p>
 
@@ -109,7 +111,7 @@
                                 <div class='goal'>objective of the goal mission</div>
                                 <hr class='flex-grow-1' />
                             </div><br>
-                            <div class="container">
+                            <div class="container card-div-2">
 
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-lg-12">
