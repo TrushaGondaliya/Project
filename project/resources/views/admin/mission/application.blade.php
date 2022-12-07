@@ -13,8 +13,14 @@
             <div class="col-lg-3 form-outline mb-4 admin-search-div">
             <form action="{{url('admin/application')}}" method="POST">
                             @csrf
-                    <label class="fa fa-search"></label>
-                    <input type="search" placeholder="Search" name="search" class="admin-search">
+                            <div class="admin-row">
+                    <div>
+                        <span class="fa fa-search"></span>
+                    </div>
+                    <div>
+                        <input type="search" placeholder="Search" name="search" class="admin-search form-control ">
+                    </div>
+                </div>
                     </form>
             </div>
           
@@ -70,34 +76,38 @@
                         </table>
                         </div>
                        </div>
+       
                        <div class="container mt-3">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="{{url('admin/application?page=1')}}" aria-label="prevoius">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="prevoius">
-                    <span aria-hidden="true">&lsaquo;</span>
-                </a>
-            </li>
-            @for($i=1;$i<=$max_count;$i++)
-            <li class="page-item"><a class="page-link" href="{{url('admin/application?page='.$i)}}">{{$i}}</a> </li>
-            @endfor
-          
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&rsaquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="{{url('admin/application?page='.$max_count)}}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="{{url('admin/application?page=1')}}" aria-label="prevoius">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{{$application->previousPageUrl()}}" aria-label="prevoius">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                    @for($i=1;$i<=$max_count;$i++)
+                     @if($i==$application->currentPage())
+                        <li class="page-item"><a class="page-link active" href="{{url('admin/application?page='.$i)}}">{{$i}}</a> </li>
+                        @else
+                        <li class="page-item"><a class="page-link" href="{{url('admin/application?page='.$i)}}">{{$i}}</a> </li>
+                        @endif
+                        @endfor
+                        <li class="page-item">
+                            <a class="page-link" href="{{$application->nextPageUrl()}}" aria-label="Next">
+                                <span aria-hidden="true">&rsaquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="{{url('admin/application?page='.$max_count)}}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
 
                         
                         

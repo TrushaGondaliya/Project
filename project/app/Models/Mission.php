@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class Mission extends Model
 {
@@ -14,7 +15,7 @@ class Mission extends Model
     use Notifiable;
     protected $table='missions';
     protected $primaryKey='mission_id';
-    protected $dates=['deleted_at'];
+    protected $dates=['deleted_at','start_date','end_date'];
   protected $fillable=[
   'availability','mission_type'];
 
@@ -38,6 +39,8 @@ class Mission extends Model
     {
         return $this->belongsToMany(Favourite::class);
     }
+
+   
 
     
 }

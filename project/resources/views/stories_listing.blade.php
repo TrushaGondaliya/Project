@@ -1,10 +1,6 @@
-<x-header></x-header>
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
+@extends('layouts.app')
 
-<!-- top navbar -->
-
-<x-top-nav></x-top-nav>
+@section('content')
 
 
 <hr style="padding:0px; margin:0px;border-width:0;color:gray;background-color:gray">
@@ -385,3 +381,5 @@
 <hr>
 <x-footer></x-footer>
 <br>
+
+@endsection

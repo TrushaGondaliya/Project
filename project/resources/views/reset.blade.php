@@ -10,18 +10,31 @@
   <div class="container-fluid">
     <div class="row">
     @php
-$banner=App\Models\Banner::all()
+$banners=App\Models\Banner::all()
 @endphp
             <div id="carouselExampleCaptions" class="carousel slide col-lg-8" data-bs-ride="carousel">
-  <ul class="carousel-indicators">
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></li>
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></li>
-    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></li>
+            <ul class="carousel-indicators">
+  @foreach($banners as $banner)
+  @php
+  $sort=$banner->sort_order-1
+  @endphp
+  @if($banner->sort_order==1)
+  <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$sort}}" class="active" aria-current="true" aria-label="Slide {{$banner->sort_order}}" ></li>
+  @else
+            
+  <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$sort}}" aria-label="Slide {{ $banner->sort_order}}"></li>
+@endif
+    @endforeach
 </ul>
-  <div class="carousel-inner containre-fluid ">
-  @foreach($banner as $item)
 
+  <div class="carousel-inner containre-fluid ">
+    
+  @foreach($banners as $item)
+  @if($item->sort_order==1)
     <div class="carousel-item active">
+        @else
+    <div class="carousel-item">
+@endif
       <img src="{{asset('uploads/banner/'.$item->image)}}" class="img" alt="...">
       <div class="carousel-caption d-none d-md-block">
       <div class="bottom">

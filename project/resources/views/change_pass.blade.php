@@ -1,16 +1,10 @@
-<x-header></x-header>
+@extends('layouts.app')
 
-<?php session_start() ?>
-
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
+@section('content')
 
 
 <div class="body-3">
 
-    <!-- top navbar -->
-
-    <x-top-nav></x-top-nav>
     <br>
 
     <section>
@@ -184,6 +178,14 @@
         <div class="overlay"></div>
         <!--end popup box for change Password -->
     </section>
+    <hr>
+    <x-footer></x-footer>
+    <br>
+</div>
+
+    @endsection
+
+    @section('scripts')
 
     <script>
         $(function() {
@@ -197,15 +199,6 @@
                 var form = $('.for-call-popup');
                 p.open(form.html());
             }, 1000);
-
-            // $('.edit-profile-button-save').click(function() {
-            //     var form = $('.for-call-popup');
-            //     p.open(form.html());
-            // });
-
-            // $('.write').click(function() {
-            //     p.open('Write me a message: shark@sharkcoder.com');
-            // });
 
             $('.popup-close-btn').click(function() {
                 p.close();
@@ -237,7 +230,5 @@
             });
         }
     </script>
-    <hr>
-    <x-footer></x-footer>
-    <br>
-</div>
+    @endsection
+   

@@ -43,6 +43,7 @@ class BannerController extends Controller
         $filename = time() . '.' . $file->getClientOriginalExtension();
         $file->move('uploads/banner/', $filename);
         $banner->image = $filename;}
+        $banner->sort_order = $request->input('sort_order');
       
         $banner->save();
 

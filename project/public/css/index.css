@@ -447,17 +447,25 @@ a{
 }
 
 .card-div-1{
-  height: 100px;
+  height: 150px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.card-div-2{
+  height: auto;
 }
 
 @media (max-width:992px) {
   .card-div-1{
-    height: 155px;
+    height: 120px;
+  }
+  .card-div-2{
+    height: 75px;
   }
 }
 @media (max-width:768px) {
   .card-div-1{
-    height: 215px;
+    height: 180px;
   }
 }
 @media (max-width:425px) {
@@ -468,6 +476,30 @@ a{
 
 .card-body-2{
   height: 50px;
+}
+
+.card-title{
+  height: 60px;
+  font-size: 26px;
+  font-family: sans-serif;
+}
+
+@media (max-width:992px) {
+  .card-title{
+    height: 75px;
+  }
+}
+
+@media (max-width:768px) {
+  .card-title{
+    height: 120px;
+  }
+}
+
+@media (max-width:425px) {
+  .card-title{
+    height: 60px;
+  }
 }
 
 .already-vol{
@@ -1257,12 +1289,13 @@ padding: 5px 150px 4px -10px;
   width: 100%;
   border-radius: 15px;
   background: transparent;
-  padding: 5px;
   color: grey;
   cursor: pointer;
   border: 2px solid #757575;
 border-radius: 30px;
 height: 50px;
+padding-top: 10px;
+text-align: center
 }
 
 @media (max-width:768px) {
@@ -3370,8 +3403,12 @@ width: 800px;
 }
 .form-control:focus{
   box-shadow: 0 0 10px 0 rgba(43, 100, 177, 0.12);
-  border: solid 1px #2b64b1;
- 
+  border: solid 1px #2b64b1; 
+}
+
+.form-control.Search-mission:focus{
+  box-shadow: none;
+  border: none;
 }
 
 

@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class VolunteeringController extends Controller
 {
     //
-    function volunteering(){
-        $missions=DB::select('select * from missions');
-        return view('volunteering',['missions'=>$missions]);
+    function vol(Request $request,$id){
+        return view('volunteering',compact('id'));
     }
+
 }

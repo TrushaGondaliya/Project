@@ -8,34 +8,64 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <meta name="description" content="@yield('meta_description')">
-    <meta name="keywords" content="@yield('meta_keyword')">
-    <meta name="author" content="Funda of web IT">
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-<link href="{{asset('assets/css/styles.css')}}" rel="stylesheet">
-<link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
-<link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
-<link href="{{asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet">
+   
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+
+
+    <!-- summer note css link -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{url('css/index.css')}}">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+
+
 
 </head>
 <body>
-    <div id="app">
-        
-      
 
-        <main class="">
-            @yield('content')
-        </main>
-    </div>
 
-    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}" ></script>
-    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}" ></script>
-    <script src="{{asset('assets/js/owl.carousel.min.js')}}" ></script>
-  
-    @yield('scripts')
+
+
+<div >
+                <main>
+                @include('components.top-nav')
+                    @yield('content')
+                </main>
+
+               
+</div>
+
+
+
+
+<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea#editor',
+        skin: 'bootstrap',
+        toolbar: ' bold italic strikethrough blockquote bullist numlist backcolor',
+        menubar: false,
+    });
+
+    
+ 
+</script>
+
+    
+
+
+
+
+
+@yield('scripts')
 
 </body>
 </html>

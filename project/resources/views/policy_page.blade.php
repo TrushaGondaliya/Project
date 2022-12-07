@@ -1,10 +1,6 @@
-<x-header></x-header>
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
+@extends('layouts.app')
 
-<div>
-    <x-top-nav></x-top-nav>
-    <br><br>
+@section('content')
 
     <div class="container">
         <span class="policy-heading">
@@ -115,3 +111,5 @@
     <hr>
     <x-footer></x-footer>
     <br>
+
+    @endsection

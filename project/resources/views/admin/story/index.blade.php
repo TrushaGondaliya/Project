@@ -11,8 +11,17 @@
         <div class="container-fluid px-4">
             <div class="row pt-4">
                 <div class="col-lg-3 form-outline mb-4 admin-search-div">
-                    <label class="fa fa-search"></label>
-                    <input type="search" placeholder="Search" class="admin-search">
+                <form action="{{url('admin/story')}}" method="POST">
+                            @csrf
+                            <div class="admin-row">
+                    <div>
+                        <span class="fa fa-search"></span>
+                    </div>
+                    <div>
+                        <input type="search" placeholder="Search" name="search" class="admin-search form-control ">
+                    </div>
+                </div>
+                    </form>
                 </div>
             </div>
             <div class="mt-4">
@@ -75,20 +84,24 @@
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="prevoius">
+                        <a class="page-link" href="{{$story->previousPageUrl()}}" aria-label="prevoius">
                             <span aria-hidden="true">&lsaquo;</span>
                         </a>
                     </li>
-                    @for($i=1;$i<=$max_count;$i++) <li class="page-item"><a class="page-link" href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
+                    @for($i=1;$i<=$max_count;$i++)
+                     @if($i==$story->currentPage())
+                        <li class="page-item"><a class="page-link active" href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
+                        @else
+                        <li class="page-item"><a class="page-link" href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
+                        @endif
                         @endfor
-
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="{{$story->nextPageUrl()}}" aria-label="Next">
                                 <span aria-hidden="true">&rsaquo;</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="{{url('admin/user?page='.$max_count)}}" aria-label="Next">
+                            <a class="page-link" href="{{url('admin/story?page='.$max_count)}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>

@@ -1,17 +1,15 @@
-<x-header></x-header>
+@extends('layouts.app')
+
+@section('content')
 @if(session('message'))
                         <div class="alert alert-success">{{session('message')}}</div>
                         @endif
 
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
+
 
 
 <div class="body-3">
 
-    <!-- top navbar -->
-
-    <x-top-nav></x-top-nav>
     <br>
    
     <section>
@@ -153,3 +151,4 @@
     <x-footer></x-footer>
     <br>
 </div>
+@endsection

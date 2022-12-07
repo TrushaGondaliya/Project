@@ -13,11 +13,11 @@ class Timesheet extends Model
 
     protected $table='timesheet';
     protected $primaryKey='timesheet_id';
-    protected $dates=['deleted_at'];
+    protected $dates=['deleted_at','date_volunteered'];
 
     public $timestamps=true;
 
     public function mission(){
-        return $this->belongsToMany(Mission::class);
+        return $this->belongsTo(Mission::class,'mission_id','mission_id');
     }
 }

@@ -1,16 +1,9 @@
-<x-header></x-header>
+@extends('layouts.app')
 
-
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
-
-<body>
+@section('content')
     <div class="body-1">
 
-        <!-- top navbar -->
-
-        <x-top-nav></x-top-nav>
-
+ 
         <!-- second navbar -->
 
 
@@ -31,10 +24,12 @@
         </div>
 
         <!-- Explore vala nav -->
-
+        @php
+        $mission=App\Models\Mission::all()
+        @endphp
         <div class="explore">
             <div class="left-explore common-font">
-                <span class="explore-light">Explore </span>72 missions
+                <span class="explore-light">Explore </span>{{count($mission)}} missions
             </div>
 
             <div class="right-explore">
@@ -48,7 +43,7 @@
                     <option value="Registration deadline ">Registration deadline </option>
                 </select>
                 <a href="{{url('home')}}">
-                    <img class="img-fluid Grid-list Grid" src="images/grid.png" alt="">
+                    <img class="img-fluid Grid-list" src="images/grid.png" alt="">
                 </a>
 
                 <a href="{{url('list')}}">
@@ -77,17 +72,20 @@
 
                 @endif
 
-                <div class="row abc">
+                <div class="row abc card-lists" id="card-lists">
                     @foreach($missions as $mission)
                     @php
-                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->first()->media_name;
+                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
                     @endphp
 
-                    <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
+                    <div class="col-lg-4 card-filter  col-sm-4 col-md-4" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="card-image">
-                                <img src="/images/{{$media}}" class="img" style="height: 250px;width:100%" alt="...">
-
+                                @if(is_null($media))
+                                <img src="/images/image2.png" style="height: 250px;width:100%">
+                                @else
+                                <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
+                                @endif
                                 <div class='d-flex align-items-center third-txt p-2'>
                                     <a href="">
                                         <img src="/images/user.png" class='img-fluid img-card'>
@@ -134,8 +132,10 @@
 
                         <div class="card-body" style=" padding-top:30px;">
                             <div class="container card-div-1">
-                                <h5 style="font-size: 26px; height:60px">{{$mission->title}}</h5>
-                                <p class="card-text" style="color:black;">{{$mission->discription}}</p>
+                                <h5 class="card-title">{{$mission->title}}</h5>
+                                <br>
+                                
+                                <p class="card-text card-description" style="color:black;">{{$mission->description}}</p>
 
                                 <div class="row">
                                     <div class="col-md-7 col-lg-7 col-7">
@@ -144,8 +144,8 @@
                                     <div class="col-md-5 col-lg-5 col-5">
                                         <div class="rating-css">
                                             <div class="star-icon">
-                                                <form action="{{url('add-rating')}}" method="post" id="form">
-                                                    @csrf
+                                                <form action="{{url('add-rating')}}" method="" id="form">
+                                                    
                                                     <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
 
                                                     <input value="1" id="rating1" type="radio" name="star" />
@@ -161,7 +161,7 @@
 
 
                                                 </form>
-                                                <form>
+                                             
                                             </div>
                                         </div>
                                     </div>
@@ -172,7 +172,15 @@
 
                             <div class='d-flex align-items-center'>
                                 <hr class='flex-grow-1' />
-                                <div class='goal'>objective of the goal mission</div>
+                                @php
+                                $goal=App\Models\Goal::where('mission_id',$mission->mission_id)->first();
+                                @endphp
+                                @if(is_null($goal))
+                                <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to {{$mission->end_date->format('d/m/Y')}}</div>
+                                @else
+
+                                <div class='goal'>{{$goal->goal_objective_text}}</div>
+                                @endif
                                 <hr class='flex-grow-1' />
                             </div><br>
                             <div class="container card-div-2">
@@ -194,18 +202,18 @@
                                                 </div>
                                                 <div class='col-md-6 col-sm-6 col-6 col-lg-6' style='color:black;'>
                                                     <div class='row'>
-                                                        @if($mission->end_date!=0)
+                                                        @if($mission->end_date!=null)
                                                         <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
                                                             <img src='images/deadline.png' alt='' class="c-img">
                                                         </div>
                                                         <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
 
-                                                            <div class="c-text"> <span class="c-text-style">{{$mission->end_date}} </span>Deadline </div>
+                                                            <div class="c-text"> <span class="c-text-style">{{$mission->end_date->format('d/m/Y')}} </span> Deadline </div>
 
                                                         </div>
                                                         @endif
 
-                                                        @if($mission->end_date==0)
+                                                        @if($mission->end_date==null)
                                                         <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
                                                             <img src='images/achieved.png' alt='' class="c-img">
                                                         </div>
@@ -235,11 +243,15 @@
                                 @if($app->mission_id==$mission->mission_id)
 
                                 @if($app->mission_id==$mission->mission_id && $app->user_id==Auth::user()->user_id && $app->approval_status!="DECLINE")
-                                <a href="{{url('volunteering')}}">
-                                    <div class='card-button'>View Detais
-                                        <img src='images/right-arrow.png' alt='' class='pl-3'>
-                                    </div>
-                                </a>
+                                <div class="form-group">
+                                    <a href="{{url('volunteering/'.$mission->mission_id)}}">
+
+                                        <div class='card-button'>View Detais
+                                            <img src='images/right-arrow.png' alt='' class='pl-3'>
+                                        </div>
+                                    </a>
+                                </div>
+
                                 @break
                                 @endif
                                 @endif
@@ -272,46 +284,46 @@
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="{{url()->previous()}}" aria-label="prevoius">
+                <a class="page-link" href="{{$missions->previousPageUrl()}}" aria-label="prevoius">
                     <span aria-hidden="true">&lsaquo;</span>
                 </a>
             </li>
-            @for($i=1;$i<=$max_count;$i++) <li class="page-item"><a class="page-link" href="{{url('home?page='.$i)}}">{{$i}}</a> </li>
-                @endfor
-
+            @for($i=1;$i<=$missions->lastpage();$i++) 
+            @if($i==$missions->currentPage())
+            <li class="page-item"><a class="page-link active" href="{{url('home?page='.$i)}}">{{$i}}</a> </li>
+            @else
+            <li class="page-item"><a class="page-link" href="{{url('home?page='.$i)}}">{{$i}}</a> </li>
+            @endif
+            @endfor
                 <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
+                    <a class="page-link" href="{{$missions->nextPageUrl()}}" aria-label="Next">
                         <span aria-hidden="true">&rsaquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="{{url('home?page='.$max_count)}}" aria-label="Next">
+                    <a class="page-link" href="{{url('home?page='.$missions->lastpage())}}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
         </ul>
     </div>
-
-
-
 </body>
 <br>
-
-
-<!-- <script>
-    $('#form').click('.fa', function(e) {
-    $(this).submit();
-    });
-</script> -->
-
-
 <hr>
+<x-footer></x-footer>
+<br>
+@endsection
+
+
+
+
+@section('scripts')
 <script>
     var msg = '{{Session::get("message")}}';
     var exist = '{{Session::has("message")}}';
     if (exist) {
         alert(msg);
     }
+
 </script>
-<x-footer></x-footer>
-<br>
+@endsection

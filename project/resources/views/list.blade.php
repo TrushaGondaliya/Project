@@ -1,15 +1,10 @@
-<x-header></x-header>
+@extends('layouts.app')
+
+@section('content')
 
 
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
-
-<body>
     <div class="body-1">
 
-        <!-- top navbar -->
-
-        <x-top-nav></x-top-nav>
 
    
         <hr style="height:2px;border-width:1px;color:gray;background-color:rgba(0, 0, 0, 0.05);margin-top:0px">
@@ -20,7 +15,7 @@
 
         <div class="explore">
             <div class="left-explore common-font">
-                <span class="explore-light">Explore </span>72 missions
+                <span class="explore-light">Explore </span>{{count($missions)}} missions
             </div>
             
             <div class="right-explore">
@@ -49,21 +44,48 @@
             <div class="container-fluid">
                 <div class="row abc">
                     @foreach($missions as $mission)
+                   
+                    @php
+                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
+                    @endphp
                     <div class="col-md-12" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="column1 col-md-3">
                             <div class="card-image">
-                                <img src="images/{{$mission->image}}" class="img" style="height: auto;width:100%" alt="...">
+                            @if(is_null($media))
+                                <img src="/images/image2.png" style="height: 250px;width:100%">
+                                @else
+                                <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
+                                @endif
                                 <div class='d-flex align-items-center third-txt p-2'>
                                     <a href="">
                                         <img src="images/user.png" class='img-fluid img-card'>
                                     </a>
                                 </div>
                                 <div class="d-flex align-items-center second-txt p-2">
-                                    <a href="{{url('favourite/'.$mission->mission_id)}}"> 
-                                        <img src="images/heart.png" alt=''  class='img-fluid img-card-h'>
-                                      
-                                        
+                                    <a href="{{url('favourite/'.$mission->mission_id)}}">
+                                        @php
+                                        $favourite=App\Models\Favourite::all()
+                                        @endphp
+
+
+                                        @foreach($favourite as $fav)
+                                        @if($fav->mission_id==$mission->mission_id)
+
+                                        @if($fav->mission_id==$mission->mission_id && $fav->user_id==Auth::user()->user_id)
+                                        <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
+                                        @break
+                                        @endif
+                                        @endif
+                                        @endforeach
+
+                                        @if($fav->mission_id!=$mission->mission_id || $fav->user_id!=Auth::user()->user_id)
+                                        <img src="/images/heart.png" alt='' class='img-fluid img-card-h'>
+                                        @endif
+
+
+
+
                                     </a>
                                 </div>
                                 <a href="">
@@ -82,7 +104,7 @@
                         <div class="column2 col-md-6">
                             <div class="card-body " style="padding-left:10px ; padding-top:30px;">
                                 <h5>{{$mission->title}}</h5>
-                                <p class="card-text" style="color:black;">{{$mission->discription}}</p>
+                                <p class="card-text" style="color:black;">{{$mission->description}}</p>
                                 <div class="column2-2 col-md-3">
                                     <div class='d-flex align-items-center'>
                                         <hr class='flex-grow-1' />
@@ -179,3 +201,5 @@
     </section>
     <hr>
     <x-footer></x-footer>
+    <br>
+    @endsection

@@ -3,10 +3,13 @@
 
     <div class="navbar-nav mb-lg-0" style="display: contents;"><img src="images/search.png" alt="Avatar" style="object-fit:cover ;">
     </div>
-    <form class="d-flex" action="{{url('home')}}" method="post" role="search">
-        @csrf
-        <input class="form-control me-2 Search-mission common-font" type="search" placeholder="Search mission..." aria-label="Search" name="search">
+    <form class="d-flex" action="{{url('home')}}" method="GET">
+        
+        <input class="form-control me-2 Search-mission common-font" style="box-shadow: none;" type="search" placeholder="Search mission..." value="{{request()->input('search')}}" aria-label="Search" name="search">
     </form>
+    <!-- <div class="input-filter">
+        <input type="text" name="" id="filter" class="filter form-control me-2 Search-mission common-font" placeholder="Search mission.." onkeyup="searchMission()">
+    </div> -->
 
 
     <nav class="navbar navbar-expand-lg">
@@ -18,22 +21,17 @@
                 <div class="right-nav-2">
 
 
-                    <div class="nav-item dropdown">
-
-                    <a class="nav-link nav-2-items dropdown-toggle City common-font" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Country
-                        </a>
+                <div class="nav-item dropdown">
+                    <select class="nav-link nav-2-items dropdown-toggle City common-font" id="country_filter">
                         @php
                         $country=App\Models\Country::all()
                         @endphp
-                        <ul class="dropdown-menu">
-                        @foreach($country as $item)  
-                            <li value="{{$item->country_id}}"><a class="dropdown-item" href="#">{{$item->name}}</a></li>
+                        <option value="all">Country</option>
+                        @foreach($country as $item) 
+                        <option value="{{$item->country_id}}">{{$item->name}}</option>
                         @endforeach
-                        </ul>
+                        </select>
                     </div>
-
-
 
                     <div class="nav-item dropdown">
 
@@ -74,7 +72,7 @@
                         @endphp
                         <ul class="dropdown-menu ">
                             @foreach($skills as $skill)
-                            <li><a class="dropdown-item" href="{{url('theme/'.$skill->skill_name)}}">{{$skill->skill_name}}</a></li>
+                            <li value="{{$skill->skill_id}}"><a class="dropdown-item" href="{{url('skill/'.$skill->skill_name)}}">{{$skill->skill_name}}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -84,17 +82,3 @@
         </div>
     </nav>
 </div>
-
-<script>
-    function filter_data(){
-        country_filter=$("#country_filter").val();
-        $.ajax({
-            url:"{{url('search')}}",
-        })
-
-    }
-    $('#country_filter').change(function(){
-        filter_data();
-    })
-    
-</script>

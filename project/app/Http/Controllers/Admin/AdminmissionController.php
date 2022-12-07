@@ -235,10 +235,12 @@ class AdminmissionController extends Controller
     function application(Request $request)
     {
 
-        $application = Application::where('approval_status', '=', 'PENDING ')->orwhere('approval_status', '=', 'DECLINE ')->paginate(6);
-        $count = count(Application::all());
-        $max_count = ceil($count / 6);
-        return view('admin.mission.application', compact('application', 'max_count'));
+            $application = Application::where('approval_status', '=', 'PENDING ')->orwhere('approval_status', '=', 'DECLINE ')->paginate(6);
+            $count = count(Application::all());
+            $max_count = ceil($count / 6);
+            return view('admin.mission.application', compact('application', 'max_count'));
+
+        
     }
 
     function approve($id)

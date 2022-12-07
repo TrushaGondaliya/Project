@@ -14,9 +14,12 @@
                 <div class="col-lg-3 form-outline mb-4 admin-search-div">
                     <form action="{{url('admin/user')}}" method="POST">
                         @csrf
-                        <label class="fa fa-search"></label>
-                        <!-- <input type="search" placeholder="Search" name="search" class="admin-search"> -->
-                        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="myDataTable">
+                        <div class="admin-row">
+                        <div>
+                        <span class="fa fa-search"></span></div>
+                        <div>
+                        <input type="search" placeholder="Search" name="search" class="admin-search form-control ">
+                        </div></div>
                     </form>
                 </div>
 
@@ -84,15 +87,19 @@
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="prevoius">
+                        <a class="page-link" href="{{$users->previousPageUrl()}}" aria-label="prevoius">
                             <span aria-hidden="true">&lsaquo;</span>
                         </a>
                     </li>
-                    @for($i=1;$i<=$max_count;$i++) <li class="page-item"><a class="page-link" href="{{url('admin/user?page='.$i)}}">{{$i}}</a> </li>
+                    @for($i=1;$i<=$max_count;$i++) 
+                     @if($i==$users->currentPage())
+                        <li class="page-item"><a class="page-link active" href="{{url('admin/user?page='.$i)}}">{{$i}}</a> </li>
+                        @else
+                        <li class="page-item"><a class="page-link" href="{{url('admin/user?page='.$i)}}">{{$i}}</a> </li>
+                        @endif
                         @endfor
-
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="{{$users->nextPageUrl()}}" aria-label="Next">
                                 <span aria-hidden="true">&rsaquo;</span>
                             </a>
                         </li>
@@ -103,6 +110,7 @@
                         </li>
                 </ul>
             </div>
+
 
 
 

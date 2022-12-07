@@ -72,7 +72,8 @@ Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-em
 
 
    Route::get('home',[MissionController::class,'home']);
-   Route::post('home',[MissionController::class,'home']);
+//    Route::post('home',[MissionController::class,'home']);
+Route::get('get-country', [MissionController::class, 'getMoreValue']);
 
 
 
@@ -91,7 +92,7 @@ Route::get('logout',[LogoutController::class,'destroy'])->name('logout');
 
 
 Route::get('mission_listing',[HomeController::class,'mission_listing']);
-Route::get('volunteering',[VolunteeringController::class,'volunteering']);
+Route::get('volunteering/{id}',[ VolunteeringController::class, 'vol']);
 Route::get('register',[RegisterController::class,'register']);
 Route::get('stories_listing',[StorieslistingController::class,'stories_listing']);
 Route::get('share',[ShareController::class,'share']);
@@ -145,7 +146,9 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::post('delete-user',[UserController::class,'delete']);
 
     Route::get('timesheet',[TimesheetController::class,'timesheet']);
-    Route::get('add-time',[TimesheetController::class,'add']);
+    Route::post('add-time',[TimesheetController::class,'add']);
+    Route::post('add-goal',[TimesheetController::class,'add_goal']);
+    Route::get('edit-goal',[TimesheetController::class,'edit_goal']);
 
     Route::get('add-cms',[CmsController::class,'add']);
    Route::post('add-cms',[CmsController::class,'cms_add']);
@@ -167,6 +170,8 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
    Route::get('add-application',[AdminmissionController::class,'create_app']);
 
    Route::get('story',[StoryController::class,'story']);
+   Route::post('story',[StoryController::class,'story']);
+
    Route::get('published/{id}',[StoryController::class,'published']);
    Route::get('add-story',[StoryController::class,'create_story']);
    Route::post('add-story',[StoryController::class,'add_story']);

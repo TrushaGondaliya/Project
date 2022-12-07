@@ -1,17 +1,7 @@
+@extends('layouts.app')
 
-<x-header></x-header>
-
-
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
-
-<body>
+@section('content')
     <div class="body-1">
-
-        <!-- top navbar -->
-
-        <x-top-nav></x-top-nav>
-
 
         <!-- card -->
         <section>
@@ -33,10 +23,17 @@
                     <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="card-image">
-                    @foreach($mission->media as $item)
+                            @php
+                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
+                    @endphp
+                    
 
-                                <img src="/images/{{$item->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
-                                @endforeach
+                    @if(is_null($media))
+                                <img src="/images/image2.png" style="height: 250px;width:100%">
+                                @else
+                                <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
+                                @endif
+                            
                                 <div class='d-flex align-items-center third-txt p-2'>
                                     <a href="">
                                         <img src="/images/user.png" class='img-fluid img-card'>
@@ -94,7 +91,15 @@
 
                             <div class='d-flex align-items-center'>
                                 <hr class='flex-grow-1' />
-                                <div class='goal'>objective of the goal mission</div>
+                                @php
+                    $goal=App\Models\Goal::where('mission_id',$mission->mission_id)->first();
+                    @endphp
+                    @if(is_null($goal))
+                    <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to {{$mission->end_date->format('d/m/Y')}}</div>
+                    @else
+
+                                <div class='goal'>{{$goal->goal_objective_text}}</div>
+                                @endif
                                 <hr class='flex-grow-1' />
                             </div><br>
                             <div class="container card-div-2">
@@ -116,18 +121,18 @@
                                                 </div>
                                                 <div class='col-md-6 col-sm-6 col-6 col-lg-6' style='color:black;'>
                                                     <div class='row'>
-                                                        @if($mission->end_date!=0)
+                                                        @if($mission->end_date!=null)
                                                         <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
                                                             <img src='/images/deadline.png' alt='' class="c-img">
                                                         </div>
                                                         <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
 
-                                                            <div class="c-text"> <span class="c-text-style">{{$mission->end_date}} </span>Deadline </div>
+                                                            <div class="c-text"> <span class="c-text-style">{{$mission->end_date->format('d/m/Y')}} </span>Deadline </div>
 
                                                         </div>
                                                         @endif
 
-                                                        @if($mission->end_date==0)
+                                                        @if($mission->end_date==null)
                                                         <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
                                                             <img src='/images/achieved.png' alt='' class="c-img">
                                                         </div>
@@ -197,10 +202,18 @@
                 </a>
             </li>
         </ul>
-    </div>
+    </div>   
+    <br>
+
+   
+    <hr>
+    <x-footer></x-footer>
+    <br>
+    @endsection
 
     @if(Session('message'))
                             <!-- <div class="alert alert-success">{{Session('message')}}</div> -->
+                            @section('scripts')
                             <script>
                                 var msg='{{Session::get("message")}}';
                                 var exist='{{Session::has("message")}}';
@@ -208,14 +221,9 @@
                                 alert(msg);
                                }
                                 </script>
+                                @endsection
                             @endif
 
-</body>    
-    <br>
 
-   
-    <hr>
-    <x-footer></x-footer>
-    <br>
    
   

@@ -1,22 +1,9 @@
+@extends('layouts.app')
 
-
-<x-header></x-header>
-
-
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
-
-<body>
+@section('content')
     <div class="body-1">
 
-        <!-- top navbar -->
-
-        <x-top-nav></x-top-nav>
-
-        
-    
-
-        <!-- Explore vala nav -->
+   <!-- Explore vala nav -->
 
         <div class="explore">
             <div class="left-explore common-font">
@@ -48,12 +35,19 @@
             <div class="container-fluid">
                 <div class="row abc">
                     @foreach($missions as $mission)
+               
+                    @php
+                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
+                    @endphp
+
                     <div class="col-lg-4  col-sm-4 col-md-4" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="card-image">
-                            @foreach($mission->media as $item)
-                                <img src="images/{{$item->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
-                                @endforeach
+                                @if(is_null($media))
+                                <img src="/images/image2.png" style="height: 250px;width:100%">
+                                @else
+                                <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
+                                @endif
                                 <div class='d-flex align-items-center third-txt p-2'>
                                     <a href="">
                                         <img src="images/user.png" class='img-fluid img-card'>
@@ -192,24 +186,30 @@
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="prevoius">
+                <a class="page-link" href="{{$missions->previousPageUrl()}}" aria-label="prevoius">
                     <span aria-hidden="true">&lsaquo;</span>
                 </a>
             </li>
-            @for($i=1;$i<=$max_count;$i++)
+            @for($i=1;$i<=$max_count;$i++) 
+            @php
+            $page=$i
+            @endphp
+            @if($i==$missions->currentPage())
+            <li class="page-item"><a class="page-link active" href="{{url('mission_listing?page='.$i)}}">{{$i}}</a> </li>
+            @else
             <li class="page-item"><a class="page-link" href="{{url('mission_listing?page='.$i)}}">{{$i}}</a> </li>
+            @endif
             @endfor
-          
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&rsaquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="{{url('mission_listing?page='.$max_count)}}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{$missions->nextPageUrl()}}" aria-label="Next">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{url('mission_listing?page='.$max_count)}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
         </ul>
     </div>
   
@@ -236,10 +236,15 @@
         </div>
     </footer>
 
+    @endsection 
+
+    @section('scripts')
+
     <script>
         $('.close-div').click(function() {
             $(this).parent().parent().remove();
         })
     </script>
+    @endsection
 
   

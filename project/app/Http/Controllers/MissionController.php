@@ -22,25 +22,23 @@ class MissionController extends Controller
     }
     public function home(Request $request){  
         if(Auth::user()->status=='0'){
-            $search=$request['search']??" ";
-        if($search!=" "){
-        $missions=Mission::where('title','LIKE','%' .$search. '%')->orwhere('description','LIKE','%' .$search. '%')->paginate(6);
-        $count=count(Mission::all());
-        $max_count=ceil($count/6);
-        return view('home',compact('missions','max_count'));
-        }
-        elseif($search==" "){
-            $missions=Mission::paginate(6);
-    
-        $count=count(Mission::all());
-        $max_count=ceil($count/6);
+            $missions = Mission::latest();
+        
+        if(request()->has('search') && !empty(request()->input('search'))){
+        $missions->where('title','LIKE','%' .request()->input('search'). '%')->orwhere('description','LIKE','%' .request()->input('search'). '%');
+    }
+
+        $missions = $missions->paginate(6)->withQueryString();
+        $count=count($missions);
         $m_id=Application::all();
-        return view('home',compact('missions','m_id','max_count'));
-        }
+        $max_count=ceil($count/6);
+        return view('home',compact('missions','m_id','count','max_count'));
         }
     
     else {
         return redirect('admin/user')->with('message','you are logged in as admin user');
     }
 }
+
+
 }

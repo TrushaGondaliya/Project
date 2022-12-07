@@ -1,27 +1,11 @@
-<x-header></x-header>
-<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+@extends('layouts.app')
 
-<script>
-    tinymce.init({
-        selector: 'textarea#editor',
-        skin: 'bootstrap',
-        toolbar: ' bold italic strikethrough blockquote bullist numlist backcolor',
-        menubar: false,
-    });
-</script>
+@section('content')
 
 
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
-
-<body>
     <div class="body-1">
 
-        <!-- top navbar -->
-
-        <x-top-nav></x-top-nav>
-
-        <!-- top nav end -->
+    
         <br><br>
 
         <div class="share">
@@ -229,13 +213,13 @@
     <hr>
     <x-footer></x-footer>
     <br>
-</body>
+@endsection
 
 
 
 
 <!-- drag and drop image js -->
-
+@section('scripts')
 <script>
     function dragNdrop(event) {
         var fileName = URL.createObjectURL(event.target.files[0]);
@@ -260,3 +244,4 @@
         $(this).parent().parent().remove();
     })
 </script>
+@endsection

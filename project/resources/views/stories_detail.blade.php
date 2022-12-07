@@ -1,16 +1,7 @@
-<x-header></x-header>
+@extends('layouts.app')
 
-<?php session_start() ?>
-
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
-
-<body>
+@section('content')
     <div class="body-1">
-
-        <!-- top navbar -->
-
-        <x-top-nav></x-top-nav>
 
         
         <br>
@@ -167,3 +158,4 @@
     <x-footer></x-footer>
     <br>
     </div>
+    @endsection

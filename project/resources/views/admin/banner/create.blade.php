@@ -42,7 +42,8 @@
             </div>
             <label class="cms-label">Image</label>
             <input class="cms-input" type="file" name="image" id="image">
-          
+          <label>Sort Order</label>
+          <input class="cms-input" type="text" name="sort_order" >
             
                 </td>
             </tbody>

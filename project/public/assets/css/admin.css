@@ -35,7 +35,7 @@
     box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
     border: solid 1px #d9d9d9;
     background-color: #fff;
-    /* padding-top: 10px; */
+    padding-top: 10px;
 }
 .form-control:focus{
   box-shadow: 0 0 10px 0 rgba(43, 100, 177, 0.12);
@@ -47,8 +47,21 @@
     border: none;
     font-size: 14px;
     font-family: sans-serif;
-    height: 45px;
-    width: 350px;
+    width: 300px;
+    padding-top: 10px;
+}
+.admin-search.form-control:focus{
+  box-shadow: none;
+  border: none;
+}
+.admin-row{
+  display: flex;
+}
+
+.admin-search.form-control{
+  padding: 0 !important;
+  padding-left: 30px !important;
+  padding-bottom: 0px !important;
 }
 
 
@@ -66,6 +79,8 @@
   
   .pagination .active{
     background-color: #f88634;
+    color: white;
+    border: none;
   }
   
   .pagination .active a:hover{
@@ -358,6 +373,10 @@
     background-color: white;
   }
 
+  .admin-search:focus{
+    box-shadow: none;
+    border: none;
+  }
 
 
   

@@ -1,16 +1,8 @@
-<x-header></x-header>
+@extends('layouts.app')
 
-<?php session_start() ?>
-
-<link rel="stylesheet" href="{{url('css/index.css')}}">
-</head>
-
-
+@section('content')
 <div class="body-3">
 
-    <!-- top navbar -->
-
-    <x-top-nav></x-top-nav>
 
     <section>
         <div>
@@ -190,6 +182,13 @@
         <div class="overlay"></div>
         <!--end popup box for change Password -->
     </section>
+    <hr>
+    <x-footer></x-footer>
+    <br>
+</div>
+@endsection
+
+@section('scripts')
 
     <script>
         $(function() {
@@ -243,7 +242,6 @@
             });
         }
     </script>
-    <hr>
-    <x-footer></x-footer>
-    <br>
-</div>
+
+@endsection
+

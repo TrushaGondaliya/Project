@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{url('css/index1.css')}}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+   <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -52,9 +54,9 @@
               </div>
 </nav>
 
-<input type="submit" class="nav-item nav-button" value="Submit new mission" name="" id="">
 
-          <div class="nav-item dropdown" style="display: flex;margin-left: 10px;">
+
+          <div class="nav-item dropdown" style="display: flex;margin-left: 785px;float:right">
               <div>
                   <img src="/images/user-img.png" alt="Avatar"
                       style="width:40px;height: 40px; border-radius:100%;object-fit:cover ;margin-right: 12px;">
@@ -89,7 +91,7 @@
                 </div>
             <p class="time-text">Volunteering Hours</p>
              
-            <table class="table">
+            <table class="table" >
                 <thead>
                     <th>Mission</th>
                     <th>Date</th>
@@ -97,14 +99,18 @@
                     <th>Minutes</th>
                     <th></th>
                 </thead>
+                @foreach($timesheet as $time)
+        @if($time->time!=null)
                 <tbody>
-                    <td>Plantation and Afforestation Programme</td>
-                    <td>12/3/2022</td>
-                    <td>4</td>
-                    <td>49</td>
+                    <td>{{$time->mission->title}}</td>
+                    <td>{{$time->date_volunteered->format('d/m/Y')}}</td>
+                    <td>{{substr($time->time,0,2)}}</td>
+                    <td>{{substr($time->time,3,4)}}</td>
                     <td><a href=""><img style="width: 14px; height:17px" src="\images\bin.png"></a>   <span class="time"><img  style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg"></span></td>
                     
                 </tbody>
+                @endif
+                @endforeach
             </table>
       </div>
       <div class="col div-vol">
@@ -113,20 +119,28 @@
                     <input type="submit" class="timesheet_add" value="Add">
                 </div>
       <p class="time-text">Volunteering Goals</p>
-      <table class="table">
+      <table class="table" id="datatable">
                 <thead>
                     <th>Mission</th>
                     <th>Date</th>
                     <th>Action</th>
                     <th></th>
                 </thead>
+        @foreach($timesheet as $goal)
+        @if($goal->action!=null)
                 <tbody>
-                    <td>Plantation and Afforestation Programme</td>
-                    <td>12/3/2022</td>
-                    <td>4</td>
-                    <td><a><img style="width: 14px; height:17px" src="\images\bin.png"></a>   <span class="timesheet_goal"><img style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg"></a></td>
-                    
+                    <td>{{$goal->mission->title}}</td>
+                    <td>{{$goal->date_volunteered->format('d/m/Y')}}</td>
+                    <td>{{$goal->action}}</td>
+                    <td><a><img style="width: 14px; height:17px" src="\images\bin.png"></a>  
+                    <span class="timesheet_goal"><img style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg">
+                    </span>  
+                    </a></td>
                 </tbody>
+                @endif
+                @endforeach
+
+
             </table>
       </div>
       </div>
@@ -139,16 +153,18 @@
 
         <!-- popup for edit goal user -->
 
-<div class="goal_popup">
+<div class="goal_popup" id="GoalEdit">
             <div class="popup-close-btn"></div>
             <div class="popup_goal-content"></div>
         </div>
         <div class="for-call-popup">
-            <form action="" class="call-popup">
+            <form action="{{url('edit-goal')}}" method="POST" id="editGoal" class="call-popup">
+                @csrf
+                @method('PUT')
                 <h3>Please Input below volunteering Goal</h3>
                  
                 <label for="mission">Mission</label>
-                <div><select class="story-input" aria-placeholder="Select your Mission" id="">
+                <div><select class="story-input" aria-placeholder="Select your Mission"id="mission_id" name="mission_id">
                             <option value="" class="story-input">Plantation and Afforestation Programme</option>
                             <option value="">mission1</option>
                             <option value="">mission2</option>
@@ -157,16 +173,16 @@
                         </select></div>
                         <br>
                 <label for="">Actions</label>
-                <input type="text" class="story-input" placeholder="Enter Actions">
+                <input type="text" id="action" name="action" class="story-input" placeholder="Enter Actions">
                 <br><br>
                 <label>Date Volunteerd</label>
-                <input type="date" class="story-input">
+                <input type="date" id="date_volunteered" id="date_volunteered" class="story-input">
                 <br><br>
                 <label>Message</label>
-                <input type="text" class="story-input-div" placeholder="Message">
+                <input type="text" id="notes" name="notes" class="story-input-div" placeholder="Message">
                 <br>
                 <div class="timesheet_btn">
-                <input type="submit" class="timesheet_btn1" value="Cancel" name="" id="">
+                <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
                 <input type="submit" class="timesheet_btn2" name="" value="Submit" id="">
                 </div>
             </form>
@@ -179,18 +195,16 @@
             var p = new Popup({
                 popup: '.goal_popup',
                 content: '.popup_goal-content',
-                overlay: '.overlay_goal',
-                
+                overlay: '.overlay_goal', 
+       
             });
 
-            // setTimeout(function() {
-            //     var form = $('.for-call-popup');
-            //     p.open(form.html());
-            // }, 1000);
+          
 
             $('.timesheet_goal').click(function() {
                 var form = $('.for-call-popup');
                 p.open(form.html());
+                
             });
 
         
@@ -236,29 +250,31 @@
             <div class="popup_goal-add-content"></div>
         </div>
         <div class="for-add-goal-popup">
-            <form action="" class="call-popup">
+            <form action="{{url('admin/add-goal')}}" method="POST" class="call-popup">
+                @csrf
                 <h3>Please Input below volunteering Goal</h3>
                  
                 <label for="mission">Mission</label>
-                <div><select class="story-input" aria-placeholder="Select your Mission" id="">
-                            <option value="" class="story-input">Plantation and Afforestation Programme</option>
-                            <option value="">mission1</option>
-                            <option value="">mission2</option>
-                            <option value="">mission3</option>
-                            <option value="">mission4</option>
+                @php 
+                $missions=App\Models\Mission::all()
+                @endphp
+                <div><select class="story-input" aria-placeholder="Select your Mission"  name="mission_id">
+                    @foreach($missions as $mission)
+                            <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
+                    @endforeach
                         </select></div>
                         <br>
                 <label for="">Actions</label>
-                <input type="text" class="story-input" placeholder="Enter Actions">
+                <input type="text" name="action"  class="story-input" placeholder="Enter Actions">
                 <br><br>
                 <label>Date Volunteerd</label>
-                <input type="date" class="story-input">
+                <input type="date" name="date_volunteered" class="story-input">
                 <br><br>
                 <label>Message</label>
-                <input type="text" class="story-input-div" placeholder="Message">
+                <input type="text" name="notes"  class="story-input-div" placeholder="Message">
                 <br>
                 <div class="timesheet_btn">
-                <input type="submit" class="timesheet_btn1" value="Cancel" name="" id="">
+                <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
                 <input type="submit" class="timesheet_btn2" name="" value="Submit" id="">
                 </div>
             </form>
@@ -333,6 +349,7 @@
                 <h3>Please Input below volunteering Hours</h3>
                 <label for="mission">Mission</label>
                 <div><select class="story-input" aria-placeholder="Select your Mission" id="">
+                   
                             <option value="" class="story-input">Faith Community Belowship</option>
                             <option value="">mission1</option>
                             <option value="">mission2</option>
@@ -376,14 +393,10 @@
                 overlay: '.overlay',
             });
 
-            // setTimeout(function() {
-            //     var form = $('.for-call-popup');
-            //     p.open(form.html());
-            // }, 1000);
-
             $('.time').click(function() {
                 var form = $('.for-time-popup');
                 p.open(form.html());
+                
             });
 
         
@@ -431,34 +444,33 @@
             <div class="popup-add-content"></div>
         </div>
         <div class="for-add-time-popup">
-            <form action="" class="call-popup">
+            <form action="{{url('admin/add-time')}}" method="post" class="call-popup">
+                @csrf
                 <h3>Please Input below volunteering Hours</h3>
                 <label for="mission">Mission</label>
-                <div><select class="story-input" aria-placeholder="Select your Mission" id="">
-                            <option value="" class="story-input">Faith Community Belowship</option>
-                            <option value="">mission1</option>
-                            <option value="">mission2</option>
-                            <option value="">mission3</option>
-                            <option value="">mission4</option>
+                @php 
+                $missions=App\Models\Mission::all()
+                @endphp
+                <div><select class="story-input" aria-placeholder="Select your Mission" name="mission_id">
+                    @foreach($missions as $mission)
+                            <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
+                    @endforeach
                         </select></div>
                         <br>
                 
                 <label>Date Volunteerd</label>
-                <input type="date" class="story-input">
+                <input type="date" name="date_volunteered" class="story-input">
                 <br><br>
                 <div class="row">
+                  
                     <div class="col-lg-6 col-md-6">
-                    <label>Hours</label>
-                <input type="text" class="story-input" placeholder="Enter Spent Hours">
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                    <label>Minutes</label>
-                <input type="text" class="story-input" placeholder="Enter Spent Minutes">
+                    <label>Time</label>
+                <input type="time" class="story-input" name="time" placeholder="Enter Spent Minutes">
                     </div>
                 </div>
                 <br>
                 <label>Message</label>
-                <input type="text" class="story-input-div" placeholder="Enter Your Message">
+                <input type="text" name="notes" class="story-input-div" placeholder="Enter Your Message">
                 <br>
                 <div class="timesheet_btn">
                 <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
@@ -520,3 +532,6 @@
         }
 </script>
         <!--end popup box for add time user -->
+
+        <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
