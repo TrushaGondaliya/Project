@@ -29,11 +29,11 @@
                     <option value="Registration deadline ">Registration deadline </option>
                 </select>
                 <a href="{{url('home')}}">
-                    <img class="img-fluid Grid-list Grid" src="images/grid.png" alt="">
+                    <img class="img-fluid Grid-list " src="images/grid.png" alt="">
                 </a>
 
                 <a href="{{url('list')}}">
-                    <img class="img-fluid Grid-list" src="images/list.png" alt="">
+                    <img class="img-fluid Grid-list list" src="images/list.png" alt="">
                 </a>
 
             </div>

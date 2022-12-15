@@ -1,41 +1,5 @@
-@extends('layouts.app')
 
-@section('content')
-    <div class="body-1">
-
-   <!-- Explore vala nav -->
-
-   @php
-        $mission=App\Models\Mission::all()
-        @endphp
-        <div class="explore">
-            <div class="left-explore common-font">
-                <span class="explore-light">Explore </span>{{count($mission)}} missions
-            </div>
-            <div class="right-explore">
-                <select name="sorting" class="Rounded-Rectangle-8">
-                    <option value="">Sort by</option>
-                    <option value="Newest">Newest</option>
-                    <option value="Oldest">Oldest</option>
-                    <option value="Lowest available ">Lowest available seats</option>
-                    <option value="Highest available seats ">Highest available seats </option>
-                    <option value="My favourites ">My favourites </option>
-                    <option value="Registration deadline ">Registration deadline </option>
-                </select>
-                <a href="{{url('home')}}">
-                    <img class="img-fluid Grid-list Grid" src="images/grid.png" alt="">
-                </a>
-
-                <a href="{{url('list')}}">
-                    <img class="img-fluid Grid-list" src="images/list.png" alt="">
-                </a>
-
-            </div>
-        </div>
-
-        <!-- card -->
-        <section>
-        <div class="row abc card-lists" id="card-lists">
+<div class="row abc card-lists" id="card-lists">
                     @foreach($missions as $mission)
                     @php
                     $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
@@ -105,28 +69,27 @@
                                         <h6 class="card-text" style="color:black;font-size:16px">{{$mission->organization_name}}</h6>
                                     </div>
                                     <div class="col-md-5 col-lg-5 col-5">
+                                       
+                                        <form action="{{url('add-rating/'.$mission->mission_id)}}" method="POST" id="form_{{$mission->mission_id}}">
+                                            @csrf
+                                        <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
                                         <div class="rating-css">
-                                            <div class="star-icon">
-                                                <form action="{{url('add-rating')}}" method="" id="form">
-                                                    
-                                                    <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
-
-                                                    <input value="1" id="rating1" type="radio" name="star" />
-                                                    <label for="rating1" class="fa fa-star checked"></label>
-                                                    <input value="2" id="rating2" type="radio" name="star" />
-                                                    <label for="rating2" class="fa fa-star checked"></label>
-                                                    <input value="3" id="rating3" type="radio" name="star" />
-                                                    <label for="rating3" class="fa fa-star checked"></label>
-                                                    <input value="4" id="rating4" type="radio" name="star" />
+                                            <div class="star-icon"> 
+                                                    <input value="1" id="rating1" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                                    <label for="rating1" class="fa fa-star "></label>
+                                                    <input value="2" id="rating2" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                                    <label for="rating2" class="fa fa-star "></label>
+                                                    <input value="3" id="rating3" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
+                                                    <label for="rating3" class="fa fa-star "></label>
+                                                    <input value="4" id="rating4" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
                                                     <label for="rating4" class="fa fa-star"></label>
-                                                    <input value="5" id="rating5" type="radio" name="star" />
+                                                    <input value="5" id="rating5" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
                                                     <label for="rating5" class="fa fa-star"></label>
-
-
-                                                </form>
-                                             
                                             </div>
                                         </div>
+                                        <!-- <input type="submit"> -->
+
+                                    </form>
                                     </div>
                                 </div>
                             </div>
@@ -234,78 +197,23 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
-    </div>
-    </section>
-    <br><br>
+</div>
 
-    <div class="container mt-3">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="{{url('mission_listing?page=1')}}" aria-label="prevoius">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="{{$missions->previousPageUrl()}}" aria-label="prevoius">
-                    <span aria-hidden="true">&lsaquo;</span>
-                </a>
-            </li>
-            @for($i=1;$i<=$max_count;$i++) 
-            @php
-            $page=$i
-            @endphp
-            @if($i==$missions->currentPage())
-            <li class="page-item"><a class="page-link active" href="{{url('mission_listing?page='.$i)}}">{{$i}}</a> </li>
-            @else
-            <li class="page-item"><a class="page-link" href="{{url('mission_listing?page='.$i)}}">{{$i}}</a> </li>
-            @endif
-            @endfor
-                <li class="page-item">
-                    <a class="page-link" href="{{$missions->nextPageUrl()}}" aria-label="Next">
-                        <span aria-hidden="true">&rsaquo;</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{url('mission_listing?page='.$max_count)}}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-        </ul>
-    </div>
-  
-    
-    <br>
-
-    <footer>
-
-        <div class="Rectangle-1" id="wrapper">
-            <div class="close-div">
-                <div class="f-close">
-                    <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
-                </div>
-            </div>
-            <div class="footer-text close-wrapper">
-
-                This website makes use of cookies to enhance browsing experience and provide additional functionality. <a href="" style=" color: #f88634">Privacy policy</a>
-            </div>
-            <div class="Rounded-Rectangle-7-copy-3">
-                <span class="footer-button">
-                    I Agree
-                </span>
-            </div>
-        </div>
-    </footer>
-
-    @endsection 
-
-    @section('scripts')
-
-    <script>
-        $('.close-div').click(function() {
-            $(this).parent().parent().remove();
-        })
-    </script>
-    @endsection
-
-  
+<script>
+    $(document).ready(function(){
+        // $('.rating-css input').on('click',function(){
+        //     var val=$(this).val();
+        //     var token=$('.token').val();
+        //     var missionId=$('.mission_id').val();
+        //     $.ajax({
+        //         method:'post',
+        //         url:'{{url("add-rating")}}',
+        //         data:{'rating':val,'_token':token,'mission_id':missionId},
+        //         dataType:'json'
+        //     })
+        // })
+        $('.cus_rating').click(function(){
+            console.log($(this).attr("cusId")); 
+        });
+    })
+</script>

@@ -15,15 +15,15 @@ class MissionthemeController extends Controller
     }
 
     function index(Request $request){
-        $theme=$request['search'];
-        if($theme!=" ")
-        {
-            $theme=Theme::where('title','LIKE','%' .$theme. '%')->paginate(6);
-            $count = count(Theme::all());
-        $max_count = ceil($count / 6); 
-        return view('admin.mission_theme.view',compact('theme','max_count'));
+        $theme = Theme::latest();
+        if (request()->has('search') && !empty(request()->input('search'))) {
+            $theme = Theme::where('title', 'LIKE', '%' . request()->input('search') . '%');
+            }
+            $theme = $theme->paginate(6)->withQueryString();
+       
+        return view('admin.mission_theme.view',compact('theme'));
 
-        }
+        
     }
 
     function add_theme(Request $request)

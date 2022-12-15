@@ -1,3 +1,4 @@
+
 <div class="nav-2">
 
 
@@ -7,9 +8,6 @@
         
         <input class="form-control me-2 Search-mission common-font" style="box-shadow: none;" type="search" placeholder="Search mission..." value="{{request()->input('search')}}" aria-label="Search" name="search">
     </form>
-    <!-- <div class="input-filter">
-        <input type="text" name="" id="filter" class="filter form-control me-2 Search-mission common-font" placeholder="Search mission.." onkeyup="searchMission()">
-    </div> -->
 
 
     <nav class="navbar navbar-expand-lg">
@@ -22,30 +20,36 @@
 
 
                 <div class="nav-item dropdown">
-                    <select class="nav-link nav-2-items dropdown-toggle City common-font" id="country_filter">
+                    <select class="nav-link nav-2-items dropdown-toggle City common-font" name="country" id="country_filter">
                         @php
                         $country=App\Models\Country::all()
                         @endphp
                         <option value="all">Country</option>
+                     
                         @foreach($country as $item) 
+                        @if($item->country_id==request()->country)
+                        <option value="{{request()->country}}" selected>{{$item->name}}</option>
+                        @else
                         <option value="{{$item->country_id}}">{{$item->name}}</option>
+                        @endif
                         @endforeach
                         </select>
                     </div>
 
                     <div class="nav-item dropdown">
 
-                        <a class="nav-link nav-2-items dropdown-toggle City common-font" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            City
-                        </a>
+                       
+                        <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker" aria-placeholder="City" id="city" multiple data-live-search="true" name="city[]">
                         @php
                         $city=App\Models\City::all()
                         @endphp
-                        <ul class="dropdown-menu">
+                        <option value="">City</option>
                         @foreach($city as $item)  
-                            <li value="{{$item->city_id}}"><a class="dropdown-item" href="{{url('search/'.$item->city_id)}}">{{$item->name}}</a></li>
+                        <option value="{{$item->city_id}}">{{$item->name}}</option>
                         @endforeach
-                        </ul>
+                        </select>
+                       
+                        
                     </div>
                     <div class="nav-item dropdown">
 
@@ -82,3 +86,25 @@
         </div>
     </nav>
 </div>
+
+<script type="text/javascript" src="assets/js/multiselect-dropdown.js">  
+</script>
+<script>
+    $(document).ready(function(){
+        
+        $('#city').on('change',function(){
+            var city=$(this).val();
+            var city_name=$(this).find('option:selected').text();
+            $.ajax({
+                url:"{{route('home')}}",
+                type:"GET",
+                data:{'city':city},
+
+                success:function(data){
+                    $('#third').html(data);
+                    $('#city_tag').append('<div class="mission mission-text" ><span style="padding-right: 5px;" id="city_tag">'+city_name+ '</span><img src="/images/cancel.png" id="clear"></div>');
+                }
+            })
+        })
+    })
+</script>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2022 at 07:19 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Dec 14, 2022 at 04:03 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `admin_id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -53,9 +53,9 @@ INSERT INTO `admin` (`admin_id`, `first_name`, `last_name`, `email`, `password`,
 
 CREATE TABLE `banner` (
   `banner_id` bigint(20) UNSIGNED NOT NULL,
-  `image` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(2048) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `text` text NOT NULL,
   `sort_order` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -81,7 +81,7 @@ INSERT INTO `banner` (`banner_id`, `image`, `title`, `text`, `sort_order`, `crea
 CREATE TABLE `city` (
   `city_id` bigint(20) UNSIGNED NOT NULL,
   `country_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -107,10 +107,10 @@ INSERT INTO `city` (`city_id`, `country_id`, `name`, `created_at`, `updated_at`,
 
 CREATE TABLE `cms_page` (
   `cms_page_id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1',
+  `slug` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -137,7 +137,7 @@ CREATE TABLE `comment` (
   `comment_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `mission_id` bigint(20) UNSIGNED NOT NULL,
-  `approval_status` enum('PENDING','PUBLISHED') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
+  `approval_status` enum('PENDING','PUBLISHED') NOT NULL DEFAULT 'PENDING',
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -156,7 +156,7 @@ CREATE TABLE `country` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `country`
@@ -199,7 +199,7 @@ INSERT INTO `favourite_mission` (`favourite_mission_id`, `user_id`, `mission_id`
 (11, 1, 37, '2022-12-05 08:51:11', NULL, NULL),
 (12, 1, 25, '2022-12-06 09:23:58', NULL, NULL),
 (13, 1, 20, '2022-12-06 12:31:03', NULL, NULL),
-(14, 1, 39, '2022-12-07 05:41:25', NULL, NULL);
+(14, 1, 39, '2022-12-07 05:41:25', '2022-12-12 21:40:27', '2022-12-12 21:40:27');
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,7 @@ INSERT INTO `favourite_mission` (`favourite_mission_id`, `user_id`, `mission_id`
 CREATE TABLE `goal_mission` (
   `goal_mission_id` bigint(20) UNSIGNED NOT NULL,
   `mission_id` bigint(20) UNSIGNED NOT NULL,
-  `goal_objective_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `goal_objective_text` varchar(255) DEFAULT NULL,
   `goal_value` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -248,7 +248,7 @@ INSERT INTO `goal_mission` (`goal_mission_id`, `mission_id`, `goal_objective_tex
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -283,60 +283,59 @@ CREATE TABLE `missions` (
   `organization_detail` varchar(255) NOT NULL,
   `availability` enum('DAILY','WEEKLY','MONTHLY','WEEK-END') NOT NULL,
   `seat_left` int(11) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `missions`
 --
 
-INSERT INTO `missions` (`mission_id`, `theme_id`, `city_id`, `country_id`, `title`, `short_description`, `description`, `start_date`, `end_date`, `mission_type`, `status`, `organization_name`, `organization_detail`, `availability`, `seat_left`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, 1, 'Animal Welfare Life & save bird campaign', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-13', '2022-11-16', '', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 254, 'Animal-welfare-&-save-birds-campaign.png', '2022-11-29 05:26:17', '2022-11-28 23:56:17', '2022-11-28 23:56:17'),
-(2, 2, 2, 1, 'CSR initiative stands for Coffee & Farmer Equity', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '1900-01-11', '', '0', 'We stands for coffee and farmers equity', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 210, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png', '2022-11-29 05:26:21', '2022-11-28 23:56:21', '2022-11-28 23:56:21'),
-(3, 5, 3, 1, 'Education Supplies for Every Pair of Shoes Sold', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, '', '0', 'We supply education', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 126, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', '2022-11-29 05:26:25', '2022-11-28 23:56:25', '2022-11-28 23:56:25'),
-(4, 4, 4, 2, 'Grow-Trees On the path to environment sustainability', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, '', '0', 'We grows tree', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 255, 'Grow-Trees-On-the-path-to-environment-sustainability.png', '2022-11-29 05:26:30', '2022-11-28 23:56:30', '2022-11-28 23:56:30'),
-(5, 5, 5, 2, 'Plantation & Afforestation programme', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '0000-00-00', '1900-01-16', '', '0', 'Plantation & Afforestation programme', '', 'DAILY', 255, 'Plantation-and-Afforestation-programme.png', '2022-11-29 05:26:34', '2022-11-28 23:56:34', '2022-11-28 23:56:34'),
-(6, 6, 6, 2, 'Nourish the Children in African country', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, '1900-01-23', '', '0', 'Nourish the Children in African country', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 167, 'Nourish-the-Children-in--African-country.png', '2022-11-29 05:26:38', '2022-11-28 23:56:38', '2022-11-28 23:56:38'),
-(7, 1, 2, 1, 'dummy', '', 'dummy', '0000-00-00', NULL, '', '0', 'dummy', 'dummy', 'DAILY', 65, 'img.png', '2022-11-28 05:07:29', '2022-11-25 04:31:54', '2022-11-25 04:31:54'),
-(8, 4, 3, 1, 'wemfre', NULL, 'nmfenmfre', '2022-11-13', '2022-12-03', 'GOAL', '0', 'rfmref', 'nfren', 'DAILY', 23, NULL, '2022-11-29 05:29:18', '2022-11-28 23:59:18', '2022-11-28 23:59:18'),
-(9, 4, 3, 1, 'wemfre', NULL, 'nmfenmfre', '2022-11-13', '2022-12-03', 'GOAL', '0', 'rfmref', 'nfren', 'DAILY', 23, NULL, '2022-11-29 05:29:22', '2022-11-28 23:59:22', '2022-11-28 23:59:22'),
-(10, 4, 3, 1, 'Animal Welfare Life & save bird campaign', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-12-10', '2023-01-06', 'TIME', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 23, NULL, '2022-12-02 10:49:01', '2022-12-02 05:19:01', NULL),
-(11, 2, 6, 2, 'dasd', NULL, 'dsd', '2022-11-20', '2022-12-11', 'GOAL', '0', 'dssaddsxas', 'dd', 'MONTHLY', 23, NULL, '2022-11-28 11:41:44', '2022-11-28 06:11:44', '2022-11-28 06:11:44'),
-(12, 4, 1, 1, 'Animal Welfare Life & save bird campaign', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-12', '2022-12-11', 'GOAL', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 34, NULL, '2022-11-29 05:52:26', '2022-11-28 04:34:03', '2022-11-28 04:34:03'),
-(13, 2, 4, 2, 'CSR initiative stands for Coffee & Farmer Equity', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'We stands for coffee ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 43, NULL, '2022-12-07 06:17:31', '2022-12-02 05:12:18', NULL),
-(14, 2, 1, 1, 'Education Supplies for Every Pair of Shoes Sold', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'We supply education', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 44, NULL, '2022-12-02 08:02:20', '2022-12-02 02:32:20', NULL),
-(15, 1, 3, 1, 'Grow-Trees On the path to environment sustainability', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-12', '2022-11-12', 'TIME', '0', 'We grows tree', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 214, NULL, '2022-11-29 03:03:44', '2022-11-29 03:03:44', NULL),
-(16, 6, 4, 2, 'Plantation & Afforestation programme', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Plantation & Afforestation ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 210, NULL, '2022-12-07 06:17:39', '2022-12-02 05:04:06', NULL),
-(17, 7, 5, 2, 'Nourish the Children in African country', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2022-12-31', 'TIME', '0', 'Nourish the Children ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 21, NULL, '2022-12-07 06:17:49', '2022-11-29 03:10:18', NULL),
-(18, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 23, NULL, '2022-12-07 06:17:54', '2022-12-02 05:08:59', NULL),
-(19, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 23, NULL, '2022-12-02 10:46:06', '2022-12-02 05:16:06', NULL),
-(20, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 23, NULL, '2022-12-02 10:46:35', '2022-12-02 05:16:35', NULL),
-(21, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 212, NULL, '2022-11-29 04:03:34', '2022-11-29 04:03:34', NULL),
-(22, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 212, NULL, '2022-11-29 04:06:34', '2022-11-29 04:06:34', NULL),
-(23, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliqu', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, NULL, '2022-11-29 04:50:27', '2022-11-29 04:50:27', NULL),
-(24, 4, 3, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliqu', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, NULL, '2022-11-30 08:15:41', '2022-11-30 02:45:41', NULL),
-(25, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliqu', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, NULL, '2022-11-29 04:57:25', '2022-11-29 04:57:25', NULL),
-(26, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:59:45', '2022-11-30 02:29:45', '2022-11-30 02:29:45'),
-(27, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:59:38', '2022-11-30 02:29:38', '2022-11-30 02:29:38'),
-(28, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:59:31', '2022-11-30 02:29:31', '2022-11-30 02:29:31'),
-(29, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:58:18', '2022-11-30 02:28:18', '2022-11-30 02:28:18'),
-(30, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:58:09', '2022-11-30 02:28:09', '2022-11-30 02:28:09'),
-(31, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:57:59', '2022-11-30 02:27:59', '2022-11-30 02:27:59'),
-(32, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:57:37', '2022-11-30 02:27:37', '2022-11-30 02:27:37'),
-(33, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, NULL, '2022-11-30 07:57:29', '2022-11-30 02:27:29', '2022-11-30 02:27:29'),
-(34, 7, 6, 2, 'foreach($request->skill_id as $index){', NULL, 'foreach($request->skill_id as $index){', NULL, NULL, 'GOAL', '0', 'foreach($request->skill_id as $index){', 'foreach($request->skill_id as $index){', 'DAILY', 23, NULL, '2022-11-30 07:57:18', '2022-11-30 02:27:18', '2022-11-30 02:27:18'),
-(35, 2, 1, 1, 'Lorem ipsum dolor sit amet adipisicing elit.', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 45, NULL, '2022-12-02 10:47:07', '2022-12-02 05:17:07', NULL),
-(36, 5, 2, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 324, NULL, '2022-11-30 05:05:27', '2022-11-30 05:05:27', NULL),
-(37, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-12-16', '2022-12-31', 'TIME', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 210, NULL, '2022-12-02 10:47:37', '2022-12-02 05:17:37', NULL),
-(38, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', NULL, 'save animal and birds', '2022-12-17', '2022-12-31', 'TIME', '0', 'save animal and birds', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 210, NULL, '2022-12-06 12:26:20', '2022-12-02 05:17:53', NULL),
-(39, 5, 5, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'save animal and birds', '2023-01-08', '2023-02-08', 'TIME', '0', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 210, NULL, '2022-12-06 12:23:33', '2022-12-02 05:18:26', NULL),
-(40, 7, 2, 1, 'The mission is the “what” and the “how,” and the vision is the “why.”', NULL, 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', '2022-12-23', '2023-01-06', 'TIME', '0', 'The mission is the “what” and the “how,” and the vision is the “why.”', 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', 'MONTHLY', 210, NULL, '2022-12-05 06:12:55', '2022-12-05 00:42:55', NULL),
-(41, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', NULL, 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', NULL, NULL, 'GOAL', '0', 'Tesla', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', 'DAILY', 12, NULL, '2022-12-02 10:49:50', '2022-12-02 05:19:50', NULL),
-(42, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', NULL, 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', '2022-12-17', '2022-12-30', 'TIME', '0', 'Tesla', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', 'DAILY', 12, NULL, '2022-12-02 08:05:52', '2022-12-02 02:35:52', NULL),
-(43, 2, 5, 2, 'American Express', NULL, '“We work hard every day to make American Express the world’s most respected service brand.”', '2022-12-17', '2023-01-01', 'TIME', '0', 'American Express', '“We work hard every day to make American Express the world’s most respected service brand.”', 'WEEK-END', 122, NULL, '2022-12-02 08:05:28', '2022-12-02 02:35:28', NULL);
+INSERT INTO `missions` (`mission_id`, `theme_id`, `city_id`, `country_id`, `title`, `short_description`, `description`, `start_date`, `end_date`, `mission_type`, `status`, `organization_name`, `organization_detail`, `availability`, `seat_left`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 1, 'Animal Welfare Life & save bird campaign', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-13', '2022-11-16', '', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 254, '2022-11-29 05:26:17', '2022-11-28 23:56:17', '2022-11-28 23:56:17'),
+(2, 2, 2, 1, 'CSR initiative stands for Coffee & Farmer Equity', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '1900-01-11', '', '0', 'We stands for coffee and farmers equity', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 210, '2022-11-29 05:26:21', '2022-11-28 23:56:21', '2022-11-28 23:56:21'),
+(3, 5, 3, 1, 'Education Supplies for Every Pair of Shoes Sold', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, '', '0', 'We supply education', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 126, '2022-11-29 05:26:25', '2022-11-28 23:56:25', '2022-11-28 23:56:25'),
+(4, 4, 4, 2, 'Grow-Trees On the path to environment sustainability', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, '', '0', 'We grows tree', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 255, '2022-11-29 05:26:30', '2022-11-28 23:56:30', '2022-11-28 23:56:30'),
+(5, 5, 5, 2, 'Plantation & Afforestation programme', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '0000-00-00', '1900-01-16', '', '0', 'Plantation ', '', 'DAILY', 255, '2022-12-07 11:58:12', '2022-11-28 23:56:34', '2022-11-28 23:56:34'),
+(6, 6, 6, 2, 'Nourish the Children in African country', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, '1900-01-23', '', '0', 'Nourish the Children in African country', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 167, '2022-11-29 05:26:38', '2022-11-28 23:56:38', '2022-11-28 23:56:38'),
+(7, 1, 2, 1, 'dummy', '', 'dummy', '0000-00-00', NULL, '', '0', 'dummy', 'dummy', 'DAILY', 65, '2022-11-28 05:07:29', '2022-11-25 04:31:54', '2022-11-25 04:31:54'),
+(8, 4, 3, 1, 'wemfre', NULL, 'nmfenmfre', '2022-11-13', '2022-12-03', 'GOAL', '0', 'rfmref', 'nfren', 'DAILY', 23, '2022-11-29 05:29:18', '2022-11-28 23:59:18', '2022-11-28 23:59:18'),
+(9, 4, 3, 1, 'wemfre', NULL, 'nmfenmfre', '2022-11-13', '2022-12-03', 'GOAL', '0', 'rfmref', 'nfren', 'DAILY', 23, '2022-11-29 05:29:22', '2022-11-28 23:59:22', '2022-11-28 23:59:22'),
+(10, 4, 3, 1, 'Animal Welfare Life & save bird campaign', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-12-10', '2023-01-06', 'TIME', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 23, '2022-12-02 10:49:01', '2022-12-02 05:19:01', NULL),
+(11, 2, 6, 2, 'dasd', NULL, 'dsd', '2022-11-20', '2022-12-11', 'GOAL', '0', 'dssaddsxas', 'dd', 'MONTHLY', 23, '2022-11-28 11:41:44', '2022-11-28 06:11:44', '2022-11-28 06:11:44'),
+(12, 4, 1, 1, 'Animal Welfare Life & save bird campaign', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-12', '2022-12-11', 'GOAL', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 34, '2022-11-29 05:52:26', '2022-11-28 04:34:03', '2022-11-28 04:34:03'),
+(13, 2, 4, 2, 'CSR initiative stands for Coffee & Farmer Equity', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'We stands for coffee ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 43, '2022-12-07 06:17:31', '2022-12-02 05:12:18', NULL),
+(14, 2, 1, 1, 'Education Supplies for Every Pair of Shoes Sold', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'We supply education', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 44, '2022-12-02 08:02:20', '2022-12-02 02:32:20', NULL),
+(15, 1, 3, 1, 'Grow-Trees On the path to environment sustainability', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-12', '2022-11-12', 'TIME', '0', 'We grows tree', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 214, '2022-11-29 03:03:44', '2022-11-29 03:03:44', NULL),
+(16, 6, 4, 2, 'Plantation & Afforestation programme', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Plantation & Afforestation ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 210, '2022-12-07 06:17:39', '2022-12-02 05:04:06', NULL),
+(17, 7, 5, 2, 'Nourish the Children in African country', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2022-12-31', 'TIME', '0', 'Nourish the Children ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 21, '2022-12-07 06:17:49', '2022-11-29 03:10:18', NULL),
+(18, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 23, '2022-12-07 06:17:54', '2022-12-02 05:08:59', NULL),
+(19, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum  adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 23, '2022-12-07 11:57:52', '2022-12-02 05:16:06', NULL),
+(20, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 23, '2022-12-07 11:58:28', '2022-12-02 05:16:35', NULL),
+(21, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 212, '2022-11-29 04:03:34', '2022-11-29 04:03:34', NULL),
+(22, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 212, '2022-11-29 04:06:34', '2022-11-29 04:06:34', NULL),
+(23, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, '2022-12-07 11:58:37', '2022-11-29 04:50:27', NULL),
+(24, 4, 3, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, '2022-12-07 11:58:44', '2022-11-30 02:45:41', NULL),
+(25, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, '2022-12-07 11:59:01', '2022-11-29 04:57:25', NULL),
+(26, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:59:45', '2022-11-30 02:29:45', '2022-11-30 02:29:45'),
+(27, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:59:38', '2022-11-30 02:29:38', '2022-11-30 02:29:38'),
+(28, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:59:31', '2022-11-30 02:29:31', '2022-11-30 02:29:31'),
+(29, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:58:18', '2022-11-30 02:28:18', '2022-11-30 02:28:18'),
+(30, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:58:09', '2022-11-30 02:28:09', '2022-11-30 02:28:09'),
+(31, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:57:59', '2022-11-30 02:27:59', '2022-11-30 02:27:59'),
+(32, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:57:37', '2022-11-30 02:27:37', '2022-11-30 02:27:37'),
+(33, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:57:29', '2022-11-30 02:27:29', '2022-11-30 02:27:29'),
+(34, 7, 6, 2, 'foreach($request->skill_id as $index){', NULL, 'foreach($request->skill_id as $index){', NULL, NULL, 'GOAL', '0', 'foreach($request->skill_id as $index){', 'foreach($request->skill_id as $index){', 'DAILY', 23, '2022-11-30 07:57:18', '2022-11-30 02:27:18', '2022-11-30 02:27:18'),
+(35, 2, 1, 1, 'Lorem ipsum dolor sit amet adipisicing elit.', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 45, '2022-12-07 11:59:39', '2022-12-02 05:17:07', NULL),
+(36, 5, 2, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 324, '2022-12-07 11:59:48', '2022-11-30 05:05:27', NULL),
+(37, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-12-16', '2022-12-31', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 210, '2022-12-07 12:00:04', '2022-12-02 05:17:37', NULL),
+(38, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', NULL, 'save animal and birds', '2022-12-17', '2022-12-31', 'TIME', '0', 'save animal and birds', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 210, '2022-12-06 12:26:20', '2022-12-02 05:17:53', NULL),
+(39, 5, 5, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'save animal and birds', '2023-01-08', '2023-02-08', 'TIME', '0', 'Lorem ipsum dolor sit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 210, '2022-12-07 12:00:13', '2022-12-02 05:18:26', NULL),
+(40, 7, 2, 1, 'The mission is the “what” and the “how,” and the vision is the “why.”', NULL, 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', '2022-12-23', '2023-01-06', 'TIME', '0', 'The mission is the ', 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', 'MONTHLY', 210, '2022-12-07 12:00:20', '2022-12-05 00:42:55', NULL),
+(41, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', NULL, 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', NULL, NULL, 'GOAL', '0', 'Tesla', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', 'DAILY', 12, '2022-12-02 10:49:50', '2022-12-02 05:19:50', NULL),
+(42, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', NULL, 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', '2022-12-17', '2022-12-30', 'TIME', '0', 'Tesla', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', 'DAILY', 12, '2022-12-02 08:05:52', '2022-12-02 02:35:52', NULL),
+(43, 2, 5, 2, 'American Express', NULL, '“We work hard every day to make American Express the world’s most respected service brand.”', '2022-12-17', '2023-01-01', 'TIME', '0', 'American Express', '“We work hard every day to make American Express the world’s most respected service brand.”', 'WEEK-END', 122, '2022-12-02 08:05:28', '2022-12-02 02:35:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -349,7 +348,7 @@ CREATE TABLE `mission_application` (
   `mission_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `applied_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `approval_status` enum('PENDING','APPROVE','DECLINE') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
+  `approval_status` enum('PENDING','APPROVE','DECLINE') NOT NULL DEFAULT 'PENDING',
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -364,7 +363,11 @@ INSERT INTO `mission_application` (`mission_application`, `mission_id`, `user_id
 (2, 10, 1, '2022-12-02 07:11:17', 'PENDING', '2022-12-02 07:11:17', NULL, NULL),
 (3, 14, 1, '2022-12-02 07:11:34', 'PENDING', '2022-12-02 07:11:34', NULL, NULL),
 (4, 16, 5, '2022-12-02 07:12:00', 'APPROVE', '2022-12-02 07:12:00', '2022-12-02 02:22:58', NULL),
-(5, 23, 1, '2022-12-07 05:40:33', 'PENDING', '2022-12-07 05:40:33', NULL, NULL);
+(5, 23, 1, '2022-12-07 05:40:33', 'PENDING', '2022-12-07 05:40:33', NULL, NULL),
+(6, 40, 5, '2022-12-07 12:43:36', 'PENDING', '2022-12-07 12:43:36', NULL, NULL),
+(7, 40, 1, '2022-12-08 03:45:08', 'PENDING', '2022-12-08 03:45:08', NULL, NULL),
+(8, 43, 1, '2022-12-08 03:47:06', 'PENDING', '2022-12-08 03:47:06', NULL, NULL),
+(9, 37, 1, '2022-12-09 12:22:31', 'PENDING', '2022-12-09 12:22:31', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -375,9 +378,9 @@ INSERT INTO `mission_application` (`mission_application`, `mission_id`, `user_id
 CREATE TABLE `mission_document` (
   `mission_document_id` bigint(20) UNSIGNED NOT NULL,
   `mission_id` bigint(20) UNSIGNED NOT NULL,
-  `document_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `document_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `document_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `document_name` varchar(255) NOT NULL,
+  `document_type` varchar(255) NOT NULL,
+  `document_path` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -448,10 +451,10 @@ CREATE TABLE `mission_invite` (
 CREATE TABLE `mission_media` (
   `mission_media_id` bigint(20) UNSIGNED NOT NULL,
   `mission_id` bigint(20) UNSIGNED NOT NULL,
-  `media_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `media_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `media_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `default` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `media_name` varchar(64) NOT NULL,
+  `media_type` varchar(255) NOT NULL,
+  `media_path` varchar(255) DEFAULT NULL,
+  `default` enum('0','1') NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -507,7 +510,7 @@ CREATE TABLE `mission_rating` (
   `mission_rating_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `mission_id` bigint(20) UNSIGNED NOT NULL,
-  `rating` enum('1','2','3','4','5') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` enum('1','2','3','4','5') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -609,7 +612,7 @@ INSERT INTO `mission_skill` (`mission_skill_id`, `skill_id`, `mission_id`, `crea
 
 CREATE TABLE `mission_theme` (
   `mission_theme_id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -636,8 +639,8 @@ INSERT INTO `mission_theme` (`mission_theme_id`, `title`, `status`, `created_at`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -649,11 +652,11 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -668,7 +671,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `skill` (
   `skill_id` bigint(20) UNSIGNED NOT NULL,
-  `skill_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `skill_name` varchar(64) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -699,9 +702,9 @@ CREATE TABLE `story` (
   `story_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `mission_id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('DRAFT','PENDING','PUBLISHED','DECLINE') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
+  `title` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `status` enum('DRAFT','PENDING','PUBLISHED','DECLINE') NOT NULL DEFAULT 'DRAFT',
   `published_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -713,7 +716,10 @@ CREATE TABLE `story` (
 --
 
 INSERT INTO `story` (`story_id`, `user_id`, `mission_id`, `title`, `description`, `status`, `published_at`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(4, 1, 10, 'Funny story', NULL, 'DRAFT', NULL, '2022-12-01 08:19:43', NULL, NULL);
+(1, 1, 10, 'Animal Stories', '<p>Reading stories is an activity that is a part of the most delightful period of childhood. Most of us have a natural curiosity about the animals we see around us</p>', 'DRAFT', NULL, '2022-12-08 06:37:01', '2022-12-08 06:37:01', NULL),
+(2, 1, 14, 'Monkey and Crocodile,', '<p>Grandma Stories for kids, Moral Stories for kids, Animal Stories for Kids, Jungle Stories for kids, Panchatantra Stories for Children, Fairy Tales, Akbar and Birbal, Tenali Raman and many more.</p>', 'DRAFT', NULL, '2022-12-09 00:58:55', '2022-12-09 00:58:55', NULL),
+(3, 1, 18, 'Love of Tomorrow', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry</p>', 'DRAFT', NULL, '2022-12-09 02:45:57', '2022-12-09 02:45:57', NULL),
+(4, 1, 15, 'Funny Story', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry</p>', 'DRAFT', NULL, '2022-12-12 04:11:31', '2022-12-11 22:37:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -740,12 +746,26 @@ CREATE TABLE `story_invite` (
 CREATE TABLE `story_media` (
   `story_media_id` bigint(20) UNSIGNED NOT NULL,
   `story_id` bigint(20) UNSIGNED NOT NULL,
-  `type` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `path` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `story_media`
+--
+
+INSERT INTO `story_media` (`story_media_id`, `story_id`, `type`, `path`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png', '2022-12-08 06:37:01', '2022-12-08 06:37:01', NULL),
+(2, 1, 'image/png', 'Grow-Trees-On-the-path-to-environment-sustainability-1.png', '2022-12-08 06:37:01', '2022-12-08 06:37:01', NULL),
+(3, 2, 'image/jpeg', 'banner1.jpg', '2022-12-09 00:58:55', '2022-12-09 00:58:55', NULL),
+(4, 2, 'image/png', 'Grow-Trees-On-the-path-to-environment-sustainability-4.png', '2022-12-09 00:58:55', '2022-12-09 00:58:55', NULL),
+(5, 3, 'image/jpeg', 'banner2.jpg', '2022-12-09 02:45:57', '2022-12-09 02:45:57', NULL),
+(6, 3, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png', '2022-12-09 02:45:57', '2022-12-09 02:45:57', NULL),
+(7, 4, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png', '2022-12-11 22:37:55', '2022-12-11 22:37:55', NULL),
+(8, 4, 'image/png', 'Grow-Trees-On-the-path-to-environment-sustainability-login.png', '2022-12-11 22:37:55', '2022-12-11 22:37:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -760,8 +780,8 @@ CREATE TABLE `timesheet` (
   `time` time DEFAULT NULL,
   `action` int(11) DEFAULT NULL,
   `date_volunteered` date NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('APPROVED','DECLINED','SUBMIT_FOR_APPROVAL','PENDNG') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text DEFAULT NULL,
+  `status` enum('APPROVED','DECLINED','SUBMIT_FOR_APPROVAL','PENDNG') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -786,21 +806,21 @@ INSERT INTO `timesheet` (`timesheet_id`, `user_id`, `mission_id`, `time`, `actio
 
 CREATE TABLE `user` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(16) DEFAULT NULL,
+  `last_name` varchar(16) DEFAULT NULL,
+  `email` varchar(128) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `phone_number` int(11) NOT NULL,
-  `avtar` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `why_i_volunteer` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `employee_id` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avtar` varchar(2048) DEFAULT NULL,
+  `why_i_volunteer` text DEFAULT NULL,
+  `employee_id` varchar(16) DEFAULT NULL,
+  `department` varchar(16) DEFAULT NULL,
   `city_id` bigint(20) UNSIGNED NOT NULL,
   `country_id` bigint(20) UNSIGNED NOT NULL,
-  `profile_text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `linked_in_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `profile_text` text DEFAULT NULL,
+  `linked_in_url` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -814,21 +834,21 @@ CREATE TABLE `user` (
 
 CREATE TABLE `users` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avtar` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `why_i_volunteer` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `employee_id` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(16) DEFAULT NULL,
+  `last_name` varchar(16) DEFAULT NULL,
+  `email` varchar(128) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `avtar` varchar(2048) DEFAULT NULL,
+  `why_i_volunteer` text DEFAULT NULL,
+  `employee_id` varchar(16) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
   `city_id` bigint(20) UNSIGNED DEFAULT NULL,
   `country_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `profile_text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `linked_in_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `profile_text` text DEFAULT NULL,
+  `linked_in_url` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -842,7 +862,8 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, 
 (1, 'Trusha', 'Gondaliya', 'trushagondaliya30@gmail.com', '$2y$10$I8/CxGHOxO7KWA4YUOuriuys6zfEoFvSDeCdfCxNI2yUVQujvwlDq', '8897645682', '1669376704.png', 'I love to work and help other people..', '123abc', 'HR MANAGEMENT', 1, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'trusha.linkdin', 'volunteer', '0', '2022-11-21 23:15:19', '2022-12-02 07:16:57', NULL),
 (2, 'Harsh', 'Gondaliya', 'harsh@gmail.com', '$2y$10$U0zp/n1GyhDe5eA/9GANP.vpMEbQ592zGw4R9HkeRrHbeQ20o1W3O', '9909876568', '1669293016.jpeg', 'Meet New People and Build Community', '1234abcd', 'managment', 2, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'harsh Gondaliya', 'community', '1', '2022-11-21 23:17:45', '2022-12-02 07:16:31', NULL),
 (5, 'Alis', 'Bhatt', 'alisbhatt@gmail.com', '$2y$10$XXE/gUxm/ulY2joTGxw5ceXDCSuGPTevuJxUyBLXfnPhk6ET31hq2', '1234567890', '1669811265.png', 'Gain Knowledge and Understanding of Other Ways of Life', 'abc54', 'HR', 5, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'Alis Bhatt', 'ways of life', '0', '2022-11-30 06:57:45', '2022-12-02 07:17:55', NULL),
-(6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p>The more opportunities you take to learn new skills and gain knowledge, the more fully you will develop as a person. And what safer space to develop those skills than in a context of service?</p>\r\n<p>Stepping out of your comfort zone and building new skills is the best way to develop your self-esteem. Volunteering will increase your sense of pride and thus, your self-confidence! When you challenge yourself through volunteering and receive appreciation from others, it can make you feel better emotionally and mentally.&nbsp;</p>\r\n<p>&nbsp;</p>', 'Arshi Sharma', 'self-Esteem', '1', '2022-12-01 02:35:33', '2022-12-02 07:19:00', NULL);
+(6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p>The more opportunities you take to learn new skills and gain knowledge, the more fully you will develop as a person. And what safer space to develop those skills than in a context of service?</p>\r\n<p>Stepping out of your comfort zone and building new skills is the best way to develop your self-esteem. Volunteering will increase your sense of pride and thus, your self-confidence! When you challenge yourself through volunteering and receive appreciation from others, it can make you feel better emotionally and mentally.&nbsp;</p>\r\n<p>&nbsp;</p>', 'Arshi Sharma', 'self-Esteem', '1', '2022-12-01 02:35:33', '2022-12-02 07:19:00', NULL),
+(7, 'Robert', 'Smith', 'robert@gmail.com', '$2y$10$jeE8ohpFAb56HnZmcFsYJ.wz.zV7CwggUJg6jMBxUSeAloOWQ8vXO', '8897645682', '1670567806.png', 'Meet New People and Build Community', '1234abc', 'HR', 4, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>', 'robert smith', 'xyz', '0', '2022-12-09 01:06:46', '2022-12-09 01:06:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -1019,14 +1040,14 @@ ALTER TABLE `story_invite`
   ADD PRIMARY KEY (`story_invite_id`),
   ADD KEY `story_invite_from_user_id_foreign` (`from_user_id`),
   ADD KEY `story_invite_to_user_id_foreign` (`to_user_id`),
-  ADD KEY `story_invite_from_story_id_foreign` (`story_id`);
+  ADD KEY `story_id` (`story_id`);
 
 --
 -- Indexes for table `story_media`
 --
 ALTER TABLE `story_media`
   ADD PRIMARY KEY (`story_media_id`),
-  ADD KEY `story_media_story_id_foreign` (`story_id`);
+  ADD KEY `story_id` (`story_id`);
 
 --
 -- Indexes for table `timesheet`
@@ -1122,7 +1143,7 @@ ALTER TABLE `missions`
 -- AUTO_INCREMENT for table `mission_application`
 --
 ALTER TABLE `mission_application`
-  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `mission_document`
@@ -1188,7 +1209,7 @@ ALTER TABLE `story_invite`
 -- AUTO_INCREMENT for table `story_media`
 --
 ALTER TABLE `story_media`
-  MODIFY `story_media_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `story_media_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `timesheet`
@@ -1206,7 +1227,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_skill`
@@ -1303,15 +1324,15 @@ ALTER TABLE `story`
 -- Constraints for table `story_invite`
 --
 ALTER TABLE `story_invite`
-  ADD CONSTRAINT `story_invite_from_story_id_foreign` FOREIGN KEY (`story_id`) REFERENCES `story` (`story_id`),
   ADD CONSTRAINT `story_invite_from_user_id_foreign` FOREIGN KEY (`from_user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `story_invite_ibfk_1` FOREIGN KEY (`story_id`) REFERENCES `story` (`story_id`),
   ADD CONSTRAINT `story_invite_to_user_id_foreign` FOREIGN KEY (`to_user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `story_media`
 --
 ALTER TABLE `story_media`
-  ADD CONSTRAINT `story_media_story_id_foreign` FOREIGN KEY (`story_id`) REFERENCES `story` (`story_id`);
+  ADD CONSTRAINT `story_media_ibfk_1` FOREIGN KEY (`story_id`) REFERENCES `story` (`story_id`);
 
 --
 -- Constraints for table `timesheet`

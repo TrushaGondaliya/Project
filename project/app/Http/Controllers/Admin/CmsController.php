@@ -39,15 +39,12 @@ class CmsController extends Controller
 
     function index(Request $request)
     {
-        $cms=$request['search'];
-        if($cms!=" ")
-        {
-            $cms=Cms::where('title','LIKE','%' .$cms. '%')->paginate(6);
-            $count = count(Cms::all());
-            $max_count = ceil($count / 6);
-            return view('admin.CMS.view', compact('cms', 'max_count'));
-        }
-      
+        $cms = Cms::latest();
+        if (request()->has('search') && !empty(request()->input('search'))) {
+            $cms = Cms::where('title', 'LIKE', '%' . request()->input('search') . '%');
+            }
+            $cms = $cms->paginate(4)->withQueryString();
+            return view('admin.CMS.view', compact('cms'));
         
     }
 

@@ -9,33 +9,35 @@
         <br><br>
 
         <div class="share">
+            @if(Session('message'))
+            <div class="alert alert-success">{{Session('message')}}</div>
+            @endif
+            <form action="{{url('add-story')}}" method="POST" enctype="multipart/form-data">
+                @csrf
             <span class="story-heading">Share your story</span>
             <br><br><br>
 
             <div class="row">
 
-                <div class="col-lg-4  col-mb-4 col-sm-4 col-4">
+                <div class="col-lg-6  col-mb-6 col-sm-6 col-6">
                     <Span class="story-text">Select Mission</Span>
-                    <div><select class="story-input" aria-placeholder="Select your Mission" id="">
+                    <div><select class="story-input" aria-placeholder="Select your Mission" name="mission_id" id="">
                             <option value="" class="story-input">Select Your Mission</option>
-                            <option value="">mission1</option>
-                            <option value="">mission2</option>
-                            <option value="">mission3</option>
-                            <option value="">mission4</option>
+                            @php
+                            $missions=App\Models\Mission::all()
+                            @endphp
+                            @foreach($missions as $mission)
+                            <option value="{{$mission->mission_id}}">{{$mission->title}}</option>
+                            @endforeach
                         </select></div>
                 </div>
-                <div class="col-lg-4 col-mb-4 col-4 col-sm-4">
+                <div class="col-lg-6 col-mb-6 col-6 col-sm-6">
                     <Span class="story-text">My Story Title</Span>
                     <div>
-                        <input type="text" class="story-input" placeholder="Enter Story Title">
+                        <input type="text" name="title" class="story-input" placeholder="Enter Story Title">
                     </div>
                 </div>
-                <div class="col-lg-4 col-mb-4 col-4 col-4">
-                    <Span class="story-text">Select Date</Span>
-                    <div>
-                        <input type="date" class="story-input" placeholder="Select Date">
-                    </div>
-                </div>
+             
 
                 <br><br>
 
@@ -44,20 +46,16 @@
             <br>
             <Span class="story-text">My Story</Span><br>
             <div>
-                <textarea name="" class="text-area" id="editor" cols="" rows=""></textarea>
+                <textarea name="description" class="text-area" id="editor" cols="" rows=""></textarea>
             </div>
             <br>
-            <Span class="story-text">Enter Video URL</Span><br>
-            <div>
-                <input type="text" class="story-input" placeholder="Enter URL">
-            </div>
             <br>
             <div>
                 <Span class="story-text">Uploads Your Photos</Span><br>
                 <div class="uploadOuter">
                     <span class="dragBox">
                         <img src="images/drag-and-drop.png" alt="">
-                        <input type="file" onChange="dragNdrop(event)" ondragover="drag()" ondrop="drop()" id="uploadFile" />
+                        <input type="file" onChange="dragNdrop(event)" name="image[]" ondragover="drag()" ondrop="drop()" id="uploadFile" multiple/>
                     </span>
                 </div>
                 <div id="preview"></div><br>
@@ -199,12 +197,13 @@
                     </div>
                 </div>
 
-                <input type="submit" value="cancel" name="cancel" class="share-button">
+                <input type="button" value="cancel" name="cancel" class="share-button">
 
-                <input type="submit" value="save" name="save" class="button-1">
+                <input type="button" value="save" name="save" class="button-1">
                 <input type="submit" value="submit" name="submit" class="button-1">
 
             </div>
+            </form>
         </div>
 
 
@@ -212,7 +211,6 @@
     <br><br>
     <hr>
     <x-footer></x-footer>
-    <br>
 @endsection
 
 
@@ -220,6 +218,18 @@
 
 <!-- drag and drop image js -->
 @section('scripts')
+<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea#editor',
+        skin: 'bootstrap',
+        toolbar: ' bold italic strikethrough blockquote bullist numlist backcolor',
+        menubar: false,
+    });
+</script>
+
+
 <script>
     function dragNdrop(event) {
         var fileName = URL.createObjectURL(event.target.files[0]);

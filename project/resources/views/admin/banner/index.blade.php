@@ -6,7 +6,7 @@
 
     <div class="container-fluid">
         <ul class="nav nav-tabs">
-            <li class="nav-item"> <a class="nav-link nav" href="#">CMS Page</a> </li>
+            <li class="nav-item"> <a class="nav-link nav" href="#">Banner List</a> </li>
         </ul>
         <div class="container-fluid px-4">
             <div class="row pt-4">
@@ -18,7 +18,7 @@
                                 <span class="fa fa-search"></span>
                             </div>
                             <div>
-                                <input type="search" placeholder="Search" name="search" class="admin-search form-control ">
+                                <input type="search" value="{{request()->input('search')}}" placeholder="Search" name="search" class="admin-search form-control ">
                             </div>
                         </div>
                     </form>
@@ -65,36 +65,36 @@
 
 
             <div class="container mt-3">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="{{url('admin/banner?page=1')}}" aria-label="prevoius">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="{{$banner->previousPageUrl()}}" aria-label="prevoius">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    @for($i=1;$i<=$max_count;$i++)
-                     @if($i==$banner->currentPage())
-                        <li class="page-item"><a class="page-link active" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
-                        @else
-                        <li class="page-item"><a class="page-link" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
-                        @endif
-                        @endfor
-                        <li class="page-item">
-                            <a class="page-link" href="{{$banner->nextPageUrl()}}" aria-label="Next">
-                                <span aria-hidden="true">&rsaquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{url('admin/banner?page='.$max_count)}}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                </ul>
-            </div>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="{{url('admin/banner?page='.$banner->onFirstPage())}}" aria-label="prevoius">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="{{$banner->previousPageUrl()}}" aria-label="prevoius">
+                    <span aria-hidden="true">&lsaquo;</span>
+                </a>
+            </li>
+            @for($i=1;$i<=$banner->lastpage();$i++) 
+            @if($i==$banner->currentPage())
+            <li class="page-item"><a class="page-link active" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
+            @else
+            <li class="page-item"><a class="page-link" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
+            @endif
+            @endfor
+                <li class="page-item">
+                    <a class="page-link" href="{{$banner->nextPageUrl()}}" aria-label="Next">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{url('admin/banner?page='.$banner->lastpage())}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+        </ul>
+    </div>
 
 
         </div>

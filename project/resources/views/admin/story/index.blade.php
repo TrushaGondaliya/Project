@@ -6,7 +6,7 @@
 
     <div class="container-fluid">
         <ul class="nav nav-tabs">
-            <li class="nav-item"> <a class="nav-link nav" href="#">CMS Page</a> </li>
+            <li class="nav-item"> <a class="nav-link nav" href="#">Story List</a> </li>
         </ul>
         <div class="container-fluid px-4">
             <div class="row pt-4">
@@ -18,7 +18,7 @@
                         <span class="fa fa-search"></span>
                     </div>
                     <div>
-                        <input type="search" placeholder="Search" name="search" class="admin-search form-control ">
+                        <input type="search" value="{{request()->input('search')}}" placeholder="Search" name="search" class="admin-search form-control ">
                     </div>
                 </div>
                     </form>
@@ -76,37 +76,37 @@
                     </table>
                 </div>
             </div>
-            <div class="container mt-3">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="{{url('admin/story?page=1')}}" aria-label="prevoius">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="{{$story->previousPageUrl()}}" aria-label="prevoius">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    @for($i=1;$i<=$max_count;$i++)
-                     @if($i==$story->currentPage())
-                        <li class="page-item"><a class="page-link active" href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
-                        @else
-                        <li class="page-item"><a class="page-link" href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
-                        @endif
-                        @endfor
-                        <li class="page-item">
-                            <a class="page-link" href="{{$story->nextPageUrl()}}" aria-label="Next">
-                                <span aria-hidden="true">&rsaquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{url('admin/story?page='.$max_count)}}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                </ul>
-            </div>
+    <div class="container mt-3">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="{{url('admin/story?page='.$story->onFirstPage())}}" aria-label="prevoius">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="{{$story->previousPageUrl()}}" aria-label="prevoius">
+                    <span aria-hidden="true">&lsaquo;</span>
+                </a>
+            </li>
+            @for($i=1;$i<=$story->lastpage();$i++) 
+            @if($i==$story->currentPage())
+            <li class="page-item"><a class="page-link active" href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
+            @else
+            <li class="page-item"><a class="page-link" href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
+            @endif
+            @endfor
+                <li class="page-item">
+                    <a class="page-link" href="{{$story->nextPageUrl()}}" aria-label="Next">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{url('admin/story?page='.$story->lastpage())}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+        </ul>
+    </div>
 
 
 

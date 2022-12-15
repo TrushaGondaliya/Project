@@ -14,16 +14,15 @@ class BannerController extends Controller
 {
     function index(Request $request)
     {
-        $banner=$request['search'];
-        if($banner!=" ")
-        {
-            $banner=Banner::where('title','LIKE','%' .$banner. '%')->paginate(6);
-            $count = count(Banner::all());
-        $max_count = ceil($count / 6); 
-        return view('admin/banner/index',compact('banner','count','max_count'));
+        $banner = Banner::latest();
+        if (request()->has('search') && !empty(request()->input('search'))) {
+            $banner = Banner::where('title', 'LIKE', '%' . request()->input('search') . '%');  
+               }
+            $banner = $banner->paginate(6)->withQueryString();
+        return view('admin/banner/index',compact('banner'));
 
         }
-    }
+    
 
     function create()
     {

@@ -36,13 +36,13 @@ class AdminmissionController extends Controller
 {
     function index(Request $request)
     {
-        $missions = $request['search'];
-        if ($missions != " ") {
-            $missions = Mission::where('title', 'LIKE', '%' . $missions . '%')->paginate(6);
-            $count = count(Mission::all());
-            $max_count = ceil($count / 6);
-            return view('admin.mission.index', compact('missions', 'max_count'));
-        }
+        $missions = Mission::latest();
+        if (request()->has('search') && !empty(request()->input('search'))) {
+            $missions = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%');
+            }
+            $missions = $missions->paginate(6)->withQueryString();
+            return view('admin.mission.index', compact('missions'));
+        
     }
 
     function delete(Request $request)
@@ -75,8 +75,6 @@ class AdminmissionController extends Controller
 
     function add_mission(MissionRequest $request)
     {
-
-       
         $data = $request->validated();
         $mission = new Mission;
         $mission->city_id = $data['city'];
@@ -234,11 +232,17 @@ class AdminmissionController extends Controller
 
     function application(Request $request)
     {
+        $application = Application::where('approval_status', '=', 'PENDING ')->orwhere('approval_status', '=', 'DECLINE ');
+        $mission_id = Application::where('approval_status', '=', 'PENDING ')->orwhere('approval_status', '=', 'DECLINE ')->pluck('mission_id');
+        $title = Mission::whereIn('mission_id', $mission_id)->pluck('title');
+        if (request()->has('search') && !empty(request()->input('search'))) {
+            $mission = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%')->pluck('mission_id');
+            $id = Mission::where('mission_id', $mission)->pluck('mission_id');
+            $application = Application::where('mission_id', $id);
 
-            $application = Application::where('approval_status', '=', 'PENDING ')->orwhere('approval_status', '=', 'DECLINE ')->paginate(6);
-            $count = count(Application::all());
-            $max_count = ceil($count / 6);
-            return view('admin.mission.application', compact('application', 'max_count'));
+            }
+            $application = $application->paginate(6)->withQueryString();
+            return view('admin.mission.application', compact('application'));
 
         
     }

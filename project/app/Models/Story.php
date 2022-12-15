@@ -28,4 +28,9 @@ class Story extends Model
     public function mission(){
         return $this->belongsTo(Mission::class,'mission_id','mission_id');
     }
+
+    public function storymedia()
+    {
+        return $this->hasMany(Storymedia::class,'story_id');
+    }
 }

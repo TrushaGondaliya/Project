@@ -12,17 +12,13 @@ class MissionskillController extends Controller
 {
     function index(Request $request)
     {
-      
-        
-        $skill=$request['search'];
-        if($skill!=" ")
-        {
-            $skill=Skill::where('skill_name','LIKE','%' .$skill. '%')->paginate(6);
-            $count=count(Skill::all());
-            $max_count=ceil($count/6);
-        
-        return view('admin/mission_skill/view',compact('skill','max_count'));
+        $skill = Skill::latest();
+        if (request()->has('search') && !empty(request()->input('search'))) {
+            $skill = Skill::where('skill_name', 'LIKE', '%' . request()->input('search') . '%');
         }
+        $skill = $skill->paginate(6)->withQueryString();
+        return view('admin/mission_skill/view',compact('skill'));
+        
     }
 
     function create()

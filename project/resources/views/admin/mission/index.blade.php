@@ -6,19 +6,18 @@
 
 <div class="container-fluid">
         <ul class="nav nav-tabs">
-            <li class="nav-item"> <a class="nav-link nav" href="#">CMS Page</a> </li>
+            <li class="nav-item"> <a class="nav-link nav" href="#">Mission List</a> </li>
         </ul>
         <div class="container-fluid px-4">
             <div class="row pt-4">
             <div class="col-lg-3 form-outline mb-4 admin-search-div">
-            <form action="{{url('admin/mission')}}" method="POST">
-                            @csrf
+            <form action="{{url('admin/mission')}}" method="get">
                             <div class="admin-row">
                     <div>
                         <span class="fa fa-search"></span>
                     </div>
                     <div>
-                        <input type="search" placeholder="Search" name="search" class="admin-search form-control ">
+                        <input type="search" value="{{request()->input('search')}}" placeholder="Search" name="search" class="admin-search form-control ">
                     </div>
                 </div>
                     </form>
@@ -72,37 +71,37 @@
                         </table>
                         </div>
                        </div>
-                       <div class="container mt-3">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="{{url('admin/mission?page=1')}}" aria-label="prevoius">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="{{$missions->previousPageUrl()}}" aria-label="prevoius">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    @for($i=1;$i<=$max_count;$i++) 
-                     @if($i==$missions->currentPage())
-                        <li class="page-item"><a class="page-link active" href="{{url('admin/mission?page='.$i)}}">{{$i}}</a> </li>
-                        @else
-                        <li class="page-item"><a class="page-link" href="{{url('admin/mission?page='.$i)}}">{{$i}}</a> </li>
-                        @endif
-                        @endfor
-                        <li class="page-item">
-                            <a class="page-link" href="{{$missions->nextPageUrl()}}" aria-label="Next">
-                                <span aria-hidden="true">&rsaquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{url('admin/mission?page='.$max_count)}}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                </ul>
-            </div>
+    <div class="container mt-3">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="{{url('admin/mission?page='.$missions->onFirstPage())}}" aria-label="prevoius">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="{{$missions->previousPageUrl()}}" aria-label="prevoius">
+                    <span aria-hidden="true">&lsaquo;</span>
+                </a>
+            </li>
+            @for($i=1;$i<=$missions->lastpage();$i++) 
+            @if($i==$missions->currentPage())
+            <li class="page-item"><a class="page-link active" href="{{url('admin/mission?page='.$i)}}">{{$i}}</a> </li>
+            @else
+            <li class="page-item"><a class="page-link" href="{{url('admin/mission?page='.$i)}}">{{$i}}</a> </li>
+            @endif
+            @endfor
+                <li class="page-item">
+                    <a class="page-link" href="{{$missions->nextPageUrl()}}" aria-label="Next">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{{url('admin/mission?page='.$missions->lastpage())}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+        </ul>
+    </div>
 
                         
                         

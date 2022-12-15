@@ -13,24 +13,22 @@ use Illuminate\Validation\Rules\Exists;
 
 class FavouriteController extends Controller
 {
-    function favourite($id){
+    function favourite($id)
+    {
 
-        if(Auth::check()){
-       if(Favourite::where('mission_id','=',$id)->where('user_id','=',Auth::user()->user_id)->get()->isEmpty()){
-        $user_id=Auth::user()->user_id;
-        $mission_id= $id;
-        
-        $data=array('user_id'=>$user_id,'mission_id'=>$mission_id);
-        DB::table('favourite_mission')->Insert($data);
-        return redirect('home')->with('message','mission added in favourite!');
-       }
-       else{
-        return redirect('home')->with('message','mission already in favourite!');
+        if (Auth::check()) {
+            if (Favourite::where('mission_id', '=', $id)->where('user_id', '=', Auth::user()->user_id)->get()->isEmpty()) {
+                $user_id = Auth::user()->user_id;
+                $mission_id = $id;
 
-       }
-        
-        }
-        else{
+                $data = array('user_id' => $user_id, 'mission_id' => $mission_id);
+                DB::table('favourite_mission')->Insert($data);
+                return redirect('home')->with('message', 'mission added in favourite!');
+            } else {
+                Favourite::where('mission_id', '=', $id)->where('user_id', '=', Auth::user()->user_id)->delete();
+                return redirect('home')->with('message', 'mission unfavourite!');
+            }
+        } else {
             return redirect('login');
         }
     }

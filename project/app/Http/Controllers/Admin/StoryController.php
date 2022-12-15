@@ -13,21 +13,14 @@ use Illuminate\Support\Facades\DB;
 class StoryController extends Controller
 {
     function story(Request $request){
-        $story = $request['search']??" ";
-        if($story!=" ")
-        {
-        $story=Story::orwhere('title','LIKE','%' .$story. '%')->paginate(6);
-        $count=count(Story::all());
-        $max_count=ceil($count/6);
-        return view('admin.story.index',compact('story','max_count'));
-
-        }
-        elseif($story==" "){
-        $story=Story::where('status','=','draft')->orwhere('status','=','pending')->paginate(6);
-        $count=count(Story::all());
-        $max_count=ceil($count/6);
-        return view('admin.story.index',compact('story','max_count'));
-        }
+        $story = Story::where('status','=','draft')->orwhere('status','=','pending');
+        if (request()->has('search') && !empty(request()->input('search'))) {
+            $story=Story::where('title','LIKE','%' .request()->input('search'). '%');    
+            }
+        $story = $story->paginate(6)->withQueryString();
+        
+        return view('admin.story.index',compact('story'));
+        
     }
 
     function published($id)

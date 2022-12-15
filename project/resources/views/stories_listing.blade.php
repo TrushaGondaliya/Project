@@ -36,6 +36,7 @@
         <br><br>
         <div>
             <div class="row abc">
+                @foreach($story as $item)
 
                 <!-- card-1 -->
 
@@ -43,33 +44,45 @@
                     <div class="card-box" style="width: 100%;height:100%;padding-bottom:20px">
                         <div class="container-fluid">
                             <div class="card-image">
-                                <img src="images/Grow-Trees-On-the-path-to-environment-sustainability.png" class="image-1" alt="...">
+                            @php
+                    $media=App\Models\Storymedia::where('story_id',$item->story_id)->first();
+                    @endphp
+                    @if(is_null($media))
+                                <img src="/images/image2.png" class="image-1">
+                                @else
+                                <img src="/images/{{$media->path}}" class="image-1"  alt="...">
+                                @endif
                                 <div class="d-flex four-txt justify-content-center">
-                                    <div class="theme">Customer Experience</div>
+                                    <div class="theme">{{$item->mission->theme->title}}</div>
                                 </div>
                             </div>
                             <div class="text-above-image">
+                                <a href="{{url('stories_detail/'.$item->story_id)}}">
                                 <div class='image-above-button1'>View Details
                                     <!-- <img src='images/right-arrow.png' style="color: white;" alt=''> -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                                     </svg>
                                 </div>
+                                </a>
                             </div>
                         </div>
 
 
                         <div class="card-body-1">
-                            <h5 style="font-size:26px">10 User and Customer Engagement Strategies for 2019</h5>
-                            <p class="card-text" style="color:black;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error! </p>
+                            <h5 style="font-size:26px">{{$item->title}}</h5>
+                            <div class="list-des">
+                            <p class="card-text" style="color:black;">{!!$item->description!!} </p>
+                            </div>
                             <div>
-                                <img src="images/volunteer1.png" style="border-radius: 50%;height:50px;width:50px" alt="">
-                                <span>Andrew Johson</span>
+                                <img src="{{asset('/uploads/user/'.$item->user->avtar)}}" style="border-radius: 50%;height:50px;width:50px" alt="">
+                                <span>{{$item->user->full_name}}</span>
                             </div>
 
                         </div>
                     </div>
                 </div>
+                @endforeach
 
                 <!-- another card-2 -->
                 <div class="col-lg-4 col-md-4 col-sm-4 " style="margin-top:20px">

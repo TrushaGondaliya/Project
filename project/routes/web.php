@@ -28,6 +28,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\searchController;
 use App\Http\Controllers\ShareController;
+use App\Http\Controllers\SharestoryController;
 use App\Http\Controllers\StoriesdetailsController;
 use App\Http\Controllers\StorieslistingController;
 use App\Http\Controllers\UsereditController;
@@ -71,7 +72,9 @@ Route::get('lost',[LostController::class,'lost']);
 Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-email');
 
 
-   Route::get('home',[MissionController::class,'home']);
+   Route::get('home',[MissionController::class,'home'])->name('home');
+   Route::get('sort',[MissionController::class,'sort'])->name('sort');
+   
 //    Route::post('home',[MissionController::class,'home']);
 Route::get('get-country', [MissionController::class, 'getMoreValue']);
 
@@ -95,8 +98,9 @@ Route::get('mission_listing',[HomeController::class,'mission_listing']);
 Route::get('volunteering/{id}',[ VolunteeringController::class, 'vol']);
 Route::get('register',[RegisterController::class,'register']);
 Route::get('stories_listing',[StorieslistingController::class,'stories_listing']);
-Route::get('share',[ShareController::class,'share']);
-Route::get('stories_detail',[StoriesdetailsController::class,'stories_detail']);
+Route::get('share',[SharestoryController::class,'share']);
+Route::post('add-story', [SharestoryController::class, 'add_story']);
+Route::get('stories_detail/{id}',[StoriesdetailsController::class,'stories_detail']);
 Route::get('edit_profile',[UsereditController::class,'view_profile']);
 Route::put('edit-profile',[UsereditController::class,'edit_profile']);
 
@@ -128,14 +132,13 @@ Route::post('get-cities-by-country',[AdminmissionController::class,'getCity']);
 
 Route::get('add-app/{id}',[AdminmissionController::class,'add_app']);
 
-Route::post('add-rating',[RatingController::class,'rating']);
+Route::post('add-rating/{id}',[RatingController::class,'rating']);
 //admin panel
 
 Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('dashboard',[DashboardController::class,'index']);
 
     Route::get('user',[UserController::class,'user']);
-    Route::post('user',[UserController::class,'user']);
     Route::get('admin-profile',[UserController::class,'edit_admin']);
     Route::put('update-profile',[UserController::class,'update_admin']);
 
