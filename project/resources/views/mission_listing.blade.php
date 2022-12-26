@@ -4,7 +4,6 @@
     <div class="body-1">
 
    <!-- Explore vala nav -->
-
    @php
         $mission=App\Models\Mission::all()
         @endphp
@@ -25,14 +24,11 @@
                 <a href="{{url('home')}}">
                     <img class="img-fluid Grid-list Grid" src="images/grid.png" alt="">
                 </a>
-
                 <a href="{{url('list')}}">
                     <img class="img-fluid Grid-list" src="images/list.png" alt="">
                 </a>
-
             </div>
         </div>
-
         <!-- card -->
         <section>
         <div class="row abc card-lists" id="card-lists">
@@ -40,7 +36,6 @@
                     @php
                     $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
                     @endphp
-
                     <div class="col-lg-4 card-filter  col-sm-4 col-md-4" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="card-image">
@@ -59,25 +54,17 @@
                                         @php
                                         $favourite=App\Models\Favourite::all()
                                         @endphp
-
-
                                         @foreach($favourite as $fav)
                                         @if($fav->mission_id==$mission->mission_id)
-
                                         @if($fav->mission_id==$mission->mission_id && $fav->user_id==Auth::user()->user_id)
                                         <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
                                         @break
                                         @endif
                                         @endif
                                         @endforeach
-
                                         @if($fav->mission_id!=$mission->mission_id || $fav->user_id!=Auth::user()->user_id)
                                         <img src="/images/heart.png" alt='' class='img-fluid img-card-h'>
                                         @endif
-
-
-
-
                                     </a>
                                 </div>
                                 <a href="">
@@ -86,13 +73,10 @@
                                         <span>{{($mission->city->name)}}</span>
                                 </a>
                             </div>
-
                             <div class="d-flex four-txt justify-content-center">
                                 <div class="theme">{{$mission->theme->title}}</div>
                             </div>
-
                         </div>
-
                         <div class="card-body" style=" padding-top:30px;">
                             <div class="container card-div-1">
                                 <h5 class="card-title">{{$mission->title}}</h5>
@@ -107,10 +91,8 @@
                                     <div class="col-md-5 col-lg-5 col-5">
                                         <div class="rating-css">
                                             <div class="star-icon">
-                                                <form action="{{url('add-rating')}}" method="" id="form">
-                                                    
+                                                <form action="{{url('add-rating')}}" method="" id="form">                                   
                                                     <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
-
                                                     <input value="1" id="rating1" type="radio" name="star" />
                                                     <label for="rating1" class="fa fa-star checked"></label>
                                                     <input value="2" id="rating2" type="radio" name="star" />
@@ -121,18 +103,13 @@
                                                     <label for="rating4" class="fa fa-star"></label>
                                                     <input value="5" id="rating5" type="radio" name="star" />
                                                     <label for="rating5" class="fa fa-star"></label>
-
-
                                                 </form>
-                                             
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <br>
-
-
                             <div class='d-flex align-items-center'>
                                 <hr class='flex-grow-1' />
                                 @php
@@ -141,13 +118,11 @@
                                 @if(is_null($goal))
                                 <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to {{$mission->end_date->format('d/m/Y')}}</div>
                                 @else
-
                                 <div class='goal'>{{$goal->goal_objective_text}}</div>
                                 @endif
                                 <hr class='flex-grow-1' />
                             </div><br>
                             <div class="container card-div-2">
-
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-lg-12">
                                         <div class="card-body">
@@ -159,7 +134,6 @@
                                                         </div>
                                                         <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
                                                             <div class="seat-left"> <span class="c-text-style">{{$mission->seat_left}} </span> Seats-left </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,12 +144,9 @@
                                                             <img src='images/deadline.png' alt='' class="c-img">
                                                         </div>
                                                         <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
-
                                                             <div class="c-text"> <span class="c-text-style">{{$mission->end_date->format('d/m/Y')}} </span> Deadline </div>
-
                                                         </div>
                                                         @endif
-
                                                         @if($mission->end_date==null)
                                                         <div class='col-md-1 col-1 col-sm-1 col-lg-1'>
                                                             <img src='images/achieved.png' alt='' class="c-img">
@@ -193,18 +164,11 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-
                             <hr style="width: 100%;margin-top:10px">
-
-
-
                             <div class="d-flex align-items-center justify-content-center">
                                 @foreach($m_id as $app)
                                 @if($app->mission_id==$mission->mission_id)
-
                                 @if($app->mission_id==$mission->mission_id && $app->user_id==Auth::user()->user_id && $app->approval_status!="DECLINE")
                                 <div class="form-group">
                                     <a href="{{url('volunteering/'.$mission->mission_id)}}">
@@ -214,7 +178,6 @@
                                         </div>
                                     </a>
                                 </div>
-
                                 @break
                                 @endif
                                 @endif
@@ -226,10 +189,7 @@
                                     </div>
                                 </a>
                                 @endif
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>

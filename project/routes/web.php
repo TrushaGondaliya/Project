@@ -4,30 +4,24 @@ use App\Http\Controllers\AddskillController;
 use App\Http\Controllers\Admin\AdminmissionController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CmsController;
-
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MissionskillController;
 use App\Http\Controllers\Admin\MissionthemeController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\TimesheetController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\ChangepassController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\deviceController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LostController;
-use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MissionController;
-use App\Http\Controllers\navbarController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\searchController;
-use App\Http\Controllers\ShareController;
 use App\Http\Controllers\SharestoryController;
 use App\Http\Controllers\StoriesdetailsController;
 use App\Http\Controllers\StorieslistingController;
@@ -48,16 +42,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Loader\Configurator\Traits\RouteTrait;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-// */
+
 
 
 Route::get('list',[HomeController::class,'list']);
@@ -73,6 +58,7 @@ Route::post('send-email',[LostController::class,'sendResetLink'])->name('send-em
 
 
    Route::get('home',[MissionController::class,'home'])->name('home');
+   Route::post('home',[MissionController::class,'home'])->name('home');
    Route::get('sort',[MissionController::class,'sort'])->name('sort');
    
 //    Route::post('home',[MissionController::class,'home']);

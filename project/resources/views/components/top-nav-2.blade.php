@@ -20,34 +20,46 @@
 
 
                 <div class="nav-item dropdown">
-                    <select class="nav-link nav-2-items dropdown-toggle City common-font" name="country" id="country_filter">
+                    
                         @php
                         $country=App\Models\Country::all()
                         @endphp
-                        <option value="all">Country</option>
-                     
+                        
+                        <form id="select1" method="get" enctype="multipart/form-data" action="{{url('home')}}">
+                        <select class="nav-link nav-2-items dropdown-toggle City common-font" id="country" name="country" onChange="showCountry()">
                         @foreach($country as $item) 
-                        @if($item->country_id==request()->country)
-                        <option value="{{request()->country}}" selected>{{$item->name}}</option>
-                        @else
-                        <option value="{{$item->country_id}}">{{$item->name}}</option>
-                        @endif
-                        @endforeach
-                        </select>
+                        @if(request()->input('country'))
+                        <option value="none" selected disabled="" hidden="">{{request()->input('country')}}</option>
+                                            @else
+                                            <option value="none" selected="" disabled="" hidden="">Country</option>
+                                            @endif
+                                                <option value="{{$item->name}}">{{$item->name}}</option>
+
+                                                @endforeach
+                                        </select>
+                        </form>
+                   
                     </div>
 
                     <div class="nav-item dropdown">
 
-                       
-                        <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker" aria-placeholder="City" id="city" multiple data-live-search="true" name="city[]">
                         @php
                         $city=App\Models\City::all()
                         @endphp
-                        <option value="">City</option>
-                        @foreach($city as $item)  
-                        <option value="{{$item->city_id}}">{{$item->name}}</option>
+                        
+                        <form id="select2" method="get" enctype="multipart/form-data" action="{{url('home')}}">
+                          
+                        <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker"  multiple name="city" onchange="showCity()">
+                        @if(request()->input('city'))
+                        <option value="none" selected disabled="" hidden="">{{request()->input('city')}}</option>
+                                           
+                                            @endif
+                        @foreach($city as $item)
+                            <option value="{{$item->name}}">{{$item->name}}</option>
                         @endforeach
                         </select>
+                        </form>
+                       
                        
                         
                     </div>
@@ -90,21 +102,19 @@
 <script type="text/javascript" src="assets/js/multiselect-dropdown.js">  
 </script>
 <script>
-    $(document).ready(function(){
-        
-        $('#city').on('change',function(){
-            var city=$(this).val();
-            var city_name=$(this).find('option:selected').text();
-            $.ajax({
-                url:"{{route('home')}}",
-                type:"GET",
-                data:{'city':city},
+   
 
-                success:function(data){
-                    $('#third').html(data);
-                    $('#city_tag').append('<div class="mission mission-text" ><span style="padding-right: 5px;" id="city_tag">'+city_name+ '</span><img src="/images/cancel.png" id="clear"></div>');
-                }
-            })
-        })
-    })
+    
+
+    function showCountry() {
+       
+        let form = document.getElementById("select1");
+        form.submit();
+    }
+    function showCity() {
+        let form1 = document.getElementById("select2");
+        form1.submit();
+    }
+
+
 </script>

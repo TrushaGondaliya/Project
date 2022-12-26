@@ -13,6 +13,13 @@ style.innerHTML = `
   background-position: right .75rem center;
   background-size: 16px 12px;
 }
+
+@media (max-width:768px) {
+  .multiselect-dropdown{
+    border-left: none;
+  }
+}
+
 .multiselect-dropdown span.optext, .multiselect-dropdown span.placeholder{
   margin-right:0.5em; 
   margin-bottom:2px;
@@ -28,7 +35,7 @@ style.innerHTML = `
 }
 .multiselect-dropdown span.optext{
   padding:1px 0.75em; 
-}
+  margin-top:25px}
 
 
 .multiselect-dropdown span.optext .optdel {

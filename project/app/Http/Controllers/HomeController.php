@@ -17,15 +17,12 @@ class HomeController extends Controller
        function list()
        {
               $missions = Mission::all();
-
               return view('list', ['missions' => $missions]);
        }
-
        function grid()
        {
               return view('home');
        }
-
        function mission_listing()
        {
               $missions = Mission::paginate(6);

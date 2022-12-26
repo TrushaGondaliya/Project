@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Ui\Presets\React;
 use App\Http\Middleware\AuthUser;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Favourite;
 use App\Models\Media;
@@ -28,38 +29,28 @@ class MissionController extends Controller
     {
         if (Auth::user()->status == '0') {
             $missions = Mission::latest();
-           
-
-            if ($request->ajax()) {
-                if (!empty($request->country)  ) {
-                    $missions->where(['country_id' => $request->country]);
-                    $missions = $missions->paginate(6)->withQueryString();
-                    $m_id = Application::all();
-                    return view('home', compact('missions', 'm_id'))->render();
-                    }      
-            }
-            if ($request->ajax()) {
+            
                 if (!empty($request->sort)) {
                     if ($request->sort != 0) {
                         switch ($request->sort) {
-                            case '1':
+                            case 'Newest':
                                 $missions = Mission::orderBy('created_at', 'desc');
                                 break;
-                            case '2':
+                            case 'Oldest':
                                 $missions = Mission::orderBy('created_at', 'asc');
                                 break;
-                            case '3':
+                            case 'Lowest available seats':
                                 $missions = Mission::orderBy('seat_left', 'asc');
                                 break;
-                            case '4':
+                            case 'Highest available seats':
                                 $missions = Mission::orderBy('seat_left', 'desc');
                                 break;
-                            case '5':
+                            case 'My favourites':
 
-                                $fav_m = DB::table("favourite_mission")->where('user_id', Auth::user()->user_id)->pluck('mission_id');
+                                $fav_m = DB::table("favourite_mission")->where('user_id', Auth::user()->user_id)->where('deleted_at',null)->pluck('mission_id');
                                 $missions = Mission::whereIn('mission_id', $fav_m);
                                 break;
-                            case '6':
+                            case 'Registration deadline':
                                 $missions = Mission::orderBy('end_date', 'desc');
                                 break;
                             default:
@@ -67,23 +58,26 @@ class MissionController extends Controller
                                 break;
                         }
                     }
-                }
+                
             }
 
-            if ($request->ajax()) {
-                if (!empty($request->city)) {
-                    $search_array =  request()->city;
-                    $missions = Mission::whereIn('city_id', $search_array);
-                    $missions = $missions->paginate(6);
-                    $m_id = Application::all();
-                    return view('home', compact('missions', 'm_id'));
-                }
-            }
 
             if (request()->has('search') && !empty(request()->input('search'))) {
              
                 $missions = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%')->orwhere('description', 'LIKE', '%' . request()->input('search') . '%');
             }
+            if (request()->has('country') && !empty(request()->input('country'))) {
+               
+                $name = Country::where('name', request()->input('country'))->pluck('country_id');
+                $missions=Mission:: where(['country_id' => $name]);
+                }
+                if (request()->has('city') && !empty(request()->input('city'))) {
+                $name = City::where('name', request()->input('city'))->pluck('city_id');
+
+                $missions=Mission:: whereIn('city_id' , $name);
+                    
+                    }
+
             $missions = $missions->paginate(6)->withQueryString();
             $m_id = Application::all();
             return view('home', compact('missions', 'm_id'));

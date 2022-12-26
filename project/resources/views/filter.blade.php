@@ -1,10 +1,8 @@
-
 <div class="row abc card-lists" id="card-lists">
                     @foreach($missions as $mission)
                     @php
                     $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
                     @endphp
-
                     <div class="col-lg-4 card-filter  col-sm-4 col-md-4" style="margin-top:20px ;">
                         <div class="card-box" style="width: 100%;height:100%;">
                             <div class="card-image">
@@ -23,25 +21,17 @@
                                         @php
                                         $favourite=App\Models\Favourite::all()
                                         @endphp
-
-
                                         @foreach($favourite as $fav)
                                         @if($fav->mission_id==$mission->mission_id)
-
                                         @if($fav->mission_id==$mission->mission_id && $fav->user_id==Auth::user()->user_id)
                                         <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
                                         @break
                                         @endif
                                         @endif
                                         @endforeach
-
                                         @if($fav->mission_id!=$mission->mission_id || $fav->user_id!=Auth::user()->user_id)
                                         <img src="/images/heart.png" alt='' class='img-fluid img-card-h'>
                                         @endif
-
-
-
-
                                     </a>
                                 </div>
                                 <a href="">
@@ -50,20 +40,15 @@
                                         <span>{{($mission->city->name)}}</span>
                                 </a>
                             </div>
-
                             <div class="d-flex four-txt justify-content-center">
                                 <div class="theme">{{$mission->theme->title}}</div>
                             </div>
-
                         </div>
-
                         <div class="card-body" style=" padding-top:30px;">
                             <div class="container card-div-1">
                                 <h5 class="card-title">{{$mission->title}}</h5>
                                 <br>
-
                                 <p class="card-text card-description" style="color:black;">{{$mission->description}}</p>
-
                                 <div class="row">
                                     <div class="col-md-7 col-lg-7 col-7">
                                         <h6 class="card-text" style="color:black;font-size:16px">{{$mission->organization_name}}</h6>
@@ -74,21 +59,22 @@
                                             @csrf
                                         <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
                                         <div class="rating-css">
+                                            @php
+                                            $rating=App\Models\Rating::where('mission_id',$mission->mission_id)->where('user_id',Auth::user()->user_id)->value('rating');
+                                            @endphp
                                             <div class="star-icon"> 
-                                                    <input value="1" id="rating1" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating1" class="fa fa-star "></label>
-                                                    <input value="2" id="rating2" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating2" class="fa fa-star "></label>
-                                                    <input value="3" id="rating3" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
-                                                    <label for="rating3" class="fa fa-star "></label>
-                                                    <input value="4" id="rating4" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating4" class="fa fa-star"></label>
-                                                    <input value="5" id="rating5" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
-                                                    <label for="rating5" class="fa fa-star"></label>
+                                                    <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                                    <label for="rating1_{{$mission->mission_id}}" class="fa fa-star @if($rating>=1) checked @endif "></label>
+                                                    <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                                    <label for="rating2_{{$mission->mission_id}}" class="fa fa-star @if($rating>=2) checked @endif"></label>
+                                                    <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
+                                                    <label for="rating3_{{$mission->mission_id}}" class="fa fa-star @if($rating>=3) checked @endif"></label>
+                                                    <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                                    <label for="rating4_{{$mission->mission_id}}" class="fa fa-star @if($rating>=4) checked @endif"></label>
+                                                    <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
+                                                    <label for="rating5_{{$mission->mission_id}}" class="fa fa-star @if($rating>=5) checked @endif"></label>
                                             </div>
                                         </div>
-                                        <!-- <input type="submit"> -->
-
                                     </form>
                                     </div>
                                 </div>
@@ -200,20 +186,9 @@
 </div>
 
 <script>
-    $(document).ready(function(){
-        // $('.rating-css input').on('click',function(){
-        //     var val=$(this).val();
-        //     var token=$('.token').val();
-        //     var missionId=$('.mission_id').val();
-        //     $.ajax({
-        //         method:'post',
-        //         url:'{{url("add-rating")}}',
-        //         data:{'rating':val,'_token':token,'mission_id':missionId},
-        //         dataType:'json'
-        //     })
-        // })
+    $(document).ready(function(){ 
         $('.cus_rating').click(function(){
-            console.log($(this).attr("cusId")); 
+           $('#form_'+$(this).attr("cusId")).submit();
         });
     })
 </script>

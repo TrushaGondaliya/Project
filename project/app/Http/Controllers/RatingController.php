@@ -13,10 +13,7 @@ class RatingController extends Controller
 
         function rating(Request $request,$id)
         {
-            print_r($id);
-        print_r($request->input('mission_id'));
-        print_r($request->input('star'));
-            exit;
+         
             $stars_rated= $request->input('star');
                
                     $existing_rating=Rating::where('user_id',Auth::user()->user_id)->where('mission_id',$id)->first();

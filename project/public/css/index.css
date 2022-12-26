@@ -468,12 +468,12 @@ a{
 }
 @media (max-width:768px) {
   .card-div-1{
-    height: 180px;
+    height: 301px;
   }
 }
 @media (max-width:425px) {
   .card-div-1{
-    height: 100px;
+    height: 160px;
   }
 }
 
