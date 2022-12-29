@@ -49,7 +49,7 @@
                         
                         <form id="select2" method="get" enctype="multipart/form-data" action="{{url('home')}}">
                           
-                        <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker"  multiple name="city" onchange="showCity()">
+                        <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker " aria-expanded="false" placeholder="City"  multiple name="city" onchange="showCity()">
                         @if(request()->input('city'))
                         <option value="none" selected disabled="" hidden="">{{request()->input('city')}}</option>
                                            
@@ -63,34 +63,41 @@
                        
                         
                     </div>
+   
                     <div class="nav-item dropdown">
-
-                        <a class="nav-link nav-2-items dropdown-toggle City common-font" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Theme
-                        </a>
-                        @php
+                    @php
                         $themes=App\Models\Theme::all()
                         @endphp
-                        <ul class="dropdown-menu">
-                            @foreach($themes as $theme)
-                            <li value="{{$theme->theme_id}}"><a class="dropdown-item" href="{{url('theme/'.$theme->title)}}">
-                                {{$theme->title}}</a></li>
-                            @endforeach
-                        </ul>
+                    <form id="selectTheme" method="get" enctype="multipart/form-data" action="{{url('home')}}">
+                          
+                          <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker"  data-bs-toggle="dropdown"  placeholder="Theme"  multiple name="theme" onchange="showTheme()">
+                          @if(request()->input('theme'))
+                          <option value="none" selected disabled="" hidden="">{{request()->input('theme')}}</option>
+                                             
+                                              @endif
+                          @foreach($themes as $theme)
+                              <option value="{{$theme->title}}">{{$theme->title}}</option>
+                          @endforeach
+                          </select>
+                          </form>
+
                     </div>
                     <div class="nav-item dropdown">
-
-                        <a class="nav-link nav-2-items dropdown-toggle City common-font city-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Skills
-                        </a>
-                        @php
+                    @php
                         $skills=App\Models\Skill::all()
                         @endphp
-                        <ul class="dropdown-menu ">
-                            @foreach($skills as $skill)
-                            <li value="{{$skill->skill_id}}"><a class="dropdown-item" href="{{url('skill/'.$skill->skill_name)}}">{{$skill->skill_name}}</a></li>
-                            @endforeach
-                        </ul>
+                    <form id="selectSkill" method="get" enctype="multipart/form-data" action="{{url('home')}}">
+                          
+                          <select class="nav-link nav-2-items dropdown-toggle City common-font  selectpicker city-1" placeholder="Skill"  multiple name="skill" onchange="showSkill()">
+                          @if(request()->input('skill'))
+                          <option value="none" selected disabled="" hidden="">{{request()->input('skill')}}</option>
+                                             
+                                              @endif
+                          @foreach($skills as $skill)
+                              <option value="{{$skill->skill_name}}">{{$skill->skill_name}}</option>
+                          @endforeach
+                          </select>
+                          </form>
                     </div>
 
                 </div>
@@ -99,8 +106,11 @@
     </nav>
 </div>
 
-<script type="text/javascript" src="assets/js/multiselect-dropdown.js">  
+<script type="text/javascript" src="assets/js/multiselect-dropdown.js"> 
 </script>
+
+
+
 <script>
    
 
@@ -116,5 +126,14 @@
         form1.submit();
     }
 
+    function showTheme() {
+        let form1 = document.getElementById("selectTheme");
+        form1.submit();
+    }
+
+    function showSkill() {
+        let form1 = document.getElementById("selectSkill");
+        form1.submit();
+    }
 
 </script>

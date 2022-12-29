@@ -23,10 +23,10 @@ class FavouriteController extends Controller
 
                 $data = array('user_id' => $user_id, 'mission_id' => $mission_id);
                 DB::table('favourite_mission')->Insert($data);
-                return redirect('home')->with('message', 'mission added in favourite!');
+                return redirect()->back();
             } else {
                 Favourite::where('mission_id', '=', $id)->where('user_id', '=', Auth::user()->user_id)->delete();
-                return redirect('home')->with('message', 'mission unfavourite!');
+                return redirect()->back();
             }
         } else {
             return redirect('login');

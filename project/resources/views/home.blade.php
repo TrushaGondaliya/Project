@@ -22,7 +22,8 @@
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="{{$missions->previousPageUrl()}}" aria-label="prevoius">
+               
+                <a class="page-link" aria-disabled="false" href="{{$missions->previousPageUrl()}}" aria-label="prevoius">
                     <span aria-hidden="true">&lsaquo;</span>
                 </a>
             </li>
@@ -34,8 +35,10 @@
             @endif
             @endfor
                 <li class="page-item">
+                    
                    
-                    <a class="page-link" href="{{$missions->nextPageUrl()}}" aria-label="Next">
+                    <a class="page-link" aria-disabled="false" href="{{$missions->nextPageUrl()}}" aria-label="Next">
+                      
                    
                         <span aria-hidden="true">&rsaquo;</span>
                     </a>
@@ -47,6 +50,8 @@
                 </li>
         </ul>
     </div>
+
+   
 
 <br>
 <hr>
@@ -65,7 +70,7 @@
         alert(msg);
     }
 
-    
+   
 
 </script>
 

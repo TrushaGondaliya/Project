@@ -15,6 +15,9 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Favourite;
 use App\Models\Media;
+use App\Models\Missionskill;
+use App\Models\Skill;
+use App\Models\Theme;
 use PhpParser\Node\Expr\List_;
 use Termwind\Components\Li;
 
@@ -70,7 +73,20 @@ class MissionController extends Controller
                
                 $name = Country::where('name', request()->input('country'))->pluck('country_id');
                 $missions=Mission:: where(['country_id' => $name]);
-                }
+            }
+            if (request()->has('theme') && !empty(request()->input('theme'))) {
+               
+                $name = Theme::where('title', request()->input('theme'))->pluck('mission_theme_id');
+                $missions=Mission:: where(['theme_id' => $name]);
+            }
+
+            if (request()->has('skill') && !empty(request()->input('skill'))) {
+               
+                $skill_id = Skill::where('skill_name', request()->input('skill'))->pluck('skill_id');
+                $mission_id = Missionskill::where('skill_id', $skill_id)->pluck('mission_id');
+                $missions = Mission::whereIn('mission_id', $mission_id);
+            }
+           
                 if (request()->has('city') && !empty(request()->input('city'))) {
                 $name = City::where('name', request()->input('city'))->pluck('city_id');
 

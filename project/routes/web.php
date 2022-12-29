@@ -14,6 +14,7 @@ use App\Http\Controllers\ChangepassController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InviteController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LostController;
 use App\Http\Controllers\MissionController;
@@ -79,7 +80,6 @@ Route::get('logout',[LogoutController::class,'destroy'])->name('logout');
 
 
 
-
 Route::get('mission_listing',[HomeController::class,'mission_listing']);
 Route::get('volunteering/{id}',[ VolunteeringController::class, 'vol']);
 Route::get('register',[RegisterController::class,'register']);
@@ -114,6 +114,8 @@ Route::get('contactUs',function(Request $request){
         dd('error');
     }
 });
+Route::get('Invite', [InviteController::class, 'invite'])->name('Invite');
+Route::get('InviteStory', [InviteController::class, 'invite_story'])->name('InviteStory');
 Route::post('get-cities-by-country',[AdminmissionController::class,'getCity']);
 
 Route::get('add-app/{id}',[AdminmissionController::class,'add_app']);
@@ -137,7 +139,11 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('timesheet',[TimesheetController::class,'timesheet']);
     Route::post('add-time',[TimesheetController::class,'add']);
     Route::post('add-goal',[TimesheetController::class,'add_goal']);
-    Route::get('edit-goal',[TimesheetController::class,'edit_goal']);
+    Route::get('edit-goal/{id}',[TimesheetController::class,'edit_goal']);
+    Route::put('update-goal', [TimesheetController::class, 'update_goal']);
+    Route::get('edit-time/{id}',[TimesheetController::class,'edit_time']);
+    Route::put('update-time', [TimesheetController::class, 'update_time']);
+    Route::post('delete-time', [TimesheetController::class, 'delete_time']);
 
     Route::get('add-cms',[CmsController::class,'add']);
    Route::post('add-cms',[CmsController::class,'cms_add']);

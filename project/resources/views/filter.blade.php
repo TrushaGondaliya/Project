@@ -11,10 +11,8 @@
                                 @else
                                 <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
                                 @endif
-                                <div class='d-flex align-items-center third-txt p-2'>
-                                    <a href="">
+                                <div class='d-flex align-items-center third-txt p-2 invite'>
                                         <img src="/images/user.png" class='img-fluid img-card'>
-                                    </a>
                                 </div>
                                 <div class="d-flex align-items-center second-txt p-2">
                                     <a href="{{url('favourite/'.$mission->mission_id)}}">
@@ -185,10 +183,93 @@
                 @endforeach
 </div>
 
+<div class="popup">
+            <div class="popup-close-btn"></div>
+            <div class="popup-content"></div>
+        </div>
+        <div class="for-call-popup">
+            <form action="{{url('Invite')}}" class="call-popup">
+                <h3>Contact Us</h3>
+                <br>
+                <label for="mission">Mission</label>
+                @php 
+                $missions=App\Models\Mission::all()
+                @endphp
+                <div><select class="story-input" aria-placeholder="Select your Mission"  name="mission_id">
+                    @foreach($missions as $mission)
+                            <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
+                    @endforeach
+                        </select></div>
+                        <br>
+
+                        <label for="mission">User</label>
+                @php 
+                $users=App\Models\User::all()
+                @endphp
+                <div><select class="story-input" aria-placeholder="Select your User"  name="user_id">
+                    @foreach($users as $user)
+                            <option value="{{$user->user_id}}" class="story-input">{{$user->full_name}}</option>
+                    @endforeach
+                        </select></div>
+                        <br>
+
+                <div class="popup-btn-contact">
+                    <input type="submit" class="popup-button" name="" value="cancel" id="">
+                    <input type="submit" class="contact-button-1" value="Invite" name="" id="">
+                </div>
+            </form>
+        </div>
+        <div class="overlay"></div>
+
 <script>
     $(document).ready(function(){ 
         $('.cus_rating').click(function(){
            $('#form_'+$(this).attr("cusId")).submit();
         });
     })
+
+    $(function() {
+            var p = new Popup({
+                popup: '.popup',
+                content: '.popup-content',
+                overlay: '.overlay',
+            });
+
+           
+
+            $('.invite').click(function() {
+                var form = $('.for-call-popup');
+                p.open(form.html());
+            });
+
+            $('.popup-close-btn').click(function() {
+                p.close();
+            });
+        });
+
+        function Popup(Obj) {
+            this.popup = $(Obj.popup);
+            this.content = $(Obj.content);
+            this.overlay = $(Obj.overlay);
+
+            var pop = this;
+
+            this.open = (function(content) {
+                pop.content.html(content);
+                pop.popup.addClass('open').fadeIn(1000);
+                pop.overlay.addClass('open');
+            });
+
+            this.close = (function() {
+                pop.popup.removeClass('open');
+                pop.overlay.removeClass('open');
+            });
+
+            this.overlay.click(function(e) {
+                if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
+                    pop.close();
+                }
+            });
+        }
+    
 </script>

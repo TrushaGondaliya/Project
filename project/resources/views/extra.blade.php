@@ -20,6 +20,12 @@
         @if(request()->city)
         <span class="mission mission-text " id="city_tag"><span style="padding-right: 5px;">{{request()->city}}</span><img src="/images/cancel.png" id="clear"></span>
         @endif
+        @if(request()->theme)
+        <span class="mission mission-text " id="theme_tag"><span style="padding-right: 5px;">{{request()->theme}}</span><img src="/images/cancel.png" id="clear"></span>
+        @endif
+        @if(request()->skill)
+        <span class="mission mission-text " id="skill_tag"><span style="padding-right: 5px;">{{request()->skill}}</span><img src="/images/cancel.png" id="clear"></span>
+        @endif
         @if(request()->search)
         <span class="mission mission-text " id="search_tag"><span style="padding-right: 5px;">{{request()->search}}</span><img src="/images/cancel.png" id="clear"></span>
         @endif
@@ -73,25 +79,14 @@ $mission=App\Models\Mission::all()
 
 
 <script>
-        $(document).ready(function(){
-        $('#select1').on('submit',function(){
-            var cou_name=$(this).find('option:selected').text();
-            console.log(cou_name);
-            $.ajax({
-           
-                success:function(data){
-                    
-                    $('#country_tag').append('<div class="mission mission-text" ><span style="padding-right: 5px;" id="country_tag">'+cou_name+ '</span><img src="/images/cancel.png" id="clear"></div>'); 
-            
-                }
-            })
-        })
-    })
+       
     $(document).ready(function() {
         $('#clear').on('click', function() {
             $('#country_tag').remove();
             $('#city_tag').remove();
             $('#search_tag').remove();
+            $('#theme_tag').remove();
+            $('#skill_tag').remove();
         });
         $('#clear1').on('click', function() {
             $('.extra1').remove();
@@ -120,6 +115,8 @@ $mission=App\Models\Mission::all()
             $('#city_tag').remove();
             $('.mission').remove();
             $('#search_tag').remove();
+            $('#theme_tag').remove();
+            $('#skill_tag').remove();
         })
     })
 

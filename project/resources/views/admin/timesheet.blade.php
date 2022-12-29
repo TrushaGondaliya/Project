@@ -7,6 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{url('css/index.css')}}">
     <link rel="stylesheet" href="{{url('css/index1.css')}}">
+    <link href="{{url('assets/css/styles.css')}}" rel="stylesheet">
+    <link href="{{url('assets/css/admin.css')}}" rel="stylesheet">
+    <link href="{{url('assets/css/custom.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -63,7 +66,7 @@
               </div>
               <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" style="font-size: 15px;" href="#"
                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Evan Donohue
+                  {{Auth::user()->full_name}}
                   <!-- {{Session::get('name')}} -->
                   
               </a>
@@ -91,7 +94,7 @@
                 </div>
             <p class="time-text">Volunteering Hours</p>
              
-            <table class="table" >
+            <table class="table" id="myTable">
                 <thead>
                     <th>Mission</th>
                     <th>Date</th>
@@ -101,12 +104,15 @@
                 </thead>
                 @foreach($timesheet as $time)
         @if($time->time!=null)
-                <tbody>
-                    <td>{{$time->mission->title}}</td>
-                    <td>{{$time->date_volunteered->format('d/m/Y')}}</td>
-                    <td>{{substr($time->time,0,2)}}</td>
-                    <td>{{substr($time->time,3,4)}}</td>
-                    <td><a href=""><img style="width: 14px; height:17px" src="\images\bin.png"></a>   <span class="time"><img  style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg"></span></td>
+                <tbody class="data-row">
+                    <td id="title">{{$time->mission->title}}</td>
+                    <td class="date">{{$time->date_volunteered->format('d/m/Y')}}</td>
+                    <td class="hour">{{substr($time->time,0,2)}}</td>
+                    <td class="minutes">{{substr($time->time,3,4)}}</td>
+                    <td style="display:   inline-flex;"> 
+                    <button value="{{$time->timesheet_id}}" class="delete-btn deleteCategorybtn edit-btn"><img style="width: 14px; height:17px;" src="\images\bin.png">
+                    </button> 
+                     <button value="{{$time->timesheet_id}}" class="time edit-btn" data-toggle="modal"  data-target="#edit-modal"><img  style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg"></button></td>
                     
                 </tbody>
                 @endif
@@ -132,9 +138,10 @@
                     <td>{{$goal->mission->title}}</td>
                     <td>{{$goal->date_volunteered->format('d/m/Y')}}</td>
                     <td>{{$goal->action}}</td>
-                    <td><a><img style="width: 14px; height:17px" src="\images\bin.png"></a>  
-                    <span class="timesheet_goal"><img style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg">
-                    </span>  
+                    <td><button value="{{$time->timesheet_id}}" class="delete-btn deleteCategorybtn edit-btn"><img style="width: 14px; height:17px;" src="\images\bin.png">
+                    </button>   
+                    <button value="{{$goal->timesheet_id}}"  class="timesheet_goal edit-btn"><img style="width: 14px; height:17px;cursor:pointer" src="\images\edit.jpg">
+                    </button>  
                     </a></td>
                 </tbody>
                 @endif
@@ -148,7 +155,41 @@
 </body>
 </html>
 
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content1">
+            <form action="{{url('admin/delete-time')}}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="popup-title" id="exampleModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="timesheet_id" id="timesheet_id">
+                    <span class="cms-pupop-text">Are you sure you want to delete this item?</span>
+                </div>
+                <div class="popup-btn">
+                    <button type="button" class="popup-btn1" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="popup-btn2">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+<script>
+    $(document).ready(function() {
+        $('.deleteCategorybtn').click(function(e) {
+            // $(document).on('click','',function(e){
+
+            // e.preventDefault();
+
+            var timesheet_id = $(this).val();
+            $('#timesheet_id').val(timesheet_id);
+            $('#deleteModal').modal('show');
+        });
+    });
+</script>
 
 
         <!-- popup for edit goal user -->
@@ -158,25 +199,27 @@
             <div class="popup_goal-content"></div>
         </div>
         <div class="for-call-popup">
-            <form action="{{url('edit-goal')}}" method="POST" id="editGoal" class="call-popup">
+            <form action="{{url('admin/update-goal')}}" method="POST" id="editGoal" class="call-popup">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="id" id="id">
                 <h3>Please Input below volunteering Goal</h3>
                  
                 <label for="mission">Mission</label>
-                <div><select class="story-input" aria-placeholder="Select your Mission"id="mission_id" name="mission_id">
-                            <option value="" class="story-input">Plantation and Afforestation Programme</option>
-                            <option value="">mission1</option>
-                            <option value="">mission2</option>
-                            <option value="">mission3</option>
-                            <option value="">mission4</option>
+                @php 
+                $missions=App\Models\Mission::all()
+                @endphp
+                <div><select class="story-input" aria-placeholder="Select your Mission"  name="mission_id" id="mission_id">
+                    @foreach($missions as $mission)
+                            <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
+                    @endforeach
                         </select></div>
                         <br>
                 <label for="">Actions</label>
                 <input type="text" id="action" name="action" class="story-input" placeholder="Enter Actions">
                 <br><br>
                 <label>Date Volunteerd</label>
-                <input type="date" id="date_volunteered" id="date_volunteered" class="story-input">
+                <input type="text" name="date_volunteered" id="date_volunteered" class="story-input">
                 <br><br>
                 <label>Message</label>
                 <input type="text" id="notes" name="notes" class="story-input-div" placeholder="Message">
@@ -199,15 +242,24 @@
        
             });
 
-          
-
             $('.timesheet_goal').click(function() {
+                var id=$(this).val();
                 var form = $('.for-call-popup');
                 p.open(form.html());
+                $.ajax({
+                    type:"GET",
+                    url:"/admin/edit-goal/"+id,
+                    success:function(response){
+                        console.log(response);
+                        $('#mission_id').val(response.time.mission_id);
+                        $('#date_volunteered').val(response.time.date_volunteered);
+                        $('#action').val(response.time.action);
+                        $('#notes').val(response.time.notes);
+                        $('#id').val(response.time.timesheet_id);
+                    }
+                })
                 
             });
-
-        
 
             $('.popup-close-btn').click(function() {
                 p.close();
@@ -340,43 +392,47 @@
 
         <!-- popup for edit time user -->
 
-<div class="timesheet_popup">
+<div class="timesheet_popup" id="edit-modal">
             <div class="popup-close-btn"></div>
             <div class="popup-content"></div>
         </div>
         <div class="for-time-popup">
-            <form action="" class="call-popup">
+            <form action="{{url('admin/update-time')}}" method="post" class="call-popup">
+                @csrf
+                @method('put')
                 <h3>Please Input below volunteering Hours</h3>
+                <input type="hidden" name="id" id="id">
+                
                 <label for="mission">Mission</label>
-                <div><select class="story-input" aria-placeholder="Select your Mission" id="">
-                   
-                            <option value="" class="story-input">Faith Community Belowship</option>
-                            <option value="">mission1</option>
-                            <option value="">mission2</option>
-                            <option value="">mission3</option>
-                            <option value="">mission4</option>
+                @php 
+                $missions=App\Models\Mission::all()
+                @endphp
+                <div><select class="story-input" aria-placeholder="Select your Mission" id="mission_id"  name="mission_id">
+                    @foreach($missions as $mission)
+                    <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
+                    @endforeach
                         </select></div>
                         <br>
                 
                 <label>Date Volunteerd</label>
-                <input type="date" class="story-input">
+                <input type="text" class="story-input" id="date" name="date_volunteered">
                 <br><br>
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                     <label>Hours</label>
-                <input type="text" class="story-input" placeholder="Enter Spent Hours">
+                <input type="text" class="story-input" id="hours" name="time" placeholder="Enter Spent Hours">
                     </div>
                     <div class="col-lg-6 col-md-6">
                     <label>Minutes</label>
-                <input type="text" class="story-input" placeholder="Enter Spent Minutes">
+                <input type="text" class="story-input" id="minutes" name="minutes" placeholder="Enter Spent Minutes">
                     </div>
                 </div>
                 <br>
                 <label>Message</label>
-                <input type="text" class="story-input-div" placeholder="Enter Your Message">
+                <input type="text" class="story-input-div" id="message" name="notes" placeholder="Enter Your Message">
                 <br>
                 <div class="timesheet_btn">
-                <input type="submit" class="timesheet_btn1" value="Cancel" name="" id="">
+                <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
                 <input type="submit" class="timesheet_btn2" name="" value="Submit" id="">
                 </div>
             </form>
@@ -391,15 +447,28 @@
                 popup: '.timesheet_popup',
                 content: '.popup-content',
                 overlay: '.overlay',
-            });
-
-            $('.time').click(function() {
-                var form = $('.for-time-popup');
-                p.open(form.html());
                 
             });
 
-        
+
+            $('.time').click(function() {
+                var id=$(this).val();
+                var form = $('.for-time-popup');
+                p.open(form.html());
+                $.ajax({
+                    type:"GET",
+                    url:"/admin/edit-time/"+id,
+                    success:function(response){
+                        console.log(response);
+                        $('#mission_id').val(response.time.mission_id);
+                     $('#date').val(response.time.date_volunteered);
+                        $('#hours').val(response.time.time);
+                        $('#message').val(response.time.notes);
+                        $('#id').val(response.time.timesheet_id);
+                    }
+                })
+            });
+
 
             $('.popup-close-btn').click(function() {
                 p.close();

@@ -12,11 +12,13 @@ style.innerHTML = `
   background-repeat: no-repeat;
   background-position: right .75rem center;
   background-size: 16px 12px;
+  width:170px !important
 }
 
 @media (max-width:768px) {
   .multiselect-dropdown{
     border-left: none;
+    width:100px !important
   }
 }
 
@@ -105,7 +107,7 @@ function MultiselectDropdown(options){
   var config={
     search:true,
     height:'15rem',
-    placeholder:'City',
+    placeholder: $(this).attr('placeholder'),
     txtSelected:'selected',
     txtAll:'All',
     txtRemove: 'Remove',

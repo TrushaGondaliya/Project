@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="body-1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" />
 
         <hr style="margin:0">
         <!-- Volunteering mission listing -->
@@ -20,35 +21,68 @@
                                 @else
                                 <img src="/images/{{$media->media_name}}" class="vol-main-img" alt="...">
                                 @endif
-                        <div class="row ">
-                            <div class="column col-md-3 col-3 stories">
-                                <div class="parent">
-                                    <div id="opacity_div">
-                                        <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png" class="story-img" alt="">
-                                    </div>
-                                    <div class="half-fade-1">
-                                        <img src="/images/left1.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;">
-                                <img src="/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png" class="story-img" alt="">
-                            </div>
-                            <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;">
-                                <img src="/images/img1.png" class="story-img " style="padding-left: 0;" alt="">
-                            </div>
+                                <div id="gallery" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="row">
+                <div class="col" style="padding: 0px;">
+                <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png" class="story-img " alt="">
+                </div>
 
-                            <div class="column col-md-3 col-3 col-sm-3 col-lg-3 stories" style="padding-left: 0;padding-right:5px;">
-                                <div class="parent">
-                                    <div id="opacity_div">
-                                        <img src="/images/img11.png" class="story-img " alt="">
-                                    </div>
-                                    <div class="half-fade">
-                                        <img src="/images/right-arrow2.png" alt="">
-                                    </div>
-                                </div>
+                <div class="col" style="padding: 0px;">
+                <img src="/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png" class="story-img" alt="">
+
+                </div>
+
+                <div class="col" style="padding: 0px;">
+                <img src="/images/img1.png" class="story-img " style="padding-left: 0;" alt="">
+                </div>
+
+                <div class="col" style="padding: 0px;">
+                <img src="/images/img11.png" class="story-img " alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+        <div class="row">
+                <div class="col" style="padding: 0px;">
+                <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png" class="story-img " alt="">
+                </div>
+
+                <div class="col" style="padding: 0px;">
+                <img src="/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png" class="story-img" alt="">
+
+                </div>
+
+                <div class="col" style="padding: 0px;">
+                <img src="/images/img1.png" class="story-img " style="padding-left: 0;" alt="">
+                </div>
+
+                <div class="col" style="padding: 0px;">
+                <img src="/images/img11.png" class="story-img " alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#gallery" role="button" data-slide="prev">
+                        <div class="parent">
+                            <div class="half-fade-1">
+                                <img src="/images/left1.png" alt="">
                             </div>
-                        </div><br><br>
+                        </div>
+                    </a>
+
+                    <a class="carousel-control-next" href="#gallery" role="button" data-slide="next">
+                        <div class="parent">
+                            <div class="half-fade">
+                                <img src="/images/right-arrow2.png" alt="">
+                            </div>
+                        </div>
+                    </a>
+</div>
+<br><br>
                     </div>
 
                     <div class="column col-lg-6 col-md-6">
@@ -587,3 +621,4 @@
     </div>
 
     @endsection
+
