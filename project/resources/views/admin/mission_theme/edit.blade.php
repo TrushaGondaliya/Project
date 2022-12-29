@@ -27,6 +27,8 @@
                     
                     <label class="cms-label">Theme Name</label>
                     <input class="cms-input" type="text" name="title" value="{{$item->title}}">
+                    <span class="cms-label">User Skills</span>
+                   
                     <label class="cms-label" >Status</label>
                     <select class="cms-input" name="status">
                 <option value="{{$item->status}}">{{$item->status}}</option>

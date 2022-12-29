@@ -30,7 +30,7 @@ class RatingController extends Controller
                         
                      }
                 
-                return redirect('home')->with('message','rating successfully!');
+                return redirect()->back();
         }
  
 }

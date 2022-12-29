@@ -9,8 +9,10 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Favourite;
 use App\Models\Mission;
+use App\Models\Skill;
 use App\Models\Story;
 use App\Models\User;
+use App\Models\Userskill;
 // use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,14 +74,22 @@ class UserController extends Controller
             $user->profile_text = $data['profile_text'];
             $user->status = $data['status'];
             $user->save();
+
+            foreach ($request->skill_id as $index) {
+                $skill = new Userskill();
+                $skill->user_id = $user->user_id;
+                $skill->skill_id = $index;
+                $skill->save();
+            }
             return redirect('admin/user')->with('message', 'user added succesfully');
         }
 
         function edit(Request $request, $user_id)
         {
-
+            $uskill=Userskill::where('user_id', $user_id);
+            $userskill =$uskill->pluck('skill_id')->toArray();
             $user = User::where('user_id', $user_id)->get();
-            return view('admin.users.edit', compact('user'));
+            return view('admin.users.edit', compact('user','userskill'));
         }
 
         function update(UserRequest $request, $user_id)
@@ -113,6 +123,17 @@ class UserController extends Controller
             $user->profile_text = $data['profile_text'];
             $user->status = $data['status'];
             $user->update();
+
+        foreach ($request->skill_id as $index) {
+        $id = $user_id;
+            
+        $skill_id =$index;
+        $skill=array(
+            'user_id'=>$id,
+            'skill_id'=>$skill_id
+        );
+        DB::table('user_skill')->where('user_id',$id)->updateOrInsert($skill);
+        }
             return redirect('admin/user')->with('message', 'user updated succesfully');
         }
 
@@ -129,8 +150,10 @@ class UserController extends Controller
 
         function edit_admin()
         {
+            $uskill=Userskill::where('user_id', Auth::user()->user_id);
+            $userskill =$uskill->pluck('skill_id')->toArray();
             $user = Auth::user();
-            return view('admin/users/edit_profile', compact('user'));
+            return view('admin/users/edit_profile', compact('user','userskill'));
         }
         function update_admin(UserRequest $request)
         {
@@ -163,6 +186,18 @@ class UserController extends Controller
             $user->profile_text = $data['profile_text'];
             $user->status = $data['status'];
             $user->update();
+
+        foreach ($request->skill_id as $index) {
+            $id = Auth::user()->user_id;
+
+            $skill_id = $index;
+            $skill = array(
+                'user_id' => $id,
+                'skill_id' => $skill_id
+            );
+            DB::table('user_skill')->where('user_id', $id)->updateOrInsert($skill);
+        }
+            
             return redirect('admin/user')->with('message', 'user updated succesfully');
         }
     }

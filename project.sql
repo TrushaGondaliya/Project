@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2022 at 04:03 AM
+-- Generation Time: Dec 29, 2022 at 03:35 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -194,12 +194,15 @@ INSERT INTO `favourite_mission` (`favourite_mission_id`, `user_id`, `mission_id`
 (6, 5, 16, '2022-12-01 10:39:20', NULL, NULL),
 (7, 1, 17, '2022-12-01 11:26:23', NULL, NULL),
 (8, 1, 18, '2022-12-01 12:34:27', NULL, NULL),
-(9, 1, 40, '2022-12-02 12:57:47', NULL, NULL),
+(9, 1, 40, '2022-12-02 12:57:47', '2022-12-26 01:24:39', '2022-12-26 01:24:39'),
 (10, 1, 22, '2022-12-05 08:51:02', NULL, NULL),
 (11, 1, 37, '2022-12-05 08:51:11', NULL, NULL),
 (12, 1, 25, '2022-12-06 09:23:58', NULL, NULL),
 (13, 1, 20, '2022-12-06 12:31:03', NULL, NULL),
-(14, 1, 39, '2022-12-07 05:41:25', '2022-12-12 21:40:27', '2022-12-12 21:40:27');
+(14, 1, 39, '2022-12-07 05:41:25', '2022-12-12 21:40:27', '2022-12-12 21:40:27'),
+(15, 1, 39, '2022-12-26 06:52:52', NULL, NULL),
+(16, 8, 35, '2022-12-28 11:50:49', NULL, NULL),
+(17, 8, 37, '2022-12-28 11:51:40', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -367,7 +370,9 @@ INSERT INTO `mission_application` (`mission_application`, `mission_id`, `user_id
 (6, 40, 5, '2022-12-07 12:43:36', 'PENDING', '2022-12-07 12:43:36', NULL, NULL),
 (7, 40, 1, '2022-12-08 03:45:08', 'PENDING', '2022-12-08 03:45:08', NULL, NULL),
 (8, 43, 1, '2022-12-08 03:47:06', 'PENDING', '2022-12-08 03:47:06', NULL, NULL),
-(9, 37, 1, '2022-12-09 12:22:31', 'PENDING', '2022-12-09 12:22:31', NULL, NULL);
+(9, 37, 1, '2022-12-09 12:22:31', 'PENDING', '2022-12-09 12:22:31', NULL, NULL),
+(10, 35, 1, '2022-12-14 03:17:17', 'PENDING', '2022-12-14 03:17:17', NULL, NULL),
+(11, 39, 8, '2022-12-27 07:46:16', 'PENDING', '2022-12-27 07:46:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -442,6 +447,18 @@ CREATE TABLE `mission_invite` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `mission_invite`
+--
+
+INSERT INTO `mission_invite` (`mission_invite_id`, `mission_id`, `from_user_id`, `to_user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 13, 8, 6, '2022-12-26 23:29:23', '2022-12-26 23:29:23', NULL),
+(3, 13, 8, 9, '2022-12-26 23:37:31', '2022-12-26 23:37:31', NULL),
+(4, 13, 8, 9, '2022-12-26 23:37:52', '2022-12-26 23:37:52', NULL),
+(5, 15, 8, 1, '2022-12-26 23:38:21', '2022-12-26 23:38:21', NULL),
+(6, 14, 8, 9, '2022-12-26 23:47:43', '2022-12-26 23:47:43', NULL),
+(7, 17, 8, 1, '2022-12-27 04:16:41', '2022-12-27 04:16:41', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -465,8 +482,8 @@ CREATE TABLE `mission_media` (
 --
 
 INSERT INTO `mission_media` (`mission_media_id`, `mission_id`, `media_name`, `media_type`, `media_path`, `default`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png', 'image/png', '1669698987.png', '0', '2022-11-29 05:26:17', '2022-11-28 23:56:17', '2022-11-28 23:56:17'),
-(2, 10, 'Animal-welfare-&-save-birds-campaign-1.png', 'image/png', '1669710880.png', '0', '2022-11-29 08:34:40', '2022-11-28 02:50:00', NULL),
+(1, 1, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png', 'image/png', '1669698987.png', '1', '2022-12-27 07:43:57', '2022-11-28 23:56:17', '2022-11-28 23:56:17'),
+(2, 10, 'Animal-welfare-&-save-birds-campaign-1.png', 'image/png', '1669710880.png', '1', '2022-12-27 07:44:07', '2022-11-28 02:50:00', NULL),
 (3, 11, 'Animal-welfare-&-save-birds-campaign-1.png', 'image/png', '1669635507.png', '0', '2022-11-28 11:41:44', '2022-11-28 06:11:44', '2022-11-28 06:11:44'),
 (5, 13, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png', 'image/png', '1669700488.png', '0', '2022-11-29 00:11:28', '2022-11-29 00:11:28', NULL),
 (6, 14, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png', 'image/png', '1669710442.png', '0', '2022-11-29 02:57:22', '2022-11-29 02:57:22', NULL),
@@ -490,10 +507,10 @@ INSERT INTO `mission_media` (`mission_media_id`, `mission_id`, `media_name`, `me
 (24, 43, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669884837.png', '0', '2022-12-01 03:23:57', '2022-12-01 03:23:57', NULL),
 (25, 43, 'Grow-Trees-On-the-path-to-environment-sustainability.png', 'image/png', '1669884837.png', '0', '2022-12-01 03:23:57', '2022-12-01 03:23:57', NULL),
 (26, 43, 'Grow-Trees-On-the-path-to-environment-sustainability-login.png', 'image/png', '1669884837.png', '0', '2022-12-01 03:23:57', '2022-12-01 03:23:57', NULL),
-(27, 42, 'Grow-Trees-On-the-path-to-environment-sustainability-4.png', 'image/png', '1669886085.png', '0', '2022-12-01 09:14:45', NULL, NULL),
-(28, 42, 'img.png', 'image/png', '1669886085.png', '0', '2022-12-01 09:14:45', NULL, NULL),
-(29, 42, 'img11.png', 'image/png', '1669886085.png', '0', '2022-12-01 09:14:45', NULL, NULL),
-(30, 42, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png', 'image/png', '1669886136.png', '0', '2022-12-01 09:15:36', NULL, NULL),
+(27, 42, 'Grow-Trees-On-the-path-to-environment-sustainability-4.png', 'image/png', '1669886085.png', '1', '2022-12-27 07:44:50', NULL, NULL),
+(28, 42, 'img.png', 'image/png', '1669886085.png', '1', '2022-12-27 07:44:54', NULL, NULL),
+(29, 42, 'img11.png', 'image/png', '1669886085.png', '1', '2022-12-27 07:44:58', NULL, NULL),
+(30, 42, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png', 'image/png', '1669886136.png', '1', '2022-12-27 07:45:08', NULL, NULL),
 (31, 42, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669886136.png', '0', '2022-12-01 09:15:36', NULL, NULL),
 (32, 37, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669886436.png', '0', '2022-12-01 09:20:36', NULL, NULL),
 (33, 37, 'Grow-Trees-On-the-path-to-environment-sustainability.png', 'image/png', '1669886436.png', '0', '2022-12-01 09:20:36', NULL, NULL),
@@ -521,7 +538,20 @@ CREATE TABLE `mission_rating` (
 --
 
 INSERT INTO `mission_rating` (`mission_rating_id`, `user_id`, `mission_id`, `rating`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 10, '3', '2022-12-01 12:30:33', '2022-12-01 07:00:33', NULL);
+(1, 1, 10, '3', '2022-12-01 12:30:33', '2022-12-01 07:00:33', NULL),
+(2, 1, 40, '3', '2022-12-14 23:52:28', '2022-12-14 23:52:28', NULL),
+(3, 1, 37, '4', '2022-12-14 23:52:33', '2022-12-14 23:52:33', NULL),
+(4, 1, 39, '3', '2022-12-26 09:09:51', '2022-12-26 03:39:51', NULL),
+(5, 1, 13, '3', '2022-12-15 00:26:58', '2022-12-15 00:26:58', NULL),
+(6, 1, 15, '3', '2022-12-15 05:57:49', '2022-12-15 00:27:49', NULL),
+(7, 1, 23, '5', '2022-12-15 00:27:24', '2022-12-15 00:27:24', NULL),
+(8, 5, 39, '3', '2022-12-15 00:28:30', '2022-12-15 00:28:30', NULL),
+(9, 5, 18, '2', '2022-12-15 00:42:40', '2022-12-15 00:42:40', NULL),
+(10, 1, 35, '3', '2022-12-26 05:34:21', '2022-12-26 05:34:21', NULL),
+(11, 1, 38, '1', '2022-12-26 05:45:22', '2022-12-26 05:45:22', NULL),
+(12, 8, 39, '3', '2022-12-26 23:49:25', '2022-12-26 23:49:25', NULL),
+(13, 8, 35, '2', '2022-12-27 00:15:12', '2022-12-27 00:15:12', NULL),
+(14, 8, 23, '3', '2022-12-27 00:15:23', '2022-12-27 00:15:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -737,6 +767,15 @@ CREATE TABLE `story_invite` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `story_invite`
+--
+
+INSERT INTO `story_invite` (`story_invite_id`, `story_id`, `from_user_id`, `to_user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 2, 8, 8, '2022-12-27 02:57:20', '2022-12-27 02:57:20', NULL),
+(2, 3, 8, 1, '2022-12-27 04:12:08', '2022-12-27 04:12:08', NULL),
+(3, 3, 8, 1, '2022-12-27 04:14:37', '2022-12-27 04:14:37', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -792,39 +831,12 @@ CREATE TABLE `timesheet` (
 --
 
 INSERT INTO `timesheet` (`timesheet_id`, `user_id`, `mission_id`, `time`, `action`, `date_volunteered`, `notes`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 2, 10, '19:14:00', NULL, '2022-12-16', 'abcdef', 'APPROVED', '2022-12-05 04:10:46', '2022-12-05 04:10:46', NULL),
-(2, 2, 13, NULL, 6, '2022-12-31', 'jjfdf', 'APPROVED', '2022-12-05 04:15:04', '2022-12-05 04:15:04', NULL),
+(1, 2, 17, '07:14:00', NULL, '2022-12-17', 'Trusha Gondaliya', 'APPROVED', '2022-12-28 08:42:16', '2022-12-28 03:12:16', NULL),
+(2, 2, 13, NULL, 6, '2022-12-31', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-28 08:54:52', '2022-12-28 03:24:52', NULL),
 (3, 2, 14, '18:18:00', NULL, '2023-01-07', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-05 04:16:14', '2022-12-05 04:16:14', NULL),
 (4, 2, 17, '01:37:00', NULL, '2022-12-18', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-05 04:37:58', '2022-12-05 04:37:58', NULL),
-(5, 2, 17, NULL, 3, '2022-12-17', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-05 06:39:52', '2022-12-05 06:39:52', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `first_name` varchar(16) DEFAULT NULL,
-  `last_name` varchar(16) DEFAULT NULL,
-  `email` varchar(128) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `phone_number` int(11) NOT NULL,
-  `avtar` varchar(2048) DEFAULT NULL,
-  `why_i_volunteer` text DEFAULT NULL,
-  `employee_id` varchar(16) DEFAULT NULL,
-  `department` varchar(16) DEFAULT NULL,
-  `city_id` bigint(20) UNSIGNED NOT NULL,
-  `country_id` bigint(20) UNSIGNED NOT NULL,
-  `profile_text` text DEFAULT NULL,
-  `linked_in_url` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `status` enum('0','1') NOT NULL DEFAULT '1',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(5, 2, 17, NULL, 3, '2022-12-17', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-28 09:21:08', '2022-12-28 03:51:08', '2022-12-28 03:51:08'),
+(6, 2, 15, '17:29:00', NULL, '2022-12-17', 'Trusha Gondaliya', 'APPROVED', '2022-12-28 09:11:50', '2022-12-28 03:41:50', '2022-12-28 03:41:50');
 
 -- --------------------------------------------------------
 
@@ -863,7 +875,9 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, 
 (2, 'Harsh', 'Gondaliya', 'harsh@gmail.com', '$2y$10$U0zp/n1GyhDe5eA/9GANP.vpMEbQ592zGw4R9HkeRrHbeQ20o1W3O', '9909876568', '1669293016.jpeg', 'Meet New People and Build Community', '1234abcd', 'managment', 2, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'harsh Gondaliya', 'community', '1', '2022-11-21 23:17:45', '2022-12-02 07:16:31', NULL),
 (5, 'Alis', 'Bhatt', 'alisbhatt@gmail.com', '$2y$10$XXE/gUxm/ulY2joTGxw5ceXDCSuGPTevuJxUyBLXfnPhk6ET31hq2', '1234567890', '1669811265.png', 'Gain Knowledge and Understanding of Other Ways of Life', 'abc54', 'HR', 5, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'Alis Bhatt', 'ways of life', '0', '2022-11-30 06:57:45', '2022-12-02 07:17:55', NULL),
 (6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p>The more opportunities you take to learn new skills and gain knowledge, the more fully you will develop as a person. And what safer space to develop those skills than in a context of service?</p>\r\n<p>Stepping out of your comfort zone and building new skills is the best way to develop your self-esteem. Volunteering will increase your sense of pride and thus, your self-confidence! When you challenge yourself through volunteering and receive appreciation from others, it can make you feel better emotionally and mentally.&nbsp;</p>\r\n<p>&nbsp;</p>', 'Arshi Sharma', 'self-Esteem', '1', '2022-12-01 02:35:33', '2022-12-02 07:19:00', NULL),
-(7, 'Robert', 'Smith', 'robert@gmail.com', '$2y$10$jeE8ohpFAb56HnZmcFsYJ.wz.zV7CwggUJg6jMBxUSeAloOWQ8vXO', '8897645682', '1670567806.png', 'Meet New People and Build Community', '1234abc', 'HR', 4, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>', 'robert smith', 'xyz', '0', '2022-12-09 01:06:46', '2022-12-09 01:06:46', NULL);
+(7, 'Robert', 'Smith', 'robert@gmail.com', '$2y$10$jeE8ohpFAb56HnZmcFsYJ.wz.zV7CwggUJg6jMBxUSeAloOWQ8vXO', '8897645682', '1670567806.png', 'Meet New People and Build Community', '1234abc', 'HR', 4, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>', 'robert smith', 'xyz', '0', '2022-12-09 01:06:46', '2022-12-09 01:06:46', NULL),
+(8, 'Bansi', 'Raiyani', 'bansiraiyani9963@gmail.com', '$2y$10$GiZGT1aD/cenFTbFXNjXOOaU5115GGjyxV.WVGi3VVyOdCmzhKxs.', '123456789', '1672116342.png', 'Meet New People and Build Community', '1234abc', 'HR', 2, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&amp;rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'bansi raiyani', 'abcd', '0', '2022-12-26 23:15:42', '2022-12-26 23:15:42', NULL),
+(9, 'Ritika', 'Parmar', 'ritikaparmar406@gmail.com', '$2y$10$oM12WyOFjEGUqELC00ZGGuvXLcifiR11LFs5YFmtFmFB1x.64.3da', '7864257907', '1672116419.png', 'Boost Your Self-Esteem', '1234abc', 'electrical', 5, 2, '<p>&lt;p&gt;Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&amp;rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.&lt;/p&gt;</p>', 'ritika parmar', 'loream', '0', '2022-12-26 23:16:59', '2022-12-26 23:16:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -1058,14 +1072,6 @@ ALTER TABLE `timesheet`
   ADD KEY `timesheet_mission_id_foreign` (`mission_id`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `user_city_id` (`city_id`),
-  ADD KEY `user_country_id` (`country_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1119,7 +1125,7 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `favourite_mission`
 --
 ALTER TABLE `favourite_mission`
-  MODIFY `favourite_mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `favourite_mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `goal_mission`
@@ -1143,7 +1149,7 @@ ALTER TABLE `missions`
 -- AUTO_INCREMENT for table `mission_application`
 --
 ALTER TABLE `mission_application`
-  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `mission_document`
@@ -1155,7 +1161,7 @@ ALTER TABLE `mission_document`
 -- AUTO_INCREMENT for table `mission_invite`
 --
 ALTER TABLE `mission_invite`
-  MODIFY `mission_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `mission_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mission_media`
@@ -1167,7 +1173,7 @@ ALTER TABLE `mission_media`
 -- AUTO_INCREMENT for table `mission_rating`
 --
 ALTER TABLE `mission_rating`
-  MODIFY `mission_rating_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mission_rating_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mission_skill`
@@ -1203,7 +1209,7 @@ ALTER TABLE `story`
 -- AUTO_INCREMENT for table `story_invite`
 --
 ALTER TABLE `story_invite`
-  MODIFY `story_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `story_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `story_media`
@@ -1215,19 +1221,13 @@ ALTER TABLE `story_media`
 -- AUTO_INCREMENT for table `timesheet`
 --
 ALTER TABLE `timesheet`
-  MODIFY `timesheet_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `timesheet_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_skill`
@@ -1289,9 +1289,9 @@ ALTER TABLE `mission_document`
 -- Constraints for table `mission_invite`
 --
 ALTER TABLE `mission_invite`
-  ADD CONSTRAINT `mission_invite_from_user_id_foreign` FOREIGN KEY (`from_user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `mission_invite_from_user_id_foreign` FOREIGN KEY (`from_user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `mission_invite_mission_id_foreign` FOREIGN KEY (`mission_id`) REFERENCES `missions` (`mission_id`),
-  ADD CONSTRAINT `mission_invite_to_user_id_foreign` FOREIGN KEY (`to_user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `mission_invite_to_user_id_foreign` FOREIGN KEY (`to_user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `mission_media`
@@ -1324,9 +1324,9 @@ ALTER TABLE `story`
 -- Constraints for table `story_invite`
 --
 ALTER TABLE `story_invite`
-  ADD CONSTRAINT `story_invite_from_user_id_foreign` FOREIGN KEY (`from_user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `story_invite_from_user_id_foreign` FOREIGN KEY (`from_user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `story_invite_ibfk_1` FOREIGN KEY (`story_id`) REFERENCES `story` (`story_id`),
-  ADD CONSTRAINT `story_invite_to_user_id_foreign` FOREIGN KEY (`to_user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `story_invite_to_user_id_foreign` FOREIGN KEY (`to_user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `story_media`
@@ -1342,13 +1342,6 @@ ALTER TABLE `timesheet`
   ADD CONSTRAINT `timesheet_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_city_id` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`),
-  ADD CONSTRAINT `user_country_id` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`);
-
---
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
@@ -1359,7 +1352,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_skill`
   ADD CONSTRAINT `user_skill_skill_id_foreign` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`skill_id`),
-  ADD CONSTRAINT `user_skill_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `user_skill_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

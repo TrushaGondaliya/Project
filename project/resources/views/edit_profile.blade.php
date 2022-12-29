@@ -81,6 +81,16 @@
                                 <span class="story-input-text">Why I Volunteer?</span>
                                 <textarea type="text" name="why_i_volunteer" placeholder="Enter Your Comments..." class="story-input-div" id="">{{Auth::user()->why_i_volunteer}}</textarea>
                             </div>
+                            
+                            <span class="cms-label">User Skills</span>
+                        <br>
+                    @php
+                        $skill=App\Models\Skill::all();
+                        @endphp
+                            @foreach($skill as $item)                            
+                            <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}" {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
+                            @endforeach
+                            <br><br>
                             <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Address Information</a> </li>
                             </ul><br>
@@ -115,6 +125,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <ul class="nav nav-tabs-edit">
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Personal Information</a> </li>
                             </ul><br>

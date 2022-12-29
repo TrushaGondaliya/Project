@@ -182,7 +182,7 @@ class AdminmissionController extends Controller
             }
 
 
-        $skill=Skill::where('mission_id',$id);
+        
         foreach ($request->skill_id as $index) {
         $mission_id = $id;
             

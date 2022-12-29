@@ -11,8 +11,10 @@
                                 @else
                                 <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
                                 @endif
-                                <div class='d-flex align-items-center third-txt p-2 invite'>
-                                        <img src="/images/user.png" class='img-fluid img-card'>
+                                <div>
+                                    <button value="{{$mission->mission_id}}" class="invite d-flex align-items-center third-txt p-2">
+                                        <img  src="/images/user.png" class='img-fluid img-card'>
+                                    </button>
                                 </div>
                                 <div class="d-flex align-items-center second-txt p-2">
                                     <a href="{{url('favourite/'.$mission->mission_id)}}">
@@ -58,19 +60,28 @@
                                         <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
                                         <div class="rating-css">
                                             @php
-                                            $rating=App\Models\Rating::where('mission_id',$mission->mission_id)->where('user_id',Auth::user()->user_id)->value('rating');
+                                            $rating=App\Models\Rating::where('mission_id',$mission->mission_id)->sum('rating');
+                                            $count=App\Models\Rating::where('mission_id',$mission->mission_id)->count('mission_id');
+                                            
                                             @endphp
+                                            @if($count!=0)
+                                            @php
+                                            $rate=$rating/$count
+                                            @endphp
+                                            @endif
+                                           
+                                           
                                             <div class="star-icon"> 
                                                     <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating1_{{$mission->mission_id}}" class="fa fa-star @if($rating>=1) checked @endif "></label>
+                                                    <label for="rating1_{{$mission->mission_id}}" class="fa fa-star @if($count!=0) @if($rate>=1) checked @endif @endif"></label>
                                                     <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating2_{{$mission->mission_id}}" class="fa fa-star @if($rating>=2) checked @endif"></label>
+                                                    <label for="rating2_{{$mission->mission_id}}" class="fa fa-star @if($count!=0) @if($rate>=2) checked @endif @endif"></label>
                                                     <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
-                                                    <label for="rating3_{{$mission->mission_id}}" class="fa fa-star @if($rating>=3) checked @endif"></label>
+                                                    <label for="rating3_{{$mission->mission_id}}" class="fa fa-star @if($count!=0) @if($rate>=3) checked @endif @endif"></label>
                                                     <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating4_{{$mission->mission_id}}" class="fa fa-star @if($rating>=4) checked @endif"></label>
+                                                    <label for="rating4_{{$mission->mission_id}}" class="fa fa-star @if($count!=0) @if($rate>=4) checked @endif @endif"></label>
                                                     <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}"/>
-                                                    <label for="rating5_{{$mission->mission_id}}" class="fa fa-star @if($rating>=5) checked @endif"></label>
+                                                    <label for="rating5_{{$mission->mission_id}}" class="fa fa-star @if($count!=0) @if($rate>=5) checked @endif @endif"></label>
                                             </div>
                                         </div>
                                     </form>
@@ -180,9 +191,10 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
-</div>
-
+               
+               
+        @endforeach
+        </div>
 <div class="popup">
             <div class="popup-close-btn"></div>
             <div class="popup-content"></div>
@@ -191,15 +203,10 @@
             <form action="{{url('Invite')}}" class="call-popup">
                 <h3>Contact Us</h3>
                 <br>
-                <label for="mission">Mission</label>
-                @php 
-                $missions=App\Models\Mission::all()
-                @endphp
-                <div><select class="story-input" aria-placeholder="Select your Mission"  name="mission_id">
-                    @foreach($missions as $mission)
-                            <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
-                    @endforeach
-                        </select></div>
+                <input type="hidden" name="mission_id" id="mission_id">
+
+              
+                
                         <br>
 
                         <label for="mission">User</label>
@@ -220,7 +227,7 @@
             </form>
         </div>
         <div class="overlay"></div>
-
+     
 <script>
     $(document).ready(function(){ 
         $('.cus_rating').click(function(){
@@ -238,8 +245,17 @@
            
 
             $('.invite').click(function() {
+                var mission_id = $(this).val();
                 var form = $('.for-call-popup');
                 p.open(form.html());
+                $.ajax({
+                    type:"GET",
+                    url:"invite_mission/"+mission_id,
+                    success:function(response){
+                        console.log(response);
+                        $('#mission_id').val(response.invite.mission_id);
+                    }
+                })
             });
 
             $('.popup-close-btn').click(function() {

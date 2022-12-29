@@ -65,7 +65,6 @@
                         @endphp
                         <select name="city" class="cms-input" id="">
                             <option value="{{Auth::user()->city->name}}"> {{Auth::user()->city->name}}</option>
-
                             @foreach($city as $item1)
                             <option value="{{$item1->name}}"> {{$item1->name}}</option>
                             @endforeach
@@ -79,12 +78,22 @@
                             <option value="{{$item1->name}}"> {{$item1->name}}</option>
                             @endforeach
                         </select>
-
-
+                        <br><br>
+                        <span class="cms-label">User Skills</span>
+                        <br><br>   
+                        @php
+                        $skill=App\Models\Skill::all();
+                        @endphp
+                            @foreach($skill as $item)                            
+                            <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}" {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
+                            @endforeach
+                        <br>
                         <label class="cms-label">Profile Text</label>
                         <div class="cms-textarea">
                             <textarea name="profile_text" class="text-area" id="editor" cols="" rows="">{{Auth::user()->profile_text}}</textarea>
                         </div>
+                        <br>
+                        
                         <label class="cms-label">Status</label>
                         <select class="cms-input" name="status">
                             <option value="{{Auth::user()->status}}">{{Auth::user()->status}}</option>

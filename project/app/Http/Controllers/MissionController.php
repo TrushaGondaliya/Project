@@ -90,7 +90,7 @@ class MissionController extends Controller
                 if (request()->has('city') && !empty(request()->input('city'))) {
                 $name = City::where('name', request()->input('city'))->pluck('city_id');
 
-                $missions=Mission:: whereIn('city_id' , $name);
+                $missions=Mission:: where('city_id' , $name);
                     
                     }
 

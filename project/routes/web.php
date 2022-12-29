@@ -115,6 +115,7 @@ Route::get('contactUs',function(Request $request){
     }
 });
 Route::get('Invite', [InviteController::class, 'invite'])->name('Invite');
+Route::get('invite_mission/{id}', [InviteController::class, 'abc']);
 Route::get('InviteStory', [InviteController::class, 'invite_story'])->name('InviteStory');
 Route::post('get-cities-by-country',[AdminmissionController::class,'getCity']);
 

@@ -860,9 +860,11 @@ padding: 5px 150px 4px -10px;
 }
 
 .Grid {
-
   margin: -1px 0px 5px 0px;
+}
 
+.invite{
+  border: none;
 }
 
 
@@ -985,9 +987,8 @@ padding: 5px 150px 4px -10px;
  
 }
 .footer{
-  width: 100px;
-  height: 15px;
-  margin: 39px 56px 0 220px;
+  height: 30px;
+  margin: 39px 56px 20px 220px;
   font-family: sans-serif;
   font-size: 15px;
   font-weight: 300;
@@ -998,7 +999,10 @@ padding: 5px 150px 4px -10px;
   text-align: left;
   color: #414141;
 }
-
+.contact{
+  border: none;
+  background: none;
+}
 @media (max-width:768px) {
   .footer{
     margin: 39px 56px 0 35px;
@@ -2801,7 +2805,19 @@ textarea{
   transition: opacity .3s;
 }
 
-
+.overlay-c{
+  display: none;
+  opacity: 0;
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity .3s;
+}
 
 
 .overlay-1{
@@ -2819,6 +2835,19 @@ textarea{
 }
 
 .popup{
+  display: none;
+  opacity: 0;
+  width: 586px;
+  height: auto;
+  position: absolute;
+  top: 100px;
+  left: 450px;
+  z-index: 101;
+  transition: opacity .3s;
+  background-color: white;
+  padding: 15px 20px 20px;
+}
+.popup-c{
   display: none;
   opacity: 0;
   width: 586px;
@@ -2883,7 +2912,9 @@ textarea{
 .for-call-popup{
   display: none;
 }
-
+.for-call-popup-c{
+  display: none;
+}
 .for-call-popup-1{
   display: none;
 }
