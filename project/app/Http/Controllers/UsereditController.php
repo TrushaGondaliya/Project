@@ -6,10 +6,12 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\Userskill;
+use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class UsereditController extends Controller
 {
@@ -58,5 +60,23 @@ class UsereditController extends Controller
             DB::table('user_skill')->where('user_id',$id)->updateOrInsert($skill);
             }
         return redirect('edit_profile')->with('message','updated successfully!');
+    }
+
+    function edit(Request $request)
+    {
+      
+        $request->validate([
+
+            'old_password' => ['required', new MatchOldPassword],
+
+            'new_password' => ['required'],
+
+            'confirm_password' => ['same:new_password'],
+
+        ]);
+        User::find(auth()->user()->user_id)->update(['password'=> Hash::make($request->new_password)]);
+
+        return redirect('edit_profile')->with('message','password updated successfully!');
+       
     }
 }

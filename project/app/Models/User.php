@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $table='users';
     protected $primaryKey = 'user_id';
     protected $dates=['deleted_at'];
-
+    protected $fillable = ['password'];
     public $timestamps=true;
 
 

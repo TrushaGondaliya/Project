@@ -2,7 +2,7 @@
 <div class="footer">
 
   <a href="">Privacy</a>
-    <a href="">Policy</a>
+    <a href="{{url('policy_page')}}">Policy</a>
 <button class="contact">Contact Us</button>
 
 </div>

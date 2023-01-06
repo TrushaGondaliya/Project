@@ -18,7 +18,14 @@
                 <div class="row col-lg-12 col-md-12 col-sm-12">
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <div class="edit-profile">
-                          
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                            <div>{{$error}}</div>
+                            @endforeach
+                            </div>
+                           
+                            @endif
                             <img src="{{asset('/uploads/user/'.Auth::user()->avtar)}}" class="profile-img" alt="">
                             <div class="profile-text">{{Auth::user()->full_name}}</div>
                          
@@ -148,6 +155,7 @@
                                 </div>
                             </div>
                             <div>
+                                <input type="button" value="Change Password" class="edit-profile-btn">
                                 <button class="edit-profile-button-save">Save</button>
                             </div>
                         </div>
@@ -158,6 +166,26 @@
             </div>
         </div>
     </section>
+    <div class="popup">
+            <div class="popup-close-btn"></div>
+            <div class="popup-content"></div>
+        </div>
+        <div class="for-call-popup">
+            <form action="{{url('change_password')}}" method="POST" class="call-popup">
+                @csrf
+                @method('PUT')
+                <h3>Change Password</h3>
+                
+                <input type="text" class="edit-input" placeholder="Enter Old Password" name="old_password" id="">
+                <input type="text" class="edit-input" placeholder="Enter new Password" name="new_password" id="">
+                <input type="text" class="edit-input" placeholder="Enter Confirm Password" name="confirm_password" id="">
+                <div class="popup-btn">
+                    <input type="button" class="popup-button" name="" value="cancel" id="">
+                    <input type="submit" class="edit-profile-button-1" value="Change Password" name="" id="">
+                </div>
+            </form>
+        </div>
+        <div class="overlay"></div>
     <hr>
     <x-footer></x-footer>
     <br>
@@ -166,4 +194,52 @@
 
 @section('scripts')
 
+<script>
+    $(function() {
+        var p = new Popup({
+            popup: '.popup',
+            content: '.popup-content',
+            overlay: '.overlay',
+        });
+
+        // setTimeout(function() {
+        //     var form = $('.for-call-popup');
+        //     p.open(form.html());
+        // }, 1000);
+        $('.edit-profile-btn').click(function(){
+            var form=$('.for-call-popup');
+            p.open(form.html());
+        })
+
+        $('.popup-close-btn').click(function() {
+            p.close();
+        });
+    });
+
+    function Popup(Obj) {
+        this.popup = $(Obj.popup);
+        this.content = $(Obj.content);
+        this.overlay = $(Obj.overlay);
+
+        var pop = this;
+
+        this.open = (function(content) {
+            pop.content.html(content);
+            pop.popup.addClass('open').fadeIn(1000);
+            pop.overlay.addClass('open');
+        });
+
+        this.close = (function() {
+            pop.popup.removeClass('open');
+            pop.overlay.removeClass('open');
+        });
+
+        this.overlay.click(function(e) {
+            if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
+                pop.close();
+            }
+        });
+    }
+</script>
 @endsection
+

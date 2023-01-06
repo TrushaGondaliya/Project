@@ -89,6 +89,7 @@ Route::post('add-story', [SharestoryController::class, 'add_story']);
 Route::get('stories_detail/{id}',[StoriesdetailsController::class,'stories_detail']);
 Route::get('edit_profile',[UsereditController::class,'view_profile']);
 Route::put('edit-profile',[UsereditController::class,'edit_profile']);
+Route::put('change_password', [UsereditController::class, 'edit']);
 
 Route::get('change_pass',[ChangepassController::class,'change_pass']);
 Route::get('contact',[ContactController::class,'contact']);
@@ -117,6 +118,7 @@ Route::get('contactUs',function(Request $request){
 Route::get('Invite', [InviteController::class, 'invite'])->name('Invite');
 Route::get('invite_mission/{id}', [InviteController::class, 'abc']);
 Route::get('InviteStory', [InviteController::class, 'invite_story'])->name('InviteStory');
+Route::get('invite_story/{id}', [InviteController::class, 'inviteStory']);
 Route::post('get-cities-by-country',[AdminmissionController::class,'getCity']);
 
 Route::get('add-app/{id}',[AdminmissionController::class,'add_app']);
@@ -167,6 +169,7 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
 
    Route::get('story',[StoryController::class,'story']);
    Route::post('story',[StoryController::class,'story']);
+   
 
    Route::get('published/{id}',[StoryController::class,'published']);
    Route::get('add-story',[StoryController::class,'create_story']);

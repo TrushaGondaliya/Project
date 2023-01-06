@@ -17,7 +17,8 @@ class HomeController extends Controller
        function list()
        {
               $missions = Mission::all();
-              return view('list', ['missions' => $missions]);
+              $m_id = Application::all();
+              return view('list', compact('missions','m_id'));
        }
        function grid()
        {

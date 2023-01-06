@@ -201,15 +201,11 @@
         </div>
         <div class="for-call-popup">
             <form action="{{url('Invite')}}" class="call-popup">
-                <h3>Contact Us</h3>
+                <h3>Invite</h3>
                 <br>
                 <input type="hidden" name="mission_id" id="mission_id">
 
-              
-                
-                        <br>
-
-                        <label for="mission">User</label>
+               <label for="mission">User</label>
                 @php 
                 $users=App\Models\User::all()
                 @endphp

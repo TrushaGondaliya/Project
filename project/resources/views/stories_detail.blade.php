@@ -112,28 +112,36 @@
                         </div>
                     </div>
                     <br><br>
+                    <span class="vol-heading">{{$story->title}}</span>
+                    <br>
+                    <br>
                     <span class="story-detail-text">{!!$story->description!!}</span>
                     <br><br>
                     <br>
                     <div class="row col-md-12 col-sm-12">
                         <div class="column col-md-12 col-lg-7 col-sm-12">
-                            <button class="story-detail-button">
+                            <button value="{{$story->story_id}}" class="story-detail-button invite">
                                 <div class="row">
                                     <div class=" col-sm-1 col-1 col-lg-1"></div>
                                     <div class="col-md-1 col-sm-1 col-1 col-lg-1">
-                                        <img src="/images/add1.png" style="height: 22px;width:22px" alt="">
+
+                                        <img src="/images/add1.png" style="height: 22px;width:22px">
                                     </div>
                                     <div class="col-md-10 col-sm-9 col-9 col-lg-9">
                                         <span class="story-detail-button-text invite">Recommend to a co-worker</span>
+                                        
                                     </div>
+                                    
                                 </div>
                             </button>
                         </div>
                         <div class="column col-md-12 col-lg-5 col-sm-12">
+                            <a href="{{url('volunteering/'.$story->mission_id)}}">
                             <div class='story-detail-button1'>
                                 <span class="story-detail-button-text"> Open Mission</span>
                                 <img src='/images/right-arrow.png' alt='' class='pt-9'>
                             </div>
+                            </a>
                         </div>
                     </div>
                     <br>
@@ -204,17 +212,9 @@
         </div>
         <div class="for-call-popup">
             <form action="{{url('InviteStory')}}" class="call-popup">
-                <h3>Contact Us</h3>
-                <br>
-                <label for="mission">Story</label>
-                @php 
-                $stories=App\Models\Story::all()
-                @endphp
-                <div><select class="story-input" aria-placeholder="Select your Mission"  name="story_id">
-                    @foreach($stories as $story)
-                            <option value="{{$story->story_id}}" class="story-input">{{$story->title}}</option>
-                    @endforeach
-                        </select></div>
+                <h3>Story Invite</h3>
+                
+                <input type="hidden" name="story_id" id="story_id">
                         <br>
 
                         <label for="mission">User</label>
@@ -255,8 +255,18 @@
            
 
             $('.invite').click(function() {
+                var story_id = $(this).val();
+                console.log(story_id);
                 var form = $('.for-call-popup');
                 p.open(form.html());
+                $.ajax({
+                    type:"GET",
+                    url:"/invite_story/"+story_id,
+                    success:function(response){
+                        console.log(response);
+                        $('#story_id').val(response.invite.story_id);
+                    }
+                })
             });
 
             $('.popup-close-btn').click(function() {

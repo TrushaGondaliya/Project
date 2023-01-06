@@ -21,6 +21,15 @@ class InviteController extends Controller
             'invite' => $time,
         ]);
     }
+
+    function inviteStory($id)
+    {
+        $story = Story::find($id);
+        return response()->json([
+            'status' => 200,
+            'invite' => $story,
+        ]);
+    }
     function invite(Request $request)
     {
        
@@ -42,10 +51,10 @@ class InviteController extends Controller
         Mail::to($send)->send(new InviteEmail($data));
     }
     else{
-        return redirect('home')->with('message', 'already invited!');
+        return redirect()->back()->with('message', 'already invited!');
     }
 
-        return redirect('home')->with('message', 'invite successfully!');
+        return redirect()->back()->with('message', 'invite successfully!');
     }
 
     function invite_story(Request $request)

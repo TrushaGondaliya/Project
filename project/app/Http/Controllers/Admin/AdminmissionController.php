@@ -291,6 +291,6 @@ class AdminmissionController extends Controller
 
         $data = array('mission_id' => $mission_id, 'user_id' => $user_id);
         DB::table('mission_application')->insert($data);
-        return redirect('home')->with('message', 'application added successfully!');
+        return redirect()->back()->with('message', 'application added successfully!');
     }
 }
