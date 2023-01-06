@@ -88,11 +88,12 @@ class MissionController extends Controller
             }
            
                 if (request()->has('city') && !empty(request()->input('city'))) {
-                $name = City::whereIn('name', request()->input('city'))->pluck('city_id');
-                $abc=(array)($name);
+                $name = City:: where('name', request()->input('city'))->pluck('city_id');
+                // $abc=(array)$name;
                 // dd($abc);
-                    $missions = Mission::whereIn('city_id', $abc);
-                    }
+                $missions = Mission::where('city_id', $name);
+                // dd($missions);
+                }
 
             $missions = $missions->paginate(6)->withQueryString();
             $m_id = Application::all();

@@ -49,7 +49,7 @@
                         
                         <form id="select2" method="post" enctype="multipart/form-data" action="{{url('home')}}">
                             @csrf
-                        <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker " aria-expanded="false" placeholder="City"  multiple name="city[]" onchange="showCity()">
+                        <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker " aria-expanded="false" placeholder="City"  multiple name="city" onchange="showCity()">
                         @if(request()->input('city'))
                         <option value="none" selected disabled="" hidden="">{{request()->input('city')}}</option>
                                            
