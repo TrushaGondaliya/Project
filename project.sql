@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2022 at 03:35 AM
+-- Generation Time: Jan 13, 2023 at 04:17 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -202,7 +202,9 @@ INSERT INTO `favourite_mission` (`favourite_mission_id`, `user_id`, `mission_id`
 (14, 1, 39, '2022-12-07 05:41:25', '2022-12-12 21:40:27', '2022-12-12 21:40:27'),
 (15, 1, 39, '2022-12-26 06:52:52', NULL, NULL),
 (16, 8, 35, '2022-12-28 11:50:49', NULL, NULL),
-(17, 8, 37, '2022-12-28 11:51:40', NULL, NULL);
+(17, 8, 37, '2022-12-28 11:51:40', NULL, NULL),
+(18, 8, 10, '2023-01-06 02:12:56', NULL, NULL),
+(19, 8, 40, '2023-01-06 04:57:53', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -305,22 +307,22 @@ INSERT INTO `missions` (`mission_id`, `theme_id`, `city_id`, `country_id`, `titl
 (7, 1, 2, 1, 'dummy', '', 'dummy', '0000-00-00', NULL, '', '0', 'dummy', 'dummy', 'DAILY', 65, '2022-11-28 05:07:29', '2022-11-25 04:31:54', '2022-11-25 04:31:54'),
 (8, 4, 3, 1, 'wemfre', NULL, 'nmfenmfre', '2022-11-13', '2022-12-03', 'GOAL', '0', 'rfmref', 'nfren', 'DAILY', 23, '2022-11-29 05:29:18', '2022-11-28 23:59:18', '2022-11-28 23:59:18'),
 (9, 4, 3, 1, 'wemfre', NULL, 'nmfenmfre', '2022-11-13', '2022-12-03', 'GOAL', '0', 'rfmref', 'nfren', 'DAILY', 23, '2022-11-29 05:29:22', '2022-11-28 23:59:22', '2022-11-28 23:59:22'),
-(10, 4, 3, 1, 'Animal Welfare Life & save bird campaign', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-12-10', '2023-01-06', 'TIME', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 23, '2022-12-02 10:49:01', '2022-12-02 05:19:01', NULL),
+(10, 4, 3, 1, 'Animal Welfare Life & save bird campaign', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong>\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\n<p><strong>DETAIL</strong></p>\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p></p>', '2022-12-10', '2023-01-06', 'TIME', '0', 'Save animal and bird', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 23, '2023-01-13 03:10:18', '2023-01-12 21:01:05', NULL),
 (11, 2, 6, 2, 'dasd', NULL, 'dsd', '2022-11-20', '2022-12-11', 'GOAL', '0', 'dssaddsxas', 'dd', 'MONTHLY', 23, '2022-11-28 11:41:44', '2022-11-28 06:11:44', '2022-11-28 06:11:44'),
 (12, 4, 1, 1, 'Animal Welfare Life & save bird campaign', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-12', '2022-12-11', 'GOAL', '0', 'Save animal and bird', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 34, '2022-11-29 05:52:26', '2022-11-28 04:34:03', '2022-11-28 04:34:03'),
-(13, 2, 4, 2, 'CSR initiative stands for Coffee & Farmer Equity', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'We stands for coffee ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 43, '2022-12-07 06:17:31', '2022-12-02 05:12:18', NULL),
-(14, 2, 1, 1, 'Education Supplies for Every Pair of Shoes Sold', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'We supply education', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 44, '2022-12-02 08:02:20', '2022-12-02 02:32:20', NULL),
-(15, 1, 3, 1, 'Grow-Trees On the path to environment sustainability', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-12', '2022-11-12', 'TIME', '0', 'We grows tree', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 214, '2022-11-29 03:03:44', '2022-11-29 03:03:44', NULL),
-(16, 6, 4, 2, 'Plantation & Afforestation programme', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Plantation & Afforestation ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'MONTHLY', 210, '2022-12-07 06:17:39', '2022-12-02 05:04:06', NULL),
-(17, 7, 5, 2, 'Nourish the Children in African country', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2022-12-31', 'TIME', '0', 'Nourish the Children ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 21, '2022-12-07 06:17:49', '2022-11-29 03:10:18', NULL),
-(18, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEKLY', 23, '2022-12-07 06:17:54', '2022-12-02 05:08:59', NULL),
-(19, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum  adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 23, '2022-12-07 11:57:52', '2022-12-02 05:16:06', NULL),
-(20, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 23, '2022-12-07 11:58:28', '2022-12-02 05:16:35', NULL),
-(21, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 212, '2022-11-29 04:03:34', '2022-11-29 04:03:34', NULL),
-(22, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 212, '2022-11-29 04:06:34', '2022-11-29 04:06:34', NULL),
-(23, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, '2022-12-07 11:58:37', '2022-11-29 04:50:27', NULL),
-(24, 4, 3, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, '2022-12-07 11:58:44', '2022-11-30 02:45:41', NULL),
-(25, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 21, '2022-12-07 11:59:01', '2022-11-29 04:57:25', NULL),
+(13, 2, 4, 2, 'CSR initiative stands for Coffee & Farmer Equity', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\n<p><strong>DETAIL</strong></p>\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'We stands for coffee', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEKLY', 43, '2023-01-13 03:05:09', '2023-01-12 20:43:14', NULL),
+(14, 2, 1, 1, 'Education Supplies for Every Pair of Shoes Sold', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'We supply education', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'MONTHLY', 44, '2023-01-13 02:34:29', '2023-01-12 21:04:29', NULL),
+(15, 1, 3, 1, 'Grow-Trees On the path to environment sustainability', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-12', '2022-11-12', 'TIME', '0', 'We grows tree', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEK-END', 214, '2023-01-13 02:36:49', '2023-01-12 21:06:49', NULL),
+(16, 6, 4, 2, 'Plantation & Afforestation programme', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Plantation & Afforestation', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'MONTHLY', 210, '2023-01-13 02:12:55', '2023-01-12 20:42:55', NULL),
+(17, 7, 5, 2, 'Nourish the Children in African country', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-27', '2022-12-31', 'TIME', '0', 'Nourish the Children', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEK-END', 21, '2023-01-13 02:32:26', '2023-01-12 21:02:26', NULL),
+(18, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEKLY', 23, '2023-01-13 02:12:26', '2023-01-12 20:42:26', NULL),
+(19, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum  adipisicing', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEK-END', 23, '2023-01-13 02:12:01', '2023-01-12 20:42:01', NULL),
+(20, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 23, '2023-01-13 02:11:05', '2023-01-12 20:41:05', NULL),
+(21, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 212, '2023-01-13 02:36:16', '2023-01-12 21:06:16', NULL),
+(22, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 212, '2023-01-13 02:35:51', '2023-01-12 21:05:51', NULL),
+(23, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 21, '2023-01-13 02:33:00', '2023-01-12 21:03:00', NULL),
+(24, 4, 3, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 21, '2023-01-13 02:08:12', '2023-01-12 20:38:12', NULL),
+(25, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-27', '2023-01-29', 'TIME', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 21, '2023-01-13 02:37:21', '2023-01-12 21:07:21', NULL),
 (26, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:59:45', '2022-11-30 02:29:45', '2022-11-30 02:29:45'),
 (27, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:59:38', '2022-11-30 02:29:38', '2022-11-30 02:29:38'),
 (28, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:59:31', '2022-11-30 02:29:31', '2022-11-30 02:29:31'),
@@ -330,15 +332,15 @@ INSERT INTO `missions` (`mission_id`, `theme_id`, `city_id`, `country_id`, `titl
 (32, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:57:37', '2022-11-30 02:27:37', '2022-11-30 02:27:37'),
 (33, 2, 1, 1, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, '$user_role = array((\'role\')=>json_encode($request[\'role\']));', NULL, NULL, 'GOAL', '0', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', '$user_role = array((\'role\')=>json_encode($request[\'role\']));', 'MONTHLY', 21, '2022-11-30 07:57:29', '2022-11-30 02:27:29', '2022-11-30 02:27:29'),
 (34, 7, 6, 2, 'foreach($request->skill_id as $index){', NULL, 'foreach($request->skill_id as $index){', NULL, NULL, 'GOAL', '0', 'foreach($request->skill_id as $index){', 'foreach($request->skill_id as $index){', 'DAILY', 23, '2022-11-30 07:57:18', '2022-11-30 02:27:18', '2022-11-30 02:27:18'),
-(35, 2, 1, 1, 'Lorem ipsum dolor sit amet adipisicing elit.', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 45, '2022-12-07 11:59:39', '2022-12-02 05:17:07', NULL),
-(36, 5, 2, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 324, '2022-12-07 11:59:48', '2022-11-30 05:05:27', NULL),
-(37, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', NULL, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '2022-12-16', '2022-12-31', 'TIME', '0', 'Lorem ipsum dolor sit ', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 210, '2022-12-07 12:00:04', '2022-12-02 05:17:37', NULL),
-(38, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', NULL, 'save animal and birds', '2022-12-17', '2022-12-31', 'TIME', '0', 'save animal and birds', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'WEEK-END', 210, '2022-12-06 12:26:20', '2022-12-02 05:17:53', NULL),
-(39, 5, 5, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', NULL, 'save animal and birds', '2023-01-08', '2023-02-08', 'TIME', '0', 'Lorem ipsum dolor sit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', 'DAILY', 210, '2022-12-07 12:00:13', '2022-12-02 05:18:26', NULL),
-(40, 7, 2, 1, 'The mission is the “what” and the “how,” and the vision is the “why.”', NULL, 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', '2022-12-23', '2023-01-06', 'TIME', '0', 'The mission is the ', 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', 'MONTHLY', 210, '2022-12-07 12:00:20', '2022-12-05 00:42:55', NULL),
-(41, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', NULL, 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', NULL, NULL, 'GOAL', '0', 'Tesla', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', 'DAILY', 12, '2022-12-02 10:49:50', '2022-12-02 05:19:50', NULL),
-(42, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', NULL, 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', '2022-12-17', '2022-12-30', 'TIME', '0', 'Tesla', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', 'DAILY', 12, '2022-12-02 08:05:52', '2022-12-02 02:35:52', NULL),
-(43, 2, 5, 2, 'American Express', NULL, '“We work hard every day to make American Express the world’s most respected service brand.”', '2022-12-17', '2023-01-01', 'TIME', '0', 'American Express', '“We work hard every day to make American Express the world’s most respected service brand.”', 'WEEK-END', 122, '2022-12-02 08:05:28', '2022-12-02 02:35:28', NULL);
+(35, 2, 1, 1, 'Lorem ipsum dolor sit amet adipisicing elit.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 45, '2023-01-13 02:10:02', '2023-01-12 20:40:02', NULL),
+(36, 5, 2, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 324, '2023-01-13 02:08:26', '2023-01-12 20:38:26', NULL),
+(37, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>TITLE</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DESCRIPTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2023-01-15', '2023-01-21', 'TIME', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEK-END', 210, '2023-01-13 02:06:57', '2023-01-12 20:36:57', NULL),
+(38, 5, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>TITLE</strong></p>\r\n<p>save animal and birds</p>\r\n<p><strong>DESCRIPTION</strong></p>', '2022-12-17', '2022-12-31', 'TIME', '0', 'save animal and birds', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEK-END', 210, '2023-01-13 02:31:39', '2023-01-12 21:01:39', NULL),
+(39, 5, 5, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>\r\n<p>&nbsp;</p>\r\n<p><strong>DETAIL ABOUT MISSION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>', '2023-01-21', '2023-02-02', 'TIME', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 210, '2023-01-13 02:06:39', '2023-01-12 20:36:39', NULL),
+(40, 7, 2, 1, 'The mission is the “what” and the “how,” and the vision is the “why.”', 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', '<p><strong>INTRODUCTION</strong></p>\r\n<p>The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish</p>\r\n<p>&nbsp;</p>\r\n<p><strong>DETAILS</strong></p>\r\n<p>The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish</p>', '2023-01-28', '2023-02-05', 'TIME', '0', 'The mission is the', '<p>&nbsp;</p>\r\n<p>The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', 'MONTHLY', 210, '2023-01-13 02:07:13', '2023-01-12 20:37:13', NULL),
+(41, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Tesla', '<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>', 'DAILY', 12, '2023-01-13 02:29:37', '2023-01-12 20:59:37', NULL),
+(42, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', '<p><strong>INTRODUCTION</strong></p>\r\n<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>', '2022-12-17', '2022-12-30', 'TIME', '0', 'Tesla', '<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>', 'DAILY', 12, '2023-01-13 02:33:53', '2023-01-12 21:03:53', NULL),
+(43, 2, 5, 2, 'American Express', '“We work hard every day to make American Express the world’s most respected service brand.”', '<p><strong>INTRO</strong></p>\r\n<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>', '2022-12-17', '2023-01-01', 'TIME', '0', 'American Express', '<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>', 'WEEK-END', 122, '2023-01-13 02:30:26', '2023-01-12 21:00:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -372,7 +374,10 @@ INSERT INTO `mission_application` (`mission_application`, `mission_id`, `user_id
 (8, 43, 1, '2022-12-08 03:47:06', 'PENDING', '2022-12-08 03:47:06', NULL, NULL),
 (9, 37, 1, '2022-12-09 12:22:31', 'PENDING', '2022-12-09 12:22:31', NULL, NULL),
 (10, 35, 1, '2022-12-14 03:17:17', 'PENDING', '2022-12-14 03:17:17', NULL, NULL),
-(11, 39, 8, '2022-12-27 07:46:16', 'PENDING', '2022-12-27 07:46:16', NULL, NULL);
+(11, 39, 8, '2022-12-27 07:46:16', 'PENDING', '2022-12-27 07:46:16', NULL, NULL),
+(12, 24, 8, '2023-01-06 02:48:52', 'PENDING', '2023-01-06 02:48:52', NULL, NULL),
+(13, 13, 8, '2023-01-06 02:51:30', 'PENDING', '2023-01-06 02:51:30', NULL, NULL),
+(14, 40, 8, '2023-01-06 04:56:55', 'PENDING', '2023-01-06 04:56:55', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -457,7 +462,8 @@ INSERT INTO `mission_invite` (`mission_invite_id`, `mission_id`, `from_user_id`,
 (4, 13, 8, 9, '2022-12-26 23:37:52', '2022-12-26 23:37:52', NULL),
 (5, 15, 8, 1, '2022-12-26 23:38:21', '2022-12-26 23:38:21', NULL),
 (6, 14, 8, 9, '2022-12-26 23:47:43', '2022-12-26 23:47:43', NULL),
-(7, 17, 8, 1, '2022-12-27 04:16:41', '2022-12-27 04:16:41', NULL);
+(7, 17, 8, 1, '2022-12-27 04:16:41', '2022-12-27 04:16:41', NULL),
+(8, 13, 8, 1, '2023-01-05 20:47:48', '2023-01-05 20:47:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -551,7 +557,11 @@ INSERT INTO `mission_rating` (`mission_rating_id`, `user_id`, `mission_id`, `rat
 (11, 1, 38, '1', '2022-12-26 05:45:22', '2022-12-26 05:45:22', NULL),
 (12, 8, 39, '3', '2022-12-26 23:49:25', '2022-12-26 23:49:25', NULL),
 (13, 8, 35, '2', '2022-12-27 00:15:12', '2022-12-27 00:15:12', NULL),
-(14, 8, 23, '3', '2022-12-27 00:15:23', '2022-12-27 00:15:23', NULL);
+(14, 8, 23, '3', '2022-12-27 00:15:23', '2022-12-27 00:15:23', NULL),
+(15, 8, 17, '2', '2023-01-05 20:50:34', '2023-01-05 20:50:34', NULL),
+(16, 8, 22, '1', '2023-01-05 20:50:48', '2023-01-05 20:50:48', NULL),
+(17, 1, 20, '2', '2023-01-12 21:13:03', '2023-01-12 21:13:03', NULL),
+(18, 1, 14, '4', '2023-01-12 21:13:23', '2023-01-12 21:13:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -632,7 +642,12 @@ INSERT INTO `mission_skill` (`mission_skill_id`, `skill_id`, `mission_id`, `crea
 (57, 4, 10, '2022-12-02 10:13:22', NULL, NULL),
 (58, 6, 16, '2022-12-02 10:34:06', NULL, NULL),
 (59, 5, 20, '2022-12-02 10:46:35', NULL, NULL),
-(60, 8, 20, '2022-12-02 10:46:35', NULL, NULL);
+(60, 8, 20, '2022-12-02 10:46:35', NULL, NULL),
+(61, 4, 25, '2023-01-13 02:05:29', NULL, NULL),
+(62, 8, 17, '2023-01-13 02:32:26', NULL, NULL),
+(63, 5, 22, '2023-01-13 02:35:51', NULL, NULL),
+(64, 7, 22, '2023-01-13 02:35:51', NULL, NULL),
+(65, 6, 15, '2023-01-13 02:36:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -774,7 +789,8 @@ CREATE TABLE `story_invite` (
 INSERT INTO `story_invite` (`story_invite_id`, `story_id`, `from_user_id`, `to_user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 2, 8, 8, '2022-12-27 02:57:20', '2022-12-27 02:57:20', NULL),
 (2, 3, 8, 1, '2022-12-27 04:12:08', '2022-12-27 04:12:08', NULL),
-(3, 3, 8, 1, '2022-12-27 04:14:37', '2022-12-27 04:14:37', NULL);
+(3, 3, 8, 1, '2022-12-27 04:14:37', '2022-12-27 04:14:37', NULL),
+(4, 1, 8, 1, '2023-01-05 23:05:02', '2023-01-05 23:05:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -871,7 +887,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone_number`, `avtar`, `why_i_volunteer`, `employee_id`, `department`, `city_id`, `country_id`, `profile_text`, `linked_in_url`, `title`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Trusha', 'Gondaliya', 'trushagondaliya30@gmail.com', '$2y$10$I8/CxGHOxO7KWA4YUOuriuys6zfEoFvSDeCdfCxNI2yUVQujvwlDq', '8897645682', '1669376704.png', 'I love to work and help other people..', '123abc', 'HR MANAGEMENT', 1, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'trusha.linkdin', 'volunteer', '0', '2022-11-21 23:15:19', '2022-12-02 07:16:57', NULL),
+(1, 'Trusha', 'Gondaliya', 'trushagondaliya30@gmail.com', '$2y$10$I8/CxGHOxO7KWA4YUOuriuys6zfEoFvSDeCdfCxNI2yUVQujvwlDq', '8897645682', '1672977119.png', 'I love to work and help other people..', '123abc', 'HR MANAGEMENT', 1, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'trusha.linkdin', 'volunteer', '0', '2022-11-21 23:15:19', '2023-01-05 22:21:59', NULL),
 (2, 'Harsh', 'Gondaliya', 'harsh@gmail.com', '$2y$10$U0zp/n1GyhDe5eA/9GANP.vpMEbQ592zGw4R9HkeRrHbeQ20o1W3O', '9909876568', '1669293016.jpeg', 'Meet New People and Build Community', '1234abcd', 'managment', 2, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'harsh Gondaliya', 'community', '1', '2022-11-21 23:17:45', '2022-12-02 07:16:31', NULL),
 (5, 'Alis', 'Bhatt', 'alisbhatt@gmail.com', '$2y$10$XXE/gUxm/ulY2joTGxw5ceXDCSuGPTevuJxUyBLXfnPhk6ET31hq2', '1234567890', '1669811265.png', 'Gain Knowledge and Understanding of Other Ways of Life', 'abc54', 'HR', 5, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'Alis Bhatt', 'ways of life', '0', '2022-11-30 06:57:45', '2022-12-02 07:17:55', NULL),
 (6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p>The more opportunities you take to learn new skills and gain knowledge, the more fully you will develop as a person. And what safer space to develop those skills than in a context of service?</p>\r\n<p>Stepping out of your comfort zone and building new skills is the best way to develop your self-esteem. Volunteering will increase your sense of pride and thus, your self-confidence! When you challenge yourself through volunteering and receive appreciation from others, it can make you feel better emotionally and mentally.&nbsp;</p>\r\n<p>&nbsp;</p>', 'Arshi Sharma', 'self-Esteem', '1', '2022-12-01 02:35:33', '2022-12-02 07:19:00', NULL),
@@ -893,6 +909,14 @@ CREATE TABLE `user_skill` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_skill`
+--
+
+INSERT INTO `user_skill` (`user_skill_id`, `user_id`, `skill_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 4, '2023-01-06 03:51:59', NULL, NULL),
+(2, 1, 7, '2023-01-06 03:51:59', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1125,7 +1149,7 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `favourite_mission`
 --
 ALTER TABLE `favourite_mission`
-  MODIFY `favourite_mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `favourite_mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `goal_mission`
@@ -1149,7 +1173,7 @@ ALTER TABLE `missions`
 -- AUTO_INCREMENT for table `mission_application`
 --
 ALTER TABLE `mission_application`
-  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mission_document`
@@ -1161,7 +1185,7 @@ ALTER TABLE `mission_document`
 -- AUTO_INCREMENT for table `mission_invite`
 --
 ALTER TABLE `mission_invite`
-  MODIFY `mission_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `mission_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `mission_media`
@@ -1173,13 +1197,13 @@ ALTER TABLE `mission_media`
 -- AUTO_INCREMENT for table `mission_rating`
 --
 ALTER TABLE `mission_rating`
-  MODIFY `mission_rating_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `mission_rating_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `mission_skill`
 --
 ALTER TABLE `mission_skill`
-  MODIFY `mission_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `mission_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `mission_theme`
@@ -1209,7 +1233,7 @@ ALTER TABLE `story`
 -- AUTO_INCREMENT for table `story_invite`
 --
 ALTER TABLE `story_invite`
-  MODIFY `story_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `story_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `story_media`
@@ -1233,7 +1257,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_skill`
 --
 ALTER TABLE `user_skill`
-  MODIFY `user_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `user_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
