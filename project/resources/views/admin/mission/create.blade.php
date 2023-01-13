@@ -3,7 +3,17 @@
 
 @section('content')
 
+<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+
+<script>
+    tinymce.init({
+      selector: 'textarea#editor',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+      toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      menubar:false
+    });
+  </script>
 <div class="container">
 @if($errors->any())
                             <div class="alert alert-danger">
@@ -60,6 +70,9 @@
         <div class="cms-textarea">
                 <textarea name="description" class="text-area" id="editor" cols="" rows=""></textarea>
             </div><br>
+            <div class="cms-textarea">
+                <textarea name="short_description" class="text-area" id="" cols="" rows=""></textarea>
+            </div><br><br>
        
         <span class="cms-label">Mission Organization Name</span>
         <input type="text" name="organization_name" class="cms-input" placeholder="Enter Mission organizarion name"><br><br>

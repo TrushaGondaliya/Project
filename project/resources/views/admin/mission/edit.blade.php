@@ -2,6 +2,17 @@
 
 
 @section('content')
+<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+<script>
+    tinymce.init({
+      selector: 'textarea#editor',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+      toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      menubar:false
+    });
+  </script>
 
 
 <div class="container">
@@ -26,7 +37,7 @@
         <table class="cms-table">
             <thead>
                 <tr>
-                    <th>Add</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
       
@@ -71,9 +82,14 @@
 
         <span class="cms-label">Mission Organization Detail</span>
         <div class="cms-textarea">
-                <textarea name="organization_detail" class="text-area" id="" cols="" rows="">{{$mission->organization_detail}}</textarea>
+                <textarea name="organization_detail" class="text-area" id="editor" cols="" rows="">{{$mission->organization_detail}}</textarea>
             </div><br><br>
 
+        <span class="cms-label">Mission short Description</span>
+
+            <div class="cms-textarea">
+                <textarea name="short_description" class="text-area" id="" cols="" rows="">{{$mission->short_description}}</textarea>
+            </div><br><br>
    
         <span class="cms-label">Total seats</span>
         <input type="text" name="seat_left" value="{{$mission->seat_left}}" class="cms-input" placeholder="Enter total seats"><br><br>
@@ -109,7 +125,7 @@
         </div>
         <div id="timetext" class="only-select">
         <span class="cms-label">Start Date</span>
-        <input type="date"  name="start_date" class="cms-input" placeholder="Enter start Date"><br><br>
+        <input  type="date"  name="start_date" class="cms-input" placeholder="Enter start Date"><br><br>
         <span class="cms-label">End Date</span>
         <input type="date" name="end_date" class="cms-input" placeholder="Enter End Date"><br><br>
         </div>

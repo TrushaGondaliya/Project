@@ -89,7 +89,7 @@
                     <div class="container">
                         <div class=" vol-heading">{{$mission->title}}</div><br>
                         <div class="vol-text">
-                            {{$mission->description}}
+                            {{$mission->short_description}}
                         </div><br>
                         <div class='d-flex align-items-center'>
                             <hr class='flex-grow-1' />
@@ -295,10 +295,10 @@
                             </div>
                             <div class="tab-content">
                                 <div id="mission" class="container tab-pane active"><br>
-                                    <span class="vol-intro">Intoduction</span><br><br>
-                                    <span class="Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do">
+                                    
+                                    <p>
                                         {!!$mission->description!!}
-                                    </span>
+</p>
                                     <br><br>
 
                                     <span class="vol-intro">Documents</span><br><br>
@@ -564,7 +564,7 @@
                     <h5 class="card-title">{{$theme->title}}</h5>
                     <br>
 
-                    <p class="card-text card-description" style="color:black;">{{$theme->description}}</p>
+                    <p class="card-text card-description" style="color:black;">{{$theme->short_description}}</p>
 
                     <div class="row">
                         <div class="col-md-7 col-lg-7 col-7">
@@ -770,5 +770,28 @@
             });
         }
     
+        $(document).ready(function(){
+        $('#gallery img').on({
+            mouseover:function(){
+            $(this).css({
+                'cursor':'pointer',
+                'border-color':'red'
+            });
+        },
+        mouseout:function(){
+            $(this).css({
+                'cursor':'default',
+                'border-color':'gray'
+            });
+        },
+        click:function(){
+            var imgUrl=$(this).attr('src');
+            console.log(imgUrl);
+            $('.vol-main-img').fadeOut(400,function(){
+                $(this).attr('src',imgUrl);
+            }).fadeIn(400);
+        }
+        });
+    });
 </script>
 @endsection

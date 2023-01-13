@@ -82,7 +82,7 @@
                                 <h5 class="card-title">{{$mission->title}}</h5>
                                 <br>
 
-                                <p class="card-text card-description" style="color:black;">{{$mission->description}}</p>
+                                <p class="card-text card-description" style="color:black;">{{$mission->short_description}}</p>
 
                                 <div class="row">
                                     <div class="col-md-7 col-lg-7 col-7">

@@ -40,7 +40,8 @@ class MissionRequest extends FormRequest
             'document'=>'nullable',
             'availability'=>'nullable',
             'goal_objective_text'=>'nullable',
-            'goal_value'=>'nullable'
+            'goal_value'=>'nullable',
+            'short_description'=>'nullable'
         ];
         return $rules;
     }

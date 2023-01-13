@@ -16,6 +16,7 @@
             @foreach($stories as $story)
             <div class="row col-md-12 col-sm-12  col-lg-12">
                 <div class="column col-md-6 story-detail-img">
+                    <div id="main">
                     @php
                     $media=App\Models\Storymedia::where('story_id',$story->story_id)->first();
                     @endphp
@@ -24,7 +25,7 @@
                     @else
                     <img src="/images/{{$media->path}}" class="story-main-img" alt="...">
                     @endif
-
+                    </div>
                     
                     
 
@@ -299,6 +300,30 @@
             });
         }
     
+
+       $(document).ready(function(){
+        $('#gallery img').on({
+            mouseover:function(){
+            $(this).css({
+                'cursor':'pointer',
+                'border-color':'red'
+            });
+        },
+        mouseout:function(){
+            $(this).css({
+                'cursor':'default',
+                'border-color':'gray'
+            });
+        },
+        click:function(){
+            var imgUrl=$(this).attr('src');
+            console.log(imgUrl);
+            $('.story-main-img').fadeOut(400,function(){
+                $(this).attr('src',imgUrl);
+            }).fadeIn(400);
+        }
+        });
+    });
 </script>
 
 

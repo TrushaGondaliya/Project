@@ -81,6 +81,7 @@ class AdminmissionController extends Controller
         $mission->country_id = $data['country'];
         $mission->title = $data['title'];
         $mission->description = $data['description'];
+        $mission->short_description = $data['short_description'];
         $mission->organization_name = $data['organization_name'];
         $mission->organization_detail = $data['organization_detail'];
         $mission->start_date = $data['start_date'];
@@ -161,10 +162,15 @@ class AdminmissionController extends Controller
         $mission->country_id = $data['country'];
         $mission->title = $data['title'];
         $mission->description = $data['description'];
+        $mission->short_description = $data['short_description'];
         $mission->organization_name = $data['organization_name'];
         $mission->organization_detail = $data['organization_detail'];
-        $mission->start_date = $data['start_date'];
+        if ($request->date('start_date')) {
+            $mission->start_date = $data['start_date'];
+        }
+        if ($request->date('end_date')){
         $mission->end_date = $data['end_date'];
+    }
         $mission->mission_type=$data['mission_type'];
         $mission->seat_left = $data['seat_left'];
         $mission->theme_id = Theme::whereTitle($request->input('theme_title'))->first()->mission_theme_id;
