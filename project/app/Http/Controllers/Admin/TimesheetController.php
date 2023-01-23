@@ -57,7 +57,7 @@ class TimesheetController extends Controller
 
     function update_time(Request $request)
     {
-        $id = $request->input('id');
+        $id = $request->input('id1');
         $timesheet =Timesheet::find($id);
         $timesheet->user_id = Auth::user()->user_id;
         $timesheet->mission_id = $request->input('mission_id');

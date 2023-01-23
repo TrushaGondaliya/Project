@@ -70,6 +70,7 @@
         <div class="cms-textarea">
                 <textarea name="description" class="text-area" id="editor" cols="" rows=""></textarea>
             </div><br>
+            <span class="cms-label">Mission Sort Description</span><br>
             <div class="cms-textarea">
                 <textarea name="short_description" class="text-area" id="" cols="" rows=""></textarea>
             </div><br><br>
@@ -166,7 +167,9 @@
 
         </table>
         <div class="cms_btn">
+            <a href="mission" style="text-decoration: none;">
                 <input type="button" class="cms_btn1" value="Cancel" name="" id="">
+            </a>
                 <input type="submit" class="cms_btn2" name="" value="Save" id="">
                 </div>
         

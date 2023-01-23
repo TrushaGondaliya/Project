@@ -179,6 +179,7 @@
     margin-top: 5px;
   }
 
+
   .cms-checkbox{
     width: 50px;
     border-radius: 3px;
@@ -255,6 +256,12 @@
   .text-area{
     width: 100%;
     height: 250px;
+    border-radius: 3px;
+    box-shadow: 1px 0.3px 3px 0 rgba(0, 0, 0, 0.05);
+    border: solid 1px #d9d9d9;
+    padding-left: 10px;
+    color: #757575;
+    margin-top: 5px;
   }
 
   #sidebarToggle{

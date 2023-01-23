@@ -61,7 +61,7 @@
 
           <div class="nav-item dropdown" style="display: flex;margin-left: 785px;float:right">
               <div>
-                  <img src="/images/user-img.png" alt="Avatar"
+                  <img src="{{asset('uploads/user/'.Auth::user()->avtar)}}" alt="Avatar"
                       style="width:40px;height: 40px; border-radius:100%;object-fit:cover ;margin-right: 12px;">
               </div>
               <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" style="font-size: 15px;" href="#"
@@ -82,7 +82,6 @@
       <hr>
 <br><br><br>
       <div class="container">
-
       <p class="Timesheet-heading ">Volunteering Timesheet</p>
       <br>
 
@@ -244,6 +243,7 @@
 
             $('.timesheet_goal').click(function() {
                 var id=$(this).val();
+              
                 var form = $('.for-call-popup');
                 p.open(form.html());
                 $.ajax({
@@ -401,8 +401,7 @@
                 @csrf
                 @method('put')
                 <h3>Please Input below volunteering Hours</h3>
-                <input type="hidden" name="id" id="id">
-                
+                <input type="hidden" name="id1" id="id1">
                 <label for="mission">Mission</label>
                 @php 
                 $missions=App\Models\Mission::all()
@@ -418,14 +417,11 @@
                 <input type="text" class="story-input" id="date" name="date_volunteered">
                 <br><br>
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                    <label>Hours</label>
+                    <div >
+                    <label>Time</label>
                 <input type="text" class="story-input" id="hours" name="time" placeholder="Enter Spent Hours">
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                    <label>Minutes</label>
-                <input type="text" class="story-input" id="minutes" name="minutes" placeholder="Enter Spent Minutes">
-                    </div>
+                
                 </div>
                 <br>
                 <label>Message</label>
@@ -453,18 +449,19 @@
 
             $('.time').click(function() {
                 var id=$(this).val();
+              console.log(id);
                 var form = $('.for-time-popup');
                 p.open(form.html());
                 $.ajax({
                     type:"GET",
                     url:"/admin/edit-time/"+id,
                     success:function(response){
+                        $('#id1').val(response.time.timesheet_id);
                         console.log(response);
                         $('#mission_id').val(response.time.mission_id);
-                     $('#date').val(response.time.date_volunteered);
+                        console.log( $('#date').val(response.time.date_volunteered));
                         $('#hours').val(response.time.time);
                         $('#message').val(response.time.notes);
-                        $('#id').val(response.time.timesheet_id);
                     }
                 })
             });

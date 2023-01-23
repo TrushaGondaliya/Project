@@ -102,7 +102,9 @@
 
             </table>
             <div class="cms_btn">
+                <a href="user" style="text-decoration: none;">
                 <input type="button" class="cms_btn1" value="Cancel" name="" id="">
+                </a>
                 <input type="submit" class="cms_btn2" name="" value="Save" id="">
             </div>
 

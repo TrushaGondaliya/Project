@@ -5,7 +5,17 @@
                         <div class="alert alert-success">{{session('message')}}</div>
                         @endif
 
+                        <script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+
+<script>
+    tinymce.init({
+      selector: 'textarea#editor',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+      toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      menubar:false
+    });
+  </script>
 
 
 <div class="body-3">
@@ -82,7 +92,7 @@
                             </div>
                             <div>
                                 <span class="story-input-text">My Profile*</span>
-                                <textarea type="text" name="profile_text"  placeholder="Enter your Title" class="story-input-div" id="">{{Auth::user()->profile_text}}</textarea>
+                                <textarea type="text" name="profile_text"  placeholder="Enter your Title" class="story-input-div" id="editor">{{Auth::user()->profile_text}}</textarea>
                             </div>
                             <div>
                                 <span class="story-input-text">Why I Volunteer?</span>
@@ -137,16 +147,7 @@
                                 <li class="nav-item"> <a class="nav-link nav-1" href="#">Personal Information</a> </li>
                             </ul><br>
                             <div class="row">
-                                <!-- <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <span class="story-input-text">Availability</span>
-                                    <div>
-                                        <select name="" class="edit-input" id="">
-                                            <option value="">Select your availability</option>
-                                            <option value="{{Auth::user()->availability}}"> {{Auth::user()->availability}}</option>
-                                            
-                                        </select>
-                                    </div>
-                                </div> -->
+                               
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Linkedin</span>
                                     <div>
