@@ -70,7 +70,7 @@
 
 
                         <div class="card-body-1">
-                            <h5 style="font-size:26px">{{$item->title}}</h5>
+                            <h5 style="font-size:25px">{{$item->title}}</h5>
                             <div class="list-des">
                             <p class="card-text" style="color:black;">{!!$item->description!!} </p>
                             </div>
@@ -84,9 +84,6 @@
                 </div>
                 @endforeach
 
-                <!-- another card-2 -->
-               
-               
 
 
             </div>

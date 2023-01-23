@@ -356,7 +356,7 @@ a{
   padding-right: 30px;
 }
 .list-des{
-  height: 100px;
+  height: 130px;
 }
 
 .card-button {
@@ -385,6 +385,11 @@ a{
   float: right;
   width: 30%;
   padding: 5px;
+}
+@media (max-width:1440px) {
+  .column2-2{
+    width: 40%;
+  }
 }
 
 .column3{
@@ -468,6 +473,11 @@ a{
 .card-div-2{
   height: auto;
 }
+@media (max-width:1440px) {
+  .card-div-1{
+    height: 185px;
+  }
+}
 
 @media (max-width:992px) {
   .card-div-1{
@@ -497,7 +507,11 @@ a{
   font-size: 26px;
   font-family: sans-serif;
 }
-
+@media (max-width:1440px) {
+  .card-title{
+    height: 70px;
+  }
+}
 @media (max-width:992px) {
   .card-title{
     height: 100px;
@@ -654,6 +668,11 @@ padding: 5px 150px 4px -10px;
   margin-top: 0px;
   /* padding-right: 85px; */
 }
+@media (max-width:1440px) {
+  .nav-2-items{
+    width: 145px;
+  }
+}
 .nav-2 {
   position: relative;
   width: 100%;
@@ -723,7 +742,11 @@ padding: 5px 150px 4px -10px;
 .show-mission {
   margin-left: -90px;
 }
-
+@media (max-width:1440px) {
+  .show-mission{
+    margin-left: 120px;
+  }
+}
 @media (max-width:992px) {
 .show-mission{
   margin-left: 0px;
@@ -772,6 +795,12 @@ padding: 5px 150px 4px -10px;
   width: 75%;
   display: flex;
   margin-top: 28px;
+}
+
+@media (max-width:1440px) {
+  .explore{
+    left: 15.5%;
+  }
 }
 
 @media only screen and(max-width:768px) {
@@ -1168,6 +1197,13 @@ padding: 5px 150px 4px -10px;
   padding-left: 240px;
 }
 
+@media (max-width:1440px) {
+  .vol{
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
 @media (max-width:992px) {
   .vol{
     padding-left: 10px;
@@ -1437,7 +1473,7 @@ text-align: center
   border: 2px solid #f88634;
   color: #f88634;
   margin-top: 15px;
-  margin-left: 290px;
+  margin-left: 135px;
   text-align: center;
   width: 220px;
   border-radius: 30px;
@@ -1446,6 +1482,12 @@ text-align: center
 @media (max-width:1920px) {
   .vol-button{
     margin-left: 235px;
+  }
+}
+
+@media (max-width:1440px) {
+  .vol-button{
+    margin-left: 135px;
   }
 }
 
@@ -1603,6 +1645,12 @@ width: 250px;
   border: solid 1px #e8e8e8;
 }
 
+@media (max-width:1440px) {
+  .Layer-121-copy{
+    margin: 0px;
+  }
+}
+
 @media (max-width:425px) {
   .Layer-121-copy{
     width: 400px;
@@ -1621,6 +1669,12 @@ width: 250px;
   margin: 58px 240px 40px 120px;
   padding: 30px 31px 24px;
   border: solid 1px #e8e8e8;
+}
+
+@media (max-width:1440px) {
+  .recent-vol{
+    margin: 58px 0px 40px 0px;
+  }
 }
 
 @media (max-width:768px) {
@@ -1773,6 +1827,12 @@ padding: 0px;
   width: 0;
 }
 
+@media (max-width:1440px) {
+  .nav-style{
+    margin-left: 150px;
+  }
+}
+
 .nav-avtar{
   display: flex;
   margin-left: auto;
@@ -1918,6 +1978,12 @@ nav.navbar.navbar-expand-lg{
     color: #414141;
   }
 
+  @media (max-width:1440px) {
+    .nav-tabs{
+      width: 680px;
+    }
+  }
+
   nav-tabs-edit{
     width: 100%;
  
@@ -2035,6 +2101,13 @@ nav.navbar.navbar-expand-lg{
   padding-right: 440px;
 }
 
+@media (max-width:1440px) {
+  .above-image{
+    padding-left: 295px;
+    padding-right: 295px;
+  }
+}
+
 @media (max-width:992px) {
   .above-image{
     padding-left: 60px;
@@ -2074,6 +2147,13 @@ nav.navbar.navbar-expand-lg{
 
 
 /* opacity for card image */
+
+@media (max-width:1920px) {
+  .image-above-button1{
+    margin-left: 150px;
+  }
+}
+
 .image-above-button1{
   font-size: 17px;
     padding: 10px 20px 10px 20px;
@@ -2087,12 +2167,6 @@ nav.navbar.navbar-expand-lg{
     height: 48px;
     width: 184px;
 
-}
-
-@media (max-width:1920px) {
-  .image-above-button1{
-    margin-left: 150px;
-  }
 }
 
 @media (max-width:992px) {
@@ -2229,9 +2303,9 @@ nav.navbar.navbar-expand-lg{
   text-transform: uppercase;
 }
 
-.tox{
+/* .tox{
   height: 300px;
-}
+} */
 
 
 strong {
@@ -2321,6 +2395,12 @@ strong {
   margin-top:10px;
   height: 48px;
   font-size: 17px;
+}
+
+@media (max-width:1440px) {
+  .share-button{
+    margin-right: 650px;
+  }
 }
 
 @media (max-width:992px) {
@@ -2550,6 +2630,12 @@ strong {
   border: none;
   background: none;
 }
+
+@media (max-width:1440px) {
+  .parent .half-fade{
+    left: 20px;
+  }
+}
 @media (max-width:992px) {
   .parent .half-fade{
     left: 90px;
@@ -2565,6 +2651,12 @@ strong {
   width: 25px;
   text-align: center;
   padding-top: 45px
+}
+
+@media (max-width:1440px) {
+  .parent .half-fade-1{
+    left: -45px;
+  }
 }
 
 @media (max-width:768px) {
@@ -2912,6 +3004,11 @@ textarea{
   padding: 15px 20px 20px;
 }
 
+@media (max-width:1440px) {
+  .popup-c{
+    left: 435px;
+  }
+}
 @media (max-width:768px) {
   .popup-c{
     width: 604px;
@@ -2947,6 +3044,13 @@ textarea{
     left: 645px;
   }
 }
+
+@media (max-width:1440px) {
+  .popup{
+    left: 375px;
+  }
+}
+
 @media (max-width:992px) {
   .popup{
     left: 200px;
@@ -3480,7 +3584,12 @@ width: 800px;
   background-color: white;
   opacity: 0.5;
   border-radius: 0;
+}
 
+@media (max-width:1440px) {
+  .remove-img .btn-close{
+    left: 77px;
+  }
 }
 
 
@@ -3491,6 +3600,13 @@ width: 800px;
   position: relative;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+@media (max-width:1440px) {
+  .story-upload{
+    height: 80px;
+    width: 100px;
+  }
 }
 
 .edit-profile{

@@ -3,7 +3,10 @@
 @section('content')
 
     <div class="container">
+        <br>
+        
         <span class="policy-heading">
+          
             Privacy and Cookies Policy
         </span>
         <br><br>

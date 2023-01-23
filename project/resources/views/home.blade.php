@@ -225,7 +225,7 @@ $mission=App\Models\Mission::all()
                                                             <div class="achieved-main-card">
                                                                 <div class="achieved-card"></div>
                                                             </div>
-                                                            <span style='color:gray;font-size:14px; margin-left: 20px;'>8000 achieved</span>
+                                                            <span style='color:gray;font-size:14px; margin-left: 6px;'>8000 achieved</span>
                                                         </div>
                                                         @endif
                                                     </div>

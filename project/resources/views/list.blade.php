@@ -106,7 +106,7 @@ $mission=App\Models\Mission::all()
                             <div class="card-body " style="padding-left:10px ; padding-top:30px;">
                                 <h5>{{$mission->title}}</h5>
                                 <p class="card-text" style="color:black;">{{$mission->short_description}}</p>
-                                <div class="column2-2 col-md-3">
+                                <div class="column2-2 col-md-2">
                                 <div class='d-flex align-items-center'>
                                 <hr class='flex-grow-1' />
                                 @php
@@ -129,7 +129,7 @@ $mission=App\Models\Mission::all()
                                                 </div>
                                                 <div class='col-md-9'>
                                                     <h4 style="color: grey;">{{$mission->seat_left}}</h4>
-                                                    <h6 style='color:gray;font-size:10px'>Seats-left</h6>
+                                                    <h6 style='color:gray;font-size:14px'>Seats-left</h6>
                                                 </div>
                                             </div>
                                         </div>

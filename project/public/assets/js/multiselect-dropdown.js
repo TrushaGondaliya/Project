@@ -12,7 +12,7 @@ style.innerHTML = `
   background-repeat: no-repeat;
   background-position: right .75rem center;
   background-size: 16px 12px;
-  width:170px !important
+  width:145px !important
 }
 
 @media (max-width:768px) {
