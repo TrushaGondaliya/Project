@@ -50,10 +50,7 @@
                         <form id="select2" method="post" enctype="multipart/form-data" action="{{url('home')}}">
                             @csrf
                         <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker " aria-expanded="false" placeholder="City"  multiple name="city" onchange="showCity()">
-                        @if(request()->input('city'))
-                        <option value="none" selected disabled="" hidden="">{{request()->input('city')}}</option>
-                                           
-                                            @endif
+                        
                         @foreach($city as $item)
                             <option value="{{$item->name}}">{{$item->name}}</option>
                         @endforeach
@@ -72,8 +69,7 @@
                           
                           <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker"  data-bs-toggle="dropdown"  placeholder="Theme"  multiple name="theme" onchange="showTheme()">
                           @if(request()->input('theme'))
-                          <option value="none" selected disabled="" hidden="">{{request()->input('theme')}}</option>
-                                             
+                          <option value="none" selected disabled="" hidden="">{{request()->input('theme')}}</option>    
                                               @endif
                           @foreach($themes as $theme)
                               <option value="{{$theme->title}}">{{$theme->title}}</option>
@@ -123,7 +119,7 @@
     }
     function showCity() {
         let form1 = document.getElementById("select2");
-        form1.submit();
+        form1.submit(); 
     }
 
     function showTheme() {

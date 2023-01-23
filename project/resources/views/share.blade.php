@@ -3,6 +3,15 @@
 @section('content')
 
 
+
+<script>
+    tinymce.init({
+        selector: 'textarea#editor',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        menubar: false
+    });
+</script>
     <div class="body-1">
 
     
@@ -216,21 +225,12 @@
 
 
 
-<!-- drag and drop image js -->
+
 @section('scripts')
-<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
-    tinymce.init({
-        selector: 'textarea#editor',
-        skin: 'bootstrap',
-        toolbar: ' bold italic strikethrough blockquote bullist numlist backcolor',
-        menubar: false,
-    });
-</script>
+   
 
-
-<script>
     function dragNdrop(event) {
         var fileName = URL.createObjectURL(event.target.files[0]);
         var preview = document.getElementById("preview");
