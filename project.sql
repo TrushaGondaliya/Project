@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2023 at 04:17 AM
+-- Generation Time: Jan 23, 2023 at 06:05 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -890,7 +890,7 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, 
 (1, 'Trusha', 'Gondaliya', 'trushagondaliya30@gmail.com', '$2y$10$I8/CxGHOxO7KWA4YUOuriuys6zfEoFvSDeCdfCxNI2yUVQujvwlDq', '8897645682', '1672977119.png', 'I love to work and help other people..', '123abc', 'HR MANAGEMENT', 1, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'trusha.linkdin', 'volunteer', '0', '2022-11-21 23:15:19', '2023-01-05 22:21:59', NULL),
 (2, 'Harsh', 'Gondaliya', 'harsh@gmail.com', '$2y$10$U0zp/n1GyhDe5eA/9GANP.vpMEbQ592zGw4R9HkeRrHbeQ20o1W3O', '9909876568', '1669293016.jpeg', 'Meet New People and Build Community', '1234abcd', 'managment', 2, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'harsh Gondaliya', 'community', '1', '2022-11-21 23:17:45', '2022-12-02 07:16:31', NULL),
 (5, 'Alis', 'Bhatt', 'alisbhatt@gmail.com', '$2y$10$XXE/gUxm/ulY2joTGxw5ceXDCSuGPTevuJxUyBLXfnPhk6ET31hq2', '1234567890', '1669811265.png', 'Gain Knowledge and Understanding of Other Ways of Life', 'abc54', 'HR', 5, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'Alis Bhatt', 'ways of life', '0', '2022-11-30 06:57:45', '2022-12-02 07:17:55', NULL),
-(6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p>The more opportunities you take to learn new skills and gain knowledge, the more fully you will develop as a person. And what safer space to develop those skills than in a context of service?</p>\r\n<p>Stepping out of your comfort zone and building new skills is the best way to develop your self-esteem. Volunteering will increase your sense of pride and thus, your self-confidence! When you challenge yourself through volunteering and receive appreciation from others, it can make you feel better emotionally and mentally.&nbsp;</p>\r\n<p>&nbsp;</p>', 'Arshi Sharma', 'self-Esteem', '1', '2022-12-01 02:35:33', '2022-12-02 07:19:00', NULL),
+(6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p><strong>INTRODUCTION</strong></p>\r\n<p>jbdsjkvkfvkfdllklgf</p>', 'Arshi Sharma', 'self-Esteem', '0', '2022-12-01 02:35:33', '2023-01-22 23:33:54', NULL),
 (7, 'Robert', 'Smith', 'robert@gmail.com', '$2y$10$jeE8ohpFAb56HnZmcFsYJ.wz.zV7CwggUJg6jMBxUSeAloOWQ8vXO', '8897645682', '1670567806.png', 'Meet New People and Build Community', '1234abc', 'HR', 4, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>', 'robert smith', 'xyz', '0', '2022-12-09 01:06:46', '2022-12-09 01:06:46', NULL),
 (8, 'Bansi', 'Raiyani', 'bansiraiyani9963@gmail.com', '$2y$10$GiZGT1aD/cenFTbFXNjXOOaU5115GGjyxV.WVGi3VVyOdCmzhKxs.', '123456789', '1672116342.png', 'Meet New People and Build Community', '1234abc', 'HR', 2, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&amp;rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'bansi raiyani', 'abcd', '0', '2022-12-26 23:15:42', '2022-12-26 23:15:42', NULL),
 (9, 'Ritika', 'Parmar', 'ritikaparmar406@gmail.com', '$2y$10$oM12WyOFjEGUqELC00ZGGuvXLcifiR11LFs5YFmtFmFB1x.64.3da', '7864257907', '1672116419.png', 'Boost Your Self-Esteem', '1234abc', 'electrical', 5, 2, '<p>&lt;p&gt;Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&amp;rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.&lt;/p&gt;</p>', 'ritika parmar', 'loream', '0', '2022-12-26 23:16:59', '2022-12-26 23:16:59', NULL);
@@ -916,7 +916,9 @@ CREATE TABLE `user_skill` (
 
 INSERT INTO `user_skill` (`user_skill_id`, `user_id`, `skill_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 4, '2023-01-06 03:51:59', NULL, NULL),
-(2, 1, 7, '2023-01-06 03:51:59', NULL, NULL);
+(2, 1, 7, '2023-01-06 03:51:59', NULL, NULL),
+(3, 6, 5, '2023-01-23 05:03:54', NULL, NULL),
+(4, 6, 7, '2023-01-23 05:03:54', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -1257,7 +1259,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_skill`
 --
 ALTER TABLE `user_skill`
-  MODIFY `user_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

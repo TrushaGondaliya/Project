@@ -2,19 +2,7 @@
 
 @section('content')
 
-
-
-<script>
-    tinymce.init({
-        selector: 'textarea#editor',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false
-    });
-</script>
-    <div class="body-1">
-
-    
+<div class="body-1">
         <br><br>
 
         <div class="share">
@@ -46,11 +34,7 @@
                         <input type="text" name="title" class="story-input" placeholder="Enter Story Title">
                     </div>
                 </div>
-             
-
                 <br><br>
-
-
             </div>
             <br>
             <Span class="story-text">My Story</Span><br>
@@ -223,13 +207,16 @@
 @endsection
 
 
-
-
-
 @section('scripts')
+<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
-   
+    tinymce.init({
+        selector: 'textarea#editor',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        menubar: false
+    });
 
     function dragNdrop(event) {
         var fileName = URL.createObjectURL(event.target.files[0]);

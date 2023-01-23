@@ -53,10 +53,11 @@
 </div>              
 
 
-
+<script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}" crossorigin="anonymous"></script>
+        <script src="{{asset('assets/js/scripts.js')}}"></script>
 
 <script type="text/javascript" src="assets/js/multiselect-dropdown.js"></script>
-<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 
 @yield('scripts')

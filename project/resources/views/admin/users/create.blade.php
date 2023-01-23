@@ -89,6 +89,8 @@
                         @foreach($skill as $item)
                             <input type="checkbox" class="cms-checkbox" name="skill_id[]" value="{{$item->skill_id}}">{{$item->skill_name}}
                             @endforeach
+                            <br>
+
                         <label class="cms-label">Status</label>
                         <select class="cms-input" name="status">
                             <option value=""></option>
