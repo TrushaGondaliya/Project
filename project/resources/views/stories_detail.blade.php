@@ -102,7 +102,7 @@
                     <div class="row col-md-12">
                         <div class="column col-md-8 col-8">
                             <img class="story-vol-img" src="{{asset('/uploads/user/'.$story->user->avtar)}}" alt="">
-                            <div class="story-text-2">{{Auth::user()->full_name}}</div>
+                            <div class="story-text-2">{{$story->user->full_name}}</div>
 
                         </div>
                         <div class="column col-md-4 col-4">
@@ -122,17 +122,9 @@
                     <div class="row col-md-12 col-sm-12">
                         <div class="column col-md-12 col-lg-7 col-sm-12">
                             <button value="{{$story->story_id}}" class="story-detail-button invite">
-                                <div class="row">
-                                    <div class=" col-sm-1 col-1 col-lg-1"></div>
-                                    <div class="col-md-1 col-sm-1 col-1 col-lg-1">
-
-                                        <img src="/images/add1.png" style="height: 22px;width:22px">
-                                    </div>
-                                    <div class="col-md-10 col-sm-9 col-9 col-lg-9">
-                                        <span class="story-detail-button-text invite">Recommend to a co-worker</span>
-                                        
-                                    </div>
-                                    
+                                <div >   
+                                <img src="/images/add1.png" style="height: 22px;width:22px">
+                                <span class="story-detail-button-text invite">Recommend to a co-worker</span>
                                 </div>
                             </button>
                         </div>
@@ -151,53 +143,24 @@
             </div>
 
         </div>
-        @endforeach
 
 </div>
 <br><br>
 <div class="vol">
     <div class=" vol-mission">
+                    @php
+                    $mission=App\Models\Mission::where('mission_id',$story->mission_id)->first();
+                    @endphp
 
         <ul class="nav nav-tabs-2">
-            <li class="nav-item"> <a class="nav-link nav-detail" href="#">Grow Trees</a> </li>
-            <li class="nav-item"><a class="nav-link" href="#">-On the path to environment sustainbility</a></li>
+            <li class="nav-item nav-detail"><a class="nav-link">{{$mission->title}}</a></li>
 
         </ul>
 
 
     </div>
     <br>
-
-    <span class="stories-detail-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        <br><br>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        <br><br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </span>
-
-    <br><br>
-    <span class="stories-detail-test-1">
-        We use these technologies for a number of purposes, such as:
-    </span>
-    <ul>
-        <span class="stories-detail-li-text">
-            <li>
-                <span>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain.</span>
-            </li>
-            <li> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</li>
-            <span>
-                excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.
-            </span>
-            <li> On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized</li>
-            <li> But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain.</li>
-            <li> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</li>
-        </span>
-    </ul><br>
-
-    <span class="stories-detail-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </span>
+    <span>{!!$mission->description!!}</span>
 </div>
 </div>
 <br>
@@ -206,6 +169,8 @@
 <x-footer></x-footer>
 <br>
 </div>
+@endforeach
+
 
 <div class="popup">
             <div class="popup-close-btn"></div>

@@ -22,7 +22,7 @@
                 </div>
                     </form>
                 </div>
-                <div class="col-lg-8" style="float: right; text-align:right">
+                <div class="col-lg-5" style="float: right; text-align:right">
                     <div style="float:right" class="add-admin add-goal">
                    
                         <span class="fa fa-plus" style="color: #f88634!important;"></span>
@@ -135,6 +135,7 @@
 
 @section('scripts')
 <script>
+        $('.alert-success').fadeOut(3000);
     $(document).ready(function() {
         $('.deleteCategorybtn').click(function(e) {
             var mission_theme_id = $(this).val();

@@ -96,3 +96,6 @@ $banners=App\Models\Banner::all()
     </div>
 
 </section>
+<script>
+     $('.alert-success').fadeOut(3000);
+</script>

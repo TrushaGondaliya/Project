@@ -1,8 +1,7 @@
 <footer>
 <div class="footer">
 
-  <a href="">Privacy</a>
-    <a href="{{url('policy_page')}}">Policy</a>
+    <a href="{{url('policy_page')}}">Privacy Policy</a>
 <button class="contact">Contact Us</button>
 
 </div>
@@ -57,6 +56,9 @@
             $('.popup-close-btn').click(function() {
                 p.close();
             });
+            $('.popup-button').click(function(){
+                p.close();
+            })
         });
 
         function Popup(Obj) {

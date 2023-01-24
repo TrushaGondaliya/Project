@@ -59,7 +59,7 @@
 
 
 
-          <div class="nav-item dropdown" style="display: flex;margin-left: 785px;float:right">
+          <div class="nav-item dropdown" style="display: flex;margin-left: 630px;float:right">
               <div>
                   <img src="{{asset('uploads/user/'.Auth::user()->avtar)}}" alt="Avatar"
                       style="width:40px;height: 40px; border-radius:100%;object-fit:cover ;margin-right: 12px;">

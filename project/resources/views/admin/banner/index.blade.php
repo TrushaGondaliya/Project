@@ -10,7 +10,7 @@
         </ul>
         <div class="container-fluid px-4">
             <div class="row pt-4">
-                <div class="col-lg-3 form-outline mb-4 admin-search-div">
+                <div class="col-lg-3 col-md-3 form-outline mb-4 admin-search-div">
                     <form action="{{url('admin/banner')}}" method="POST">
                         @csrf
                         <div class="admin-row">
@@ -23,7 +23,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-8" style="float: right; text-align:right">
+                <div class="col-lg-5 col-md-5" style="float: right; text-align:right">
                     <div style="float:right" class="add-admin add-goal">
                         <span class="fa fa-plus" style="color: #f88634!important;"></span>
                         <a href="{{url('admin/add-banner')}}"><button class="admin_add">Add</button></a>

@@ -34,7 +34,7 @@ class UserController extends Controller
                 $users = User::where('first_name', 'LIKE', '%' . request()->input('search') . '%')->orwhere('last_name', 'LIKE', '%' . request()->input('search') . '%')->orwhere('email', 'LIKE', '%' . request()->input('search') . '%');
 
             }
-            $users = $users->paginate(4)->withQueryString();
+            $users = $users->paginate(6)->withQueryString();
             return view('admin.users.view', compact('users'));
 
         }

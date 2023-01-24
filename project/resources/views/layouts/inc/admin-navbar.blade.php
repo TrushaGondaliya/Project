@@ -15,7 +15,7 @@
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <!-- Evan Donohue -->
                     <!-- {{Session::get('name')}} -->
-                   {{ Auth::user()->first_name}} {{ Auth::user()->last_name}}
+                   {{ Auth::user()->full_name}}
                     
                 </a>
                 <ul class="dropdown-menu">

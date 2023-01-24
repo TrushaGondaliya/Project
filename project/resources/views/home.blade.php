@@ -21,7 +21,7 @@
         <span class="mission mission-text " id="country_tag"><span style="padding-right: 5px;">{{request()->country}}</span><img src="/images/cancel.png" id="clear"></span>
         @endif
         @if(request()->city)
-        <span class="mission mission-text " id="city_tag"><span style="padding-right: 5px;">{{request()->city}}</span><img src="/images/cancel.png" id="clear"></span>
+        <span class="mission mission-text " id="city_tag"><span style="padding-right: 5px;">{{ implode(",",request()->city) }}</span><img src="/images/cancel.png" id="clear"></span>
         @endif
         @if(request()->theme)
         <span class="mission mission-text " id="theme_tag"><span style="padding-right: 5px;">{{request()->theme}}</span><img src="/images/cancel.png" id="clear"></span>
@@ -107,7 +107,7 @@ $mission=App\Models\Mission::all()
                                         @foreach($favourite as $fav)
                                         @if($fav->mission_id==$mission->mission_id)
                                         @if($fav->mission_id==$mission->mission_id && $fav->user_id==Auth::user()->user_id)
-                                        <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
+                                            <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
                                         @break
                                         @endif
                                         @endif
@@ -354,10 +354,6 @@ $mission=App\Models\Mission::all()
 <br>
 
 
-
-
-
-
 <script>
     var msg = '{{Session::get("message")}}';
     var exist = '{{Session::has("message")}}';
@@ -423,7 +419,6 @@ $mission=App\Models\Mission::all()
                 overlay: '.overlay',
             });
 
-           
 
             $('.invite').click(function() {
                 var mission_id = $(this).val();

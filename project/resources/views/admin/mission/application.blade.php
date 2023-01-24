@@ -52,7 +52,7 @@
                                 <td>{{$item->mission_id}}</td>
                                 <td>{{$item->user_id}}</td>
                                 <td>{{$item->user->full_name}} </td>
-                                <td>{{$item->applied_at}}</td>
+                                <td>{{$item->applied_at->format('d/m/Y')}}</td>
                               
                              
                                 <td>

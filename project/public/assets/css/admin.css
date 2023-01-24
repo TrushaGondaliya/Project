@@ -131,7 +131,7 @@
   justify-content: space-between;
   min-width: 0;
   flex-grow: 1;
-  min-height: calc(100vh );
+  min-height: calc(90vh - 46px );
   margin-left: -225px;
 }
 
@@ -306,6 +306,14 @@
   color: #757575;
 }
 
+@media (max-width:1440px) {
+  .cms-text{
+    margin: 0px 155px 15px 405px;
+  }
+  .cms-text-1{
+    margin: 0px 155px 15px 370px;
+  }
+}
 .mission-img{
   width: 26px;
   height: 20px;
@@ -313,6 +321,11 @@
   object-fit: contain
 }
 
+@media (max-width:1440px) {
+  .mission-img{
+    margin: 15px 271px 2px 445px;
+  }
+}
 
 .dragBox {
   width: 100%;

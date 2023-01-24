@@ -126,20 +126,20 @@
 
 .user-table th{
     /* width: 1512px; */
-    height: 70px;
+    height: 60px;
     margin: 30px 42px 500px 29px;
-    padding: 30px 25px 22px 30px;
+    padding: 20px 20px 20px 20px;
     border-bottom: solid 1px #d9d9d9;
     background-color: #f8f9fc;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: normal;
     font-family: sans-serif;
 }
 .user-table td{
     height: 65px;
     margin: 30px 42px 500px 29px;
-    padding: 25px 25px 20px 30px;
-    font-size: 16px;
+    padding: 20px 0px 20px 20px;
+    font-size: 14px;
     font-family: sans-serif;
 }
 

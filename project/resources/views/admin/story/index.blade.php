@@ -52,7 +52,7 @@
 
                                 <td>
                                     <div >
-                                        <a href="{{url('/stories_detail')}}" style="text-decoration: none;">
+                                        <a href="{{url('/stories_detail/'.$item->story_id)}}" style="text-decoration: none;">
                                    <input type="button" class="story-td-btn" value="View">
                                         </a>
                                    <a href="{{url('admin/published/'.$item->story_id)}}" >
@@ -140,6 +140,7 @@
 
 @section('scripts')
 <script>
+    $('.alert-success').fadeOut(3000);
     $(document).ready(function() {
         $('.deleteCategorybtn').click(function(e) {
             // $(document).on('click','',function(e){

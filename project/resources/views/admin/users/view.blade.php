@@ -11,7 +11,7 @@
         <div class="container-fluid px-4">
             <div class="row pt-4">
 
-                <div class="col-lg-3 form-outline mb-4 admin-search-div">
+                <div class="col-lg-3 col-md-3 form-outline mb-4 admin-search-div">
                     <form action="{{url('admin/user')}}" method="get">
                       
                         <div class="admin-row">
@@ -24,7 +24,7 @@
                 </div>
 
 
-                <div class="col-lg-8" style="float: right; text-align:right">
+                <div class="col-lg-5 col-md-5" style="float: right; text-align:right">
                     <div style="float:right" class="add-admin add-goal">
 
                         <span class="fa fa-plus" style="color: #f88634!important;"></span>
@@ -70,7 +70,7 @@
                                 <td>
                                     <a href="{{url('admin/edit-user/'.$item->user_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>
 
-                                    <button value="{{$item->user_id}}" class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
+                                    <button value="{{$item->user_id}}" class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-bottom:0px;margin-left:0px" src="\images\bin.png"></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -144,6 +144,7 @@
 
 @section('scripts')
 <script>
+        $('.alert-success').fadeOut(3000);
     $(document).ready(function() {
         $('.deleteCategorybtn').click(function(e) {
             // $(document).on('click','',function(e){

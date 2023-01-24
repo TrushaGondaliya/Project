@@ -52,7 +52,7 @@
         <script src="{{asset('assets/js/scripts.js')}}"></script>
 
     <!-- summer note js link -->
-+
+
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
     $(document).ready(function() {

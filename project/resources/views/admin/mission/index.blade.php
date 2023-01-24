@@ -22,7 +22,7 @@
                 </div>
                     </form>
             </div>
-            <div class="col-lg-8" style="float: right; text-align:right">
+            <div class="col-lg-5" style="float: right; text-align:right">
             <div style="float:right" class="add-admin add-goal">
       <span class="fa fa-plus" style="color: #f88634!important;"></span>
       <a href="{{url('admin/mission-add')}}">
@@ -56,9 +56,14 @@
                                
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->mission_type}}</td>
-                                <td>{{$item->start_date}}</td>
-                                <td>{{$item->end_date}}</td>
-                             
+                                @if($item->mission_type=="TIME")
+                                <td>{{$item->start_date->format('d/m/Y')}}</td>
+                                <td>{{$item->end_date->format('d/m/Y')}}</td>
+                                @else
+                                <td></td>
+                                <td></td>
+                             @endif
+
                                 <td>   
                                 <a href="{{url('admin/edit-mission/'.$item->mission_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>    
                                 <button value="{{$item->mission_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
@@ -134,14 +139,10 @@
 
 
 @section('scripts')
-        <script>
-    
+    <script>
+    $('.alert-success').fadeOut(3000);
     $(document).ready(function(){
         $('.deleteCategorybtn').click(function(e){
-            // $(document).on('click','',function(e){
-
-            // e.preventDefault();
-
             var mission_id=$(this).val();
             $('#mission_id').val(mission_id);
             $('#deleteModal').modal('show');

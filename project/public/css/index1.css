@@ -265,6 +265,18 @@ td{
   transition: opacity .3s;
 }
 
+@media (max-width:1440px) {
+  .goal_popup{
+    width: 565px;
+    left: 400px;
+  }
+  .timesheet_popup{
+    width:565px ;
+    left: 400px;
+  }
+  
+}
+
 @media (max-width:992px) {
   .goal_add_popup{
     width: 700px;
@@ -299,7 +311,17 @@ td{
   background-color: white;
   padding: 15px 20px 20px;
 }
-
+@media (max-width:1440px) {
+  .time_add_popup{
+    width:565px ;
+    left: 400px;
+  }
+  .goal_add_popup{
+    width:565px ;
+    left: 400px;
+  
+  }
+}
 .for-add-time-popup{
   display: none;
 }

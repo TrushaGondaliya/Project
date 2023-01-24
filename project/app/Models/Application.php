@@ -13,7 +13,7 @@ class Application extends Model
 
     protected $table='mission_application';
     protected $primaryKey='mission_application';
-    protected $dates=['deleted_at'];
+    protected $dates=['deleted_at','applied_at'];
     public $timestamps=true;
 
     protected $fillable=[

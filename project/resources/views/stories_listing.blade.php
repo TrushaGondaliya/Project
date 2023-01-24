@@ -74,9 +74,13 @@
                             <div class="list-des">
                             <p class="card-text" style="color:black;">{!!$item->description!!} </p>
                             </div>
-                            <div>
+                            <div class="">
                                 <img src="{{asset('/uploads/user/'.$item->user->avtar)}}" style="border-radius: 50%;height:50px;width:50px" alt="">
                                 <span>{{$item->user->full_name}}</span>
+                            </div>
+                            
+                            <div class="">
+                                <span>published At : {{$item->published_at->format('d/m/Y')}}</span>
                             </div>
 
                         </div>

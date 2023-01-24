@@ -195,6 +195,7 @@
 @section('scripts')
 
 <script>
+    $('.alert-success').fadeOut(3000);
     $(function() {
         var p = new Popup({
             popup: '.popup',

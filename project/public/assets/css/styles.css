@@ -11396,7 +11396,7 @@ body {
   justify-content: space-between;
   min-width: 0;
   flex-grow: 1;
-  min-height: calc(100vh - 56px);
+  min-height: calc(200vh - 46px);
   margin-left: -225px;
 }
 

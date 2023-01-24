@@ -13,7 +13,7 @@ class Story extends Model
 
     protected $table='story';
     protected $primaryKey='story_id';
-    protected $dates=['deleted_at'];
+    protected $dates=['deleted_at','published_at'];
 
     public $timestamps=true;
     protected $fillable=[

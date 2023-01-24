@@ -211,6 +211,8 @@
 <script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
+$('.alert-success').fadeOut(3000);
+
     tinymce.init({
         selector: 'textarea#editor',
         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',

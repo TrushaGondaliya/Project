@@ -23,7 +23,7 @@
                 </div>
                     </form>
                 </div>
-            <div class="col-lg-8" style="float: right; text-align:right">
+            <div class="col-lg-5" style="float: right; text-align:right">
             <div style="float:right" class="add-admin add-goal">
       <span class="fa fa-plus" style="color: #f88634!important;"></span>
                     <a href="{{url('admin/add-cms')}}"><button class="admin_add">Add</button></a>
@@ -129,8 +129,8 @@
         <!--end popup box for change Password -->
 
         @section('scripts')
-        <script>
-    
+    <script>
+    $('.alert-success').fadeOut(3000);
     $(document).ready(function(){
         $('.deleteCategorybtn').click(function(e){
             // $(document).on('click','',function(e){

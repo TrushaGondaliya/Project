@@ -24,27 +24,27 @@
                             </div>
 
                             <a class="nav-link {{Request::is('admin/mission') || Request::is('admin/mission-add') ||Request::is('admin/edit-mission/*') ? 'active' : ''}}" href="{{url('admin/mission')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-achieved {{Request::is('admin/mission')|| Request::is('admin/mission-add') ||Request::is('admin/edit-mission/*') ? 'active' : ''}}"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-dot-circle {{Request::is('admin/mission')|| Request::is('admin/mission-add') ||Request::is('admin/edit-mission/*') ? 'active' : ''}}"></i></div>
                                 Mission    
                             </a>
                             <a class="nav-link {{Request::is('admin/theme')||Request::is('admin/add-theme')||Request::is('admin/edit-theme/*') ? 'active' : ''}}" href="{{url('admin/theme')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-application {{Request::is('admin/theme')||Request::is('admin/add-theme')||Request::is('admin/edit-theme/*') ? 'active' : ''}}" href="{{url('admin/theme')}}"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fab fa-themeisle {{Request::is('admin/theme')||Request::is('admin/add-theme')||Request::is('admin/edit-theme/*') ? 'active' : ''}}" href="{{url('admin/theme')}}"></i></div>
                                 Mission Theme    
                             </a>
                             <a class="nav-link {{Request::is('admin/skill')||Request::is('admin/add-skill')||Request::is('admin/edit-skill/*') ? 'active' : ''}}" href="{{url('admin/skill')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/skill')||Request::is('admin/add-skill')||Request::is('admin/edit-skill/*') ? 'active' : ''}}"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-brain {{Request::is('admin/skill')||Request::is('admin/add-skill')||Request::is('admin/edit-skill/*') ? 'active' : ''}}"></i></div>
                                 Mission skill    
                             </a>
                             <a class="nav-link {{Request::is('admin/application') || Request::is('admin/add-application') ? 'active' : ''}}" href="{{url('admin/application')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/application')|| Request::is('admin/add-application') ? 'active' : ''}}"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-folder-plus {{Request::is('admin/application')|| Request::is('admin/add-application') ? 'active' : ''}}"></i></div>
                                 Mission Application    
                             </a>
                             <a class="nav-link {{Request::is('admin/story') ? 'active' : ''}}" href="{{url('admin/story')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools {{Request::is('admin/story') ? 'active' : ''}}"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-book {{Request::is('admin/story') ? 'active' : ''}}"></i></div>
                                 Story    
                             </a>
                             <a class="nav-link {{Request::is('admin/banner')|| Request::is('admin/add-banner')|| Request::is('admin/banner-edit/*') ? 'active' : ''}}" href="{{url('admin/banner')}}" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users {{Request::is('admin/banner')|| Request::is('admin/banner-edit/*')|| Request::is('admin/edit-banner') ? 'active' : ''}}"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-atlas {{Request::is('admin/banner')|| Request::is('admin/banner-edit/*')|| Request::is('admin/edit-banner') ? 'active' : ''}}"></i></div>
                                 Banner Management    
                             </a>
                         </div>
