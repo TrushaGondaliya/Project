@@ -189,9 +189,9 @@
                         </div>
                     </div>
                 </div>
-
+                <a href="stories_listing" style="text-decoration:none">
                 <input type="button" value="cancel" name="cancel" class="share-button">
-
+</a>
                 <input type="button" value="save" name="save" class="button-1">
                 <input type="submit" value="submit" name="submit" class="button-1">
 

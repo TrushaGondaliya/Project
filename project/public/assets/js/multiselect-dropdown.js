@@ -37,7 +37,8 @@ style.innerHTML = `
 }
 .multiselect-dropdown span.optext{
   padding:1px 0.75em; 
-  margin-top:25px}
+  font-size:xx-small
+}
 
 
 .multiselect-dropdown span.optext .optdel {
@@ -66,7 +67,7 @@ style.innerHTML = `
   right: 0;
   background: white;
   margin-top:50px;
-  width:130px
+  width:max-content
 }
 .multiselect-dropdown-list-wrapper .multiselect-dropdown-search{
   margin-bottom:5px;

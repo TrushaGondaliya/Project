@@ -25,45 +25,67 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row">
-                                    <div class="col" style="padding: 0px;">
-                                        <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
+                                    @php
+                                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->take(4)->get();
+                                    @endphp
+                                    @if(count($media)==4)
+                                    @foreach($media as $item)
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/{{$item->media_name}}"
                                             class="story-img " alt="">
                                     </div>
-
-                                    <div class="col" style="padding: 0px;">
-                                        <img src="/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
-                                            class="story-img" alt="">
+                                    @endforeach
+                                    @else
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/banner1.jpg"
+                                            class="story-img " alt="">
                                     </div>
-
-                                    <div class="col" style="padding: 0px;">
-                                        <img src="/images/img1.png" class="story-img " style="padding-left: 0;" alt="">
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/banner2.jpg"
+                                            class="story-img " alt="">
                                     </div>
-
-                                    <div class="col" style="padding: 0px;">
-                                        <img src="/images/img11.png" class="story-img " alt="">
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/banner3.jpg"
+                                            class="story-img " alt="">
                                     </div>
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/banner4.jpg"
+                                            class="story-img " alt="">
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="carousel-item">
                                 <div class="row">
-                                    <div class="col" style="padding: 0px;">
+                                @php
+                                    $media=App\Models\Media::where('mission_id',$mission->mission_id)->skip(4)->take(4)->get();
+                                @endphp
+                                @if(count($media)==4)
+                                @foreach($media as $item)
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/{{$item->media_name}}"
+                                            class="story-img " alt="">
+                                    </div>
+                                @endforeach
+                                @else
+                                <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
+                                            class="story-img " alt="">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
+                                            class="story-img " alt="">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
                                         <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
                                             class="story-img " alt="">
                                     </div>
-
-                                    <div class="col" style="padding: 0px;">
-                                        <img src="/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
-                                            class="story-img" alt="">
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                        <img src="/images/img22.png"
+                                            class="story-img " alt="">
                                     </div>
-
-                                    <div class="col" style="padding: 0px;">
-                                        <img src="/images/img1.png" class="story-img " style="padding-left: 0;" alt="">
-                                    </div>
-
-                                    <div class="col" style="padding: 0px;">
-                                        <img src="/images/img11.png" class="story-img " alt="">
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -86,6 +108,8 @@
                     </div>
                     <br><br>
                 </div>
+
+                
 
                 <div class="column col-lg-6 col-md-6">
                     <div class="container">
@@ -304,7 +328,7 @@
                                     </div>
                                 </div>
                                 <div id="organization" class="container tab-pane fade"><br>
-                                    {{$mission->organization_detail}}
+                                    {!!$mission->organization_detail!!}
                                 </div>
                                 <div id="sponsored" class="container tab-pane fade"><br>
                                     <h3>Menu 2</h3>
@@ -312,9 +336,33 @@
                                         doloremque laudantium, totam rem aperiam.</p>
                                 </div>
                                 <div id="comments" class="container tab-pane fade"><br>
-                                    <h3>Menu 3</h3>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium, totam rem aperiam.</p>
+                                <form action="{{url('comment')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="mission_id" value="{{$mission->mission_id}}">
+                                    <textarea name="comment" class="vol-comment">Enter Your Comments...</textarea>
+                                    <br>
+                                    <button  class="comment-btn">Post Comments</button>
+                                </form>
+
+                                <div class="container-fluid">
+                                
+                                    @foreach($comments as $comment)
+                                    <div class="card-box mt-4" >
+                                        <div class="row">
+                                            <div class="col-md-2 col-lg-2 ">
+                                            <img src="{{asset('/uploads/user/'.$comment->user->avtar)}}" class="com-img">
+                                            </div>
+                                            <div class="col-md-9 col-lg-9">
+                                                <div class="pt-2">{{$comment->user->full_name}}</div>
+                                                <div>{{$comment->created_at->format('l')}} , {{$comment->created_at}}</div>
+                                                <br>
+                                                <div class="mb-1">{{$comment->comment}}</div>
+                                            </div>
+                                        </div>
+</div>
+                                        @endforeach
+                                    
+                                </div>
                                 </div>
                             </div>
                             <br>
@@ -659,11 +707,12 @@ $(function() {
 
     $('.invite').click(function() {
         var mission_id = $(this).val();
+        console.log(mission_id);
         var form = $('.for-call-popup');
         p.open(form.html());
         $.ajax({
             type: "GET",
-            url: "invite_mission/" + mission_id,
+            url: "/invite_mission/" + mission_id,
             success: function(response) {
                 console.log(response);
                 $('#mission_id').val(response.invite.mission_id);

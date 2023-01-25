@@ -80,7 +80,7 @@
                             </div>
                             
                             <div class="">
-                                <span>published At : {{$item->published_at->format('d/m/Y')}}</span>
+                                <span>Published At : {{$item->published_at->format('d/m/Y')}}</span>
                             </div>
 
                         </div>

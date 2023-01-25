@@ -22,7 +22,7 @@
 $banners=App\Models\Banner::all()
 @endphp
 
-            <div id="carouselExampleCaptions" class="carousel slide col-lg-8" data-bs-ride="carousel">
+<div id="carouselExampleCaptions" class="carousel slide col-lg-8" data-bs-ride="carousel">
   <ul class="carousel-indicators">
   @foreach($banners as $banner)
   @php
@@ -31,9 +31,8 @@ $banners=App\Models\Banner::all()
   @if($banner->sort_order==1)
   <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$sort}}" class="active" aria-current="true" aria-label="Slide {{$banner->sort_order}}" ></li>
   @else
-            
   <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$sort}}" aria-label="Slide {{ $banner->sort_order}}"></li>
-@endif
+  @endif
     @endforeach
 </ul>
 

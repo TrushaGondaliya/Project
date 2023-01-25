@@ -82,6 +82,7 @@ Route::get('logout',[LogoutController::class,'destroy'])->name('logout');
 
 Route::get('mission_listing',[HomeController::class,'mission_listing']);
 Route::get('volunteering/{id}',[ VolunteeringController::class, 'vol']);
+Route::post('comment',[VolunteeringController::class,'com']);
 Route::get('register',[RegisterController::class,'register']);
 Route::get('stories_listing',[StorieslistingController::class,'stories_listing']);
 Route::get('share',[SharestoryController::class,'share']);
