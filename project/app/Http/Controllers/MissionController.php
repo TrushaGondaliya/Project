@@ -80,8 +80,7 @@ class MissionController extends Controller
                 if (request()->has('city') && !empty(request()->input('city'))) {
                 $name = City:: whereIn('name', request()->input('city'))->pluck('city_id')->toArray();
                 $missions = Mission::whereIn('city_id', $name);
-                }
-
+            }
             $missions = $missions->paginate(6)->withQueryString();
             $m_id = Application::all();
             return view('home', compact('missions', 'm_id'));

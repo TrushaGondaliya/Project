@@ -243,9 +243,11 @@ class AdminmissionController extends Controller
         $title = Mission::whereIn('mission_id', $mission_id)->pluck('title');
         if (request()->has('search') && !empty(request()->input('search'))) {
             $mission = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%')->pluck('mission_id');
-            $id = Mission::where('mission_id', $mission)->pluck('mission_id');
-            $application = Application::where('mission_id', $id);
-
+            // var_dump($mission);exit;
+         
+            $application = Application::whereIn('mission_id', $mission);
+        
+        
             }
             $application = $application->paginate(6)->withQueryString();
             return view('admin.mission.application', compact('application'));
