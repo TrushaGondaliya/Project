@@ -296,9 +296,13 @@ class AdminmissionController extends Controller
 
         $mission_id = $id;
         $user_id = Auth::user()->user_id;
-
-        $data = array('mission_id' => $mission_id, 'user_id' => $user_id);
-        DB::table('mission_application')->insert($data);
-        return redirect()->back()->with('message', 'application added successfully!');
+        if(Application::where('mission_id',$mission_id)->where('user_id',$user_id)->get()->isEmpty()){
+            $data = array('mission_id' => $mission_id, 'user_id' => $user_id);
+            DB::table('mission_application')->insert($data);
+            return redirect()->back()->with('message', 'application added successfully!');
+        }
+        else{
+        return redirect()->back()->with('message', 'application already added!');
+       }
     }
 }

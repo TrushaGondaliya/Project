@@ -285,7 +285,7 @@ $mission=App\Models\Mission::all()
                 @if($app->mission_id==$mission->mission_id)
 
                 @if($app->mission_id==$mission->mission_id && $app->user_id==Auth::user()->user_id &&
-                $app->approval_status!="DECLINE")
+                $app->approval_status!="DECLINE" && $app->approval_status=='APPROVE')
                 <div class="form-group">
                     <a href="{{url('volunteering/'.$mission->mission_id)}}">
 
@@ -297,8 +297,15 @@ $mission=App\Models\Mission::all()
 
                 @break
                 @endif
+                @if($app->approval_status=="PENDING" && $app->mission_id == $mission->mission_id && $app->user_id==Auth::user()->user_id )
+                    <div class='card-button'> Applied
+                        <img src='images/right-arrow.png' alt='' class='pl-3'>
+                    </div>
+                    @break
+                @endif
                 @endif
                 @endforeach
+
                 @if($app->mission_id != $mission->mission_id || $app->user_id!=Auth::user()->user_id ||
                 $app->approval_status=="DECLINE")
                 <a href="{{url('add-app/'.$mission->mission_id)}}">
@@ -307,6 +314,8 @@ $mission=App\Models\Mission::all()
                     </div>
                 </a>
                 @endif
+                
+                
 
 
             </div>

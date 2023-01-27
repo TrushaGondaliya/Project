@@ -140,7 +140,7 @@
 
 @section('scripts')
         <script>
-    
+    $('.alert-success').fadeOut(3000);
     $(document).ready(function(){
         $('.deleteCategorybtn').click(function(e){
             // $(document).on('click','',function(e){

@@ -43,7 +43,7 @@ class CmsController extends Controller
         if (request()->has('search') && !empty(request()->input('search'))) {
             $cms = Cms::where('title', 'LIKE', '%' . request()->input('search') . '%');
             }
-            $cms = $cms->paginate(4)->withQueryString();
+            $cms = $cms->paginate(6)->withQueryString();
             return view('admin.CMS.view', compact('cms'));
         
     }
