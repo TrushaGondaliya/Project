@@ -66,11 +66,9 @@ class AdminmissionController extends Controller
     }
     public function getCity(Request $request)
     {
-        $data['cities'] = City::where("country_id",$request->country_id)
-                    ->get(["name","city_id"]);
+        $data['cities'] = City::where("country_id",$request->country_id)->get(["name","city_id"]);
         return response()->json($data);
     }
-
 
 
     function add_mission(MissionRequest $request)
@@ -120,9 +118,6 @@ class AdminmissionController extends Controller
             $media->save();
             }
             }
-            
-     
-
         
         if ($request->hasfile('document')) {
             $files=$request->file('document');
@@ -132,7 +127,6 @@ class AdminmissionController extends Controller
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('uploads/mission/', $filename);
             $document->document_path = $filename;
-        
         $document->document_name = $file->getClientOriginalName();
         $document->document_type = $file->getClientMimeType();
         $document->save();
@@ -155,7 +149,6 @@ class AdminmissionController extends Controller
 
     function update(MissionRequest $request, $id)
     {
-        
         $data = $request->validated();
         $mission = Mission::find($id);
         $mission->city_id = $data['city'];
@@ -184,14 +177,10 @@ class AdminmissionController extends Controller
             $goal_value=$data['goal_value'];
             $goal=array('mission_id'=>$mission_id,'goal_objective_text'=>$goal_objective_text,'goal_value'=>$goal_value);
             DB::table('goal_mission')->where('mission_id', $id)->updateOrInsert($goal);
-
             }
 
-
-        
         foreach ($request->skill_id as $index) {
-        $mission_id = $id;
-            
+        $mission_id = $id; 
         $skill_id =$index;
         $skill=array(
             'mission_id'=>$mission_id,
@@ -199,7 +188,6 @@ class AdminmissionController extends Controller
         );
         DB::table('mission_skill')->where('mission_id',$id)->updateOrInsert($skill);
         }
-
 
         if ($request->hasFile('image')) {
             $files = $request->file('image');
@@ -215,7 +203,6 @@ class AdminmissionController extends Controller
                 DB::table('mission_media')->where('mission_id', $id)->updateOrInsert($media);
             }
             }
-
        
             if ($request->hasfile('document')) {
                 $files=$request->file('document');
@@ -225,7 +212,6 @@ class AdminmissionController extends Controller
                 $filename = time() . '.' . $file->getClientOriginalExtension();
                 $file->move('uploads/mission/', $filename);
                 $document_path = $filename;
-            
             $document_name = $file->getClientOriginalName();
             $document_type = $file->getClientMimeType();
             $document = array('mission_id' => $mission_id, 'document_path' => $document_path, 'document_name' => $document_name, 'document_type' => $document_type);
@@ -243,23 +229,15 @@ class AdminmissionController extends Controller
         $title = Mission::whereIn('mission_id', $mission_id)->pluck('title');
         if (request()->has('search') && !empty(request()->input('search'))) {
             $mission = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%')->pluck('mission_id');
-            // var_dump($mission);exit;
-         
             $application = Application::whereIn('mission_id', $mission);
-        
-        
             }
             $application = $application->paginate(6)->withQueryString();
-            return view('admin.mission.application', compact('application'));
-
-        
+            return view('admin.mission.application', compact('application'));  
     }
 
     function approve($id)
     {
-
         $app = Application::find($id);
-
         if ($app) {
             $data = [
                 'approval_status' => 'APPROVE'
@@ -271,9 +249,7 @@ class AdminmissionController extends Controller
 
     function decline($id)
     {
-        // dd('jedj');
         $app = Application::find($id);
-
         if ($app) {
             $data = [
                 'approval_status' => 'DECLINE'
@@ -285,7 +261,6 @@ class AdminmissionController extends Controller
 
     function create_app()
     {
-
         $mission = Mission::all();
         $user = User::all();
         return view('admin/mission/create_application', compact('mission', 'user'));
@@ -293,16 +268,15 @@ class AdminmissionController extends Controller
 
     function add_app(Request $request,$id)
     {
-
         $mission_id = $id;
         $user_id = Auth::user()->user_id;
         if(Application::where('mission_id',$mission_id)->where('user_id',$user_id)->get()->isEmpty()){
             $data = array('mission_id' => $mission_id, 'user_id' => $user_id);
             DB::table('mission_application')->insert($data);
-            return redirect()->back()->with('message', 'application added successfully!');
+            return redirect('home')->with('message', 'application added successfully!');
         }
         else{
-        return redirect()->back()->with('message', 'application already added!');
+        return redirect('home')->with('message', 'application already added!');
        }
     }
 }

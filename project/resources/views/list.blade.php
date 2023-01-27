@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-    <div class="body-1">
+<div class="body-1">
     @php
 $mission=App\Models\Mission::all()
 @endphp
@@ -11,7 +9,6 @@ $mission=App\Models\Mission::all()
     <div class="left-explore common-font">
         <span class="explore-light">Explore </span>{{count($mission)}} missions
     </div>
-
     <div class="right-explore">
         <form id="selectsort" action="{{url('home')}}" enctype="multipart/form-data" method="GET">
             <select name="sort" class="Rounded-Rectangle-8" onchange="sortBy()">
@@ -29,23 +26,18 @@ $mission=App\Models\Mission::all()
             </select>
         </form>
         <a href="{{url('home')}}">
-            <img class="img-fluid Grid-list grid" src="images/grid.png" alt="">
+            <img class="img-fluid Grid-list" src="images/grid.png" alt="">
         </a>
-
         <a href="{{url('list')}}">
             <img class="img-fluid Grid-list" src="images/list.png" alt="">
         </a>
-
     </div>
 </div>
-   
-
         <!-- card -->
         <section>
             <div class="container-fluid">
                 <div class="row abc">
                     @foreach($missions as $mission)
-                   
                     @php
                     $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
                     @endphp
@@ -68,25 +60,17 @@ $mission=App\Models\Mission::all()
                                         @php
                                         $favourite=App\Models\Favourite::all()
                                         @endphp
-
-
                                         @foreach($favourite as $fav)
                                         @if($fav->mission_id==$mission->mission_id)
-
                                         @if($fav->mission_id==$mission->mission_id && $fav->user_id==Auth::user()->user_id)
                                         <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
                                         @break
                                         @endif
                                         @endif
                                         @endforeach
-
                                         @if($fav->mission_id!=$mission->mission_id || $fav->user_id!=Auth::user()->user_id)
                                         <img src="/images/heart.png" alt='' class='img-fluid img-card-h'>
                                         @endif
-
-
-
-
                                     </a>
                                 </div>
                                 <a href="">
@@ -95,12 +79,10 @@ $mission=App\Models\Mission::all()
                                         <span>{{$mission->city->name}}</span>
                                 </a>
                             </div>
-
                                 <div class="d-flex four-txt justify-content-center">
                                     <div class="theme">{{$mission->theme->title}}</div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="column2 col-md-6">
                             <div class="card-body " style="padding-left:10px ; padding-top:30px;">
@@ -115,7 +97,6 @@ $mission=App\Models\Mission::all()
                                 @if(is_null($goal))
                                 <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to {{$mission->end_date->format('d/m/Y')}}</div>
                                 @else
-
                                 <div class='goal'>{{$goal->goal_objective_text}}</div>
                                 @endif
                                 <hr class='flex-grow-1' />
@@ -161,7 +142,6 @@ $mission=App\Models\Mission::all()
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="d-flex">
                                 @foreach($m_id as $app)
                                 @if($app->mission_id==$mission->mission_id)
@@ -175,7 +155,6 @@ $mission=App\Models\Mission::all()
                                         </div>
                                     </a>
                                 </div>
-
                                 @break
                                 @endif
                                 @endif
@@ -187,8 +166,6 @@ $mission=App\Models\Mission::all()
                                     </div>
                                 </a>
                                 @endif
-
-
                             </div>
                                 <div class="column2-1 col-md-">
                                     <div class='row'>
@@ -205,15 +182,12 @@ $mission=App\Models\Mission::all()
                                             @php
                                             $rating=App\Models\Rating::where('mission_id',$mission->mission_id)->sum('rating');
                                             $count=App\Models\Rating::where('mission_id',$mission->mission_id)->count('mission_id');
-                                            
                                             @endphp
                                             @if($count!=0)
                                             @php
                                             $rate=$rating/$count
                                             @endphp
                                             @endif
-                                           
-                                           
                                             <div class="star-icon"> 
                                                     <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating" type="radio" name="star" cusId="{{$mission->mission_id}}" />
                                                     <label for="rating1_{{$mission->mission_id}}" class="fa fa-star @if($count!=0) @if($rate>=1) checked @endif @endif"></label>
@@ -232,15 +206,8 @@ $mission=App\Models\Mission::all()
                                         </div>
                                     </div>
                                 </div>
-
-                               
-
-
-
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 @endforeach
@@ -295,9 +262,6 @@ $mission=App\Models\Mission::all()
                 content: '.popup-content',
                 overlay: '.overlay',
             });
-
-           
-
             $('.invite').click(function() {
                 var mission_id = $(this).val();
                 var form = $('.for-call-popup');
@@ -341,6 +305,5 @@ $mission=App\Models\Mission::all()
                 }
             });
         }
-    
 </script>
     @endsection

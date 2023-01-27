@@ -2,16 +2,15 @@
 
 
 @section('content')
-<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-
+<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
 <script>
-    tinymce.init({
-        selector: 'textarea#editor',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false
-    });
+tinymce.init({
+    selector: 'textarea#editor',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+    toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    menubar: false
+});
 </script>
 <div class="container-fluid">
     @if($errors->any())
@@ -20,10 +19,8 @@
         <div>{{$error}}</div>
         @endforeach
     </div>
-
     @endif
     <div>
-
         <form action="{{url('admin/update-profile/')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -33,10 +30,8 @@
                         <th>Edit</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <td>
-
                         <label class="cms-label">First Name</label>
                         <input class="cms-input" type="text" value="{{Auth::user()->first_name}}" name="first_name">
                         <label class="cms-label">Last Name</label>
@@ -44,7 +39,8 @@
                         <label class="cms-label">Email</label>
                         <input class="cms-input" type="text" value="{{Auth::user()->email}}" name="email">
                         <label class="cms-label">Password</label>
-                        <input class="cms-input" type="text" value="{{Auth::user()->password}}" disabled name="password">
+                        <input class="cms-input" type="text" value="{{Auth::user()->password}}" disabled
+                            name="password">
                         <label class="cms-label">Avtar</label>
                         <input class="cms-input" type="file" name="avtar" value="{{Auth::user()->avtar}}">
                         <label class="cms-label">Employee Id</label>
@@ -54,9 +50,11 @@
                         <label class="cms-label">Phone Number</label>
                         <input class="cms-input" type="text" value="{{Auth::user()->phone_number}}" name="phone_number">
                         <label class="cms-label">Why I Volunteer</label>
-                        <input class="cms-input" type="text" value="{{Auth::user()->why_i_volunteer}}" name="why_i_volunteer">
+                        <input class="cms-input" type="text" value="{{Auth::user()->why_i_volunteer}}"
+                            name="why_i_volunteer">
                         <label class="cms-label">Linked In Url</label>
-                        <input class="cms-input" type="text" value="{{Auth::user()->linked_in_url}}" name="linked_in_url">
+                        <input class="cms-input" type="text" value="{{Auth::user()->linked_in_url}}"
+                            name="linked_in_url">
                         <label class="cms-label">Title</label>
                         <input class="cms-input" type="text" value="{{Auth::user()->title}}" name="title">
                         <label class="cms-label">City_id</label>
@@ -80,20 +78,21 @@
                         </select>
                         <br><br>
                         <span class="cms-label">User Skills</span>
-                        <br><br>   
+                        <br><br>
                         @php
                         $skill=App\Models\Skill::all();
                         @endphp
-                            @foreach($skill as $item)                            
-                            <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}" {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
-                            @endforeach
+                        @foreach($skill as $item)
+                        <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}"
+                            {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
+                        @endforeach
                         <br>
                         <label class="cms-label">Profile Text</label>
                         <div class="cms-textarea">
-                            <textarea name="profile_text" class="text-area" id="editor" cols="" rows="">{{Auth::user()->profile_text}}</textarea>
+                            <textarea name="profile_text" class="text-area" id="editor" cols=""
+                                rows="">{{Auth::user()->profile_text}}</textarea>
                         </div>
                         <br>
-                        
                         <label class="cms-label">Status</label>
                         <select class="cms-input" name="status">
                             <option value="{{Auth::user()->status}}">{{Auth::user()->status}}</option>
@@ -102,9 +101,7 @@
                             }
                             @elseif(Auth::user()->status==1)
                             <option value="0">0</option>
-
                             @endif
-
                         </select>
                     </td>
                 </tbody>
@@ -114,10 +111,6 @@
                 <input type="submit" class="cms_btn2" name="" value="Save" id="">
             </div>
         </form>
-
-
-
-
     </div>
 </div>
 

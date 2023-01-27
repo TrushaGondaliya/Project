@@ -116,11 +116,7 @@
                             </div>
                         </a>
                     </div>
-
-
                 </div>
-
-
                 <div class="column col-md-6">
                     <div class="story">
                         <div class="row col-md-12">
@@ -162,12 +158,9 @@
                             </div>
                         </div>
                         <br>
-
                     </div>
                 </div>
-
             </div>
-
         </div>
         <br><br>
         <div class="vol">
@@ -175,13 +168,9 @@
                 @php
                 $mission=App\Models\Mission::where('mission_id',$story->mission_id)->first();
                 @endphp
-
                 <ul class="nav nav-tabs-2">
                     <li class="nav-item nav-detail"><a class="nav-link">{{$mission->title}}</a></li>
-
                 </ul>
-
-
             </div>
             <br>
             <span>{!!$mission->description!!}</span>
@@ -195,7 +184,6 @@
 </div>
 @endforeach
 
-
 <div class="popup">
     <div class="popup-close-btn"></div>
     <div class="popup-content"></div>
@@ -203,10 +191,8 @@
 <div class="for-call-popup">
     <form action="{{url('InviteStory')}}" class="call-popup">
         <h3>Story Invite</h3>
-
         <input type="hidden" name="story_id" id="story_id">
         <br>
-
         <label for="mission">User</label>
         @php
         $users=App\Models\User::all()
@@ -241,9 +227,6 @@ $(function() {
         content: '.popup-content',
         overlay: '.overlay',
     });
-
-
-
     $('.invite').click(function() {
         var story_id = $(this).val();
         console.log(story_id);
@@ -268,9 +251,7 @@ function Popup(Obj) {
     this.popup = $(Obj.popup);
     this.content = $(Obj.content);
     this.overlay = $(Obj.overlay);
-
     var pop = this;
-
     this.open = (function(content) {
         pop.content.html(content);
         pop.popup.addClass('open').fadeIn(1000);
@@ -288,14 +269,11 @@ function Popup(Obj) {
         }
     });
 }
-
-
 $(document).ready(function() {
     $('#gallery img').on({
         mouseover: function() {
             $(this).css({
                 'cursor': 'pointer',
-                'border-color': 'red'
             });
         },
         mouseout: function() {
@@ -314,8 +292,4 @@ $(document).ready(function() {
     });
 });
 </script>
-
-
-
-
 @endsection

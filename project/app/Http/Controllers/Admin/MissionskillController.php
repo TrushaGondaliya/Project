@@ -64,7 +64,6 @@ class MissionskillController extends Controller
     {
         $id=Skill::where('skill_id',$request->skill_id);
         $id->delete();
-       
         return redirect('admin/skill')->with('message','deleted successfully!');
     }
 

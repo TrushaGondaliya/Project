@@ -18,7 +18,8 @@
                                 <span class="fa fa-search"></span>
                             </div>
                             <div>
-                                <input type="search" value="{{request()->input('search')}}" placeholder="Search" name="search" class="admin-search form-control ">
+                                <input type="search" value="{{request()->input('search')}}" placeholder="Search"
+                                    name="search" class="admin-search form-control ">
                             </div>
                         </div>
                     </form>
@@ -53,8 +54,11 @@
                             <tr>
                                 <td>{{$item->title}}</td>
 
-                                <td><button value="{{$item->banner_id}}" class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
-                                    <a href="{{url('admin/banner-edit/'.$item->banner_id)}}"><i class="fas fa-edit" style="height: 20px;width:20px; color: #f88634!important;"></i></a>
+                                <td><button value="{{$item->banner_id}}" class="delete-btn deleteBannerbtn"><img
+                                            style="width: 16px; height:20px;margin-top:-10px;margin-left:10px"
+                                            src="\images\bin.png"></button>
+                                    <a href="{{url('admin/banner-edit/'.$item->banner_id)}}"><i class="fas fa-edit"
+                                            style="height: 20px;width:20px; color: #f88634!important;"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -65,42 +69,47 @@
 
 
             <div class="container mt-3">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="{{url('admin/banner?page='.$banner->onFirstPage())}}" aria-label="prevoius">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="{{$banner->previousPageUrl()}}" aria-label="prevoius">
-                    <span aria-hidden="true">&lsaquo;</span>
-                </a>
-            </li>
-            @for($i=1;$i<=$banner->lastpage();$i++) 
-            @if($i==$banner->currentPage())
-            <li class="page-item"><a class="page-link active" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
-            @else
-            <li class="page-item"><a class="page-link" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
-            @endif
-            @endfor
-                <li class="page-item">
-                    <a class="page-link" href="{{$banner->nextPageUrl()}}" aria-label="Next">
-                        <span aria-hidden="true">&rsaquo;</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{url('admin/banner?page='.$banner->lastpage())}}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-        </ul>
-    </div>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="{{url('admin/banner?page='.$banner->onFirstPage())}}"
+                            aria-label="prevoius">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{{$banner->previousPageUrl()}}" aria-label="prevoius">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                    @for($i=1;$i<=$banner->lastpage();$i++)
+                        @if($i==$banner->currentPage())
+                        <li class="page-item"><a class="page-link active"
+                                href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
+                        @else
+                        <li class="page-item"><a class="page-link" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a>
+                        </li>
+                        @endif
+                        @endfor
+                        <li class="page-item">
+                            <a class="page-link" href="{{$banner->nextPageUrl()}}" aria-label="Next">
+                                <span aria-hidden="true">&rsaquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="{{url('admin/banner?page='.$banner->lastpage())}}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
 
 
         </div>
     </div>
 </main>
 
+<!-- delete banner Popup -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -125,20 +134,15 @@
 @endsection
 
 
-<!--end popup box for change Password -->
-
 @section('scripts')
 <script>
-    $(document).ready(function() {
-        $('.deleteCategorybtn').click(function(e) {
-            // $(document).on('click','',function(e){
-
-            // e.preventDefault();
-
-            var banner_id = $(this).val();
-            $('#banner_id').val(banner_id);
-            $('#deleteModal').modal('show');
-        });
+$('.alert-success').fadeOut(3000);
+$(document).ready(function() {
+    $('.deleteBannerbtn').click(function(e) {
+        var banner_id = $(this).val();
+        $('#banner_id').val(banner_id);
+        $('#deleteModal').modal('show');
     });
+});
 </script>
 @endsection

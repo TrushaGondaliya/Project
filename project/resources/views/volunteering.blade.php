@@ -8,7 +8,6 @@
     <!-- Volunteering mission listing -->
 
     <section>
-
         <div class="vol">
             @foreach($missions as $mission)
             @php
@@ -31,26 +30,21 @@
                                     @if(count($media)==4)
                                     @foreach($media as $item)
                                     <div class="col-md-3 col-lg-3" style="padding: 0px;">
-                                        <img src="/images/{{$item->media_name}}"
-                                            class="story-img " alt="">
+                                        <img src="/images/{{$item->media_name}}" class="story-img " alt="">
                                     </div>
                                     @endforeach
                                     @else
                                     <div class="col-md-3 col-lg-3" style="padding: 0px;">
-                                        <img src="/images/banner1.jpg"
-                                            class="story-img " alt="">
+                                        <img src="/images/banner1.jpg" class="story-img " alt="">
                                     </div>
                                     <div class="col-md-3 col-lg-3" style="padding: 0px;">
-                                        <img src="/images/banner2.jpg"
-                                            class="story-img " alt="">
+                                        <img src="/images/banner2.jpg" class="story-img " alt="">
                                     </div>
                                     <div class="col-md-3 col-lg-3" style="padding: 0px;">
-                                        <img src="/images/banner3.jpg"
-                                            class="story-img " alt="">
+                                        <img src="/images/banner3.jpg" class="story-img " alt="">
                                     </div>
                                     <div class="col-md-3 col-lg-3" style="padding: 0px;">
-                                        <img src="/images/banner4.jpg"
-                                            class="story-img " alt="">
+                                        <img src="/images/banner4.jpg" class="story-img " alt="">
                                     </div>
                                     @endif
                                 </div>
@@ -58,18 +52,17 @@
 
                             <div class="carousel-item">
                                 <div class="row">
-                                @php
+                                    @php
                                     $media=App\Models\Media::where('mission_id',$mission->mission_id)->skip(4)->take(4)->get();
-                                @endphp
-                                @if(count($media)==4)
-                                @foreach($media as $item)
+                                    @endphp
+                                    @if(count($media)==4)
+                                    @foreach($media as $item)
                                     <div class="col-md-3 col-lg-3" style="padding: 0px;">
-                                        <img src="/images/{{$item->media_name}}"
-                                            class="story-img " alt="">
+                                        <img src="/images/{{$item->media_name}}" class="story-img " alt="">
                                     </div>
-                                @endforeach
-                                @else
-                                <div class="col-md-3 col-lg-3" style="padding: 0px;">
+                                    @endforeach
+                                    @else
+                                    <div class="col-md-3 col-lg-3" style="padding: 0px;">
                                         <img src="/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
                                             class="story-img " alt="">
                                     </div>
@@ -82,8 +75,7 @@
                                             class="story-img " alt="">
                                     </div>
                                     <div class="col-md-3 col-lg-3" style="padding: 0px;">
-                                        <img src="/images/img22.png"
-                                            class="story-img " alt="">
+                                        <img src="/images/img22.png" class="story-img " alt="">
                                     </div>
                                     @endif
                                 </div>
@@ -109,7 +101,7 @@
                     <br><br>
                 </div>
 
-                
+
 
                 <div class="column col-lg-6 col-md-6">
                     <div class="container">
@@ -278,9 +270,11 @@
                                 </div>
                             </div>
                         </div><br>
+                        <a href="{{url('add-app/'.$mission->mission_id)}}">
                         <div class='vol-button'>Apply Now
                             <img src='/images/right-arrow.png' alt='' class='pl-3'>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -336,33 +330,35 @@
                                         doloremque laudantium, totam rem aperiam.</p>
                                 </div>
                                 <div id="comments" class="container tab-pane fade"><br>
-                                <form action="{{url('comment')}}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="mission_id" value="{{$mission->mission_id}}">
-                                    <textarea name="comment" class="vol-comment">Enter Your Comments...</textarea>
-                                    <br>
-                                    <button  class="comment-btn">Post Comments</button>
-                                </form>
+                                    <form action="{{url('comment')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="mission_id" value="{{$mission->mission_id}}">
+                                        <textarea name="comment" class="vol-comment">Enter Your Comments...</textarea>
+                                        <br>
+                                        <button class="comment-btn">Post Comments</button>
+                                    </form>
 
-                                <div class="container-fluid">
-                                
-                                    @foreach($comments as $comment)
-                                    <div class="card-box mt-4" >
-                                        <div class="row">
-                                            <div class="col-md-2 col-lg-2 ">
-                                            <img src="{{asset('/uploads/user/'.$comment->user->avtar)}}" class="com-img">
-                                            </div>
-                                            <div class="col-md-9 col-lg-9">
-                                                <div class="pt-2">{{$comment->user->full_name}}</div>
-                                                <div>{{$comment->created_at->format('l')}} , {{$comment->created_at}}</div>
-                                                <br>
-                                                <div class="mb-1">{{$comment->comment}}</div>
+                                    <div class="container-fluid">
+
+                                        @foreach($comments as $comment)
+                                        <div class="card-box mt-4">
+                                            <div class="row">
+                                                <div class="col-md-2 col-lg-2 ">
+                                                    <img src="{{asset('/uploads/user/'.$comment->user->avtar)}}"
+                                                        class="com-img">
+                                                </div>
+                                                <div class="col-md-9 col-lg-9">
+                                                    <div class="pt-2">{{$comment->user->full_name}}</div>
+                                                    <div>{{$comment->created_at->format('l')}} ,
+                                                        {{$comment->created_at}}</div>
+                                                    <br>
+                                                    <div class="mb-1">{{$comment->comment}}</div>
+                                                </div>
                                             </div>
                                         </div>
-</div>
                                         @endforeach
-                                    
-                                </div>
+
+                                    </div>
                                 </div>
                             </div>
                             <br>

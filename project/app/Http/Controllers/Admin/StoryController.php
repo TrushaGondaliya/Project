@@ -74,7 +74,12 @@ class StoryController extends Controller
       
         $data=array('title'=>$title,'mission_id'=>$mission_id,'user_id'=>$user_id);
         DB::table('story')->insert($data);
-        return redirect('admin/story')->with('message','application added successfully!');
+        return redirect('admin/story')->with('message','story added successfully!');
         
+    }
+
+    function delete(Request $request){
+        Story::where('story_id',$request->story_id)->delete();
+        return redirect()->back()->with('message','story deleted successfully!');
     }
 }

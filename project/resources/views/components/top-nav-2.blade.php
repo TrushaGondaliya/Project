@@ -1,3 +1,4 @@
+
 <div class="nav-2">
 
 
@@ -40,8 +41,7 @@
                         $city=App\Models\City::all()
                         @endphp
                         <form id="select2" method="get" enctype="multipart/form-data" action="{{url('home')}}">
-                            <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker"
-                                aria-expanded="false" placeholder="City" multiple name="city[]" onchange="showCity()">
+                            <select placeholder="City" data-bs-toggle='dropdown' multiple multiselect-search="true" multiselect-select-all="true" name="city[]" onchange="showCity()" multiselect-max-items="5">
                                 @foreach($city as $item)
                                 <option value="{{$item->name}}" @if(request()->input('city')) {{ in_array($item->name, request()->input('city'))  ? 'selected="selected"': '' }} @endif > {{$item->name}}</option>
                                 @endforeach
@@ -53,9 +53,8 @@
                         $themes=App\Models\Theme::all()
                         @endphp
                         <form id="selectTheme" method="get" enctype="multipart/form-data" action="{{url('home')}}">
-                            <select class="nav-link nav-2-items dropdown-toggle City common-font selectpicker"
-                                data-bs-toggle="dropdown" placeholder="Theme" multiple name="theme[]"
-                                onchange="showTheme()">
+                            <select data-bs-toggle="dropdown" placeholder="Theme" multiple name="theme[]"
+                                onchange="showTheme()"  multiselect-search="true" multiselect-select-all="true" multiselect-max-items="5">
                                 @foreach($themes as $theme)
                                 <option value="{{$theme->title}}" @if(request()->input('theme')) {{ in_array($theme->title, request()->input('theme'))  ? 'selected="selected"': '' }} @endif > {{$theme->title}}</option>
                                 @endforeach
@@ -67,8 +66,7 @@
                         $skills=App\Models\Skill::all()
                         @endphp
                         <form id="selectSkill" method="get" enctype="multipart/form-data" action="{{url('home')}}">
-                            <select class="nav-link nav-2-items dropdown-toggle City common-font  selectpicker city-1"
-                                placeholder="Skill" multiple name="skill[]" onchange="showSkill()">
+                            <select multiple multiselect-search="true" multiselect-select-all="true" multiselect-max-items="5" placeholder="Skill" multiple name="skill[]" onchange="showSkill()">
                                 @foreach($skills as $skill)
                                 <option value="{{$skill->skill_name}}" @if(request()->input('skill')) {{ in_array($skill->skill_name, request()->input('skill'))  ? 'selected="selected"': '' }} @endif > {{$skill->skill_name}}</option>
                                 @endforeach

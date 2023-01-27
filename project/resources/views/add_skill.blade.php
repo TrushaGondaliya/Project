@@ -35,13 +35,15 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Name*</span>
                                     <div>
-                                        <input type="text" name="name" placeholder="Enter your name" class="edit-input" id="">
+                                        <input type="text" name="name" placeholder="Enter your name" class="edit-input"
+                                            id="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Surname*</span>
                                     <div>
-                                        <input type="text" name="Surname" placeholder="Enter your surname" class="edit-input" id="">
+                                        <input type="text" name="Surname" placeholder="Enter your surname"
+                                            class="edit-input" id="">
                                     </div>
                                 </div>
                             </div>
@@ -49,13 +51,15 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Employee ID*</span>
                                     <div>
-                                        <input type="text" name="emp_id" placeholder="Enter your Employee ID" class="edit-input" id="">
+                                        <input type="text" name="emp_id" placeholder="Enter your Employee ID"
+                                            class="edit-input" id="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Manager*</span>
                                     <div>
-                                        <input type="text" name="manager" placeholder="Enter your Manager details" class="edit-input" id="">
+                                        <input type="text" name="manager" placeholder="Enter your Manager details"
+                                            class="edit-input" id="">
                                     </div>
                                 </div>
                             </div>
@@ -63,13 +67,15 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Title*</span>
                                     <div>
-                                        <input type="text" name="title" placeholder="Enter your Title" class="edit-input" id="">
+                                        <input type="text" name="title" placeholder="Enter your Title"
+                                            class="edit-input" id="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Department*</span>
                                     <div>
-                                        <input type="text" name="dept" placeholder="Enter your Department Name" class="edit-input" id="">
+                                        <input type="text" name="dept" placeholder="Enter your Department Name"
+                                            class="edit-input" id="">
                                     </div>
                                 </div>
                             </div>
@@ -94,13 +100,15 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">City</span>
                                     <div>
-                                        <input type="text" name="city" placeholder="Enter your City" class="edit-input" id="">
+                                        <input type="text" name="city" placeholder="Enter your City" class="edit-input"
+                                            id="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Country*</span>
                                     <div>
-                                        <input type="text" name="country" placeholder="Enter your country" class="edit-input" id="">
+                                        <input type="text" name="country" placeholder="Enter your country"
+                                            class="edit-input" id="">
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +131,8 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <span class="story-input-text">Linkedin</span>
                                     <div>
-                                        <input type="text" name="country" placeholder="Enter your linkedin URL" class="edit-input" id="">
+                                        <input type="text" name="country" placeholder="Enter your linkedin URL"
+                                            class="edit-input" id="">
                                     </div>
                                 </div>
                             </div>
@@ -232,56 +241,56 @@
     </section>
 
     <script>
-        $(function() {
-            var p = new Popup({
-                popup: '.popup',
-                content: '.popup-content',
-                overlay: '.overlay',
-            });
-
-            //    setTimeout(function() {
-            //     var form = $('.for-call-popup');
-            //     p.open(form.html());
-            // }, 1000);
-
-            $('.edit-profile-button').click(function() {
-                var form = $('.for-call-popup');
-                p.open(form.html());
-            });
-
-            // $('.write').click(function() {
-            //     p.open('Write me a message: shark@sharkcoder.com');
-            // });
-
-            $('.popup-close-btn').click(function() {
-                p.close();
-            });
+    $(function() {
+        var p = new Popup({
+            popup: '.popup',
+            content: '.popup-content',
+            overlay: '.overlay',
         });
 
-        function Popup(Obj) {
-            this.popup = $(Obj.popup);
-            this.content = $(Obj.content);
-            this.overlay = $(Obj.overlay);
+        //    setTimeout(function() {
+        //     var form = $('.for-call-popup');
+        //     p.open(form.html());
+        // }, 1000);
 
-            var pop = this;
+        $('.edit-profile-button').click(function() {
+            var form = $('.for-call-popup');
+            p.open(form.html());
+        });
 
-            this.open = (function(content) {
-                pop.content.html(content);
-                pop.popup.addClass('open').fadeIn(1000);
-                pop.overlay.addClass('open');
-            });
+        // $('.write').click(function() {
+        //     p.open('Write me a message: shark@sharkcoder.com');
+        // });
 
-            this.close = (function() {
-                pop.popup.removeClass('open');
-                pop.overlay.removeClass('open');
-            });
+        $('.popup-close-btn').click(function() {
+            p.close();
+        });
+    });
 
-            this.overlay.click(function(e) {
-                if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
-                    pop.close();
-                }
-            });
-        }
+    function Popup(Obj) {
+        this.popup = $(Obj.popup);
+        this.content = $(Obj.content);
+        this.overlay = $(Obj.overlay);
+
+        var pop = this;
+
+        this.open = (function(content) {
+            pop.content.html(content);
+            pop.popup.addClass('open').fadeIn(1000);
+            pop.overlay.addClass('open');
+        });
+
+        this.close = (function() {
+            pop.popup.removeClass('open');
+            pop.overlay.removeClass('open');
+        });
+
+        this.overlay.click(function(e) {
+            if (!pop.popup.is(e.target) && pop.popup.has(e.target).length === 0) {
+                pop.close();
+            }
+        });
+    }
     </script>
     <hr>
     <x-footer></x-footer>

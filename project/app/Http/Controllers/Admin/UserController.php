@@ -32,31 +32,25 @@ class UserController extends Controller
         $users = User::latest();
         if (request()->has('search') && !empty(request()->input('search'))) { 
                 $users = User::where('first_name', 'LIKE', '%' . request()->input('search') . '%')->orwhere('last_name', 'LIKE', '%' . request()->input('search') . '%')->orwhere('email', 'LIKE', '%' . request()->input('search') . '%');
-
             }
             $users = $users->paginate(6)->withQueryString();
             return view('admin.users.view', compact('users'));
-
         }
 
         function create()
         {
             $data['countries'] = Country::get(["name", "country_id"]);
-
             return view('admin/users/create', $data);
         }
 
         function add_user(UserRequest $request)
         {
-
             $data = $request->validated();
-
             $user = new User;
             $user->first_name = $data['first_name'];
             $user->last_name = $data['last_name'];
             $user->email = $data['email'];
             $user->password = Hash::make($data['password']);
-
             if ($request->hasfile('avtar')) {
                 $file = $request->file('avtar');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
@@ -95,12 +89,10 @@ class UserController extends Controller
         function update(UserRequest $request, $user_id)
         {
             $data = $request->validated();
-
             $user = User::find($user_id);
             $user->first_name = $data['first_name'];
             $user->last_name = $data['last_name'];
             $user->email = $data['email'];
-
             if ($request->hasfile('avtar')) {
                 $destination = 'uploads/user/' . $user->avtar;
                 if (File::exists($destination)) {
@@ -119,7 +111,6 @@ class UserController extends Controller
             $user->title = $data['title'];
             $user->city_id = City::whereName($request->input('city'))->first()->city_id;
             $user->country_id = Country::whereName($request->input('country'))->first()->country_id;
-
             $user->profile_text = $data['profile_text'];
             $user->status = $data['status'];
             $user->update();
@@ -142,7 +133,6 @@ class UserController extends Controller
             Application::where('user_id', $request->user_id)->delete();
             Story::where('user_id', $request->user_id)->delete();
             Favourite::where('user_id', $request->user_id)->delete();
-
             User::where('user_id', $request->user_id)->delete();
             return redirect('admin/user')->with('message', 'deleted successfully');
         }
@@ -158,7 +148,6 @@ class UserController extends Controller
         function update_admin(UserRequest $request)
         {
             $data = $request->validated();
-
             $user = Auth::user();
             $user->first_name = $data['first_name'];
             $user->last_name = $data['last_name'];
@@ -182,14 +171,12 @@ class UserController extends Controller
             $user->title = $data['title'];
             $user->city_id = City::whereName($request->input('city'))->first()->city_id;
             $user->country_id = Country::whereName($request->input('country'))->first()->country_id;
-
             $user->profile_text = $data['profile_text'];
             $user->status = $data['status'];
             $user->update();
 
         foreach ($request->skill_id as $index) {
             $id = Auth::user()->user_id;
-
             $skill_id = $index;
             $skill = array(
                 'user_id' => $id,
@@ -197,7 +184,6 @@ class UserController extends Controller
             );
             DB::table('user_skill')->where('user_id', $id)->updateOrInsert($skill);
         }
-            
             return redirect('admin/user')->with('message', 'user updated succesfully');
         }
     }

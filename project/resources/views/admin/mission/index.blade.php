@@ -66,7 +66,7 @@
 
                                 <td>   
                                 <a href="{{url('admin/edit-mission/'.$item->mission_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>    
-                                <button value="{{$item->mission_id}}"  class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
+                                <button value="{{$item->mission_id}}"  class="delete-btn deleteMissionbtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
                             </td>
                                 
                             </tr>
@@ -142,7 +142,7 @@
     <script>
     $('.alert-success').fadeOut(3000);
     $(document).ready(function(){
-        $('.deleteCategorybtn').click(function(e){
+        $('.deleteMissionbtn').click(function(e){
             var mission_id=$(this).val();
             $('#mission_id').val(mission_id);
             $('#deleteModal').modal('show');

@@ -36,13 +36,11 @@ class LoginController extends Controller
         
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-
             if(Auth::user()->status=='1'){
                 return redirect('admin/user')->with('message','welcome to admin ');
             }
             else if(Auth::user()->status=='0'){
                 return redirect('home');
-
             }
             else{
                 return view('login');
@@ -51,8 +49,6 @@ class LoginController extends Controller
         else {
             return redirect('login')->with('error','username and password don`t match');
         }
-       
-      
     }
        
     

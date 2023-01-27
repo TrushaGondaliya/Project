@@ -61,7 +61,7 @@
                                 <td>
                                     <a href="{{url('admin/edit-skill/'.$item->skill_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>
 
-                                    <button value="{{$item->skill_id}}" class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
+                                    <button value="{{$item->skill_id}}" class="delete-btn deleteSkillbtn"><img style="width: 16px; height:20px;margin-top:-10px;margin-left:10px" src="\images\bin.png"></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -135,11 +135,7 @@
 <script>
         $('.alert-success').fadeOut(3000);
     $(document).ready(function() {
-        $('.deleteCategorybtn').click(function(e) {
-            // $(document).on('click','',function(e){
-
-            // e.preventDefault();
-
+        $('.deleteSkillbtn').click(function(e) {
             var skill_id = $(this).val();
             $('#skill_id').val(skill_id);
             $('#deleteModal').modal('show');

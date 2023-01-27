@@ -24,7 +24,6 @@ class CmsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'description' => 'required',
-
         ]);
 
         $title = $request->input('title');
@@ -33,7 +32,6 @@ class CmsController extends Controller
         $status = $request->input('status');
         $data = array('title' => $title, 'description' => $description, 'slug' => $slug, 'status' => $status);
         DB::table('cms_page')->insert($data);
-
         return redirect('admin/cms')->with('message', 'cms added successfully!');
     }
 
@@ -45,19 +43,16 @@ class CmsController extends Controller
             }
             $cms = $cms->paginate(6)->withQueryString();
             return view('admin.CMS.view', compact('cms'));
-        
     }
 
     function edit($id)
     {
         $cms = Cms::where('cms_page_id', $id)->get();
-
         return view('admin.CMS.cms-edit', compact('cms'));
     }
 
     function update(Request $request, $id)
     {
-
         $this->validate($request, [
             'title' => 'nullable',
             'description' => 'nullable',
@@ -78,8 +73,6 @@ class CmsController extends Controller
     function delete(Request $request)
     {
         Cms::where('cms_page_id', $request->cms_page_id)->delete();
-
-
         return redirect('admin/cms')->with('message', 'deleted successfully');
     }
 }

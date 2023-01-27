@@ -17,12 +17,10 @@ class BannerController extends Controller
         $banner = Banner::latest();
         if (request()->has('search') && !empty(request()->input('search'))) {
             $banner = Banner::where('title', 'LIKE', '%' . request()->input('search') . '%');  
-               }
-            $banner = $banner->paginate(6)->withQueryString();
-        return view('admin/banner/index',compact('banner'));
-
         }
-    
+        $banner = $banner->paginate(6)->withQueryString();
+        return view('admin/banner/index',compact('banner'));
+        }
 
     function create()
     {
@@ -31,9 +29,7 @@ class BannerController extends Controller
 
     function add_banner(BannerRequest $request)
     {
-
         $data = $request->validated();
-
         $banner = new Banner;
         $banner->title=$data['title'];
         $banner->text=$data['text'];
@@ -43,10 +39,7 @@ class BannerController extends Controller
         $file->move('uploads/banner/', $filename);
         $banner->image = $filename;}
         $banner->sort_order = $request->input('sort_order');
-      
         $banner->save();
-
-
         return redirect('admin/banner')->with('message', 'Banner added successfully!');
     }
 
@@ -59,7 +52,6 @@ class BannerController extends Controller
     function update(BannerRequest $request,$id)
     {
         $data = $request->validated();
-
         $banner = Banner::find($id);
         $banner->title=$data['title'];
         $banner->text=$data['text'];
@@ -74,10 +66,7 @@ class BannerController extends Controller
         $filename = time() . '.' . $file->getClientOriginalExtension();
         $file->move('uploads/banner/', $filename);
         $banner->image = $filename;}
-      
         $banner->update();
-
-
         return redirect('admin/banner')->with('message', 'Banner updated successfully!');
     }
 

@@ -20,10 +20,7 @@ class MissionthemeController extends Controller
             $theme = Theme::where('title', 'LIKE', '%' . request()->input('search') . '%');
             }
             $theme = $theme->paginate(6)->withQueryString();
-       
-        return view('admin.mission_theme.view',compact('theme'));
-
-        
+        return view('admin/mission_theme/view',compact('theme')); 
     }
 
     function add_theme(Request $request)
@@ -34,7 +31,6 @@ class MissionthemeController extends Controller
         ]);
        
         $title=$request->input('title');
-      
         $status=$request->input('status');
         $data=array('title'=>$title,'status'=>$status);
         DB::table('mission_theme')->insert($data);
@@ -63,7 +59,6 @@ class MissionthemeController extends Controller
     function delete(Request $request)
     {
         $id=Theme::where('mission_theme_id',$request->mission_theme_id);
-
         $id->delete();
         return redirect('admin/theme')->with('message','delete successfully!');
     }

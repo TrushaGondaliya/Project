@@ -21,17 +21,26 @@
                     <div><select class="story-input" aria-placeholder="Select your Mission" name="mission_id" id="">
                             <option value="" class="story-input">Select Your Mission</option>
                             @php
-                            $missions=App\Models\Mission::all()
+                            $missions=App\Models\Mission::all();
+                            $story=App\Models\Story::where('user_id',Auth::user()->user_id)->where('status','DRAFT')->first();
                             @endphp
                             @foreach($missions as $mission)
+                            @if($story)
+                            <option value="{{$story->mission->mission_id}}" selected>{{$mission->title}}</option>
+                            @endif
                             <option value="{{$mission->mission_id}}">{{$mission->title}}</option>
                             @endforeach
+                            
                         </select></div>
                 </div>
                 <div class="col-lg-6 col-mb-6 col-6 col-sm-6">
                     <Span class="story-text">My Story Title</Span>
                     <div>
+                        @if($story)
+                        <input type="text" value="{{$story->title}}" name="title" class="story-input" placeholder="Enter Story Title">
+                        @else
                         <input type="text" name="title" class="story-input" placeholder="Enter Story Title">
+                        @endif
                     </div>
                 </div>
                 <br><br>
@@ -39,7 +48,11 @@
             <br>
             <Span class="story-text">My Story</Span><br>
             <div>
+                @if($story)
+                <textarea name="description" class="text-area" id="editor" cols="" rows="">{{$story->description}}</textarea>
+                @else
                 <textarea name="description" class="text-area" id="editor" cols="" rows=""></textarea>
+                @endif
             </div>
             <br>
             <br>
@@ -48,7 +61,16 @@
                 <div class="uploadOuter">
                     <span class="dragBox">
                         <img src="images/drag-and-drop.png" alt="">
+                        @if($story)
+                        @php
+                        $media=App\Models\Storymedia::where('story_id',$story->story_id)->get()
+                        @endphp
+                        @foreach($media as $item)
+                        <input type="file" value="{{$item->story_media_id}}" onChange="dragNdrop(event)" name="image[]" ondragover="drag()" ondrop="drop()" id="uploadFile" multiple/>
+                        @endforeach
+                        @else
                         <input type="file" onChange="dragNdrop(event)" name="image[]" ondragover="drag()" ondrop="drop()" id="uploadFile" multiple/>
+                        @endif
                     </span>
                 </div>
                 <div id="preview"></div><br>
@@ -189,10 +211,12 @@
                         </div>
                     </div>
                 </div>
+                
                 <a href="stories_listing" style="text-decoration:none">
                     <input type="button" value="cancel" name="cancel" class="share-button">
                 </a>
-                <input type="button" value="save" name="save" class="button-1">
+                <input type="submit" value="save" name="save" class="button-1">
+            
                 <input type="submit" value="submit" name="submit" class="button-1">
 
             </div>

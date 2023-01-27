@@ -107,12 +107,9 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <br><br>
     <hr>
     <x-footer></x-footer>
     <br>
-
     @endsection

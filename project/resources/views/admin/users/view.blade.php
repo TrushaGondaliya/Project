@@ -70,7 +70,7 @@
                                 <td>
                                     <a href="{{url('admin/edit-user/'.$item->user_id)}}" class="time"><span class="fas fa-edit" style="height: 25px;width:20px;padding-top:0px; color: #f88634!important;"></span></a>
 
-                                    <button value="{{$item->user_id}}" class="delete-btn deleteCategorybtn"><img style="width: 16px; height:20px;margin-bottom:0px;margin-left:0px" src="\images\bin.png"></button>
+                                    <button value="{{$item->user_id}}" class="delete-btn deleteUserbtn"><img style="width: 16px; height:20px;margin-bottom:0px;margin-left:0px" src="\images\bin.png"></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -146,7 +146,7 @@
 <script>
         $('.alert-success').fadeOut(3000);
     $(document).ready(function() {
-        $('.deleteCategorybtn').click(function(e) {
+        $('.deleteUserbtn').click(function(e) {
             // $(document).on('click','',function(e){
 
             // e.preventDefault();

@@ -2,16 +2,17 @@
 
 
 @section('content')
-<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
 
 
 <script>
-    tinymce.init({
-        selector: 'textarea#editor',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false
-    });
+tinymce.init({
+    selector: 'textarea#editor',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+    toolbar: ' bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    menubar: false
+});
 </script>
 <div class="container-fluid">
     @if($errors->any())
@@ -33,10 +34,8 @@
                         <th>Edit</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <td>
-
                         <label class="cms-label">First Name</label>
                         <input class="cms-input" type="text" value="{{$item->first_name}}" name="first_name">
                         <label class="cms-label">Last Name</label>
@@ -65,7 +64,6 @@
                         @endphp
                         <select name="city" class="cms-input" id="">
                             <option value="{{$item->city->name}}"> {{$item->city->name}}</option>
-
                             @foreach($city as $item1)
                             <option value="{{$item1->name}}"> {{$item1->name}}</option>
                             @endforeach
@@ -79,20 +77,19 @@
                             <option value="{{$item1->name}}"> {{$item1->name}}</option>
                             @endforeach
                         </select>
-
-
                         <label class="cms-label">Profile Text</label>
                         <div class="cms-textarea">
                             <textarea name="profile_text" class="text-area" id="editor" cols="" rows=""></textarea>
                         </div>
                         <span class="cms-label">User Skills</span>
                         <br>
-                    @php
+                        @php
                         $skill=App\Models\Skill::all();
                         @endphp
-                            @foreach($skill as $item)                            
-                            <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}" {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
-                            @endforeach
+                        @foreach($skill as $item)
+                        <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}"
+                            {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
+                        @endforeach
                         <label class="cms-label">Status</label>
                         <select class="cms-input" name="status">
                             <option value="{{$item->status}}">{{$item->status}}</option>
@@ -103,21 +100,17 @@
                             <option value="0">0</option>
 
                             @endif
-
                         </select>
                     </td>
                 </tbody>
             </table>
             <div class="cms_btn">
-            <a href="user" style="text-decoration: none;">
-                <input type="button" class="cms_btn1" value="Cancel" name="" id="">
-                </a>                <input type="submit" class="cms_btn2" name="" value="Save" id="">
+                <a href="user" style="text-decoration: none;">
+                    <input type="button" class="cms_btn1" value="Cancel" name="" id="">
+                </a> <input type="submit" class="cms_btn2" name="" value="Save" id="">
             </div>
         </form>
         @endforeach
-
-
-
     </div>
 </div>
 

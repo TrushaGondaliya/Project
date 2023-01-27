@@ -384,6 +384,8 @@
   .delete-btn{
     border: none;
     background-color: white;
+    padding-bottom: 10px;
+    display: inline-flex;
   }
 
   .admin-search:focus{

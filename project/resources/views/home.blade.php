@@ -1,9 +1,8 @@
 <x-header></x-header>
-
+@inject('carbon', 'Carbon\Carbon')
 <link rel="stylesheet" href="{{url('css/index.css')}}">
 <x-top-nav></x-top-nav>
 <!-- second navbar -->
-
 
 <x-top-nav-2></x-top-nav-2>
 <hr style="margin-top: 0;">
@@ -23,7 +22,7 @@
         @foreach($city as $item)
         <span class="mission mission-text removable" id="city_{{$item->city_id}}"><span
                 style="padding-right: 5px;">{{$item->name}}</span>
-                <button id="{{$item->city_id}}" onClick="remove(this.id)" class="remove-tag">
+            <button id="{{$item->city_id}}" onClick="remove(this.id)" class="remove-tag">
                 <img src="/images/cancel.png" id="clear_{{$item->city_id}}"></button>
         </span>
         @endforeach
@@ -34,14 +33,14 @@
         @endif
         @if(request()->city)
         @foreach(request()->city as $item)
-        <span class="mission mission-text removable" id="city_tag"><span style="padding-right: 5px;">{{$item}}</span><img
-                src="/images/cancel.png" id="clear"></span>
+        <span class="mission mission-text removable" id="city_tag"><span
+                style="padding-right: 5px;">{{$item}}</span><img src="/images/cancel.png" id="clear"></span>
         @endforeach
         @endif
         @if(request()->theme)
         @foreach(request()->theme as $item)
-        <span class="mission mission-text removable" id="theme_tag"><span style="padding-right: 5px;">{{$item}}</span><img
-                src="/images/cancel.png" id="clear"></span>
+        <span class="mission mission-text removable" id="theme_tag"><span
+                style="padding-right: 5px;">{{$item}}</span><img src="/images/cancel.png" id="clear"></span>
         @endforeach
         @endif
         @if(request()->skill)
@@ -281,45 +280,41 @@ $mission=App\Models\Mission::all()
 
 
             <div class="d-flex align-items-center justify-content-center">
+
                 @foreach($m_id as $app)
-                @if($app->mission_id==$mission->mission_id)
 
                 @if($app->mission_id==$mission->mission_id && $app->user_id==Auth::user()->user_id &&
-                $app->approval_status!="DECLINE" && $app->approval_status=='APPROVE')
+                $app->approval_status!="DECLINE" && $app->approval_status=='APPROVE'|| $mission->end_date<=$carbon::now() && $mission->end_date!=null)
                 <div class="form-group">
-                    <a href="{{url('volunteering/'.$mission->mission_id)}}">
-
                         <div class='card-button'>View Detais
                             <img src='images/right-arrow.png' alt='' class='pl-3'>
                         </div>
-                    </a>
                 </div>
 
                 @break
                 @endif
-                @if($app->approval_status=="PENDING" && $app->mission_id == $mission->mission_id && $app->user_id==Auth::user()->user_id )
-                    <div class='card-button'> Applied
-                        <img src='images/right-arrow.png' alt='' class='pl-3'>
-                    </div>
-                    @break
+                @if($app->approval_status=="PENDING" && $app->mission_id == $mission->mission_id &&
+                $app->user_id==Auth::user()->user_id )
+                <div class='card-button'> Applied
+                    <img src='images/right-arrow.png' alt='' class='pl-3'>
+                </div>
+                @break
                 @endif
-                @endif
+                
                 @endforeach
 
                 @if($app->mission_id != $mission->mission_id || $app->user_id!=Auth::user()->user_id ||
                 $app->approval_status=="DECLINE")
-                <a href="{{url('add-app/'.$mission->mission_id)}}">
+                @if($mission->end_date>=$carbon::now() || $mission->end_date==null)
+                <a href="{{url('volunteering/'.$mission->mission_id)}}">
                     <div class='card-button'> Apply
                         <img src='images/right-arrow.png' alt='' class='pl-3'>
                     </div>
                 </a>
                 @endif
                 
-                
-
-
+                @endif
             </div>
-
         </div>
     </div>
 </div>
@@ -379,11 +374,7 @@ $mission=App\Models\Mission::all()
             @endif
             @endfor
             <li class="page-item">
-
-
                 <a class="page-link" aria-disabled="false" href="{{$missions->nextPageUrl()}}" aria-label="Next">
-
-
                     <span aria-hidden="true">&rsaquo;</span>
                 </a>
             </li>
@@ -394,9 +385,6 @@ $mission=App\Models\Mission::all()
             </li>
     </ul>
 </div>
-
-
-
 <br>
 <hr>
 <x-footer></x-footer>
@@ -418,7 +406,7 @@ $(document).ready(function() {
         $('#skill_tag').remove();
     });
 
-    $('#clear1').on('click',function(){
+    $('#clear1').on('click', function() {
         $('#city_' + $(this).attr("cityId")).remove();
     })
 
@@ -432,9 +420,9 @@ $(document).ready(function() {
     })
 })
 
-function remove(click){
-    $('#clear_'+click).on('click',function(){
-        $('#city_'+click).remove();
+function remove(click) {
+    $('#clear_' + click).on('click', function() {
+        $('#city_' + click).remove();
     })
 }
 
