@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2023 at 06:05 AM
+-- Generation Time: Jan 27, 2023 at 05:27 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -97,7 +97,9 @@ INSERT INTO `city` (`city_id`, `country_id`, `name`, `created_at`, `updated_at`,
 (3, 1, 'Ahmedabad', '2022-11-08 13:03:05', NULL, NULL),
 (4, 2, 'New York', '2022-11-08 13:03:05', NULL, NULL),
 (5, 2, 'Chicago', '2022-11-08 13:03:30', NULL, NULL),
-(6, 2, 'Houston', '2022-11-08 13:03:30', NULL, NULL);
+(6, 2, 'Houston', '2022-11-08 13:03:30', NULL, NULL),
+(7, 3, 'Toronto', '2023-01-24 08:39:18', NULL, NULL),
+(8, 3, 'Ottawa', '2023-01-24 08:39:18', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,7 +127,8 @@ INSERT INTO `cms_page` (`cms_page_id`, `title`, `description`, `status`, `slug`,
 (2, 'LARAVEL', '<p>LETS LEARN WITH US</p>', '0', 'laravel learn', '2022-11-22 04:54:16', NULL, NULL),
 (3, 'Environment', '<p>We work for environment. Lets join us..</p>', '0', 'env,work', '2022-11-24 09:09:00', '2022-11-25 04:13:34', '2022-11-25 04:13:34'),
 (4, 'WordPress', '<p><a href=\"https://themeisle.com/blog/what-is-wordpress/\">WordPress</a>&nbsp;is by far the most popular content management system. As one of the best free CMS tools, WordPress&nbsp;<strong>powers&nbsp;<a href=\"https://www.codeinwp.com/blog/wordpress-statistics/\" target=\"_blank\" rel=\"noopener\">43%</a>&nbsp;of all the websites on the internet</strong>&nbsp;(<em>including the Themeisle blog</em>).</p>\r\n<p>There are a ton of&nbsp;<a href=\"https://themeisle.com/blog/why-you-should-use-wordpress/\">reasons WordPress is so popular</a>. It&rsquo;s free to download and use, and also easy to learn, flexible, and&nbsp;<a href=\"https://themeisle.com/blog/get-started-with-wordpress-seo/\">search engine friendly</a>. Plus, thousands of themes and plugins make it one of the most customizable platforms. That definitely aligns WordPress with our core CMS definition and more!</p>', '1', 'wordpress', '2022-12-02 10:56:40', NULL, NULL),
-(5, 'Joomla', '<p><a href=\"https://www.joomla.org/\" target=\"_blank\" rel=\"noopener\">Joomla</a>&nbsp;is one of the best free CMS options since it has an impressive set of features baked in, and supports 70+ languages. It&rsquo;s a good open source CMS for any website that needs comprehensive content management, especially educational sites or complex websites like social networks.</p>', '0', 'joomla', '2022-12-02 10:57:35', NULL, NULL);
+(5, 'Joomla', '<p><a href=\"https://www.joomla.org/\" target=\"_blank\" rel=\"noopener\">Joomla</a>&nbsp;is one of the best free CMS options since it has an impressive set of features baked in, and supports 70+ languages. It&rsquo;s a good open source CMS for any website that needs comprehensive content management, especially educational sites or complex websites like social networks.</p>', '0', 'joomla', '2022-12-02 10:57:35', NULL, NULL),
+(6, 'what is cms', '<p>A content management system or CMS is a software that is used to build websites and create content to be published on the internet. Typically CMS allows you to create a website without writing any code.</p>\r\n<p>In the early days of the web, you needed to know HTML to be able to&nbsp;<a title=\"How to Code a Website (Complete Beginner&rsquo;s Guide)\" href=\"https://www.wpbeginner.com/beginners-guide/how-to-code-a-website-complete-beginners-guide/\">code a website</a>&nbsp;and publish your content online. That used to be hard, but CMS has made it much easier. Instead of writing your website code from scratch, the CMS software does it for you.</p>', '0', 'cms,description', '2023-01-27 03:54:46', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -137,11 +140,21 @@ CREATE TABLE `comment` (
   `comment_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `mission_id` bigint(20) UNSIGNED NOT NULL,
-  `approval_status` enum('PENDING','PUBLISHED') NOT NULL DEFAULT 'PENDING',
+  `comment` text NOT NULL,
+  `approval_status` enum('PENDING','PUBLISHED') NOT NULL DEFAULT 'PUBLISHED',
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `user_id`, `mission_id`, `comment`, `approval_status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 44, 'abc', 'PUBLISHED', '2023-01-24 23:33:05', '2023-01-24 23:33:05', NULL),
+(2, 1, 44, 'Nice mission Great opportunity for people', 'PUBLISHED', '2023-01-25 00:16:22', '2023-01-25 00:16:22', NULL),
+(3, 7, 10, 'This is helpful mission...Thank You!', 'PUBLISHED', '2023-01-25 00:20:11', '2023-01-25 00:20:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -164,7 +177,8 @@ CREATE TABLE `country` (
 
 INSERT INTO `country` (`country_id`, `name`, `ISO`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'India', 'IND', '2022-11-08 13:01:10', NULL, NULL),
-(2, 'America', 'USA', '2022-11-08 13:01:10', NULL, NULL);
+(2, 'America', 'USA', '2022-11-08 13:01:10', NULL, NULL),
+(3, 'Canada', 'CAN', '2023-01-24 08:37:05', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,7 +200,7 @@ CREATE TABLE `favourite_mission` (
 --
 
 INSERT INTO `favourite_mission` (`favourite_mission_id`, `user_id`, `mission_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 10, '2022-11-29 09:08:08', NULL, NULL),
+(1, 1, 10, '2022-11-29 09:08:08', '2023-01-24 05:23:30', '2023-01-24 05:23:30'),
 (2, 1, 13, '2022-11-30 03:37:57', NULL, NULL),
 (3, 5, 10, '2022-12-01 10:09:01', NULL, NULL),
 (4, 5, 13, '2022-12-01 10:18:46', NULL, NULL),
@@ -196,7 +210,7 @@ INSERT INTO `favourite_mission` (`favourite_mission_id`, `user_id`, `mission_id`
 (8, 1, 18, '2022-12-01 12:34:27', NULL, NULL),
 (9, 1, 40, '2022-12-02 12:57:47', '2022-12-26 01:24:39', '2022-12-26 01:24:39'),
 (10, 1, 22, '2022-12-05 08:51:02', NULL, NULL),
-(11, 1, 37, '2022-12-05 08:51:11', NULL, NULL),
+(11, 1, 37, '2022-12-05 08:51:11', '2023-01-25 05:51:33', '2023-01-25 05:51:33'),
 (12, 1, 25, '2022-12-06 09:23:58', NULL, NULL),
 (13, 1, 20, '2022-12-06 12:31:03', NULL, NULL),
 (14, 1, 39, '2022-12-07 05:41:25', '2022-12-12 21:40:27', '2022-12-12 21:40:27'),
@@ -204,7 +218,14 @@ INSERT INTO `favourite_mission` (`favourite_mission_id`, `user_id`, `mission_id`
 (16, 8, 35, '2022-12-28 11:50:49', NULL, NULL),
 (17, 8, 37, '2022-12-28 11:51:40', NULL, NULL),
 (18, 8, 10, '2023-01-06 02:12:56', NULL, NULL),
-(19, 8, 40, '2023-01-06 04:57:53', NULL, NULL);
+(19, 8, 40, '2023-01-06 04:57:53', NULL, NULL),
+(20, 1, 44, '2023-01-24 08:46:06', NULL, NULL),
+(21, 1, 14, '2023-01-24 12:40:14', '2023-01-24 07:10:14', '2023-01-24 07:10:14'),
+(22, 1, 14, '2023-01-24 12:40:18', NULL, NULL),
+(23, 7, 15, '2023-01-25 06:15:15', NULL, NULL),
+(24, 7, 37, '2023-01-25 10:05:50', NULL, NULL),
+(25, 1, 36, '2023-01-25 11:19:01', '2023-01-25 05:51:27', '2023-01-25 05:51:27'),
+(26, 1, 19, '2023-01-27 04:09:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -318,7 +339,7 @@ INSERT INTO `missions` (`mission_id`, `theme_id`, `city_id`, `country_id`, `titl
 (18, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEKLY', 23, '2023-01-13 02:12:26', '2023-01-12 20:42:26', NULL),
 (19, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum  adipisicing', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'WEEK-END', 23, '2023-01-13 02:12:01', '2023-01-12 20:42:01', NULL),
 (20, 1, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 23, '2023-01-13 02:11:05', '2023-01-12 20:41:05', NULL),
-(21, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 212, '2023-01-13 02:36:16', '2023-01-12 21:06:16', NULL),
+(21, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 212, '2023-01-25 10:34:20', '2023-01-25 05:04:20', NULL),
 (22, 2, 1, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-19', '2023-01-25', 'TIME', '0', 'Lorem ipsum dolor sit amet', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 212, '2023-01-13 02:35:51', '2023-01-12 21:05:51', NULL),
 (23, 4, 6, 2, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 21, '2023-01-13 02:33:00', '2023-01-12 21:03:00', NULL),
 (24, 4, 3, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRO</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', '2022-11-27', '2023-02-22', 'TIME', '0', 'Lorem ipsum dolor sit', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', 'DAILY', 21, '2023-01-13 02:08:12', '2023-01-12 20:38:12', NULL),
@@ -340,7 +361,8 @@ INSERT INTO `missions` (`mission_id`, `theme_id`, `city_id`, `country_id`, `titl
 (40, 7, 2, 1, 'The mission is the “what” and the “how,” and the vision is the “why.”', 'The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish', '<p><strong>INTRODUCTION</strong></p>\r\n<p>The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish</p>\r\n<p>&nbsp;</p>\r\n<p><strong>DETAILS</strong></p>\r\n<p>The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish</p>', '2023-01-28', '2023-02-05', 'TIME', '0', 'The mission is the', '<p>&nbsp;</p>\r\n<p>The mission statement defines what an organization does and includes tangible goals which the organization strives to accomplish</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', 'MONTHLY', 210, '2023-01-13 02:07:13', '2023-01-12 20:37:13', NULL),
 (41, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid earum numquam perferendis sunt error!</p>', NULL, NULL, 'GOAL', '0', 'Tesla', '<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>', 'DAILY', 12, '2023-01-13 02:29:37', '2023-01-12 20:59:37', NULL),
 (42, 5, 6, 2, 'To accelerate the world’s transition to sustainable energy.', 'To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.', '<p><strong>INTRODUCTION</strong></p>\r\n<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>', '2022-12-17', '2022-12-30', 'TIME', '0', 'Tesla', '<p>To offer designer eyewear at a revolutionary price, while leading the way for socially conscious businesses.</p>', 'DAILY', 12, '2023-01-13 02:33:53', '2023-01-12 21:03:53', NULL),
-(43, 2, 5, 2, 'American Express', '“We work hard every day to make American Express the world’s most respected service brand.”', '<p><strong>INTRO</strong></p>\r\n<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>', '2022-12-17', '2023-01-01', 'TIME', '0', 'American Express', '<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>', 'WEEK-END', 122, '2023-01-13 02:30:26', '2023-01-12 21:00:26', NULL);
+(43, 2, 5, 2, 'American Express', '“We work hard every day to make American Express the world’s most respected service brand.”', '<p><strong>INTRO</strong></p>\r\n<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>\r\n<p><strong>DETAIL</strong></p>\r\n<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>', '2022-12-17', '2023-01-01', 'TIME', '0', 'American Express', '<p>&ldquo;We work hard every day to make American Express the world&rsquo;s most respected service brand.&rdquo;</p>', 'WEEK-END', 122, '2023-01-13 02:30:26', '2023-01-12 21:00:26', NULL),
+(44, 1, 7, 3, 'Grow More Trees', 'The true meaning of life is to plant trees, under whose shade you do not expect to sit', '<p><strong>INTRODUCTION</strong></p>\r\n<p>Trees exhale for us so that we can inhale them to stay alive. Can we ever forget that? Let us love trees with every breath we take un</p>\r\n<p>&nbsp;</p>\r\n<p><strong>QUOTE FOR TREES</strong></p>\r\n<p>The best friend on earth of man is the tree. When we use the tree respectfully and economically, we have one of the greatest resources on the earth.&rdquo;</p>', '2023-01-10', '2023-01-29', 'TIME', '0', 'The true meaning of life ', 'The true meaning of life is to plant trees, under whose shade you do not expect to', 'WEEK-END', 213, '2023-01-25 05:45:10', '2023-01-24 03:12:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -364,20 +386,37 @@ CREATE TABLE `mission_application` (
 --
 
 INSERT INTO `mission_application` (`mission_application`, `mission_id`, `user_id`, `applied_at`, `approval_status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 10, 5, '2022-12-02 06:55:56', 'PENDING', '2022-12-02 06:55:56', NULL, NULL),
-(2, 10, 1, '2022-12-02 07:11:17', 'PENDING', '2022-12-02 07:11:17', NULL, NULL),
-(3, 14, 1, '2022-12-02 07:11:34', 'PENDING', '2022-12-02 07:11:34', NULL, NULL),
+(1, 10, 5, '2022-12-02 06:55:56', 'APPROVE', '2022-12-02 06:55:56', '2023-01-26 22:25:08', NULL),
+(2, 10, 1, '2022-12-02 07:11:17', 'APPROVE', '2022-12-02 07:11:17', '2023-01-25 05:06:05', NULL),
+(3, 14, 1, '2022-12-02 07:11:34', 'APPROVE', '2022-12-02 07:11:34', '2023-01-25 05:06:02', NULL),
 (4, 16, 5, '2022-12-02 07:12:00', 'APPROVE', '2022-12-02 07:12:00', '2022-12-02 02:22:58', NULL),
-(5, 23, 1, '2022-12-07 05:40:33', 'PENDING', '2022-12-07 05:40:33', NULL, NULL),
-(6, 40, 5, '2022-12-07 12:43:36', 'PENDING', '2022-12-07 12:43:36', NULL, NULL),
-(7, 40, 1, '2022-12-08 03:45:08', 'PENDING', '2022-12-08 03:45:08', NULL, NULL),
-(8, 43, 1, '2022-12-08 03:47:06', 'PENDING', '2022-12-08 03:47:06', NULL, NULL),
-(9, 37, 1, '2022-12-09 12:22:31', 'PENDING', '2022-12-09 12:22:31', NULL, NULL),
-(10, 35, 1, '2022-12-14 03:17:17', 'PENDING', '2022-12-14 03:17:17', NULL, NULL),
-(11, 39, 8, '2022-12-27 07:46:16', 'PENDING', '2022-12-27 07:46:16', NULL, NULL),
-(12, 24, 8, '2023-01-06 02:48:52', 'PENDING', '2023-01-06 02:48:52', NULL, NULL),
-(13, 13, 8, '2023-01-06 02:51:30', 'PENDING', '2023-01-06 02:51:30', NULL, NULL),
-(14, 40, 8, '2023-01-06 04:56:55', 'PENDING', '2023-01-06 04:56:55', NULL, NULL);
+(5, 23, 1, '2022-12-07 05:40:33', 'APPROVE', '2022-12-07 05:40:33', '2023-01-25 05:05:59', NULL),
+(6, 40, 5, '2022-12-07 12:43:36', 'APPROVE', '2022-12-07 12:43:36', '2023-01-26 22:25:11', NULL),
+(7, 40, 1, '2022-12-08 03:45:08', 'APPROVE', '2022-12-08 03:45:08', '2023-01-25 05:05:57', NULL),
+(8, 43, 1, '2022-12-08 03:47:06', 'APPROVE', '2022-12-08 03:47:06', '2023-01-26 22:25:12', NULL),
+(9, 37, 1, '2022-12-09 12:22:31', 'APPROVE', '2022-12-09 12:22:31', '2023-01-26 22:25:14', NULL),
+(10, 35, 1, '2022-12-14 03:17:17', 'APPROVE', '2022-12-14 03:17:17', '2023-01-26 22:25:15', NULL),
+(11, 39, 8, '2022-12-27 07:46:16', 'APPROVE', '2022-12-27 07:46:16', '2023-01-26 22:25:17', NULL),
+(12, 24, 8, '2023-01-06 02:48:52', 'APPROVE', '2023-01-06 02:48:52', '2023-01-26 22:25:19', NULL),
+(13, 13, 8, '2023-01-06 02:51:30', 'APPROVE', '2023-01-06 02:51:30', '2023-01-26 22:25:20', NULL),
+(14, 40, 8, '2023-01-06 04:56:55', 'APPROVE', '2023-01-06 04:56:55', '2023-01-26 22:25:22', NULL),
+(15, 21, 1, '2023-01-24 05:20:06', 'PENDING', '2023-01-24 05:20:06', NULL, NULL),
+(16, 21, 7, '2023-01-24 07:11:29', 'PENDING', '2023-01-24 07:11:29', NULL, NULL),
+(17, 21, 7, '2023-01-24 07:11:30', 'PENDING', '2023-01-24 07:11:30', NULL, NULL),
+(18, 21, 7, '2023-01-24 07:11:30', 'APPROVE', '2023-01-24 07:11:30', '2023-01-26 22:25:28', NULL),
+(19, 44, 1, '2023-01-24 08:42:53', 'APPROVE', '2023-01-24 08:42:53', '2023-01-26 22:25:29', NULL),
+(20, 10, 7, '2023-01-25 05:49:24', 'APPROVE', '2023-01-25 05:49:24', '2023-01-26 22:25:25', NULL),
+(21, 10, 10, '2023-01-25 06:07:20', 'APPROVE', '2023-01-25 06:07:20', '2023-01-26 22:25:32', NULL),
+(22, 19, 1, '2023-01-27 04:00:15', 'PENDING', '2023-01-27 04:00:15', NULL, NULL),
+(23, 16, 1, '2023-01-27 04:02:17', 'PENDING', '2023-01-27 04:02:17', NULL, NULL),
+(24, 19, 1, '2023-01-27 04:02:26', 'PENDING', '2023-01-27 04:02:26', NULL, NULL),
+(25, 16, 1, '2023-01-27 04:07:02', 'PENDING', '2023-01-27 04:07:02', NULL, NULL),
+(26, 18, 1, '2023-01-27 04:15:25', 'PENDING', '2023-01-27 04:15:25', NULL, NULL),
+(27, 41, 1, '2023-01-27 04:18:35', 'PENDING', '2023-01-27 04:18:35', NULL, NULL),
+(28, 36, 1, '2023-01-27 04:21:34', 'PENDING', '2023-01-27 04:21:34', NULL, NULL),
+(29, 17, 7, '2023-01-27 04:22:02', 'PENDING', '2023-01-27 04:22:02', NULL, NULL),
+(30, 36, 7, '2023-01-27 04:22:08', 'PENDING', '2023-01-27 04:22:08', NULL, NULL),
+(31, 19, 7, '2023-01-27 04:22:21', 'PENDING', '2023-01-27 04:22:21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -434,7 +473,8 @@ INSERT INTO `mission_document` (`mission_document_id`, `mission_id`, `document_n
 (31, 37, 'foodbill.pdf', 'application/pdf', '1669886436.pdf', '2022-12-01 09:20:36', NULL, NULL),
 (32, 40, 'foodbill-2022.pdf', 'application/pdf', '1669886466.pdf', '2022-12-01 09:21:06', NULL, NULL),
 (33, 40, 'Hostel run by college.pdf', 'application/pdf', '1669886466.pdf', '2022-12-01 09:21:06', NULL, NULL),
-(34, 41, 'hostel fee.pdf', 'application/pdf', '1669886492.pdf', '2022-12-01 09:21:32', NULL, NULL);
+(34, 41, 'hostel fee.pdf', 'application/pdf', '1669886492.pdf', '2022-12-01 09:21:32', NULL, NULL),
+(35, 44, 'hostel fee.pdf', 'application/pdf', '1674549751.pdf', '2023-01-24 03:12:31', '2023-01-24 03:12:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -463,7 +503,13 @@ INSERT INTO `mission_invite` (`mission_invite_id`, `mission_id`, `from_user_id`,
 (5, 15, 8, 1, '2022-12-26 23:38:21', '2022-12-26 23:38:21', NULL),
 (6, 14, 8, 9, '2022-12-26 23:47:43', '2022-12-26 23:47:43', NULL),
 (7, 17, 8, 1, '2022-12-27 04:16:41', '2022-12-27 04:16:41', NULL),
-(8, 13, 8, 1, '2023-01-05 20:47:48', '2023-01-05 20:47:48', NULL);
+(8, 13, 8, 1, '2023-01-05 20:47:48', '2023-01-05 20:47:48', NULL),
+(9, 10, 1, 1, '2023-01-23 07:30:01', '2023-01-23 07:30:01', NULL),
+(10, 10, 7, 6, '2023-01-25 00:27:00', '2023-01-25 00:27:00', NULL),
+(11, 10, 7, 1, '2023-01-25 00:27:24', '2023-01-25 00:27:24', NULL),
+(12, 10, 7, 10, '2023-01-25 00:36:13', '2023-01-25 00:36:13', NULL),
+(13, 10, 10, 1, '2023-01-25 00:37:33', '2023-01-25 00:37:33', NULL),
+(14, 24, 1, 8, '2023-01-25 05:49:11', '2023-01-25 05:49:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -513,15 +559,21 @@ INSERT INTO `mission_media` (`mission_media_id`, `mission_id`, `media_name`, `me
 (24, 43, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669884837.png', '0', '2022-12-01 03:23:57', '2022-12-01 03:23:57', NULL),
 (25, 43, 'Grow-Trees-On-the-path-to-environment-sustainability.png', 'image/png', '1669884837.png', '0', '2022-12-01 03:23:57', '2022-12-01 03:23:57', NULL),
 (26, 43, 'Grow-Trees-On-the-path-to-environment-sustainability-login.png', 'image/png', '1669884837.png', '0', '2022-12-01 03:23:57', '2022-12-01 03:23:57', NULL),
-(27, 42, 'Grow-Trees-On-the-path-to-environment-sustainability-4.png', 'image/png', '1669886085.png', '1', '2022-12-27 07:44:50', NULL, NULL),
-(28, 42, 'img.png', 'image/png', '1669886085.png', '1', '2022-12-27 07:44:54', NULL, NULL),
-(29, 42, 'img11.png', 'image/png', '1669886085.png', '1', '2022-12-27 07:44:58', NULL, NULL),
-(30, 42, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png', 'image/png', '1669886136.png', '1', '2022-12-27 07:45:08', NULL, NULL),
-(31, 42, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669886136.png', '0', '2022-12-01 09:15:36', NULL, NULL),
+(27, 42, 'Grow-Trees-On-the-path-to-environment-sustainability-4.png', 'image/png', '1669886085.png', '0', '2023-01-25 06:46:08', NULL, NULL),
+(28, 42, 'img.png', 'image/png', '1669886085.png', '0', '2023-01-25 06:46:11', NULL, NULL),
+(29, 42, 'img11.png', 'image/png', '1669886085.png', '0', '2023-01-25 06:46:15', NULL, NULL),
+(30, 42, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-5.png', 'image/png', '1669886136.png', '0', '2023-01-25 06:46:19', NULL, NULL),
+(31, 42, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669886136.png', '1', '2023-01-25 06:46:01', NULL, NULL),
 (32, 37, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669886436.png', '0', '2022-12-01 09:20:36', NULL, NULL),
 (33, 37, 'Grow-Trees-On-the-path-to-environment-sustainability.png', 'image/png', '1669886436.png', '0', '2022-12-01 09:20:36', NULL, NULL),
 (35, 41, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png', 'image/png', '1669886492.png', '0', '2022-12-05 07:08:32', NULL, NULL),
-(36, 41, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669886492.png', '0', '2022-12-01 09:21:32', NULL, NULL);
+(36, 41, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1669886492.png', '0', '2022-12-01 09:21:32', NULL, NULL),
+(38, 44, 'banner4.jpg', 'image/jpeg', '1674549751.jpg', '0', '2023-01-24 03:12:31', '2023-01-24 03:12:31', NULL),
+(39, 44, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png', 'image/png', '1674549751.png', '0', '2023-01-24 03:12:31', '2023-01-24 03:12:31', NULL),
+(40, 21, 'banner1 - Copy.jpg', 'image/jpeg', '1674642860.jpg', '0', '2023-01-25 10:34:20', NULL, NULL),
+(41, 21, 'banner2.jpg', 'image/jpeg', '1674642860.jpg', '0', '2023-01-25 10:34:20', NULL, NULL),
+(42, 21, 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png', 'image/png', '1674642860.png', '0', '2023-01-25 10:34:20', NULL, NULL),
+(43, 21, 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', 'image/png', '1674642861.png', '0', '2023-01-25 10:34:21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -561,7 +613,10 @@ INSERT INTO `mission_rating` (`mission_rating_id`, `user_id`, `mission_id`, `rat
 (15, 8, 17, '2', '2023-01-05 20:50:34', '2023-01-05 20:50:34', NULL),
 (16, 8, 22, '1', '2023-01-05 20:50:48', '2023-01-05 20:50:48', NULL),
 (17, 1, 20, '2', '2023-01-12 21:13:03', '2023-01-12 21:13:03', NULL),
-(18, 1, 14, '4', '2023-01-12 21:13:23', '2023-01-12 21:13:23', NULL);
+(18, 1, 14, '4', '2023-01-12 21:13:23', '2023-01-12 21:13:23', NULL),
+(19, 1, 44, '2', '2023-01-24 03:22:01', '2023-01-24 03:22:01', NULL),
+(20, 7, 41, '2', '2023-01-25 01:17:36', '2023-01-25 01:17:36', NULL),
+(21, 1, 21, '1', '2023-01-25 05:48:53', '2023-01-25 05:48:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -647,7 +702,9 @@ INSERT INTO `mission_skill` (`mission_skill_id`, `skill_id`, `mission_id`, `crea
 (62, 8, 17, '2023-01-13 02:32:26', NULL, NULL),
 (63, 5, 22, '2023-01-13 02:35:51', NULL, NULL),
 (64, 7, 22, '2023-01-13 02:35:51', NULL, NULL),
-(65, 6, 15, '2023-01-13 02:36:49', NULL, NULL);
+(65, 6, 15, '2023-01-13 02:36:49', NULL, NULL),
+(66, 3, 44, '2023-01-24 03:12:31', '2023-01-24 03:12:31', NULL),
+(67, 8, 44, '2023-01-24 03:12:31', '2023-01-24 03:12:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -761,10 +818,14 @@ CREATE TABLE `story` (
 --
 
 INSERT INTO `story` (`story_id`, `user_id`, `mission_id`, `title`, `description`, `status`, `published_at`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 10, 'Animal Stories', '<p>Reading stories is an activity that is a part of the most delightful period of childhood. Most of us have a natural curiosity about the animals we see around us</p>', 'DRAFT', NULL, '2022-12-08 06:37:01', '2022-12-08 06:37:01', NULL),
-(2, 1, 14, 'Monkey and Crocodile,', '<p>Grandma Stories for kids, Moral Stories for kids, Animal Stories for Kids, Jungle Stories for kids, Panchatantra Stories for Children, Fairy Tales, Akbar and Birbal, Tenali Raman and many more.</p>', 'DRAFT', NULL, '2022-12-09 00:58:55', '2022-12-09 00:58:55', NULL),
-(3, 1, 18, 'Love of Tomorrow', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry</p>', 'DRAFT', NULL, '2022-12-09 02:45:57', '2022-12-09 02:45:57', NULL),
-(4, 1, 15, 'Funny Story', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry</p>', 'DRAFT', NULL, '2022-12-12 04:11:31', '2022-12-11 22:37:55', NULL);
+(1, 1, 10, 'Animal Stories', '<p>Reading stories is an activity that is a part of the most delightful period of childhood. Most of us have a natural curiosity about the animals we see around us</p>', 'PUBLISHED', '2023-01-24 03:47:36', '2023-01-24 09:17:36', '2023-01-24 03:47:36', NULL),
+(2, 1, 14, 'Monkey and Crocodile,', '<p>Grandma  Kids, Jungle Stories for kids, Panchatantra Stories for Children, Fairy Tales, Akbar and Birbal, Tenali Raman and many more.</p>', 'DRAFT', NULL, '2023-01-24 06:57:04', '2022-12-09 00:58:55', NULL),
+(3, 1, 18, 'Love of Tomorrow', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry</p>', 'PUBLISHED', '2023-01-24 03:23:51', '2023-01-24 08:53:51', '2023-01-24 03:23:51', NULL),
+(4, 1, 15, 'Funny Story', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry</p>', 'PUBLISHED', '2023-01-24 03:47:33', '2023-01-24 09:17:33', '2023-01-24 03:47:33', NULL),
+(5, 7, 16, 'Plantation', ' “The best friend on earth of man is the tree. When we use the tree respectfully and economically, we have one of the greatest resources on the earth.” ', 'PUBLISHED', '2023-01-24 03:23:48', '2023-01-24 08:53:48', '2023-01-24 03:23:48', NULL),
+(6, 1, 44, 'The Ugly Tree Story', '\n In this story, the tree didn&rsquo;t have a good appearance and was very sad about it, but its appearance, which it hated so much, ended up saving its life in the end.&nbsp;</p>', 'PUBLISHED', '2023-01-24 03:51:04', '2023-01-25 06:10:53', '2023-01-24 03:51:04', NULL),
+(7, 10, 15, 'Lorem Text', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra, libero in maximus porttitor, lectus magna molestie felis, non hendrerit urna ante et libero</p>', 'PUBLISHED', '2023-01-25 00:42:56', '2023-01-25 06:12:56', '2023-01-25 00:42:56', NULL),
+(8, 7, 13, 'abvgh', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra, libero in maximus porttitor, lectus magna molestie felis, non hendrerit urna ante et libero</p>', 'PUBLISHED', '2023-01-25 01:26:00', '2023-01-27 04:26:42', '2023-01-25 01:26:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -790,7 +851,8 @@ INSERT INTO `story_invite` (`story_invite_id`, `story_id`, `from_user_id`, `to_u
 (1, 2, 8, 8, '2022-12-27 02:57:20', '2022-12-27 02:57:20', NULL),
 (2, 3, 8, 1, '2022-12-27 04:12:08', '2022-12-27 04:12:08', NULL),
 (3, 3, 8, 1, '2022-12-27 04:14:37', '2022-12-27 04:14:37', NULL),
-(4, 1, 8, 1, '2023-01-05 23:05:02', '2023-01-05 23:05:02', NULL);
+(4, 1, 8, 1, '2023-01-05 23:05:02', '2023-01-05 23:05:02', NULL),
+(5, 7, 7, 1, '2023-01-25 00:43:58', '2023-01-25 00:43:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -820,7 +882,19 @@ INSERT INTO `story_media` (`story_media_id`, `story_id`, `type`, `path`, `create
 (5, 3, 'image/jpeg', 'banner2.jpg', '2022-12-09 02:45:57', '2022-12-09 02:45:57', NULL),
 (6, 3, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png', '2022-12-09 02:45:57', '2022-12-09 02:45:57', NULL),
 (7, 4, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-2.png', '2022-12-11 22:37:55', '2022-12-11 22:37:55', NULL),
-(8, 4, 'image/png', 'Grow-Trees-On-the-path-to-environment-sustainability-login.png', '2022-12-11 22:37:55', '2022-12-11 22:37:55', NULL);
+(8, 4, 'image/png', 'Grow-Trees-On-the-path-to-environment-sustainability-login.png', '2022-12-11 22:37:55', '2022-12-11 22:37:55', NULL),
+(9, 5, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png', '2023-01-24 01:30:20', '2023-01-24 01:30:20', NULL),
+(10, 6, 'image/jpeg', 'banner3.jpg', '2023-01-24 03:50:12', '2023-01-24 03:50:12', NULL),
+(11, 6, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-3.png', '2023-01-24 03:50:12', '2023-01-24 03:50:12', NULL),
+(12, 7, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png', '2023-01-25 00:42:04', '2023-01-25 00:42:04', NULL),
+(13, 7, 'image/png', 'Education-Supplies-for-Every--Pair-of-Shoes-Sold.png', '2023-01-25 00:42:04', '2023-01-25 00:42:04', NULL),
+(14, 7, 'image/png', 'image.png', '2023-01-25 00:42:04', '2023-01-25 00:42:04', NULL),
+(15, 8, 'image/jpeg', 'banner1 - Copy.jpg', '2023-01-25 01:24:50', '2023-01-25 01:24:50', NULL),
+(16, 8, 'image/jpeg', 'banner2 - Copy.jpg', '2023-01-25 01:24:50', '2023-01-25 01:24:50', NULL),
+(17, 8, 'image/jpeg', 'banner3 - Copy.jpg', '2023-01-25 01:24:50', '2023-01-25 01:24:50', NULL),
+(18, 8, 'image/jpeg', 'banner4 - Copy.jpg', '2023-01-25 01:24:50', '2023-01-25 01:24:50', NULL),
+(19, 8, 'image/png', 'CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png', '2023-01-25 01:24:50', '2023-01-25 01:24:50', NULL),
+(20, 8, 'image/png', 'Education-Supplies-for-Every--Pair-of-Shoes-Sold-2.png', '2023-01-25 01:24:50', '2023-01-25 01:24:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -852,7 +926,8 @@ INSERT INTO `timesheet` (`timesheet_id`, `user_id`, `mission_id`, `time`, `actio
 (3, 2, 14, '18:18:00', NULL, '2023-01-07', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-05 04:16:14', '2022-12-05 04:16:14', NULL),
 (4, 2, 17, '01:37:00', NULL, '2022-12-18', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-05 04:37:58', '2022-12-05 04:37:58', NULL),
 (5, 2, 17, NULL, 3, '2022-12-17', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua', 'APPROVED', '2022-12-28 09:21:08', '2022-12-28 03:51:08', '2022-12-28 03:51:08'),
-(6, 2, 15, '17:29:00', NULL, '2022-12-17', 'Trusha Gondaliya', 'APPROVED', '2022-12-28 09:11:50', '2022-12-28 03:41:50', '2022-12-28 03:41:50');
+(6, 2, 15, '17:29:00', NULL, '2022-12-17', 'Trusha Gondaliya', 'APPROVED', '2022-12-28 09:11:50', '2022-12-28 03:41:50', '2022-12-28 03:41:50'),
+(7, 2, 17, NULL, 21, '2023-01-07', 'sdfhj.lhytdfvfbgb', 'APPROVED', '2023-01-23 23:36:23', '2023-01-23 23:36:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -888,12 +963,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `phone_number`, `avtar`, `why_i_volunteer`, `employee_id`, `department`, `city_id`, `country_id`, `profile_text`, `linked_in_url`, `title`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Trusha', 'Gondaliya', 'trushagondaliya30@gmail.com', '$2y$10$I8/CxGHOxO7KWA4YUOuriuys6zfEoFvSDeCdfCxNI2yUVQujvwlDq', '8897645682', '1672977119.png', 'I love to work and help other people..', '123abc', 'HR MANAGEMENT', 1, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'trusha.linkdin', 'volunteer', '0', '2022-11-21 23:15:19', '2023-01-05 22:21:59', NULL),
-(2, 'Harsh', 'Gondaliya', 'harsh@gmail.com', '$2y$10$U0zp/n1GyhDe5eA/9GANP.vpMEbQ592zGw4R9HkeRrHbeQ20o1W3O', '9909876568', '1669293016.jpeg', 'Meet New People and Build Community', '1234abcd', 'managment', 2, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'harsh Gondaliya', 'community', '1', '2022-11-21 23:17:45', '2022-12-02 07:16:31', NULL),
-(5, 'Alis', 'Bhatt', 'alisbhatt@gmail.com', '$2y$10$XXE/gUxm/ulY2joTGxw5ceXDCSuGPTevuJxUyBLXfnPhk6ET31hq2', '1234567890', '1669811265.png', 'Gain Knowledge and Understanding of Other Ways of Life', 'abc54', 'HR', 5, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'Alis Bhatt', 'ways of life', '0', '2022-11-30 06:57:45', '2022-12-02 07:17:55', NULL),
-(6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p><strong>INTRODUCTION</strong></p>\r\n<p>jbdsjkvkfvkfdllklgf</p>', 'Arshi Sharma', 'self-Esteem', '0', '2022-12-01 02:35:33', '2023-01-22 23:33:54', NULL),
-(7, 'Robert', 'Smith', 'robert@gmail.com', '$2y$10$jeE8ohpFAb56HnZmcFsYJ.wz.zV7CwggUJg6jMBxUSeAloOWQ8vXO', '8897645682', '1670567806.png', 'Meet New People and Build Community', '1234abc', 'HR', 4, 2, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>', 'robert smith', 'xyz', '0', '2022-12-09 01:06:46', '2022-12-09 01:06:46', NULL),
+(2, 'Harsh', 'Gondaliya', 'harsh@gmail.com', '$2y$10$U0zp/n1GyhDe5eA/9GANP.vpMEbQ592zGw4R9HkeRrHbeQ20o1W3O', '9909876568', '1674532474.png', 'Meet New People and Build Community', '1234abcd', 'managment', 2, 1, '<p>Being a part of a team with a common goal will help you form bonds with strangers that can be life-changing. Volunteering inherently means helping people, and that means you&rsquo;ll be creating meaningful relationships with others and increasing your social interactions.</p>', 'harsh Gondaliya', 'community', '1', '2022-11-21 23:17:45', '2023-01-23 22:24:34', NULL),
+(5, 'Alis', 'Bhatt', 'alisbhatt@gmail.com', '$2y$10$XXE/gUxm/ulY2joTGxw5ceXDCSuGPTevuJxUyBLXfnPhk6ET31hq2', '1234567890', '1669811265.png', 'Gain Knowledge and Understanding of Other Ways of Life', 'abc54', 'HR', 5, 1, NULL, 'Alis Bhatt', 'ways of life', '0', '2022-11-30 06:57:45', '2023-01-25 05:01:43', NULL),
+(6, 'Arshi', 'Sharma', 'arshi@gmail.com', '$2y$10$4/usutXiLWXn2oE925XCweLuEC9hWWG/KxDeZvZNOWzImpYlVhz9i', '9943789032', '1669881933.png', 'Boost Your Self-Esteem', '190310', 'Accounting and Finance', 5, 1, '<p>The more opportunities you take to learn new skills and gain knowledge, the more fully you will develop as a person. And what safer space to develop those skills than in a context of service?</p>\r\n<p>Stepping out of your comfort zone and building new skills is the best way to develop your self-esteem. Volunteering will increase your sense of pride and thus, your self-confidence! When you challenge yourself through volunteering and receive appreciation from others, it can make you feel better emotionally and mentally.&nbsp;</p>\r\n<p>&nbsp;</p>', 'Arshi Sharma', 'self-Esteem', '1', '2022-12-01 02:35:33', '2022-12-02 07:19:00', NULL),
+(7, 'Robert', 'Smith', 'robert@gmail.com', '$2y$10$jeE8ohpFAb56HnZmcFsYJ.wz.zV7CwggUJg6jMBxUSeAloOWQ8vXO', '8897645682', '1670567806.png', 'Meet New People and Build Community', '1234abc', 'HR', 1, 1, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>', 'robert smith', 'xyz', '0', '2022-12-09 01:06:46', '2023-01-25 04:59:18', NULL),
 (8, 'Bansi', 'Raiyani', 'bansiraiyani9963@gmail.com', '$2y$10$GiZGT1aD/cenFTbFXNjXOOaU5115GGjyxV.WVGi3VVyOdCmzhKxs.', '123456789', '1672116342.png', 'Meet New People and Build Community', '1234abc', 'HR', 2, 1, '<p>Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&amp;rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.</p>', 'bansi raiyani', 'abcd', '0', '2022-12-26 23:15:42', '2022-12-26 23:15:42', NULL),
-(9, 'Ritika', 'Parmar', 'ritikaparmar406@gmail.com', '$2y$10$oM12WyOFjEGUqELC00ZGGuvXLcifiR11LFs5YFmtFmFB1x.64.3da', '7864257907', '1672116419.png', 'Boost Your Self-Esteem', '1234abc', 'electrical', 5, 2, '<p>&lt;p&gt;Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&amp;rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.&lt;/p&gt;</p>', 'ritika parmar', 'loream', '0', '2022-12-26 23:16:59', '2022-12-26 23:16:59', NULL);
+(9, 'Ritika', 'Parmar', 'ritikaparmar406@gmail.com', '$2y$10$oM12WyOFjEGUqELC00ZGGuvXLcifiR11LFs5YFmtFmFB1x.64.3da', '7864257907', '1672116419.png', 'Boost Your Self-Esteem', '1234abc', 'electrical', 5, 2, '<p>&lt;p&gt;Volunteering might take you to a new part of your community you have never been to before. Volunteer programs can give you the opportunity to bring people into your social network you otherwise wouldn&amp;rsquo;t get to meet and learn from those who come from different walks of life. This experience can expand your understanding of others who are different from you.&lt;/p&gt;</p>', 'ritika parmar', 'loream', '0', '2022-12-26 23:16:59', '2022-12-26 23:16:59', NULL),
+(10, 'Yesha', 'Kapoor', 'trushagondaliya26@gmail.com', '$2y$10$Ncsn319EcYJj5ldfq2z.feywHvW/uNkozZjyVYARWCLhA1yoWaKMO', '2345671248', '1674626750.png', 'To help', 'dcvfdv', 'hr', 8, 3, '<p>sxsanxsb&nbsp;</p>', 'yesha', 'abc', '0', '2023-01-25 00:35:50', '2023-01-25 00:35:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -917,8 +993,15 @@ CREATE TABLE `user_skill` (
 INSERT INTO `user_skill` (`user_skill_id`, `user_id`, `skill_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 4, '2023-01-06 03:51:59', NULL, NULL),
 (2, 1, 7, '2023-01-06 03:51:59', NULL, NULL),
-(3, 6, 5, '2023-01-23 05:03:54', NULL, NULL),
-(4, 6, 7, '2023-01-23 05:03:54', NULL, NULL);
+(3, 2, 5, '2023-01-24 03:54:34', NULL, NULL),
+(4, 2, 8, '2023-01-24 03:54:34', NULL, NULL),
+(5, 10, 1, '2023-01-25 00:35:50', '2023-01-25 00:35:50', NULL),
+(6, 10, 6, '2023-01-25 00:35:50', '2023-01-25 00:35:50', NULL),
+(7, 7, 1, '2023-01-25 10:29:18', NULL, NULL),
+(8, 7, 4, '2023-01-25 10:29:18', NULL, NULL),
+(9, 7, 6, '2023-01-25 10:29:18', NULL, NULL),
+(10, 5, 6, '2023-01-25 10:31:43', NULL, NULL),
+(11, 5, 8, '2023-01-25 10:31:43', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -954,7 +1037,8 @@ ALTER TABLE `cms_page`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `comment_mission_id` (`mission_id`);
+  ADD KEY `comment_mission_id` (`mission_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `country`
@@ -1127,31 +1211,31 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `city_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `city_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cms_page`
 --
 ALTER TABLE `cms_page`
-  MODIFY `cms_page_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cms_page_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `comment_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
-  MODIFY `country_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `country_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `favourite_mission`
 --
 ALTER TABLE `favourite_mission`
-  MODIFY `favourite_mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `favourite_mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `goal_mission`
@@ -1169,43 +1253,43 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `missions`
 --
 ALTER TABLE `missions`
-  MODIFY `mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `mission_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `mission_application`
 --
 ALTER TABLE `mission_application`
-  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `mission_application` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `mission_document`
 --
 ALTER TABLE `mission_document`
-  MODIFY `mission_document_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `mission_document_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `mission_invite`
 --
 ALTER TABLE `mission_invite`
-  MODIFY `mission_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `mission_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mission_media`
 --
 ALTER TABLE `mission_media`
-  MODIFY `mission_media_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `mission_media_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `mission_rating`
 --
 ALTER TABLE `mission_rating`
-  MODIFY `mission_rating_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `mission_rating_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `mission_skill`
 --
 ALTER TABLE `mission_skill`
-  MODIFY `mission_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `mission_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `mission_theme`
@@ -1229,37 +1313,37 @@ ALTER TABLE `skill`
 -- AUTO_INCREMENT for table `story`
 --
 ALTER TABLE `story`
-  MODIFY `story_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `story_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `story_invite`
 --
 ALTER TABLE `story_invite`
-  MODIFY `story_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `story_invite_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `story_media`
 --
 ALTER TABLE `story_media`
-  MODIFY `story_media_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `story_media_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `timesheet`
 --
 ALTER TABLE `timesheet`
-  MODIFY `timesheet_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `timesheet_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_skill`
 --
 ALTER TABLE `user_skill`
-  MODIFY `user_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_skill_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -1275,6 +1359,7 @@ ALTER TABLE `city`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `comment_mission_id` FOREIGN KEY (`mission_id`) REFERENCES `missions` (`mission_id`);
 
 --
@@ -1384,3 +1469,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
