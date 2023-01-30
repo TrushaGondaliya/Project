@@ -170,6 +170,18 @@ font-size: 20px;
     background-color: rgba(0,0,0,.5);
   }
 
+  .fifth-txt{
+    position: absolute;
+    top: 15px;
+    font-size: 16px;
+    padding: 3px 15px 3px 10px;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    color: white;
+    background-color: green;
+    height: 40px;
+  
+  }
 
 
   .img-card{
@@ -380,13 +392,13 @@ a{
 
 .column1{
   float: left;
-  width: 25%;
+  width: 30%;
   padding: 5px;
 }
 
 .column2{
   float: left;
-  width: 75%;
+  width: 70%;
   padding: 5px;
 }
 
@@ -2352,6 +2364,7 @@ nav.navbar.navbar-expand-lg{
  
 }
 
+
 .story-text{
   width: 96px;
   height: 13px;
@@ -2494,7 +2507,7 @@ strong {
 
 @media (max-width:1440px) {
   .share-button{
-    margin-right: 650px;
+    margin-right: 500px;
   }
 }
 

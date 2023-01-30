@@ -138,15 +138,31 @@ $mission=App\Models\Mission::all()
                         @endif
                     </a>
                 </div>
-                <a href="">
                     <div class="d-flex align-items-center first-txt">
                         <img src="images/pin.png" class='img-fluid pr-2 ' style='height:22px;margin:5px'>
                         <span>{{($mission->city->name)}}</span>
-                </a>
             </div>
             <div class="d-flex four-txt justify-content-center">
                 <div class="theme">{{$mission->theme->title}}</div>
             </div>
+            @php
+                $application=App\Models\Application::where('mission_id',$mission->mission_id)->where('user_id',Auth::user()->user_id)->pluck('mission_id');
+            @endphp
+            @foreach($application as $item)
+            @if($item)
+            <div class="d-flex align-items-center fifth-txt">
+                <span>APPLIED</span> 
+            </div>
+            @endif
+            @endforeach
+            @php
+            $app=App\Models\Application::where('mission_id','!=',$mission->mission_id)->where('user_id','!=',Auth::user()->user_id)->pluck('mission_id');
+            @endphp
+            @if($mission->end_date<=$carbon::now()  && $app && $mission->end_date!=null)
+            <div class="d-flex align-items-center fifth-txt">
+                <span>CLOSED</span> 
+            </div>
+            @endif
         </div>
         <div class="card-body" style=" padding-top:30px;">
             <div class="container card-div-1">

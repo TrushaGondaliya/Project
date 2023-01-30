@@ -84,7 +84,7 @@ Route::get('contactUs',function(Request $request){
         ];
         $email=$request->input('email');
         Mail::to($email)->send(new ContactEmail($data));
-        dd('mail sent successfully');
+        return redirect()->back();
     }
     catch(Throwable $e){
         report($e);

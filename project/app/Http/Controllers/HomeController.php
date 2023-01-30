@@ -14,9 +14,41 @@ class HomeController extends Controller
 {
 
 
-       function list()
+       function list(Request $request)
        {
-              $missions = Mission::all();
+              $missions = Mission::latest();
+
+                if (!empty($request->sort)) {
+                    if ($request->sort != 0) {
+                        switch ($request->sort) {
+                            case 'Newest':
+                                $missions = Mission::orderBy('created_at', 'desc');
+                                break;
+                            case 'Oldest':
+                                $missions = Mission::orderBy('created_at', 'asc');
+                                break;
+                            case 'Lowest available seats':
+                                $missions = Mission::orderBy('seat_left', 'asc');
+                                break;
+                            case 'Highest available seats':
+                                $missions = Mission::orderBy('seat_left', 'desc');
+                                break;
+                            case 'My favourites':
+                                $fav_m = DB::table("favourite_mission")->where('user_id', Auth::user()->user_id)->where('deleted_at',null)->pluck('mission_id');
+                                $missions = Mission::whereIn('mission_id', $fav_m);
+                                break;
+                            case 'Registration deadline':
+                                $missions = Mission::orderBy('end_date', 'desc');
+                                break;
+                            default:
+                                $missions = Mission::latest();
+                                break;
+                        }
+                    }   
+            }
+         
+            $missions=$missions->get();
+
               $m_id = Application::all();
               return view('list', compact('missions','m_id'));
        }

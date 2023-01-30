@@ -24,8 +24,8 @@
                 <textarea type="text" class="popup-dis" placeholder="Enter Your Message" name="message" id=""></textarea><br><br>
 
                 <div class="popup-btn-contact">
-                    <input type="button" class="popup-button" name="" value="cancel" id="">
-                    <input type="submit" class="contact-button-1" value="Save" name="" id="">
+                    <input type="button" class="popup-button " name="" value="cancel" id="">
+                    <input type="submit" class="contact-button-1" value="Send" name="" id="">
                 </div>
             </form>
         </div>

@@ -66,15 +66,10 @@
             <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" style="font-size: 15px;" href="#"
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{Auth::user()->full_name}}
-                <!-- {{Session::get('name')}} -->
-
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{url('admin/admin-profile')}}">My Profile</a></li>
-                <li><a class="dropdown-item" href="{{url('timesheet')}}">Volunteering Timesheet</a></li>
+                <li><a class="dropdown-item" href="{{url('edit_profile')}}">My Profile</a></li>
                 <li><a class="dropdown-item" href="{{url('logout')}}">Logout</a></li>
-
-
             </ul>
         </div>
     </div>
@@ -155,7 +150,6 @@
             </div>
         </div>
     </div>
-    
 </body>
 
 </html>
