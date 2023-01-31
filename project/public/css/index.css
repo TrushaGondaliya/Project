@@ -1126,11 +1126,6 @@ padding: 5px 150px 4px -10px;
   text-align: center;
 }
 
-.pagination1 .active{
-  background-color: #f88634;
-  border-color: #f88634;
-  color: white !important;
-}
 
 .pagination1 .active a:hover{
   background-color: #f88634;
@@ -1169,11 +1164,7 @@ padding: 5px 150px 4px -10px;
   text-align: center;
 }
 
-.pagination .active{
-  background-color: #f88634;
-  border-color: #f88634;
-  color: white !important;
-}
+
 
 .pagination .active a:hover{
   background-color: #f88634;
@@ -1184,20 +1175,20 @@ padding: 5px 150px 4px -10px;
 
 }
 .pagination {
-  padding-left: 450px;
+  padding-left: 590px;
   text-align: center;
   margin: 16px 0;
 }
 
 @media (max-width:992px) {
   .pagination{
-    padding-left: 280px;
+    padding-left: 350px;
   }
 }
 
 @media (max-width:768px) {
   .pagination{
-    padding-left: 175px;
+    padding-left: 225px;
   }
 }
 
@@ -1211,6 +1202,23 @@ padding: 5px 150px 4px -10px;
   color: #757575;
   padding: 5px 12px 5px 12px;
   font-size: 16px;
+}
+
+.active>.page-link, .page-link.active {
+  z-index: 3;
+  color: var(--bs-pagination-active-color);
+  background-color: #f88634 !important;
+  border-color:var(--bs-pagination-active-color) ;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+ .page-item.disabled {
+  z-index: 3;
+  border-color:var(--bs-pagination-active-color) ;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
 }
 
 .footer-button{
@@ -3253,12 +3261,14 @@ textarea{
   text-align: center;
   background-color: white;
   font-size: 17px;
-  /* padding: 10px 20px 10px 20px; */
+  float: right;
+  margin-right: 10px;
 }
 
 .popup-btn{
-  margin-left:250px ;
+
   font-size: 17px;
+  float: right;
 }
 
 @media (max-width:425px) {
@@ -3372,7 +3382,7 @@ textarea{
 }
 
 .popup-btn-contact{
-  margin-left:340px ;
+ float: right;
 }
 
 @media (max-width:425px) {

@@ -80,41 +80,7 @@
                     </table>
                 </div>
             </div>
-            <div class="container mt-3">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="{{url('admin/story?page='.$story->onFirstPage())}}"
-                            aria-label="prevoius">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="{{$story->previousPageUrl()}}" aria-label="prevoius">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    @for($i=1;$i<=$story->lastpage();$i++)
-                        @if($i==$story->currentPage())
-                        <li class="page-item"><a class="page-link active"
-                                href="{{url('admin/story?page='.$i)}}">{{$i}}</a> </li>
-                        @else
-                        <li class="page-item"><a class="page-link" href="{{url('admin/story?page='.$i)}}">{{$i}}</a>
-                        </li>
-                        @endif
-                        @endfor
-                        <li class="page-item">
-                            <a class="page-link" href="{{$story->nextPageUrl()}}" aria-label="Next">
-                                <span aria-hidden="true">&rsaquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{url('admin/story?page='.$story->lastpage())}}"
-                                aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                </ul>
-            </div>
+            {{ $story->links() }}   
         </div>
     </div>
 </main>

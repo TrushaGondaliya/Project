@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Timesheet;
+use App\Models\Mission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,11 +12,17 @@ class TimesheetController extends Controller
 {
     function timesheet(Request $request){
         $timesheet = Timesheet::all();
-        return view('admin.timesheet',compact('timesheet'));
+        $missions=Mission::all();
+        return view('admin.timesheet',compact('timesheet','missions'));
     }
 
 
     function add(Request $request){
+        $timesheet=$request->validate([
+            'mission_id'=>'required',
+            'date_volunteered'=>'required',
+            'notes'=>'required'
+        ]);
         $timesheet = new Timesheet;
         $timesheet->user_id = Auth::user()->user_id;
         $timesheet->mission_id = $request->input('mission_id');
@@ -28,6 +35,11 @@ class TimesheetController extends Controller
 
     function add_goal(Request $request)
     {
+        $timesheet=$request->validate([
+            'mission_id'=>'required',
+            'date_volunteered'=>'required',
+            'notes'=>'required'
+        ]);
         $timesheet = new Timesheet;
         $timesheet->user_id = Auth::user()->user_id;
         $timesheet->mission_id = $request->input('mission_id');
@@ -57,6 +69,12 @@ class TimesheetController extends Controller
 
     function update_time(Request $request)
     {
+        $timesheet=$request->validate([
+            'mission_id'=>'required',
+            'date_volunteered'=>'required',
+            'notes'=>'required'
+        ]);
+
         $id = $request->input('id1');
         $timesheet =Timesheet::find($id);
         $timesheet->user_id = Auth::user()->user_id;
@@ -71,6 +89,12 @@ class TimesheetController extends Controller
     
     function update_goal(Request $request)
     {
+        $timesheet=$request->validate([
+            'mission_id'=>'required',
+            'date_volunteered'=>'required',
+            'notes'=>'required'
+        ]);
+        
         $id = $request->input('id');
         $timesheet =Timesheet::find($id);
         $timesheet->user_id = Auth::user()->user_id;

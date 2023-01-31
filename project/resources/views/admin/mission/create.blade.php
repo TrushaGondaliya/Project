@@ -112,9 +112,6 @@ tinymce.init({
                         <span class="cms-label">Mission Theme</span>
 
 
-                        @php
-                        $theme=App\Models\Theme::all();
-                        @endphp
                         <select name="theme_title" class="cms-input" id="">
                             <option value=""> Select mission theme</option>
                             @foreach($theme as $item)
@@ -124,9 +121,6 @@ tinymce.init({
                         <br><br>
 
                         <span class="cms-label">Mission Skills</span><br>
-                        @php
-                        $skill=App\Models\Skill::all();
-                        @endphp
 
                         @foreach($skill as $item)
                         <input type="checkbox" class="cms-checkbox" name="skill_id[]"

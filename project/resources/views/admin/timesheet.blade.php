@@ -37,7 +37,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link Explore-Stories-Policy common-font" href="#">Stories</a>
+                            <a class="nav-link Explore-Stories-Policy common-font" href="{{url('stories_listing')}}">Stories</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" href="#"
@@ -69,6 +69,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{url('edit_profile')}}">My Profile</a></li>
+                <li><a class="dropdown-item" href="{{url('timesheet')}}">Timesheet</a></li>
                 <li><a class="dropdown-item" href="{{url('logout')}}">Logout</a></li>
             </ul>
         </div>
@@ -78,7 +79,13 @@
     <div class="container">
         <p class="Timesheet-heading ">Volunteering Timesheet</p>
         <br>
-
+        @if($errors->any())
+    <div class="alert alert-danger">
+        @foreach($errors->all() as $error)
+        <div>{{$error}}</div>
+        @endforeach
+    </div>
+    @endif
         <div class="row">
             <div class="col div-vol">
                 <div style="float:right" class="timesheet_btn2 add-time">
@@ -192,6 +199,8 @@ $(document).ready(function() {
 <div class="goal_popup" id="GoalEdit">
     <div class="popup-close-btn"></div>
     <div class="popup_goal-content"></div>
+    <input type="button" class="timesheet_btn1" name="" value="Cancel" id="">
+
 </div>
 <div class="for-call-popup">
     <form action="{{url('update-goal')}}" method="POST" id="editGoal" class="call-popup">
@@ -201,9 +210,6 @@ $(document).ready(function() {
         <h3>Please Input below volunteering Goal</h3>
 
         <label for="mission">Mission</label>
-        @php
-        $missions=App\Models\Mission::all()
-        @endphp
         <div><select class="story-input" aria-placeholder="Select your Mission" name="mission_id" id="mission_id">
                 @foreach($missions as $mission)
                 <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
@@ -220,10 +226,10 @@ $(document).ready(function() {
         <input type="text" id="notes" name="notes" class="story-input-div" placeholder="Message">
         <br>
         <div class="timesheet_btn">
-            <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
             <input type="submit" class="timesheet_btn2" name="" value="Submit" id="">
         </div>
     </form>
+
 </div>
 <div class="overlay_goal"></div>
 
@@ -258,6 +264,9 @@ $(function() {
     });
 
     $('.popup-close-btn').click(function() {
+        p.close();
+    });
+    $('.timesheet_btn1').click(function() {
         p.close();
     });
 });
@@ -296,6 +305,8 @@ function Popup(Obj) {
 <div class="goal_add_popup">
     <div class="popup-close-btn"></div>
     <div class="popup_goal-add-content"></div>
+    <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
+
 </div>
 <div class="for-add-goal-popup">
     <form action="{{url('/add-goal')}}" method="POST" class="call-popup">
@@ -303,9 +314,6 @@ function Popup(Obj) {
         <h3>Please Input below volunteering Goal</h3>
 
         <label for="mission">Mission</label>
-        @php
-        $missions=App\Models\Mission::all()
-        @endphp
         <div><select class="story-input" aria-placeholder="Select your Mission" name="mission_id">
                 @foreach($missions as $mission)
                 <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
@@ -322,7 +330,6 @@ function Popup(Obj) {
         <input type="text" name="notes" class="story-input-div" placeholder="Message">
         <br>
         <div class="timesheet_btn">
-            <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
             <input type="submit" class="timesheet_btn2" name="" value="Submit" id="">
         </div>
     </form>
@@ -352,6 +359,10 @@ $(function() {
 
 
     $('.popup-close-btn').click(function() {
+        p.close();
+    });
+
+    $('.timesheet_btn1').click(function(){
         p.close();
     });
 });
@@ -391,6 +402,8 @@ function Popup(Obj) {
 <div class="timesheet_popup" id="edit-modal">
     <div class="popup-close-btn"></div>
     <div class="popup-content"></div>
+    <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
+
 </div>
 <div class="for-time-popup">
     <form action="{{url('update-time')}}" method="post" class="call-popup">
@@ -399,9 +412,6 @@ function Popup(Obj) {
         <h3>Please Input below volunteering Hours</h3>
         <input type="hidden" name="id1" id="id1">
         <label for="mission">Mission</label>
-        @php
-        $missions=App\Models\Mission::all()
-        @endphp
         <div><select class="story-input" aria-placeholder="Select your Mission" id="mission_id" name="mission_id">
                 @foreach($missions as $mission)
                 <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
@@ -424,7 +434,6 @@ function Popup(Obj) {
         <input type="text" class="story-input-div" id="message" name="notes" placeholder="Enter Your Message">
         <br>
         <div class="timesheet_btn">
-            <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
             <input type="submit" class="timesheet_btn2" name="" value="Submit" id="">
         </div>
     </form>
@@ -466,6 +475,9 @@ $(function() {
     $('.popup-close-btn').click(function() {
         p.close();
     });
+    $('.timesheet_btn1').click(function(){
+        p.close();
+    });
 });
 
 function Popup(Obj) {
@@ -499,15 +511,14 @@ function Popup(Obj) {
 <div class="time_add_popup">
     <div class="popup-close-btn"></div>
     <div class="popup-add-content"></div>
+    <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
+
 </div>
 <div class="for-add-time-popup">
     <form action="{{url('/add-time')}}" method="post" class="call-popup">
         @csrf
         <h3>Please Input below volunteering Hours</h3>
         <label for="mission">Mission</label>
-        @php
-        $missions=App\Models\Mission::all()
-        @endphp
         <div><select class="story-input" aria-placeholder="Select your Mission" name="mission_id">
                 @foreach($missions as $mission)
                 <option value="{{$mission->mission_id}}" class="story-input">{{$mission->title}}</option>
@@ -530,7 +541,6 @@ function Popup(Obj) {
         <input type="text" name="notes" class="story-input-div" placeholder="Enter Your Message">
         <br>
         <div class="timesheet_btn">
-            <input type="button" class="timesheet_btn1" value="Cancel" name="" id="">
             <input type="submit" class="timesheet_btn2" name="" value="Submit" id="">
         </div>
     </form>
@@ -546,19 +556,16 @@ $(function() {
         overlay: '.add-overlay',
     });
 
-    // setTimeout(function() {
-    //     var form = $('.for-call-popup');
-    //     p.open(form.html());
-    // }, 1000);
-
     $('.add-time').click(function() {
         var form = $('.for-add-time-popup');
         p.open(form.html());
     });
 
-
-
     $('.popup-close-btn').click(function() {
+        p.close();
+    });
+
+    $('.timesheet_btn1').click(function(){
         p.close();
     });
 });

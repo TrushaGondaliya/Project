@@ -19,7 +19,7 @@
                 <ul class="carousel-indicators">
                     @foreach($banners as $banner)
                     @php
-                    $sort=$banner->sort_order-1
+                    $sort=$banner->sort_order-1 
                     @endphp
                     @if($banner->sort_order==1)
                     <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$sort}}" class="active"

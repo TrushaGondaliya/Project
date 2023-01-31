@@ -18,6 +18,9 @@ use App\Models\Media;
 use App\Models\Missionskill;
 use App\Models\Skill;
 use App\Models\Theme;
+use App\Models\Goal;
+use App\Models\User;
+use App\Models\Rating;
 use PhpParser\Node\Expr\List_;
 use Termwind\Components\Li;
 
@@ -61,6 +64,37 @@ class MissionController extends Controller
                     }   
             }
 
+            if (!empty($request->explore)) {
+                if ($request->explore != 0) {
+                    switch ($request->explore) {
+                        case 'Top Theme':
+                            $theme_id=Mission::selectRaw('theme_id, count(theme_id) as times_added')
+                            ->groupBy('theme_id')
+                            ->orderByDesc('times_added')->limit(1)->pluck('theme_id');
+                            $missions=Mission::whereIn('theme_id',$theme_id);
+                            break;
+                        case 'Most Ranked':
+                            $rating_id=Rating::selectRaw('mission_id, avg(rating) as times_added')
+                            ->groupBy('mission_id')
+                            ->orderByDesc('times_added')->limit(6)->pluck('mission_id');
+
+                            $missions=Mission::whereIn('mission_id',$rating_id);
+                            break;
+                        case 'Top Favourite':
+                            $mission_id=Favourite::selectRaw('mission_id, count(mission_id) as times_added')
+                            ->groupBy('mission_id')
+                            ->orderByDesc('times_added')->limit(2)->pluck('mission_id');                            $missions=Mission::whereIn('mission_id',$mission_id);
+                            break;
+                        case 'random':
+                            $missions = Mission::latest();
+                            break;
+                        default:
+                            $missions = Mission::all();
+                            break;
+                    }
+                }   
+        }
+
             if (request()->has('search') && !empty(request()->input('search'))) {
                 $missions = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%')->orwhere('description', 'LIKE', '%' . request()->input('search') . '%');
             }
@@ -83,7 +117,21 @@ class MissionController extends Controller
             }
             $missions = $missions->paginate(6)->withQueryString();
             $m_id = Application::all();
-            return view('home', compact('missions', 'm_id'));
+                
+                $application=Application::where('user_id',Auth::user()->user_id)->pluck('mission_id');
+                $app=Application::where('user_id','!=',Auth::user()->user_id)->pluck('mission_id');
+                $favourite=Favourite::all();
+                $media=Media::all();
+                $mission=Mission::all();
+                $country=Country::all();
+                $city=City::all();
+                $users=User::all();
+                $goal=Goal::all();
+                $rate=Rating::selectRaw('mission_id, avg(rating) as times_added')
+                            ->groupBy('mission_id')
+                            ->orderByDesc('times_added')->get();
+            return view('home', compact('missions','rate','goal','users', 'm_id','country','city','application','mission','favourite','media'));
+        
         } else {
             return redirect('admin/user')->with('message', 'you are logged in as admin user');
         }

@@ -60,6 +60,7 @@ class MissionthemeController extends Controller
     {
         $id=Theme::where('mission_theme_id',$request->mission_theme_id);
         $id->delete();
+        Mission::where('theme_id',$request->mission_theme_id)->delete();
         return redirect('admin/theme')->with('message','delete successfully!');
     }
 }

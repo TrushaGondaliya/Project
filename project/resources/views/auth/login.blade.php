@@ -1,6 +1,4 @@
 <x-header></x-header>
-
-
 <!-- login page -->
 <html>
 <head>

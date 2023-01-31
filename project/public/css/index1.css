@@ -155,7 +155,9 @@ td{
   text-align: center;
   background-color: white;
   font-size: 17px;
- 
+  float: right;
+  margin-top: 20px;
+  margin-right: 10px;
 }
 
 .timesheet_btn2{

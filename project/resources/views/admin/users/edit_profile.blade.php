@@ -58,9 +58,7 @@ tinymce.init({
                         <label class="cms-label">Title</label>
                         <input class="cms-input" type="text" value="{{Auth::user()->title}}" name="title">
                         <label class="cms-label">City_id</label>
-                        @php
-                        $city=App\Models\City::all();
-                        @endphp
+                        
                         <select name="city" class="cms-input" id="">
                             <option value="{{Auth::user()->city->name}}"> {{Auth::user()->city->name}}</option>
                             @foreach($city as $item1)
@@ -68,9 +66,7 @@ tinymce.init({
                             @endforeach
                         </select>
                         <label class="cms-label">Country</label>
-                        @php
-                        $country=App\Models\Country::all();
-                        @endphp
+                       
                         <select name="country" class="cms-input" id="">
                             @foreach($country as $item1)
                             <option value="{{$item1->name}}"> {{$item1->name}}</option>
@@ -79,9 +75,7 @@ tinymce.init({
                         <br><br>
                         <span class="cms-label">User Skills</span>
                         <br><br>
-                        @php
-                        $skill=App\Models\Skill::all();
-                        @endphp
+                       
                         @foreach($skill as $item)
                         <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}"
                             {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
@@ -114,4 +108,9 @@ tinymce.init({
     </div>
 </div>
 
+@endsection
+@section('scripts')
+<<script>
+$('.alert-danger').fadeOut(3000);    
+</script>
 @endsection

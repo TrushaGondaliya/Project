@@ -40,7 +40,8 @@ class UserController extends Controller
         function create()
         {
             $data['countries'] = Country::get(["name", "country_id"]);
-            return view('admin/users/create', $data);
+            $skill=Skill::all();
+            return view('admin/users/create', $data,compact('skill'));
         }
 
         function add_user(UserRequest $request)
@@ -80,10 +81,16 @@ class UserController extends Controller
 
         function edit(Request $request, $user_id)
         {
+
             $uskill=Userskill::where('user_id', $user_id);
             $userskill =$uskill->pluck('skill_id')->toArray();
             $user = User::where('user_id', $user_id)->get();
-            return view('admin.users.edit', compact('user','userskill'));
+            
+            $city=City::all();
+            $country=Country::all();
+            
+            $skill=Skill::all();
+            return view('admin/users/edit', compact('user','userskill','city','country','skill'));
         }
 
         function update(UserRequest $request, $user_id)
@@ -142,8 +149,11 @@ class UserController extends Controller
         {
             $uskill=Userskill::where('user_id', Auth::user()->user_id);
             $userskill =$uskill->pluck('skill_id')->toArray();
+            $city=City::all();
+            $country=Country::all();
             $user = Auth::user();
-            return view('admin/users/edit_profile', compact('user','userskill'));
+            $skill=Skill::all();
+            return view('admin/users/edit_profile', compact('user','userskill','city','skill','country'));
         }
         function update_admin(UserRequest $request)
         {

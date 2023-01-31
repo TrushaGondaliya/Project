@@ -41,9 +41,10 @@
                         $city=App\Models\City::all()
                         @endphp
                         <form id="select2" method="get" enctype="multipart/form-data" action="{{url('home')}}">
-                            <select placeholder="City" data-bs-toggle='dropdown' multiple multiselect-search="true" multiselect-select-all="true" name="city[]" onchange="showCity()" multiselect-max-items="5">
+                            <select class="nav-link nav-2-items dropdown-toggle City common-font pt-1" placeholder="City" data-bs-toggle='dropdown' multiple multiselect-search="true"  multiselect-select-all="true" name="city[]" onchange="showCity()" multiselect-max-items="5">
                                 @foreach($city as $item)
-                                <option value="{{$item->name}}" @if(request()->input('city')) {{ in_array($item->name, request()->input('city'))  ? 'selected="selected"': '' }} @endif > {{$item->name}}</option>
+                                <option value="{{$item->name}}" @if(request()->input('city')) {{ in_array($item->name, request()->input('city'))  ? 'selected="selected"': '' }} @endif > {{$item->name}}
+                                </option>
                                 @endforeach
                             </select>
                         </form>

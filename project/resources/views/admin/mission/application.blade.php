@@ -74,41 +74,7 @@
                 </div>
             </div>
 
-            <div class="container mt-3">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="{{url('admin/application?page='.$application->onFirstPage())}}"
-                            aria-label="prevoius">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="{{$application->previousPageUrl()}}" aria-label="prevoius">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    @for($i=1;$i<=$application->lastpage();$i++)
-                        @if($i==$application->currentPage())
-                        <li class="page-item"><a class="page-link active"
-                                href="{{url('admin/application?page='.$i)}}">{{$i}}</a> </li>
-                        @else
-                        <li class="page-item"><a class="page-link"
-                                href="{{url('admin/application?page='.$i)}}">{{$i}}</a> </li>
-                        @endif
-                        @endfor
-                        <li class="page-item">
-                            <a class="page-link" href="{{$application->nextPageUrl()}}" aria-label="Next">
-                                <span aria-hidden="true">&rsaquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{url('admin/application?page='.$application->lastpage())}}"
-                                aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                </ul>
-            </div>
+            {{ $application->links() }}   
         </div>
     </div>
 </main>

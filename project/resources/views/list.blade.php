@@ -4,9 +4,6 @@
 @inject('carbon', 'Carbon\Carbon')
 
 <div class="body-1">
-    @php
-    $mission=App\Models\Mission::all()
-    @endphp
     <div class="explore">
         <div class="left-explore common-font">
             <span class="explore-light">Explore </span>{{count($mission)}} missions
@@ -40,30 +37,29 @@
         <div class="container-fluid">
             <div class="row abc">
                 @foreach($missions as $mission)
-                @php
-                $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
-                @endphp
                 <div class="col-md-12" style="margin-top:20px ;">
                     <div class="card-box" style="width: 100%;height:100%;">
                         <div class="column1 col-md-3">
                             <div class="card-image">
-                                @if(is_null($media))
-                                <img src="/images/image2.png" style="height: 250px;width:100%">
-                                @else
-                                <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%"
-                                    alt="...">
-                                @endif
+                            @foreach($media as $item)
+                @if(($item->mission_id==$mission->mission_id))
+                <img src="/images/{{$item->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
+                @break
+                @endif
+                @endforeach
+
+                @if(($item->mission_id==$mission->mission_id)==null)
+                <img src="/images/image2.png" style="height: 250px;width:100%">
+                @endif
                                 <div>
-                                    <button value="{{$mission->mission_id}}"
+                                    <button value="{{$mission->mission_id}}" onClick="topFunction()"
                                         class="invite d-flex align-items-center third-txt p-2">
                                         <img src="/images/user.png" class='img-fluid img-card'>
                                     </button>
                                 </div>
                                 <div class="d-flex align-items-center second-txt p-2">
                                     <a href="{{url('favourite/'.$mission->mission_id)}}">
-                                        @php
-                                        $favourite=App\Models\Favourite::all()
-                                        @endphp
+                                        
                                         @foreach($favourite as $fav)
                                         @if($fav->mission_id==$mission->mission_id)
                                         @if($fav->mission_id==$mission->mission_id &&
@@ -89,24 +85,20 @@
                             <div class="d-flex four-txt justify-content-center">
                                 <div class="theme">{{$mission->theme->title}}</div>
                             </div>
-                            @php
-                $application=App\Models\Application::where('mission_id',$mission->mission_id)->where('user_id',Auth::user()->user_id)->pluck('mission_id');
-            @endphp
             @foreach($application as $item)
-            @if($item)
-            <div class="d-flex align-items-center fifth-txt">
-                <span>APPLIED</span> 
-            </div>
-            @endif
-            @endforeach
-            @php
-            $app=App\Models\Application::where('mission_id','!=',$mission->mission_id)->where('user_id','!=',Auth::user()->user_id)->pluck('mission_id');
-            @endphp
-            @if($mission->end_date<=$carbon::now()  && $app && $mission->end_date!=null)
-            <div class="d-flex align-items-center fifth-txt">
-                <span>CLOSED</span> 
-            </div>
-            @endif
+                @if($item==$mission->mission_id)
+                <div class="d-flex align-items-center fifth-txt">
+                    <span>APPLIED</span>
+                </div>
+                @endif
+                @endforeach
+                @foreach($app as $item)
+                @if($mission->end_date<=$carbon::now() && $item!=$mission->mission_id && $mission->end_date!=null)
+                    <div class="d-flex align-items-center fifth-txt">
+                        <span>CLOSED</span>
+                    </div>
+                    @endif
+                    @endforeach
 
                         </div>
                     </div>
@@ -117,15 +109,19 @@
                             <div class="column2-2 col-md-2">
                                 <div class='d-flex align-items-center'>
                                     <hr class='flex-grow-1' />
-                                    @php
-                                    $goal=App\Models\Goal::where('mission_id',$mission->mission_id)->first();
-                                    @endphp
-                                    @if(is_null($goal))
-                                    <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to
-                                        {{$mission->end_date->format('d/m/Y')}}</div>
-                                    @else
-                                    <div class='goal'>{{$goal->goal_objective_text}}</div>
-                                    @endif
+                                    
+                                    @foreach($goal as $item)
+                    @if(($item->mission_id==$mission->mission_id))
+                    <div class='goal'>{{$item->goal_objective_text}}</div>
+                    @break
+                    @endif
+                    @endforeach
+
+                    @if(($item->mission_id==$mission->mission_id)==null)
+                    <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to
+                        {{$mission->end_date->format('d/m/Y')}}
+                    </div>
+                     @endif
                                     <hr class='flex-grow-1' />
                                 </div>
                                 <br>
@@ -176,12 +172,13 @@
 
 @if($app->mission_id==$mission->mission_id && $app->user_id==Auth::user()->user_id &&
 $app->approval_status!="DECLINE" && $app->approval_status=='APPROVE'|| $mission->end_date<=$carbon::now() && $mission->end_date!=null)
+<a href="{{url('volunteering/'.$mission->mission_id)}}">
 <div class="form-group">
         <div class='card-button'>View Detais
             <img src='images/right-arrow.png' alt='' class='pl-3'>
         </div>
 </div>
-
+</a>
 @break
 @endif
 @if($app->approval_status=="PENDING" && $app->mission_id == $mission->mission_id &&
@@ -214,49 +211,59 @@ $app->approval_status=="DECLINE")
                                     </div>
                                     <div class='col-md-5'>
                                         <div class="rating-css">
-                                            <form action="{{url('add-rating/'.$mission->mission_id)}}" method="POST"
-                                                id="form_{{$mission->mission_id}}">
-                                                @csrf
-                                                <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
-                                                <div class="rating-css">
-                                                    @php
-                                                    $rating=App\Models\Rating::where('mission_id',$mission->mission_id)->sum('rating');
-                                                    $count=App\Models\Rating::where('mission_id',$mission->mission_id)->count('mission_id');
-                                                    @endphp
-                                                    @if($count!=0)
-                                                    @php
-                                                    $rate=$rating/$count
-                                                    @endphp
-                                                    @endif
-                                                    <div class="star-icon">
-                                                        <input value="1" id="rating1_{{$mission->mission_id}}"
-                                                            class="cus_rating" type="radio" name="star"
-                                                            cusId="{{$mission->mission_id}}" />
-                                                        <label for="rating1_{{$mission->mission_id}}"
-                                                            class="fa fa-star @if($count!=0) @if($rate>=1) checked @endif @endif"></label>
-                                                        <input value="2" id="rating2_{{$mission->mission_id}}"
-                                                            class="cus_rating" type="radio" name="star"
-                                                            cusId="{{$mission->mission_id}}" />
-                                                        <label for="rating2_{{$mission->mission_id}}"
-                                                            class="fa fa-star @if($count!=0) @if($rate>=2) checked @endif @endif"></label>
-                                                        <input value="3" id="rating3_{{$mission->mission_id}}"
-                                                            class="cus_rating" type="radio" name="star"
-                                                            cusId="{{$mission->mission_id}}" />
-                                                        <label for="rating3_{{$mission->mission_id}}"
-                                                            class="fa fa-star @if($count!=0) @if($rate>=3) checked @endif @endif"></label>
-                                                        <input value="4" id="rating4_{{$mission->mission_id}}"
-                                                            class="cus_rating" type="radio" name="star"
-                                                            cusId="{{$mission->mission_id}}" />
-                                                        <label for="rating4_{{$mission->mission_id}}"
-                                                            class="fa fa-star @if($count!=0) @if($rate>=4) checked @endif @endif"></label>
-                                                        <input value="5" id="rating5_{{$mission->mission_id}}"
-                                                            class="cus_rating" type="radio" name="star"
-                                                            cusId="{{$mission->mission_id}}" />
-                                                        <label for="rating5_{{$mission->mission_id}}"
-                                                            class="fa fa-star @if($count!=0) @if($rate>=5) checked @endif @endif"></label>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                        <form action="{{url('add-rating/'.$mission->mission_id)}}" method="POST"
+                                id="form_{{$mission->mission_id}}">
+                                @csrf
+                                <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
+                                <div class="rating-css">
+
+                                    <div class="star-icon">
+                                        @foreach($rate as $rating)
+                                        @if($rating->mission_id==$mission->mission_id)
+                                        <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating1_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=1) checked @endif @endif"></label>
+                                        <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating2_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=2) checked @endif @endif"></label>
+                                        <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating3_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=3) checked @endif @endif"></label>
+                                        <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating4_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=4) checked @endif @endif"></label>
+                                        <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating5_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=5) checked @endif @endif"></label>
+                                        @break
+                                        @endif
+                                        @endforeach
+                                        @if(($rating->mission_id==$mission->mission_id)==null)
+                                        <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating1_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating2_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating3_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating4_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating5_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        @endif
+                                    </div>
+
+                                </div>
+                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -273,6 +280,8 @@ $app->approval_status=="DECLINE")
 <div class="popup">
     <div class="popup-close-btn"></div>
     <div class="popup-content"></div>
+    <input type="submit" class="popup-button" name="" value="cancel" id="">
+
 </div>
 <div class="for-call-popup">
     <form action="{{url('Invite')}}" class="call-popup">
@@ -281,9 +290,6 @@ $app->approval_status=="DECLINE")
         <input type="hidden" name="mission_id" id="mission_id">
 
         <label for="mission">User</label>
-        @php
-        $users=App\Models\User::all()
-        @endphp
         <div><select class="story-input" aria-placeholder="Select your User" name="user_id">
                 @foreach($users as $user)
                 <option value="{{$user->user_id}}" class="story-input">{{$user->full_name}}</option>
@@ -292,8 +298,7 @@ $app->approval_status=="DECLINE")
         <br>
 
         <div class="popup-btn-contact">
-            <input type="submit" class="popup-button" name="" value="cancel" id="">
-            <input type="submit" class="contact-button-1" value="Invite" name="" id="">
+            <input type="submit" class="contact-button-1" value="Invite" name="" id="" onclick="this.form.submit();this.disabled=true">
         </div>
     </form>
 </div>
@@ -305,6 +310,11 @@ $app->approval_status=="DECLINE")
 
 @section('scripts')
 <script>
+     function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
 $(document).ready(function() {
     $('.cus_rating').click(function() {
         $('#form_' + $(this).attr("cusId")).submit();
@@ -334,6 +344,9 @@ $(function() {
     $('.popup-close-btn').click(function() {
         p.close();
     });
+    $('.popup-button').click(function(){
+        p.close();
+    })
 });
 
 function sortBy() {

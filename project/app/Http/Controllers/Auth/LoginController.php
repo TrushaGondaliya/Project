@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\Banner;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -43,7 +44,8 @@ class LoginController extends Controller
                 return redirect('home');
             }
             else{
-                return view('login');
+                $banners=Banner::all();
+                return view('login',compact('banners'));
             }
         }
         else {

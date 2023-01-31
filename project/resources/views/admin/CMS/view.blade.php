@@ -64,41 +64,8 @@
                     </table>
                 </div>
             </div>
-
-
-            <div class="container mt-3">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="{{url('admin/cms?page='.$cms->onFirstPage())}}"
-                            aria-label="prevoius">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="{{$cms->previousPageUrl()}}" aria-label="prevoius">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    @for($i=1;$i<=$cms->lastpage();$i++)
-                        @if($i==$cms->currentPage())
-                        <li class="page-item"><a class="page-link active"
-                                href="{{url('admin/cms?page='.$i)}}">{{$i}}</a> </li>
-                        @else
-                        <li class="page-item"><a class="page-link" href="{{url('admin/cms?page='.$i)}}">{{$i}}</a> </li>
-                        @endif
-                        @endfor
-                        <li class="page-item">
-                            <a class="page-link" href="{{$cms->nextPageUrl()}}" aria-label="Next">
-                                <span aria-hidden="true">&rsaquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{url('admin/cms?page='.$cms->lastpage())}}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                </ul>
-            </div>
+            {{ $cms->links() }}
+       
         </div>
     </div>
 </main>

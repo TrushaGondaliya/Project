@@ -143,20 +143,16 @@ tinymce.init({
                         </div>
                         @endif
                         <span class="cms-label">Mission Theme</span>
-                        @php
-                        $theme=App\Models\Theme::all();
-                        @endphp
+                     
                         <select name="theme_title" class="cms-input" id="">
                             <option value="{{$mission->theme->title}}">{{$mission->theme->title}}</option>
                             @foreach($theme as $item)
                             <option value="{{$item->title}}"> {{$item->title}}</option>
                             @endforeach
                         </select>
-
+                        <br><br>
                         <span class="cms-label">Mission Skills</span>
-                        @php
-                        $skill=App\Models\Skill::all();
-                        @endphp
+                       <br>
                         @foreach($skill as $item)
                         <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}"
                             {{in_array($item->skill_id,$missionskill)?'checked':''}}>{{$item->skill_name}}

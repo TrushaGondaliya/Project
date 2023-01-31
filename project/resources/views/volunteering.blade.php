@@ -20,7 +20,7 @@
                     @else
                     <img src="/images/{{$media->media_name}}" class="vol-main-img" alt="...">
                     @endif
-                    <div id="gallery" class="carousel slide " data-bs-ride="carousel"  data-interval="3000">
+                    <div id="gallery" class="carousel slide " data-bs-ride="carousel" data-interval="3000">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row">
@@ -179,7 +179,7 @@
                             </div>
                             <div class="column  col-lg-6 ">
                                 <div class="btn1">
-                                    <button value="{{$mission->mission_id}}" class="invite btn-invite">
+                                    <button value="{{$mission->mission_id}}" class="invite btn-invite" onClick="topFunction()">
                                         <img src="/images/add1.png" style="height: 22px;width:22px">
                                         <span class="vol-fav-1">Recommend to a co-worker</span>
                                     </button>
@@ -271,9 +271,9 @@
                             </div>
                         </div><br>
                         <a href="{{url('add-app/'.$mission->mission_id)}}">
-                        <div class='vol-button'>Apply Now
-                            <img src='/images/right-arrow.png' alt='' class='pl-3'>
-                        </div>
+                            <div class='vol-button'>Apply Now
+                                <img src='/images/right-arrow.png' alt='' class='pl-3'>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -380,9 +380,12 @@
                                             @php
                                             $skills=App\Models\Missionskill::where('mission_id',$mission->mission_id)->get()
                                             @endphp
+                                          
+                                            @if(count($skills)!=0)
                                             @foreach($skills as $skill)
                                             {{$skill->skill->skill_name}},
                                             @endforeach
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>
@@ -494,9 +497,10 @@
 
     <div class="vol row">
         @php
-        $themes=App\Models\Mission::where('city_id',$mission->city_id)->get();
-        if(count($themes)<=1) { $themes=App\Models\Mission::where('country_id',$mission->country_id)->get();
-            if(count($themes)<=1){ $themes=App\Models\Mission::where('theme_id',$mission->theme_id)->get();
+        $themes=App\Models\Mission::where('city_id',$mission->city_id)->limit(3)->get();
+        if(count($themes)<=1) {
+            $themes=App\Models\Mission::where('country_id',$mission->country_id)->limit(3)->get();
+            if(count($themes)<=1){ $themes=App\Models\Mission::where('theme_id',$mission->theme_id)->limit(3)->get();
                 }
                 }
 
@@ -653,6 +657,8 @@
 <div class="popup">
     <div class="popup-close-btn"></div>
     <div class="popup-content"></div>
+    <input type="submit" class="popup-button" name="" value="cancel" id="">
+
 </div>
 <div class="for-call-popup">
     <form action="{{url('Invite')}}" class="call-popup">
@@ -670,8 +676,7 @@
             </select></div>
         <br>
         <div class="popup-btn-contact">
-            <input type="submit" class="popup-button" name="" value="cancel" id="">
-            <input type="submit" class="contact-button-1" value="Invite" name="" id="">
+            <input type="submit" class="contact-button-1" value="Invite" name="" id="" onclick="this.form.submit();this.disabled=true">
         </div>
     </form>
 </div>
@@ -688,6 +693,12 @@
 
 @section('scripts')
 <script>
+    function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+
 $(document).ready(function() {
     $('.cus_rating').click(function() {
         $('#form_' + $(this).attr("cusId")).submit();
@@ -719,6 +730,9 @@ $(function() {
     $('.popup-close-btn').click(function() {
         p.close();
     });
+    $('.popup-button').click(function(){
+        p.close();
+    })
 });
 
 function Popup(Obj) {

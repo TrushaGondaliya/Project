@@ -39,6 +39,10 @@ class Mission extends Model
     {
         return $this->belongsToMany(Favourite::class);
     }
+    public function ratings()
+    {
+        return $this->belongsToMany(Rating::class,'mission_rating','mission_id','mission_id');
+    }
 
    
 

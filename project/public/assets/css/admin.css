@@ -75,16 +75,17 @@
   .pagination li a:hover{
     background-color: #f88634;
     text-align: center;
+    color: white;
   }
   
   .pagination .active{
-    background-color: #f88634;
     color: white;
     border: none;
   }
   
   .pagination .active a:hover{
     background-color: #f88634;
+    color: white;
   }
   
   .pagination li a{
@@ -97,6 +98,24 @@
     margin: 16px 0;
   }
 
+  .active>.page-link, .page-link.active {
+    z-index: 3;
+    color: var(--bs-pagination-active-color);
+    background-color: #f88634;
+    border-color:var(--bs-pagination-active-color) ;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 10px;
+  }
+  
+   .page-item.disabled {
+    z-index: 3;
+    
+    border-color:var(--bs-pagination-active-color) ;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 10px;
+  }
   .sb-sidenav .sb-sidenav-menu .nav .nav-link.active{
     width: 290px;
     height: 54px;

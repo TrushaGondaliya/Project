@@ -54,8 +54,8 @@ class CmsController extends Controller
     function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'nullable',
-            'description' => 'nullable',
+            'title' => 'required',
+            'description' => 'required',
             'slug' => 'nullable',
             'status' => 'nullable'
         ]);

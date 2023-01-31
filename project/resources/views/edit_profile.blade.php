@@ -4,6 +4,9 @@
 @if(session('message'))
 <div class="alert alert-success">{{session('message')}}</div>
 @endif
+@if(session('error'))
+<div class="alert alert-danger">{{session('error')}}</div>
+@endif
 
 <script src="https://cdn.tiny.cloud/1/2rhq7jsykq3ivygjslzmxricmi3x9kqp0ca6ihkwe585n1iq/tinymce/6/tinymce.min.js"
     referrerpolicy="origin"></script>
@@ -21,14 +24,7 @@ tinymce.init({
 <div class="body-3">
 
     <br>
-
-    <section>
-        <div>
-            <div class="edit-vol">
-                <div class="row col-lg-12 col-md-12 col-sm-12">
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                        <div class="edit-profile">
-                            @if($errors->any())
+    @if($errors->any())
                             <div class="alert alert-danger">
                                 @foreach($errors->all() as $error)
                                 <div>{{$error}}</div>
@@ -36,6 +32,13 @@ tinymce.init({
                             </div>
 
                             @endif
+    <section>
+        <div>
+            <div class="edit-vol">
+                <div class="row col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="edit-profile">
+                           
                             <img src="{{asset('/uploads/user/'.Auth::user()->avtar)}}" class="profile-img" alt="">
                             <div class="profile-text">{{Auth::user()->full_name}}</div>
 
@@ -108,9 +111,6 @@ tinymce.init({
 
                                 <span class="cms-label">User Skills</span>
                                 <br>
-                                @php
-                                $skill=App\Models\Skill::all();
-                                @endphp
                                 @foreach($skill as $item)
                                 <input type="checkbox" name="skill_id[]" value="{{$item->skill_id}}"
                                     {{in_array($item->skill_id,$userskill)?'checked':''}}>{{$item->skill_name}}
@@ -124,10 +124,6 @@ tinymce.init({
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <span class="story-input-text">City</span>
                                         <div>
-
-                                            @php
-                                            $city=App\Models\City::all();
-                                            @endphp
                                             <select name="city" class="edit-input" id="">
                                                 @foreach($city as $item)
                                                 <option value="{{$item->name}}"> {{$item->name}}</option>
@@ -138,10 +134,6 @@ tinymce.init({
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <span class="story-input-text">Country*</span>
                                         <div>
-
-                                            @php
-                                            $country=App\Models\Country::all();
-                                            @endphp
                                             <select name="country" class="edit-input" id="">
 
                                                 @foreach($country as $item)
@@ -168,7 +160,7 @@ tinymce.init({
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="button" value="Change Password" class="edit-profile-btn">
+                                    <input type="button" value="Change Password" class="edit-profile-btn" onClick="topFunction()">
                                     <button class="edit-profile-button-save">Save</button>
                                 </div>
                             </div>
@@ -182,6 +174,8 @@ tinymce.init({
     <div class="popup">
         <div class="popup-close-btn"></div>
         <div class="popup-content"></div>
+        <input type="button" class="popup-button" name="" value="cancel" id="">
+
     </div>
     <div class="for-call-popup">
         <form action="{{url('change_password')}}" method="POST" class="call-popup">
@@ -193,7 +187,6 @@ tinymce.init({
             <input type="text" class="edit-input" placeholder="Enter new Password" name="new_password" id="">
             <input type="text" class="edit-input" placeholder="Enter Confirm Password" name="confirm_password" id="">
             <div class="popup-btn">
-                <input type="button" class="popup-button" name="" value="cancel" id="">
                 <input type="submit" class="edit-profile-button-1" value="Change Password" name="" id="">
             </div>
         </form>
@@ -208,7 +201,13 @@ tinymce.init({
 @section('scripts')
 
 <script>
+        function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
 $('.alert-success').fadeOut(3000);
+$('.alert-danger').fadeOut(3000);
 $(function() {
     var p = new Popup({
         popup: '.popup',
@@ -216,10 +215,6 @@ $(function() {
         overlay: '.overlay',
     });
 
-    // setTimeout(function() {
-    //     var form = $('.for-call-popup');
-    //     p.open(form.html());
-    // }, 1000);
     $('.edit-profile-btn').click(function() {
         var form = $('.for-call-popup');
         p.open(form.html());
@@ -228,6 +223,9 @@ $(function() {
     $('.popup-close-btn').click(function() {
         p.close();
     });
+    $('.popup-button').click(function(){
+        p.close();
+    })
 });
 
 function Popup(Obj) {

@@ -66,45 +66,7 @@
                     </table>
                 </div>
             </div>
-
-
-            <div class="container mt-3">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="{{url('admin/banner?page='.$banner->onFirstPage())}}"
-                            aria-label="prevoius">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="{{$banner->previousPageUrl()}}" aria-label="prevoius">
-                            <span aria-hidden="true">&lsaquo;</span>
-                        </a>
-                    </li>
-                    @for($i=1;$i<=$banner->lastpage();$i++)
-                        @if($i==$banner->currentPage())
-                        <li class="page-item"><a class="page-link active"
-                                href="{{url('admin/banner?page='.$i)}}">{{$i}}</a> </li>
-                        @else
-                        <li class="page-item"><a class="page-link" href="{{url('admin/banner?page='.$i)}}">{{$i}}</a>
-                        </li>
-                        @endif
-                        @endfor
-                        <li class="page-item">
-                            <a class="page-link" href="{{$banner->nextPageUrl()}}" aria-label="Next">
-                                <span aria-hidden="true">&rsaquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{url('admin/banner?page='.$banner->lastpage())}}"
-                                aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                </ul>
-            </div>
-
-
+            {{ $banner->links() }}
         </div>
     </div>
 </main>

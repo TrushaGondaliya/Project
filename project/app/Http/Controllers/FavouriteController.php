@@ -20,7 +20,6 @@ class FavouriteController extends Controller
             if (Favourite::where('mission_id', '=', $id)->where('user_id', '=', Auth::user()->user_id)->get()->isEmpty()) {
                 $user_id = Auth::user()->user_id;
                 $mission_id = $id;
-
                 $data = array('user_id' => $user_id, 'mission_id' => $mission_id);
                 DB::table('favourite_mission')->Insert($data);
                 return redirect()->back();

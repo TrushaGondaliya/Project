@@ -141,10 +141,10 @@
                         <br>
                         <div class="row col-md-12 col-sm-12">
                             <div class="column col-md-12 col-lg-7 col-sm-12">
-                                <button value="{{$story->story_id}}" class="story-detail-button invite">
+                                <button value="{{$story->story_id}}" class="story-detail-button invite" onClick="topFunction()">
                                     <div>
                                         <img src="/images/add1.png" style="height: 22px;width:22px">
-                                        <span class="story-detail-button-text invite">Recommend to a co-worker</span>
+                                        <span class="story-detail-button-text invite" >Recommend to a co-worker</span>
                                     </div>
                                 </button>
                             </div>
@@ -187,6 +187,8 @@
 <div class="popup">
     <div class="popup-close-btn"></div>
     <div class="popup-content"></div>
+    <input type="submit" class="popup-button" name="" value="cancel" id="">
+
 </div>
 <div class="for-call-popup">
     <form action="{{url('InviteStory')}}" class="call-popup">
@@ -205,8 +207,7 @@
         <br>
 
         <div class="popup-btn-contact">
-            <input type="submit" class="popup-button" name="" value="cancel" id="">
-            <input type="submit" class="contact-button-1" value="Invite" name="" id="">
+            <input type="submit" class="contact-button-1" value="Invite" name="" id="" onclick="this.form.submit();this.disabled=true">
         </div>
     </form>
 </div>
@@ -215,6 +216,11 @@
 
 @section('scripts')
 <script>
+         function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
 $(document).ready(function() {
     $('.cus_rating').click(function() {
         $('#form_' + $(this).attr("cusId")).submit();
@@ -245,6 +251,9 @@ $(function() {
     $('.popup-close-btn').click(function() {
         p.close();
     });
+    $('.popup-button').click(function(){
+        p.close();
+    })
 });
 
 function Popup(Obj) {

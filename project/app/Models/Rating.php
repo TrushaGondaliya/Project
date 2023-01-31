@@ -27,8 +27,10 @@ class Rating extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function mission(){
-        return $this->belongsToMany(Mission::class);
-    }
+ 
    
+    public function mission()
+    {
+        return $this->belongsToMany(Mission::class,'missions','mission_id','mission_id');
+    }
 }

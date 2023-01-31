@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\User;
+use App\Models\Skill;
 use App\Models\Userskill;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
@@ -18,11 +19,24 @@ class UsereditController extends Controller
     function view_profile()
     {
         $uskill=Userskill::where('user_id', Auth::user()->user_id);
-        $userskill =$uskill->pluck('skill_id')->toArray();   
-        return view('edit_profile',compact('userskill'));
+        $userskill =$uskill->pluck('skill_id')->toArray(); 
+        $country=Country::all();
+        $city=City::all();  
+        $skill=Skill::all();
+        return view('edit_profile',compact('userskill','country','city','skill'));
     }
    function edit_profile(Request $request){
-      
+      $user=$request->validate([
+        'first_name'=>'required',
+        'last_name'=>'required',
+        'employee_id'=>'required',
+        'department'=>'required',
+        'title'=>'required',
+        'profile_text'=>'required',
+        'city'=>'required',
+        'country'=>'required',
+        'why_i_volunteer'=>'required'
+      ]);
         $user = User::find(Auth::user()->user_id);
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');

@@ -40,8 +40,9 @@ class AdminmissionController extends Controller
         if (request()->has('search') && !empty(request()->input('search'))) {
             $missions = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%');
             }
+            
             $missions = $missions->paginate(6)->withQueryString();
-            return view('admin.mission.index', compact('missions'));
+            return view('admin/mission/index', compact('missions'));
         
     }
 
@@ -62,7 +63,10 @@ class AdminmissionController extends Controller
     function create()
     {
         $data['countries'] = Country::get(["name","country_id"]);
-        return view('admin.mission.create',$data)->with('enumvalue', Missionenum::$enumvalue);
+        $theme=Theme::all();
+        $skill=Skill::all();
+        $enumvalue=Missionenum::$enumvalue;
+        return view('admin.mission.create',$data,compact('enumvalue','theme','skill') );
     }
     public function getCity(Request $request)
     {
@@ -144,7 +148,9 @@ class AdminmissionController extends Controller
         $document = Document::where('mission_id', $id)->get();
         $goal=Goal::where('mission_id',$id)->first();
         $data['countries'] = Country::get(["name","country_id"]);
-        return view('admin/mission/edit',$data, compact('missions', 'missionskill', 'goal','media', 'document'))->with('enumvalue', Missionenum::$enumvalue);
+        $theme=Theme::all();
+        $skill=Skill::all();
+        return view('admin/mission/edit',$data, compact('missions', 'skill','theme','missionskill', 'goal','media', 'document'))->with('enumvalue', Missionenum::$enumvalue);
     }
 
     function update(MissionRequest $request, $id)

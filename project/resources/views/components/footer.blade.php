@@ -2,13 +2,15 @@
 <div class="footer">
 
     <a href="{{url('policy_page')}}">Privacy Policy</a>
-<button class="contact">Contact Us</button>
+<button class="contact" onClick="topFunction()">Contact Us</button>
 
 </div>
 
 <div class="popup-c">
             <div class="popup-close-btn"></div>
             <div class="popup-content-c"></div>
+                    <input type="button" class="popup-button " name="" value="cancel" id="">
+
         </div>
         <div class="for-call-popup-c">
             <form action="{{url('contactUs')}}" class="call-popup">
@@ -24,8 +26,7 @@
                 <textarea type="text" class="popup-dis" placeholder="Enter Your Message" name="message" id=""></textarea><br><br>
 
                 <div class="popup-btn-contact">
-                    <input type="button" class="popup-button " name="" value="cancel" id="">
-                    <input type="submit" class="contact-button-1" value="Send" name="" id="">
+                    <input type="submit" class="contact-button-1" value="Send" name="" id="" onclick="this.form.submit();this.disabled=true">
                 </div>
             </form>
         </div>
@@ -35,6 +36,11 @@
 </body>
 </html>
 <script>
+       function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
         $(function() {
             var p = new Popup({
                 popup: '.popup-c',

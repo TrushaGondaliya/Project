@@ -77,6 +77,10 @@ Route::post('update',[ResetController::class,'update']);
 Auth::routes();
 Route::get('contactUs',function(Request $request){
     try{
+        $data=$request->validate([
+            'subject'=>'required',
+            'message'=>'required'
+        ]);
         $data=[
             'name'=>$request->name,
             'subject'=>$request->subject,
@@ -88,7 +92,7 @@ Route::get('contactUs',function(Request $request){
     }
     catch(Throwable $e){
         report($e);
-        dd('error');
+        return redirect()->back()->with('error','field required');
     }
 });
 Route::get('Invite', [InviteController::class, 'invite'])->name('Invite');

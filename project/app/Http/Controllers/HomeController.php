@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Mission;
+use App\Models\Cms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Favourite;
+use App\Models\Media;
+use App\Models\Missionskill;
+use App\Models\Skill;
+use App\Models\Theme;
+use App\Models\Goal;
+use App\Models\User;
+use App\Models\Rating;
 
 
 
@@ -48,9 +59,20 @@ class HomeController extends Controller
             }
          
             $missions=$missions->get();
-
+            $application=Application::where('user_id',Auth::user()->user_id)->pluck('mission_id');
+                $app=Application::where('user_id','!=',Auth::user()->user_id)->pluck('mission_id');
+                $favourite=Favourite::all();
+                $media=Media::all();
+                $mission=Mission::all();
+                $country=Country::all();
+                $city=City::all();
+                $users=User::all();
+                $goal=Goal::all();
+                $rate=Rating::selectRaw('mission_id, avg(rating) as times_added')
+                            ->groupBy('mission_id')
+                            ->orderByDesc('times_added')->get();
               $m_id = Application::all();
-              return view('list', compact('missions','m_id'));
+              return view('list', compact('missions','rate','goal','users', 'm_id','country','city','application','mission','favourite','media'));
        }
        function grid()
        {

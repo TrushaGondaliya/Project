@@ -1,29 +1,45 @@
 <div class="nav-container">
-
+<a href="{{url('home')}}"><img src="/images/home1.jpeg" style="width:40px;height: 40px; border-radius:100%;object-fit:cover ;margin-right: 12px;" alt=""></a>
     <nav class="navbar navbar-expand-lg">
+   
         <div class="container" style="padding:0">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation-1"
                 aria-controls="navigation-1" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+         
             <div class="collapse navbar-collapse" id="navigation-1">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <form id="explore" method="get" enctype="multipart/form-data" action="{{url('home')}}">
+                            <select class="nav-link Explore-Stories-Policy common-font" id="country"
+                                name="explore" style="border:none" onChange="showExplore()">
+                                @if(request()->input('explore'))
+                                <option value="none" selected disabled="" hidden="">{{request()->input('explore')}}
+                                </option>
+                                @else
+                                <option value="">Explore</option>
+                                @endif
+                                <option value="Top Theme">Top Theme</option>
+                                <option value="Most Ranked">Most Ranked</option>
+                                <option value="Top Favourite">Top Favourite</option>
+                                <option value="random">Random</option>
+                            </select>
+                        </form>
                     <li class="nav-item">
                         <a class="nav-link Explore-Stories-Policy common-font"
                             href="{{url('stories_listing')}}">Stories</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-expanded="false" >
                             Policy
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" >
                             @php
                             $policy=App\Models\Cms::all();
                             @endphp
                             @foreach($policy as $item)
-                            <li><a class="dropdown-item" href="#">{{$item->title}}</a></li>
+                            <li><a class="dropdown-item" href="#" >{{$item->title}}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -50,4 +66,9 @@
     </div>
 </div>
 <hr style="margin-bottom:0">
+<script>
+    function showExplore() {
+let form = document.getElementById("explore");
+form.submit();
+}
 </script>
