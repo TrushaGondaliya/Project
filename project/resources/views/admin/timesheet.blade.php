@@ -549,6 +549,7 @@ function Popup(Obj) {
 
 
 <script>
+    $('.alert-danger').fadeOut(3000);
 $(function() {
     var p = new Popup({
         popup: '.time_add_popup',

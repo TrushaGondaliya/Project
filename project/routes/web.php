@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MissionthemeController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\TimesheetController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HomeController;
@@ -102,7 +103,6 @@ Route::get('invite_story/{id}', [InviteController::class, 'inviteStory']);
 Route::post('get-cities-by-country',[AdminmissionController::class,'getCity']);
 Route::get('add-app/{id}',[AdminmissionController::class,'add_app']);
 Route::post('add-rating/{id}',[RatingController::class,'rating']);
-//admin panel
 Route::get('timesheet',[TimesheetController::class,'timesheet']);
 Route::post('add-time',[TimesheetController::class,'add']);
 Route::post('add-goal',[TimesheetController::class,'add_goal']);
@@ -119,8 +119,7 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('add-user',[UserController::class,'create']);
     Route::post('add-user',[UserController::class,'add_user']);
     Route::put('update-user/{user_id}',[UserController::class,'update']);
-    Route::post('delete-user',[UserController::class,'delete']);
-   
+    Route::post('delete-user',[UserController::class,'delete']); 
     Route::get('add-cms',[CmsController::class,'add']);
     Route::post('add-cms',[CmsController::class,'cms_add']);
     Route::get('cms-edit/{id}',[CmsController::class,'edit']);
@@ -169,5 +168,9 @@ Route::prefix('admin')->middleware('auth','user')->group(function(){
     Route::get('banner-edit/{id}',[BannerController::class,'edit']);
     Route::put('update-banner/{id}',[BannerController::class,'update']);
     Route::post('delete-banner',[BannerController::class,'delete']);
+
+    Route::get('comment',[CommentController::class,'index']);
+    Route::get('approve-comment/{id}',[CommentController::class,'approve']);
+    Route::get('decline-comment/{id}',[CommentController::class,'decline']);
 });
 

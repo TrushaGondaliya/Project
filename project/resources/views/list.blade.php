@@ -132,7 +132,10 @@
                                                 <img src='images/Seats-left.png' alt='' style='height:20px'>
                                             </div>
                                             <div class='col-md-9'>
-                                                <h4 style="color: grey;">{{$mission->seat_left}}</h4>
+                                            @php
+                                                $left=App\Models\Application::where('mission_id',$mission->mission_id)->count('mission_id');
+                                                @endphp
+                                                <h4 style="color: grey;">{{$mission->total_seat-$left}}</h4>
                                                 <h6 style='color:gray;font-size:14px'>Seats-left</h6>
                                             </div>
                                         </div>
@@ -174,7 +177,7 @@
 $app->approval_status!="DECLINE" && $app->approval_status=='APPROVE'|| $mission->end_date<=$carbon::now() && $mission->end_date!=null)
 <a href="{{url('volunteering/'.$mission->mission_id)}}">
 <div class="form-group">
-        <div class='card-button'>View Detais
+        <div class='card-button'>View Details
             <img src='images/right-arrow.png' alt='' class='pl-3'>
         </div>
 </div>

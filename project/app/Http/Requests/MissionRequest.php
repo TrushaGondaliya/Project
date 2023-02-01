@@ -33,7 +33,7 @@ class MissionRequest extends FormRequest
             'start_date'=>'nullable',
             'end_date'=>'nullable',
             'mission_type'=>'required',
-            'seat_left'=>'required',
+            'total_seat'=>'required',
             'theme_title'=>'required',
             'skill_id'=>'required',
             'image'=>'nullable',

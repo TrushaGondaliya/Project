@@ -45,10 +45,10 @@ class MissionController extends Controller
                                 $missions = Mission::orderBy('created_at', 'asc');
                                 break;
                             case 'Lowest available seats':
-                                $missions = Mission::orderBy('seat_left', 'asc');
+                                $missions = Mission::orderBy('total_seat', 'asc');
                                 break;
                             case 'Highest available seats':
-                                $missions = Mission::orderBy('seat_left', 'desc');
+                                $missions = Mission::orderBy('total_seat', 'desc');
                                 break;
                             case 'My favourites':
                                 $fav_m = DB::table("favourite_mission")->where('user_id', Auth::user()->user_id)->where('deleted_at',null)->pluck('mission_id');

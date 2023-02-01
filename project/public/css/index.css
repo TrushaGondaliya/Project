@@ -3055,6 +3055,117 @@ textarea{
   }
 }
 
+.dropbtn {
+ background: none;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.bell-btn{
+  background: none;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  z-index: 1;
+  margin-top: 20px;
+  box-shadow: 10px 5px 10px grey;
+  padding: 2px;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-shadow: grey 0 3px 8px;
+    z-index: 100;
+    padding: 2px;
+    border-radius: 4px;
+    border: solid 1px #ced4da;
+    display: none;
+    margin: -1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: white;
+    width: max-content;
+    padding: 5px;
+    font-size: 18px;
+}
+.bell-sticky{
+  position: fixed;
+}
+.bell-content{
+  padding-top: 20px;
+}
+.not-btn{
+  text-align: center;
+}
+.not-btn2{
+  width: 100px;
+  height: 45px;
+  border-radius: 24px;
+  border: solid 3px #f88634;
+  text-align: center;
+  color: #f88634;
+  background-color: white;
+  font-size: 20px;
+}
+.not-btn1{
+  width: 100px;
+  height: 45px;
+  border-radius: 24px;
+  border: solid 3px #757575;
+  text-align: center;
+  color: #757575;
+  background-color: white;
+  font-size: 20px;
+}
+.dropdown-content{
+  height: 15rem;
+  overflow-y: scroll;
+}
+.dropdown-content ul li{
+  display: block !important;
+  font-size: 18px;
+    padding: 5px;
+}
+.dropdown-content ul li input[type=checkbox]{
+  margin-left: 100px;
+  float: right;
+  accent-color: #f88634
+}
+.dropdown-content a {
+  color: black;
+  font-family: helvetica;
+  padding: 5px 5px;
+  text-decoration: none;
+  display: block;
+}
+
+hr.solid {
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #000000;
+  border-bottom: none;
+}
+
+.show {
+  display: block;
+}
+
+.bell{
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
 /* change pass popup */
 
 .overlay{

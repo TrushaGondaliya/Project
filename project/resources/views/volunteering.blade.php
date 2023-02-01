@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@inject('carbon', 'Carbon\Carbon')
 @section('content')
 <div class="body-1">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" />
@@ -10,16 +10,19 @@
     <section>
         <div class="vol">
             @foreach($missions as $mission)
-            @php
-            $media=App\Models\Media::where('mission_id',$mission->mission_id)->first();
-            @endphp
+            
             <div class="row  col-sm-12  col-lg-12">
                 <div class="column  col-sm-6  col-lg-6" style="padding-left: 10px;">
-                    @if(is_null($media))
-                    <img src="/images/image2.png" class="vol-main-img">
-                    @else
-                    <img src="/images/{{$media->media_name}}" class="vol-main-img" alt="...">
-                    @endif
+                @foreach($media as $item)
+                @if(($item->mission_id==$mission->mission_id))
+                <img src="/images/{{$item->media_name}}" class="vol-main-img" alt="...">
+                @break
+                @endif
+                @endforeach
+
+                @if(($item->mission_id==$mission->mission_id)==null)
+                <img src="/images/image2.png" class="vol-main-img">
+                @endif
                     <div id="gallery" class="carousel slide " data-bs-ride="carousel" data-interval="3000">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -111,15 +114,18 @@
                         </div><br>
                         <div class='d-flex align-items-center'>
                             <hr class='flex-grow-1' />
-                            @php
-                            $goal=App\Models\Goal::where('mission_id',$mission->mission_id)->first();
-                            @endphp
-                            @if(is_null($goal))
-                            <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to
-                                {{$mission->end_date->format('d/m/Y')}}</div>
-                            @else
-                            <div class='goal'>{{$goal->goal_objective_text}}</div>
-                            @endif
+                            @foreach($goal as $item)
+                    @if(($item->mission_id==$mission->mission_id))
+                    <div class='goal'>{{$item->goal_objective_text}}</div>
+                    @break
+                    @endif
+                    @endforeach
+
+                    @if(($item->mission_id==$mission->mission_id)==null)
+                    <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to
+                        {{$mission->end_date->format('d/m/Y')}}
+                    </div>
+                     @endif
                             <hr class='flex-grow-1' />
                         </div><br>
 
@@ -130,7 +136,10 @@
                                         <img src='/images/Seats-left.png' alt='' style='height:30px'>
                                     </div>
                                     <div class='col-md-9 col-sm-9 col-9 col-lg-9'>
-                                        <h6 style="color: grey; margin-left:20px ;">10</h6>
+                                    @php
+                                                $left=App\Models\Application::where('mission_id',$mission->mission_id)->count('mission_id');
+                                                @endphp
+                                        <h6 style="color: grey; margin-left:20px ;">{{$mission->total_seat-$left}}</h6>
                                         <h6 style='color:gray;font-size:10px; margin-left:20px '>Seats-left</h6>
                                     </div>
                                 </div>
@@ -156,9 +165,7 @@
                             <div class="column col-lg-6">
                                 <div class="btn1">
                                     <a href="{{url('favourite/'.$mission->mission_id)}}">
-                                        @php
-                                        $favourite=App\Models\Favourite::all()
-                                        @endphp
+    
                                         @foreach($favourite as $fav)
                                         @if($fav->mission_id==$mission->mission_id)
                                         @if($fav->mission_id==$mission->mission_id &&
@@ -195,37 +202,52 @@
                                 @csrf
                                 <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
                                 <div class="rating-css">
-                                    @php
-                                    $rating=App\Models\Rating::where('mission_id',$mission->mission_id)->sum('rating');
-                                    $count=App\Models\Rating::where('mission_id',$mission->mission_id)->count('mission_id');
-                                    @endphp
-                                    @if($count!=0)
-                                    @php
-                                    $rate=$rating/$count
-                                    @endphp
-                                    @endif
+
                                     <div class="star-icon">
+                                        @foreach($rate as $rating)
+                                        @if($rating->mission_id==$mission->mission_id)
                                         <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
                                             type="radio" name="star" cusId="{{$mission->mission_id}}" />
                                         <label for="rating1_{{$mission->mission_id}}"
-                                            class="fa fa-star @if($count!=0) @if($rate>=1) checked @endif @endif"></label>
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=1) checked @endif @endif"></label>
                                         <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
                                             type="radio" name="star" cusId="{{$mission->mission_id}}" />
                                         <label for="rating2_{{$mission->mission_id}}"
-                                            class="fa fa-star @if($count!=0) @if($rate>=2) checked @endif @endif"></label>
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=2) checked @endif @endif"></label>
                                         <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
                                             type="radio" name="star" cusId="{{$mission->mission_id}}" />
                                         <label for="rating3_{{$mission->mission_id}}"
-                                            class="fa fa-star @if($count!=0) @if($rate>=3) checked @endif @endif"></label>
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=3) checked @endif @endif"></label>
                                         <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
                                             type="radio" name="star" cusId="{{$mission->mission_id}}" />
                                         <label for="rating4_{{$mission->mission_id}}"
-                                            class="fa fa-star @if($count!=0) @if($rate>=4) checked @endif @endif"></label>
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=4) checked @endif @endif"></label>
                                         <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
                                             type="radio" name="star" cusId="{{$mission->mission_id}}" />
                                         <label for="rating5_{{$mission->mission_id}}"
-                                            class="fa fa-star @if($count!=0) @if($rate>=5) checked @endif @endif"></label>
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=5) checked @endif @endif"></label>
+                                        @break
+                                        @endif
+                                        @endforeach
+                                        @if(($rating->mission_id==$mission->mission_id)==null)
+                                        <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating1_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating2_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating3_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating4_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating5_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        @endif
                                     </div>
+
                                 </div>
                             </form>
                             <hr class='flex-grow-1' />
@@ -249,17 +271,22 @@
                             <div class="column col-md-6 col-6 col-lg-6 col-xl-3">
                                 <div class="pin"><img src="/images/calender.png" style="padding-bottom: 10px;"
                                         alt=""><br>
-                                    @php
-                                    $goal=App\Models\Goal::where('mission_id',$mission->mission_id)->first();
-                                    @endphp
-                                    @if(is_null($goal))
-                                    <span class="span-main"><span class="span-text"> Date</span><br>
+                                        @foreach($goal as $item)
+                           
+
+                    @if(($item->mission_id==$mission->mission_id))
+                    <span class="span-main"><span class="span-text"> Date</span><br>
+                                        {{$item->goal_objective_text}}</span>
+                    @break
+                    @endif
+                    @endforeach
+
+                    @if(($item->mission_id==$mission->mission_id)==null)
+                    <span class="span-main"><span class="span-text"> Date</span><br>
                                         {{$mission->start_date->format('d/m/Y')}} to
                                         {{$mission->end_date->format('d/m/Y')}}</span>
-                                    @else
-                                    <span class="span-main"><span class="span-text"> Date</span><br>
-                                        {{$goal->goal_objective_text}}</span>
-                                    @endif
+                     @endif
+                                   
                                 </div>
                             </div>
                             <div class="column col-md-6 col-6 col-lg-6 col-xl-3">
@@ -270,10 +297,20 @@
                                 </div>
                             </div>
                         </div><br>
+                        @php
+                        $appli=App\Models\Application::where('mission_id',$mission->mission_id)->where('user_id',Auth::user()->user_id)->first()
+                        @endphp
+                     
                         <a href="{{url('add-app/'.$mission->mission_id)}}">
+                            @if(!$appli)
                             <div class='vol-button'>Apply Now
                                 <img src='/images/right-arrow.png' alt='' class='pl-3'>
                             </div>
+                            @else
+                            <button type="" disabled class='vol-button' style="background:none">Apply Now
+                                <img src='/images/right-arrow.png' alt='' class='pl-3'></button>
+                            
+                            @endif
                         </a>
                     </div>
                 </div>
@@ -307,10 +344,9 @@
                                     <br><br>
                                     <span class="vol-intro">Documents</span><br><br>
                                     <div class="row col-lg-12 ">
-                                        @php
-                                        $documents=App\Models\Document::where('mission_id',$mission->mission_id)->get()
-                                        @endphp
+                                        
                                         @foreach($documents as $document)
+                                        @if($document->mission_id==$mission->mission_id)
                                         <div class="column col-lg-6 col-xl-4 col-md-6">
                                             <div class="btn1">
                                                 <img src="/images/doc.png" style="height: 24px;width:21px" alt="">
@@ -318,6 +354,7 @@
                                                     style="font-size: 15px;color:#454545;">{{$document->document_name}}</span>
                                             </div>
                                         </div>
+                                        @endif
                                         @endforeach
                                     </div>
                                 </div>
@@ -377,15 +414,12 @@
                                             skills
                                         </td>
                                         <td>
-                                            @php
-                                            $skills=App\Models\Missionskill::where('mission_id',$mission->mission_id)->get()
-                                            @endphp
-                                          
-                                            @if(count($skills)!=0)
-                                            @foreach($skills as $skill)
-                                            {{$skill->skill->skill_name}},
-                                            @endforeach
-                                            @endif
+                                          @foreach($skills as $skill)
+                                          @if($skill->mission_id==$mission->mission_id)
+                                          {{$skill->skill->skill_name}},
+                                          @endif
+                                          @endforeach
+                                           
                                         </td>
                                     </tr>
                                     <tr>
@@ -402,45 +436,52 @@
                                         </td>
                                         <td>
                                             <div class="rating-css1">
-                                                @php
-                                                $rating=App\Models\Rating::where('mission_id',$mission->mission_id)->sum('rating');
-                                                $count=App\Models\Rating::where('mission_id',$mission->mission_id)->count('mission_id');
-                                                @endphp
-
-                                                @if($count!=0)
-                                                @php
-                                                $rate=$rating/$count
-                                                @endphp
-                                                @endif
 
 
-                                                <div class="star-icon1">
-                                                    <input value="1" id="rating1_{{$mission->mission_id}}"
-                                                        class="cus_rating" type="radio" name="star"
-                                                        cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating1_{{$mission->mission_id}}"
-                                                        class="fa fa-star @if($count!=0) @if($rate>=1) checked @endif @endif"></label>
-                                                    <input value="2" id="rating2_{{$mission->mission_id}}"
-                                                        class="cus_rating" type="radio" name="star"
-                                                        cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating2_{{$mission->mission_id}}"
-                                                        class="fa fa-star @if($count!=0) @if($rate>=2) checked @endif @endif"></label>
-                                                    <input value="3" id="rating3_{{$mission->mission_id}}"
-                                                        class="cus_rating" type="radio" name="star"
-                                                        cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating3_{{$mission->mission_id}}"
-                                                        class="fa fa-star @if($count!=0) @if($rate>=3) checked @endif @endif"></label>
-                                                    <input value="4" id="rating4_{{$mission->mission_id}}"
-                                                        class="cus_rating" type="radio" name="star"
-                                                        cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating4_{{$mission->mission_id}}"
-                                                        class="fa fa-star @if($count!=0) @if($rate>=4) checked @endif @endif"></label>
-                                                    <input value="5" id="rating5_{{$mission->mission_id}}"
-                                                        class="cus_rating" type="radio" name="star"
-                                                        cusId="{{$mission->mission_id}}" />
-                                                    <label for="rating5_{{$mission->mission_id}}"
-                                                        class="fa fa-star @if($count!=0) @if($rate>=5) checked @endif @endif"></label>
-                                                </div>
+                                                <div class="star-icon">
+                                        @foreach($rate as $rating)
+                                        @if($rating->mission_id==$mission->mission_id)
+                                        <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating1_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=1) checked @endif @endif"></label>
+                                        <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating2_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=2) checked @endif @endif"></label>
+                                        <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating3_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=3) checked @endif @endif"></label>
+                                        <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating4_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=4) checked @endif @endif"></label>
+                                        <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating5_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=5) checked @endif @endif"></label>
+                                        @break
+                                        @endif
+                                        @endforeach
+                                        @if(($rating->mission_id==$mission->mission_id)==null)
+                                        <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating1_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating2_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating3_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating4_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating5_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        @endif
+                                    </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -456,11 +497,10 @@
                                         </a> </li>
                                 </ul>
                                 <table class="recent-info">
-                                    @php
-                                    $volunteers=App\Models\Application::where('mission_id',$mission->mission_id)->get()
-                                    @endphp
+                                    
                                     <div class="row">
                                         @foreach($volunteers as $volunteer)
+                                        @if($volunteer->mission_id==$mission->mission_id)
                                         <div class="column col-md-4 col-lg-4">
 
                                             <img src="{{asset('/uploads/user/'.$volunteer->user->avtar)}}"
@@ -468,6 +508,7 @@
                                             <div class="text-2">{{$volunteer->user->full_name}}</div>
 
                                         </div>
+                                        @endif
                                         @endforeach
                                     </div>
                                 </table>
@@ -509,15 +550,18 @@
                 <div class="col-lg-4 card-filter  col-sm-4 col-md-4" style="margin-top:20px ;">
                     <div class="card-box" style="width: 100%;height:100%;">
                         <div class="card-image">
-                            @php
-                            $media=App\Models\Media::where('mission_id',$theme->mission_id)->first();
-                            @endphp
-                            @if(is_null($media))
-                            <img src="/images/image2.png" style="height: 250px;width:100%">
-                            @else
-                            <img src="/images/{{$media->media_name}}" class="img" style="height: 250px;width:100%"
-                                alt="...">
-                            @endif
+                    
+
+                        @foreach($media1 as $item)
+                @if(($item->mission_id==$theme->mission_id))
+                <img src="/images/{{$item->media_name}}" class="img" style="height: 250px;width:100%" alt="...">
+                @break
+                @endif
+                @endforeach
+
+                @if(($item->mission_id==$theme->mission_id)==null)
+                <img src="/images/image2.png" style="height: 250px;width:100%">
+                @endif
                             <div class='d-flex align-items-center third-txt p-2'>
                                 <a href="">
                                     <img src="/images/user.png" class='img-fluid img-card'>
@@ -525,20 +569,17 @@
                             </div>
                             <div class="d-flex align-items-center second-txt p-2">
                                 <a href="{{url('favourite/'.$mission->mission_id)}}">
-                                    @php
-                                    $favourite=App\Models\Favourite::all()
-                                    @endphp
-                                    @foreach($favourite as $fav)
-                                    @if($fav->mission_id==$theme->mission_id)
-                                    @if($fav->mission_id==$theme->mission_id && $fav->user_id==Auth::user()->user_id)
-                                    <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
-                                    @break
-                                    @endif
-                                    @endif
-                                    @endforeach
-                                    @if($fav->mission_id!=$theme->mission_id || $fav->user_id!=Auth::user()->user_id)
-                                    <img src="/images/heart.png" alt='' class='img-fluid img-card-h'>
-                                    @endif
+                                @foreach($favourite as $fav)
+                        @if($fav->mission_id==$mission->mission_id)
+                        @if($fav->mission_id==$mission->mission_id && $fav->user_id==Auth::user()->user_id)
+                        <img src="/images/favourite.jpg" alt='' class='img-fluid img-card-h'>
+                        @break
+                        @endif
+                        @endif
+                        @endforeach
+                        @if($fav->mission_id!=$mission->mission_id || $fav->user_id!=Auth::user()->user_id)
+                        <img src="/images/heart.png" alt='' class='img-fluid img-card-h'>
+                        @endif
                                 </a>
                             </div>
                             <a href="">
@@ -550,6 +591,20 @@
                         <div class="d-flex four-txt justify-content-center">
                             <div class="theme">{{$theme->theme->title}}</div>
                         </div>
+                        @foreach($application as $item)
+                @if($item==$mission->mission_id)
+                <div class="d-flex align-items-center fifth-txt">
+                    <span>APPLIED</span>
+                </div>
+                @endif
+                @endforeach
+                @foreach($app as $item)
+                @if($mission->end_date<=$carbon::now() && $item!=$mission->mission_id && $mission->end_date!=null)
+                    <div class="d-flex align-items-center fifth-txt">
+                        <span>CLOSED</span>
+                    </div>
+                    @endif
+                    @endforeach
                     </div>
                     <div class="card-body" style=" padding-top:30px;">
                         <div class="container card-div-1">
@@ -564,38 +619,77 @@
                                         {{$theme->organization_name}}</h6>
                                 </div>
                                 <div class="col-md-5 col-lg-5 col-5">
-                                    <div class="rating-css">
-                                        <div class="star-icon">
-                                            <form action="{{url('add-rating')}}" method="" id="form">
-                                                <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
-                                                <input value="1" id="rating1" type="radio" name="star" />
-                                                <label for="rating1" class="fa fa-star checked"></label>
-                                                <input value="2" id="rating2" type="radio" name="star" />
-                                                <label for="rating2" class="fa fa-star checked"></label>
-                                                <input value="3" id="rating3" type="radio" name="star" />
-                                                <label for="rating3" class="fa fa-star checked"></label>
-                                                <input value="4" id="rating4" type="radio" name="star" />
-                                                <label for="rating4" class="fa fa-star"></label>
-                                                <input value="5" id="rating5" type="radio" name="star" />
-                                                <label for="rating5" class="fa fa-star"></label>
-                                            </form>
-                                        </div>
+                                <form action="{{url('add-rating/'.$mission->mission_id)}}" method="POST"
+                                id="form_{{$mission->mission_id}}">
+                                @csrf
+                                <input type="hidden" value="{{$mission->mission_id}}" name="mission_id">
+                                <div class="rating-css">
+
+                                    <div class="star-icon">
+                                        @foreach($rated as $rating)
+                                        @if($rating->mission_id==$mission->mission_id)
+                                        <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating1_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=1) checked @endif @endif"></label>
+                                        <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating2_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=2) checked @endif @endif"></label>
+                                        <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating3_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=3) checked @endif @endif"></label>
+                                        <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating4_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=4) checked @endif @endif"></label>
+                                        <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating5_{{$mission->mission_id}}"
+                                            class="fa fa-star @if($rating->times_added!=0) @if($rating->times_added>=5) checked @endif @endif"></label>
+                                        @break
+                                        @endif
+                                        @endforeach
+                                        @if(($rating->mission_id==$mission->mission_id)==null)
+                                        <input value="1" id="rating1_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating1_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="2" id="rating2_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating2_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="3" id="rating3_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating3_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="4" id="rating4_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating4_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        <input value="5" id="rating5_{{$mission->mission_id}}" class="cus_rating"
+                                            type="radio" name="star" cusId="{{$mission->mission_id}}" />
+                                        <label for="rating5_{{$mission->mission_id}}" class="fa fa-star"></label>
+                                        @endif
                                     </div>
+
+                                </div>
+                            </form>
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class='d-flex align-items-center'>
                             <hr class='flex-grow-1' />
-                            @php
-                            $goal=App\Models\Goal::where('mission_id',$mission->mission_id)->first();
-                            @endphp
-                            @if(is_null($goal))
-                            <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to
-                                {{$mission->end_date->format('d/m/Y')}}</div>
-                            @else
-                            <div class='goal'>{{$goal->goal_objective_text}}</div>
-                            @endif
+                            @foreach($goal1 as $item)
+                    @if(($item->mission_id==$mission->mission_id))
+                    <div class='goal'>{{$item->goal_objective_text}}</div>
+                    @break
+                    @endif
+                    @endforeach
+
+                    @if(($item->mission_id==$mission->mission_id)==null)
+                    <div class='goal'>{{$mission->start_date->format('d/m/Y')}} to
+                        {{$mission->end_date->format('d/m/Y')}}
+                    </div>
+                     @endif
                             <hr class='flex-grow-1' />
                         </div><br>
                         <div class="container card-div-2">
@@ -609,8 +703,11 @@
                                                         <img src='/images/Seats-left.png' alt='' class="c-img">
                                                     </div>
                                                     <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
-                                                        <div class="seat-left"> <span
-                                                                class="c-text-style">{{$theme->seat_left}} </span>
+                                                        <div class="seat-left"> 
+                                                        @php
+                                                $left=App\Models\Application::where('mission_id',$theme->mission_id)->count('mission_id');
+                                                @endphp
+                                                            <span class="c-text-style">{{$theme->total_seat-$left}} </span>
                                                             Seats-left </div>
                                                     </div>
                                                 </div>
@@ -666,9 +763,7 @@
         <br>
         <input type="hidden" name="mission_id" id="mission_id">
         <label for="mission">User</label>
-        @php
-        $users=App\Models\User::all()
-        @endphp
+    
         <div><select class="story-input" aria-placeholder="Select your User" name="user_id">
                 @foreach($users as $user)
                 <option value="{{$user->user_id}}" class="story-input">{{$user->full_name}}</option>

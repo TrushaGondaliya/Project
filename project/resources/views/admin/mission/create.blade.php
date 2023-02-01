@@ -108,7 +108,7 @@ tinymce.init({
                             <input type="date" name="end_date" class="cms-input" placeholder="Enter End Date"><br><br>
                         </div>
                         <span class="cms-label">Total seats</span>
-                        <input type="text" name="seat_left" class="cms-input" placeholder="Enter total seats"><br><br>
+                        <input type="text" name="total_seat" class="cms-input" placeholder="Enter total seats"><br><br>
                         <span class="cms-label">Mission Theme</span>
 
 

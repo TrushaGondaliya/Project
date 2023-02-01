@@ -77,6 +77,7 @@ class AdminmissionController extends Controller
 
     function add_mission(MissionRequest $request)
     {
+        
         $data = $request->validated();
         $mission = new Mission;
         $mission->city_id = $data['city'];
@@ -89,7 +90,7 @@ class AdminmissionController extends Controller
         $mission->start_date = $data['start_date'];
         $mission->end_date = $data['end_date'];
         $mission->mission_type=$data['mission_type'];
-        $mission->seat_left = $data['seat_left'];
+        $mission->total_seat = $data['total_seat'];
         $mission->theme_id = Theme::whereTitle($request->input('theme_title'))->first()->mission_theme_id;
         $mission->availability = $request->input('availability');
         $mission->save();
@@ -171,7 +172,7 @@ class AdminmissionController extends Controller
         $mission->end_date = $data['end_date'];
     }
         $mission->mission_type=$data['mission_type'];
-        $mission->seat_left = $data['seat_left'];
+        $mission->total_seat = $data['total_seat'];
         $mission->theme_id = Theme::whereTitle($request->input('theme_title'))->first()->mission_theme_id;
         $mission->availability = $request->input('availability');
         $mission->update();
@@ -231,8 +232,6 @@ class AdminmissionController extends Controller
     function application(Request $request)
     {
         $application = Application::where('approval_status', '=', 'PENDING ')->orwhere('approval_status', '=', 'DECLINE ');
-        $mission_id = Application::where('approval_status', '=', 'PENDING ')->orwhere('approval_status', '=', 'DECLINE ')->pluck('mission_id');
-        $title = Mission::whereIn('mission_id', $mission_id)->pluck('title');
         if (request()->has('search') && !empty(request()->input('search'))) {
             $mission = Mission::where('title', 'LIKE', '%' . request()->input('search') . '%')->pluck('mission_id');
             $application = Application::whereIn('mission_id', $mission);

@@ -16,6 +16,7 @@ class Comments extends Model
     protected $table='comment';
     protected $primaryKey='comment_id';
     protected $dates=['deleted_at'];
+    protected $fillable=['approval_status'];
 
     public $timestamps=true;
 

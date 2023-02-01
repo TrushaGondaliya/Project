@@ -4,11 +4,19 @@
 
 <div class="body-1">
         <br><br>
+     
 
         <div class="share">
             @if(Session('message'))
             <div class="alert alert-success">{{Session('message')}}</div>
             @endif
+            @if($errors->any())
+    <div class="alert alert-danger">
+        @foreach($errors->all() as $error)
+        <div>{{$error}}</div>
+        @endforeach
+</div>
+@endif
             <form action="{{url('add-story')}}" method="POST" enctype="multipart/form-data">
                 @csrf
             <span class="story-heading">Share your story</span>
@@ -20,10 +28,6 @@
                     <Span class="story-text">Select Mission</Span>
                     <div><select class="story-input" aria-placeholder="Select your Mission" name="mission_id" id="">
                             <option value="" class="story-input">Select Your Mission</option>
-                            @php
-                            $missions=App\Models\Mission::all();
-                            $story=App\Models\Story::where('user_id',Auth::user()->user_id)->where('status','DRAFT')->first();
-                            @endphp
                             @foreach($missions as $mission)
                             @if($story)
                             <option value="{{$story->mission->mission_id}}" selected>{{$mission->title}}</option>
@@ -62,11 +66,11 @@
                     <span class="dragBox">
                         <img src="images/drag-and-drop.png" alt="">
                         @if($story)
-                        @php
-                        $media=App\Models\Storymedia::where('story_id',$story->story_id)->get()
-                        @endphp
+                        
                         @foreach($media as $item)
+                        @if($item->story_id==$story->story_id)
                         <input type="file" value="{{$item->story_media_id}}" onChange="dragNdrop(event)" name="image[]" ondragover="drag()" ondrop="drop()" id="uploadFile" multiple/>
+                        @endif
                         @endforeach
                         @else
                         <input type="file" onChange="dragNdrop(event)" name="image[]" ondragover="drag()" ondrop="drop()" id="uploadFile" multiple/>
@@ -243,6 +247,8 @@
 
 <script>
 $('.alert-success').fadeOut(3000);
+$('.alert-danger').fadeOut(3000);
+
     tinymce.init({
         selector: 'textarea#editor',
         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',

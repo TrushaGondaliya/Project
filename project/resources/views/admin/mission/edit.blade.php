@@ -85,7 +85,7 @@ tinymce.init({
                         </div><br><br>
 
                         <span class="cms-label">Total seats</span>
-                        <input type="text" name="seat_left" value="{{$mission->seat_left}}" class="cms-input"
+                        <input type="text" name="total_seat" value="{{$mission->total_seat}}" class="cms-input"
                             placeholder="Enter total seats"><br><br>
                         <span class="cms-label">Mission Type</span>
                         <select id="type" class="cms-input" name="mission_type">

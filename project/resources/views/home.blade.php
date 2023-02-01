@@ -256,8 +256,11 @@
                                                 <img src='images/Seats-left.png' alt='' class="c-img">
                                             </div>
                                             <div class='col-md-9 col-9 col-sm-9 col-lg-9'>
+                                                @php
+                                                $left=App\Models\Application::where('mission_id',$mission->mission_id)->count('mission_id');
+                                                @endphp
                                                 <div class="seat-left"> <span
-                                                        class="c-text-style">{{$mission->seat_left}}
+                                                        class="c-text-style">{{$mission->total_seat-$left}}
                                                     </span> Seats-left </div>
 
                                             </div>
@@ -314,7 +317,7 @@
                     <=$carbon::now() && $mission->end_date!=null)
                         <div class="form-group">
                             <a href="{{url('volunteering/'.$mission->mission_id)}}">
-                                <div class='card-button'>View Detais
+                                <div class='card-button'>View Details
                                     <img src='images/right-arrow.png' alt='' class='pl-3'>
                                 </div>
                             </a>

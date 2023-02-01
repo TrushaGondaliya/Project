@@ -44,14 +44,16 @@
                     <div class="card-box" style="width: 100%;height:100%;padding-bottom:20px">
                         <div class="container-fluid">
                             <div class="card-image">
-                            @php
-                    $media=App\Models\Storymedia::where('story_id',$item->story_id)->first();
-                    @endphp
-                    @if(is_null($media))
-                                <img src="/images/image2.png" class="image-1">
-                                @else
-                                <img src="/images/{{$media->path}}" class="image-1"  alt="...">
-                                @endif
+                            @foreach($media as $item1)
+                @if(($item1->story_id==$item->story_id))
+                <img src="/images/{{$item->media_name}}" class="image-1" style="height: 250px;width:100%" alt="...">
+                @break
+                @endif
+                @endforeach
+
+                @if(($item1->story_id==$item->story_id)==null)
+                <img src="/images/image2.png" class="image-1">
+                @endif
                                 <div class="d-flex four-txt justify-content-center">
                                     <div class="theme">{{$item->mission->theme->title}}</div>
                                 </div>
@@ -87,38 +89,7 @@
 </section>
 
 <br><br>
-<div class="container mt-3">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="{{url('stories_listing?page='.$story->onFirstPage())}}" aria-label="prevoius">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-               
-                <a class="page-link" aria-disabled="false" href="{{$story->previousPageUrl()}}" aria-label="prevoius">
-                    <span aria-hidden="true">&lsaquo;</span>
-                </a>
-            </li>
-            @for($i=1;$i<=$story->lastpage();$i++) 
-            @if($i==$story->currentPage())
-            <li class="page-item"><a class="page-link active" href="{{url('stories_listing?page='.$i)}}">{{$i}}</a> </li>
-            @else
-            <li class="page-item"><a class="page-link" href="{{url('stories_listing?page='.$i)}}">{{$i}}</a> </li>
-            @endif
-            @endfor
-                <li class="page-item">
-                    <a class="page-link" aria-disabled="false" href="{{$story->nextPageUrl()}}" aria-label="Next">
-                        <span aria-hidden="true">&rsaquo;</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="{{url('stories_listing?page='.$story->lastpage())}}" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-        </ul>
-    </div>
+{{$story->links()}}
 <br><br><br><br><br><br><br>
 <hr>
 <x-footer></x-footer>

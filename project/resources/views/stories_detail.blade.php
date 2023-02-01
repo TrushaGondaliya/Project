@@ -17,19 +17,17 @@
             <div class="row col-md-12 col-sm-12  col-lg-12">
                 <div class="column col-md-6 story-detail-img">
                     <div id="main">
-                        @php
-                        $media=App\Models\Storymedia::where('story_id',$story->story_id)->first();
-                        @endphp
-                        @if(is_null($media))
-                        <img src="/images/image2.png" class="story-main-img">
-                        @else
-                        <img src="/images/{{$media->path}}" class="story-main-img" alt="...">
-                        @endif
+                    @foreach($media as $item)
+                @if(($item->story_id==$story->story_id))
+                <img src="/images/{{$item->media_name}}" class="story-main-img" alt="...">
+                @break
+                @endif
+                @endforeach
+
+                @if(($item->story_id==$story->story_id)==null)
+                <img src="/images/image2.png" class="story-main-img">
+                @endif
                     </div>
-
-
-
-
 
                     <div id="gallery" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
@@ -128,7 +126,7 @@
                             <div class="column col-md-4 col-4">
                                 <div class="story-views">
                                     <img src="/images/eye.png" alt="">
-                                    <span>12,000 Views</span>
+                                    <span>{{$story->count}} Views</span>
                                 </div>
                             </div>
                         </div>
@@ -165,15 +163,16 @@
         <br><br>
         <div class="vol">
             <div class=" vol-mission">
-                @php
-                $mission=App\Models\Mission::where('mission_id',$story->mission_id)->first();
-                @endphp
+                @foreach($missions as $mission)
+                @if($mission->mission_id==$story->mission_id)
                 <ul class="nav nav-tabs-2">
                     <li class="nav-item nav-detail"><a class="nav-link">{{$mission->title}}</a></li>
                 </ul>
             </div>
             <br>
             <span>{!!$mission->description!!}</span>
+            @endif
+            @endforeach
         </div>
 </div>
 <br>
@@ -196,9 +195,7 @@
         <input type="hidden" name="story_id" id="story_id">
         <br>
         <label for="mission">User</label>
-        @php
-        $users=App\Models\User::all()
-        @endphp
+      
         <div><select class="story-input" aria-placeholder="Select your User" name="user_id">
                 @foreach($users as $user)
                 <option value="{{$user->user_id}}" class="story-input">{{$user->full_name}}</option>

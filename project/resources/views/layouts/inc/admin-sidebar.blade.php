@@ -71,6 +71,13 @@
                     </div>
                     Banner Management
                 </a>
+                <a class="nav-link {{Request::is('admin/comment') ? 'active' : ''}}"
+                    href="{{url('admin/comment')}}">
+                    <div class="sb-nav-link-icon"><i
+                            class="fas fa-folder-plus {{Request::is('admin/comment')? 'active' : ''}}"></i>
+                    </div>
+                   Comments
+                </a>
             </div>
         </div>
     </nav>
