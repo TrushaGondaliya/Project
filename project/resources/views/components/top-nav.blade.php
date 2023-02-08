@@ -54,81 +54,11 @@
     </nav>
 
 
-    <div class="nav-item nav-avtar dropdown">
-        
-        <div class="dropdown">
-            <button class="bell-btn"><img class="dropbtn" onclick="myFunction()"  src="images/bell.png" alt=""></button>
-            <div id="myDropdown" class="dropdown-content">
-                <span class="bell-sticky">Get a Notification For</span>
-                <div class="bell-content">
-            <ul>
-            <li>
-            Recommended Mission
-              <input type="checkbox" value="/download1.jpg" />
-               
-        </li>
-            <li>
-            Volunteering Hours
-              <input type="checkbox" value="/download2.png" />
-                
-        </li>
-            <li>
-            Volunteering Goals
-              <input type="checkbox" value="/download3.jpg" />
-                
-        </li>
-        <li>
-        My Comments
-              <input type="checkbox" value="/download3.jpg" />
-                
-        </li>
-        <li>
-        My stories
-              <input type="checkbox" value="/download3.jpg" />
-                
-        </li>
-        <li>
-        New Messages
-              <input type="checkbox" value="/download3.jpg" />
-                
-        </li>
-        <li>
-        New Missions
-              <input type="checkbox" value="/download3.jpg" />
-        </li>
-        <li>
-        Recommended story
-              <input type="checkbox" value="/download3.jpg" />
-             
-        </li>
-        <li>
-        Mission application
-              <input type="checkbox" value="/download3.jpg" />
-        </li>
-        <li>
-        Recommended story
-              <input type="checkbox" value="/download3.jpg" />
-        </li>
-        <li>
-        Recommended story
-              <input type="checkbox" value="/download3.jpg" />
-        </li>
-        
-          </ul>
-</div>
-<hr>
-          <div class="not-btn">
-            <input type="button" value="Cancel" class="not-btn1">
-            <input type="submit" value="Save" class="not-btn2">
-            </div>
-            </div>
-            
-        </div>
-        <div>
+  
+        <div class="nav-item nav-avtar dropdown">
             <img src="{{asset('/uploads/user/'.Auth::user()->avtar)}}" alt="Avatar"
                 style="width:40px;height: 40px; border-radius:100%;object-fit:cover ;margin-right: 12px;">
-        </div>
-        <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" style="font-size: 15px;" href="#"
+                <a class="nav-link dropdown-toggle Explore-Stories-Policy common-font" style="font-size: 15px;" href="#"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{Auth::user()->full_name}}
         </a>
@@ -137,6 +67,9 @@
             <li><a class="dropdown-item" href="{{url('timesheet')}}">Volunteering Timesheet</a></li>
             <li><a class="dropdown-item" href="{{url('logout')}}">Logout</a></li>
         </ul>
+        </div>
+        
+       
     </div>
 </div>
 <hr style="margin-bottom:0">
